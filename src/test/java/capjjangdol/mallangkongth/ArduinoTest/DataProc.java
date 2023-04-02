@@ -1,4 +1,4 @@
-package capjjangdol.mallangkongth.ArdoinoTest;
+package capjjangdol.mallangkongth.ArduinoTest;
 
 public class DataProc
 {
