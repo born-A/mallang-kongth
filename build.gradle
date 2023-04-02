@@ -19,6 +19,8 @@ repositories {
 }
 
 dependencies {
+	implementation files('libs/RXTXcomm.jar')
+	implementation fileTree(dir: 'libs', include: ['*.jar'])
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
