@@ -10,4 +10,4 @@
 <li>Improve: 무언가를 개선(최적화)했을 때</li>
 </ul>
 <p data-ke-size="size16">커밋 내용: 주요 작업 내용을 요약</p>
-<p data-ke-size="size16">커밋 내용: 주요 작업 내용을 요약</p>
+<p data-ke-size="size16">버전: 같은 작업을 했을때는 몇번 째 작업인지 버전을 작성</p>
