@@ -1,4 +1,5 @@
-package domain;
+
+package capjjangdol.mallangkongth.domain;
 
 import javax.persistence.*;
 
