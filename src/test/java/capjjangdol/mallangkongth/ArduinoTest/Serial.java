@@ -43,8 +43,7 @@ public class Serial
                 System.out.println("comport성공");
                 InputStream in = serialPort.getInputStream();
                 OutputStream out = serialPort.getOutputStream();
-
-                (new Thread(new SerialRead(in))).start();
+                new Thread(new InTread(in)).start();
                 new Thread(new SerialWrite(out)).start();
             }
         }	//	end try
