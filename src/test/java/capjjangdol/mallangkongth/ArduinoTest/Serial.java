@@ -49,8 +49,7 @@ public class Serial
                     Thread.sleep(20);
                 }
 
-                Thread t1 =new Thread(new InTread(in));
-                t1.start();
+                new Thread(new SerialRead(in)).start();
                 new Thread(new SerialWrite(out)).start();
             }
         }	//	end try
