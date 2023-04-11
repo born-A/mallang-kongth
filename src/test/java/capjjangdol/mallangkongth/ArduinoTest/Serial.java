@@ -4,6 +4,7 @@ import gnu.io.CommPort;
 import gnu.io.CommPortIdentifier;
 import gnu.io.SerialPort;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
@@ -43,7 +44,13 @@ public class Serial
                 System.out.println("comport성공");
                 InputStream in = serialPort.getInputStream();
                 OutputStream out = serialPort.getOutputStream();
-                new Thread(new InTread(in)).start();
+
+                while(in.available() < 4){
+                    Thread.sleep(20);
+                }
+
+                Thread t1 =new Thread(new InTread(in));
+                t1.start();
                 new Thread(new SerialWrite(out)).start();
             }
         }	//	end try

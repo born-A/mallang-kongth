@@ -11,18 +11,13 @@ public class InTread extends Thread{
         this.in = in;
     }
     public void run(){
-        while(true){
-            try {
-                if (!(in.available() < 4)) break;
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+
+        try {
+            while(in.available() < 4){
+                Thread.sleep(2);
             }
-            try {
-                Thread.sleep(20);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+            new SerialRead(in).run();
         }
-        new SerialRead(in);
+        catch (Exception e) {}
     }
 }

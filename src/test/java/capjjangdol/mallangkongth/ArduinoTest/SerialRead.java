@@ -30,7 +30,6 @@ public class SerialRead implements Runnable
                     new DataProc(s);
             }
         }
-        catch (IOException e) {e.printStackTrace();
-        }
+        catch (Exception e) {}
     }
 }
