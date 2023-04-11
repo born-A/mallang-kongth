@@ -17,12 +17,15 @@ public class SerialRead implements Runnable
         int len = -1;
 
 
-
         try
         {
             //	buffer에 저장하고나서, 그 길이를 반환한다.
-            while ((len = this.in.read(buffer)) > -1) //자릿수 입력
+            while ((len = this.in.read(buffer)) > -1)
             {
+
+                while(in.available() < 4){ // < 뒤에 숫자가 받아오는 값의 자릿수
+                    Thread.sleep(2);
+                }
                 //	System.out.println(new String(buffer,0,len));
                 //	new DataProc(new String(buffer,0,len));
                 String s = new String(buffer,0,len);

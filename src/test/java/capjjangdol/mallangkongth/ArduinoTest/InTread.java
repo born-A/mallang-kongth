@@ -12,12 +12,6 @@ public class InTread extends Thread{
     }
     public void run(){
 
-        try {
-            while(in.available() < 4){
-                Thread.sleep(2);
-            }
-            new SerialRead(in).run();
-        }
-        catch (Exception e) {}
+        new SerialRead(in).run();
     }
 }
