@@ -13,13 +13,15 @@ public class SerialRead implements Runnable
     @Override
     public void run()
     {
-        byte[] buffer = new byte[1024];
+        byte[] buffer = new byte[5];
         int len = -1;
+
+
 
         try
         {
             //	buffer에 저장하고나서, 그 길이를 반환한다.
-            while ((len = this.in.read(buffer)) > -1)
+            while ((len = this.in.read(buffer)) > -1) //자릿수 입력
             {
                 //	System.out.println(new String(buffer,0,len));
                 //	new DataProc(new String(buffer,0,len));
@@ -28,6 +30,7 @@ public class SerialRead implements Runnable
                     new DataProc(s);
             }
         }
-        catch (IOException e) {e.printStackTrace();}
+        catch (IOException e) {e.printStackTrace();
+        }
     }
 }
