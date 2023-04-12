@@ -1,6 +1,6 @@
 package capjjangdol.mallangkongth.domain.rearing;
 
-import capjjangdol.mallangkongth.domain.Pet;
+import capjjangdol.mallangkongth.domain.mypage.Pet;
 
 import javax.persistence.*;
 import java.util.ArrayList;
