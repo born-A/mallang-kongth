@@ -19,7 +19,7 @@ public class Member{
     private String address;
 
     @ManyToOne
-    @Column(name = "PET_ID")
+    @JoinColumn(name = "PET_ID")
     private Pet pet;
 
 ////    @ManyToMany
