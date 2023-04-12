@@ -1,12 +1,10 @@
 package capjjangdol.mallangkongth.domain.community;
 
-import capjjangdol.mallangkongth.domain.Member;
+import capjjangdol.mallangkongth.domain.mypage.Member;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.catalina.User;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Getter @Setter

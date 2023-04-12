@@ -1,5 +1,5 @@
 package capjjangdol.mallangkongth.domain.rearing;
-import capjjangdol.mallangkongth.domain.Pet;
+import capjjangdol.mallangkongth.domain.mypage.Pet;
 import lombok.Getter;
 import lombok.Setter;
 
