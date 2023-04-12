@@ -1,8 +1,8 @@
-package capjjangdol.mallangkongth.domain;
-
-import capjjangdol.mallangkongth.domain.Member;
+package capjjangdol.mallangkongth.domain.mypage;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Pet {
@@ -15,6 +15,8 @@ public class Pet {
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
+    @OneToMany(mappedBy = "pet")
+    private List<Orders> ordersList = new ArrayList<>();
     public Long getId() {
         return id;
     }

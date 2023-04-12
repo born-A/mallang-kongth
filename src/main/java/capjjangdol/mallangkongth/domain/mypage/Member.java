@@ -1,12 +1,9 @@
-package capjjangdol.mallangkongth.domain;
+package capjjangdol.mallangkongth.domain.mypage;
 
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -14,14 +11,20 @@ import javax.persistence.Id;
 public class Member{
     @Id @GeneratedValue
     @Column(name = "MEMBER_ID")
-    private String user_id;
-    private String user_name;
-    private String user_pw;
-    private String user_address;
+    private Long id;
+    private String name;
+    private String pw;
+
+    @Embedded
+    private String address;
+
+    @ManyToOne
     @Column(name = "PET_ID")
-    private long pet_id;
-    @Column(name ="PAYMENT_LIST_ID")
-    private String payment_list_id;
+    private Pet pet;
+
+////    @ManyToMany
+//    @Column(name ="ORDER_ID")
+//    private Long order_id;
 
 
 
