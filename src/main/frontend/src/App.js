@@ -1,3 +1,5 @@
+// src/main/frontend/src/App.js
+
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 
@@ -15,6 +17,10 @@ function App() {
         백엔드에서 가져온 데이터입니다 : {hello}
       </div>
   );
+<<<<<<< HEAD
 
+=======
+}
+>>>>>>> origin/master
 
 export default App;
