@@ -1,5 +1,7 @@
 package capjjangdol.mallangkongth.domain.community;
 
+import capjjangdol.mallangkongth.domain.community.board.BoardCategory;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
