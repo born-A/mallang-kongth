@@ -1,5 +1,6 @@
 package capjjangdol.mallangkongth.domain.community;
 
+import capjjangdol.mallangkongth.domain.community.board.Question;
 import capjjangdol.mallangkongth.domain.mypage.Member;
 import lombok.Getter;
 import lombok.Setter;
