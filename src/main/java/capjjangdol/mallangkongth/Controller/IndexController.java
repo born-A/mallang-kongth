@@ -20,4 +20,8 @@ public class IndexController {
     public String Pet(){
         return "pet";
     }
+    @GetMapping("/rearing")
+    public String rearing(){
+        return "rearing";
+    }
 }
