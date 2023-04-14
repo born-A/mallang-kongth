@@ -1,15 +1,15 @@
 package capjjangdol.mallangkongth.domain.mypage;
 
-import capjjangdol.mallangkongth.domain.Item;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Orders {
 
     @Id @GeneratedValue
-    @Column(name = "ORDER_ID")
+    @Column(name = "order_id")
     private Long id;
 
     private LocalDateTime orderDate;
@@ -20,18 +20,15 @@ public class Orders {
     enum orderStatus{
         Complete,
         Cancel,
-        Wait;
-
+        Wait
     }
 
 
+    @OneToMany(mappedBy = "orders")
+    private List<OrderItem> orderItems = new ArrayList<>();
 
     @ManyToOne
-    @JoinColumn(name = "ITEM_ID")
-    private Item item;
-
-    @ManyToOne
-    @JoinColumn(name = "PET_ID")
+    @JoinColumn(name = "pet_id")
     private Pet pet;
 
     public Long getId() {

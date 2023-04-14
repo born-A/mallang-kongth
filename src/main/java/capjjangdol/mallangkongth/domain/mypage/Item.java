@@ -1,21 +1,24 @@
-package capjjangdol.mallangkongth.domain;
+package capjjangdol.mallangkongth.domain.mypage;
 
 
 import capjjangdol.mallangkongth.domain.mypage.Orders;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter @Setter
 public class Item {
     @Id
     @GeneratedValue
-    @Column(name = "ITEM_ID")
+    @Column(name = "item_id")
     private Long id;
 
-@OneToMany(mappedBy = "item")
-    private List<Orders> ordersList = new ArrayList<>();
+    @OneToMany(mappedBy = "item")
+    private List<OrderItem> orderItems = new ArrayList<>();
 
     private String name;
     private String category;

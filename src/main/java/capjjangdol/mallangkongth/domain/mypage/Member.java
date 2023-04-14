@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Setter
 public class Member{
     @Id @GeneratedValue
-    @Column(name = "MEMBER_ID")
+    @Column(name = "member_id")
     private Long id;
     private String name;
     private String pw;
@@ -19,7 +19,7 @@ public class Member{
     private String address;
 
     @ManyToOne
-    @JoinColumn(name = "PET_ID")
+    @JoinColumn(name = "pet_id")
     private Pet pet;
 
 ////    @ManyToMany
