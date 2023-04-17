@@ -1,11 +1,16 @@
 package capjjangdol.mallangkongth.domain.mypage;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
 public class Orders {
 
     @Id @GeneratedValue
@@ -28,8 +33,8 @@ public class Orders {
     private List<OrderItem> orderItems = new ArrayList<>();
 
     @ManyToOne
-    @JoinColumn(name = "pet_id")
-    private Pet pet;
+    @JoinColumn(name = "member_id")
+    private Member member;
 
     public Long getId() {
         return id;

@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -21,6 +23,12 @@ public class Member{
     @ManyToOne
     @JoinColumn(name = "pet_id")
     private Pet pet;
+
+    @Enumerated(EnumType.STRING)
+    private RoleType roleType;
+
+    @OneToMany(mappedBy = "member")
+    private List<Orders> ordersList = new ArrayList<>();
 
 ////    @ManyToMany
 //    @Column(name ="ORDER_ID")
