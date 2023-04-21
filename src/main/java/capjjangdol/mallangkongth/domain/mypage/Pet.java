@@ -8,11 +8,11 @@ import java.util.List;
 public class Pet {
     @Id
     @GeneratedValue
-    @Column(name = "PET_ID")
+    @Column(name = "pet_id")
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "MEMBER_ID")
+    @JoinColumn(name = "member_id")
     private Member member;
 
 

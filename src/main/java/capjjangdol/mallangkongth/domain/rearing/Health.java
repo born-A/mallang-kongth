@@ -10,15 +10,15 @@ import javax.persistence.*;
 @Setter
 public class Health {
     @Id @GeneratedValue
-    @Column(name = "HEALTH_ID")
+    @Column(name = "health_id")
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "PET_ID")
+    @JoinColumn(name = "pet_id")
     private Pet pet;
 
     private String text;
 
-    @Column(name = "IMAGE_URL")
+    @Column(name = "image_url")
     private String imageUrl;
 }

@@ -14,7 +14,7 @@ public class WaterBowl {
 
     private Long remaining;
 
-    @Column(name = "SETTING_AMOUNT")
+    @Column(name = "setting_amount")
     private Long settingAmount;
 
     public Long eatingAmount() {
