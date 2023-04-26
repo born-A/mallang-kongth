@@ -20,4 +20,20 @@ public class WaterBowl {
     public Long eatingAmount() {
         return this.settingAmount - this.remaining;
     }
+
+    public Long getRemaining() {
+        return remaining;
+    }
+
+    public void setRemaining(Long remaining) {
+        this.remaining = remaining;
+    }
+
+    public Long getSettingAmount() {
+        return settingAmount;
+    }
+
+    public void setSettingAmount(Long settingAmount) {
+        this.settingAmount = settingAmount;
+    }
 }
