@@ -28,8 +28,11 @@ public class SerialRead implements Runnable
                 }
 
                 String s = new String(buffer,0,len);
-                if (len == 3 && s.charAt(1) != '-' && s.charAt(2) != '-') //받아오는 값의 자릿수가 3자리일 때만 출력, 값 중간에 - 나오지 않도록 함
+                if (len == 3 && s.charAt(1) != '-' && s.charAt(2) != '-' && s.charAt(1) == 'w'){//받아오는 값의 자릿수가 3자리일 때만 출력, 값 중간에 - 나오지 않도록 함
+                    new WaterDataProc(s);
+                } else if (len == 3 && s.charAt(1) != '-' && s.charAt(2) != '-') {
                     new DataProc(s);
+                }
             }
         }
         catch (Exception e) {}
