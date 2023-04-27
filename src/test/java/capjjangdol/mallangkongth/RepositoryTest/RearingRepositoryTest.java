@@ -15,10 +15,10 @@ public class RearingRepositoryTest extends MallangKongthApplicationTests {
     @Autowired
     RearingRepository rearingRepository;
 
-    @Test
-    void save(){
-        FoodBowl params = FoodBowl.builder().
-    }
+//    @Test
+//    void save(){
+//        FoodBowl params = FoodBowl.builder().
+//    }
 //        FoodBowl foodbowl1 = new FoodBowl();
 //        foodbowl1.setRemaining(Long.valueOf(100));
 //        foodbowl1.setSettingAmount(Long.valueOf(20));

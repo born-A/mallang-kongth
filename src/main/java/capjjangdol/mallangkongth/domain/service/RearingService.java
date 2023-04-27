@@ -1,4 +1,4 @@
-package capjjangdol.mallangkongth.service;
+package capjjangdol.mallangkongth.domain.service;
 
 import capjjangdol.mallangkongth.domain.rearing.FoodBowl;
 import capjjangdol.mallangkongth.emf.UniqueEntityManagerFactory;
