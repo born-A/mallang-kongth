@@ -1,9 +1,6 @@
 package capjjangdol.mallangkongth.dto;
 
-import capjjangdol.mallangkongth.domain.mypage.Member;
-import capjjangdol.mallangkongth.domain.mypage.Orders;
-import capjjangdol.mallangkongth.domain.mypage.Pet;
-import capjjangdol.mallangkongth.domain.mypage.RoleType;
+import capjjangdol.mallangkongth.domain.mypage.*;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
@@ -29,7 +26,7 @@ public class MemberDto {
 
         @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,16}$", message = "????? 8~16????? ???. ?? ????, ??, ????? 1? ?? ???? ???.")
         private String pw;
-        private String address;
+        private Address address;
         private RoleType roleType;
         private List<Orders> ordersList = new ArrayList<>();
 
