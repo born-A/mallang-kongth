@@ -18,17 +18,16 @@ public class Member{
     private String pw;
 
     @Embedded
-    private String address;
+    private Address address;
 
-    @ManyToOne
-    @JoinColumn(name = "pet_id")
-    private Pet pet;
+//    @OneToMany(mappedBy = "member")
+//    private List<Pet> petList = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
     private RoleType roleType;
 
-    @OneToMany(mappedBy = "member")
-    private List<Orders> ordersList = new ArrayList<>();
+//    @OneToMany(mappedBy = "member")
+//    private List<Orders> ordersList = new ArrayList<>();
 
 ////    @ManyToMany
 //    @Column(name ="ORDER_ID")
