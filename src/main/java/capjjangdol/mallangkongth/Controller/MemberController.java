@@ -26,29 +26,27 @@ public class MemberController {
     @PostMapping("/auth/joinProcess")
     public String joinProcess(MemberDto.RequestMemberDto memberDto, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()) {
-            /* ???? ?? ? ?? ??? ? ?? */
             model.addAttribute("memberDto", memberDto);
 
-            /* ??? ??? ???? ? ? ??? ??? ??? */
+
             Map<String, String> errorMap = new HashMap<>();
 
             for(FieldError error : bindingResult.getFieldErrors()) {
                 errorMap.put("valid_"+error.getField(), error.getDefaultMessage());
-                log.info("???? ?? ! error message : "+error.getDefaultMessage());
+                log.info("join failed! error message : "+error.getDefaultMessage());
             }
 
-            /* Model? ?? view resolve */
+
             for(String key : errorMap.keySet()) {
                 model.addAttribute(key, errorMap.get(key));
             }
 
-            /* ???? ???? ?? */
             return "join";
         }
 
-        // ???? ?? ?
+
         MemberService.join(memberDto);
-        log.info("???? ??");
+        log.info("join success");
         return "redirect:/auth/join";
     }
     @GetMapping("/auth/joinProcess/{user_id}/exists")

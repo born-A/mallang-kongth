@@ -3,6 +3,7 @@ package capjjangdol.mallangkongth.domain.mypage;
 import jdk.nashorn.internal.runtime.Debug;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @Entity
 @Builder
+@RequiredArgsConstructor
 public class Member {
     @Id @GeneratedValue
     @Column(name = "member_id")

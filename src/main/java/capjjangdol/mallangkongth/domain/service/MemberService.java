@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 @Transactional
 public class MemberService {
-    private final BCryptPasswordEncoder encoder;
+    private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     @Autowired
     private MemberRepository memberRepository;
 
@@ -29,7 +29,7 @@ public class MemberService {
         dto.encryptPassword(encoder.encode(dto.getPw()));
         Member member = dto.toEntity();
         memberRepository.save(member);
-        log.info("db ??");
+        log.info("db save successful");
         return Long.valueOf(member.getUser_id());
     }
     @Transactional
