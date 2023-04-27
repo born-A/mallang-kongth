@@ -2,7 +2,6 @@ import React from 'react';
 import { useState } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 import './Login.css';
-import Signup from "./Signup";
 
 function Login() {
     const [id, setId] = useState('');
@@ -47,8 +46,7 @@ function Login() {
                     </div>
                 </div>
             </form>
-            <p><Link to="/Signup">아직 계정이 없으신가요?</Link></p>
-
+            <p><Link to={"/Signup"}>아직 계정이 없으신가요?</Link></p>
         </div>
     );
 }

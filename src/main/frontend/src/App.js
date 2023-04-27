@@ -31,12 +31,12 @@ import Signup from './Signup';
 
 function App() {
     return (
-            <div>
-                <Login />
+        <div>
                 <Routes>
-                    <Route pate="/Signup" component={Signup}/>
+                    <Route path="/" element={<Login />} />
+                    <Route path="/Signup" element={<Signup />}/>
                 </Routes>
-            </div>
+        </div>
     );
 }
 
