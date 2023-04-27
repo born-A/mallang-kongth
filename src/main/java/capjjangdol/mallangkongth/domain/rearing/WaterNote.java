@@ -12,13 +12,13 @@ import javax.persistence.*;
 public class WaterNote {
     @Id
     @GeneratedValue
-    @Column(name = "WATER_ID")
+    @Column(name = "water_id")
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "PET_ID")
+    @JoinColumn(name = "pet_id")
     private Pet pet;
 
-    @Column(name = "WATER_AMOUNT")
+    @Column(name = "water_amount")
     private Long amount;
 }

@@ -13,10 +13,31 @@ public class FoodBowl {
 
     private Long remaining;
 
-    @Column(name = "SETTING_AMOUNT")
+    @Column(name = "setting_amount")
     private Long settingAmount;
+
 
     public Long eatingAmount() {
         return this.settingAmount - this.remaining;
     }
+
+    public Long getEatingAmount(){
+        return eatingAmount();
+    }
+    public Long getRemaining() {
+        return remaining;
+    }
+
+    public void setRemaining(Long remaining) {
+        this.remaining = remaining;
+    }
+
+    public Long getSettingAmount() {
+        return settingAmount;
+    }
+
+    public void setSettingAmount(Long settingAmount) {
+        this.settingAmount = settingAmount;
+    }
+
 }
