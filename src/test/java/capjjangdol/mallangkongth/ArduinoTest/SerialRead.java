@@ -13,21 +13,25 @@ public class SerialRead implements Runnable
     @Override
     public void run()
     {
-        byte[] buffer = new byte[1024];
+        byte[] buffer = new byte[5];
         int len = -1;
+
 
         try
         {
             //	buffer에 저장하고나서, 그 길이를 반환한다.
             while ((len = this.in.read(buffer)) > -1)
             {
-                //	System.out.println(new String(buffer,0,len));
-                //	new DataProc(new String(buffer,0,len));
+
+                while(in.available() < 3){ // < 뒤에 숫자가 받아오는 값의 자릿수, 3은 무게센서에서 받아지는 자릿수
+                    Thread.sleep(1);
+                }
+
                 String s = new String(buffer,0,len);
-                if (len != 0)
+                if (len == 3 && s.charAt(1) != '-' && s.charAt(2) != '-') //받아오는 값의 자릿수가 3자리일 때만 출력, 값 중간에 - 나오지 않도록 함
                     new DataProc(s);
             }
         }
-        catch (IOException e) {e.printStackTrace();}
+        catch (Exception e) {}
     }
 }
