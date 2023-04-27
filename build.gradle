@@ -29,6 +29,7 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
 	testImplementation("org.junit.vintage:junit-vintage-engine") {
 		exclude group: "org.hamcrest", module: "hamcrest-core" }
 	testImplementation('org.junit.jupiter:junit-jupiter')
@@ -39,6 +40,10 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	// https://mvnrepository.com/artifact/mysql/mysql-connector-java
 	implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.30'
+	implementation 'org.springframework.boot:spring-boot-starter-security';
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+
+
 	implementation 'org.springframework.boot:spring-boot-starter-security';
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 

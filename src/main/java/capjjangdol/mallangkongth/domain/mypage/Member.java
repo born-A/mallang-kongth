@@ -1,5 +1,7 @@
 package capjjangdol.mallangkongth.domain.mypage;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +12,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@Builder
 public class Member{
     @Id @GeneratedValue
     @Column(name = "member_id")
