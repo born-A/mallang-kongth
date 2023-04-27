@@ -1,9 +1,7 @@
 package capjjangdol.mallangkongth.repository;
 
 import capjjangdol.mallangkongth.domain.mypage.Member;
-import capjjangdol.mallangkongth.domain.mypage.Pet;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -20,10 +18,11 @@ public class MemberRepository {
     }
 
     public Member findOne(Long id) {
+
         return em.find(Member.class, id);
     }
-
     public List<Member> findAll() {
+
         return em.createQuery("select m from Member m", Member.class).getResultList();
     }
 
