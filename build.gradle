@@ -20,7 +20,6 @@ repositories {
 
 dependencies {
 	//implementation 'mysql:mysql-connector-java' // MySql
-	//implementation files('libs/RXTXcomm.jar')
 	implementation 'com.fazecast:jSerialComm:2.6.2' //시리얼 통신
 	implementation 'com.github.jnr:jnr-ffi:2.1.10' //시리얼 통신
 	implementation fileTree(dir: 'libs', include: ['*.jar'])

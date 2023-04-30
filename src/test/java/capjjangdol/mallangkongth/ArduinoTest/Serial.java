@@ -1,8 +1,6 @@
 package capjjangdol.mallangkongth.ArduinoTest;
 
-import gnu.io.CommPort;
-import gnu.io.CommPortIdentifier;
-import gnu.io.SerialPort;
+import gnu.io.*;
 
 import java.io.IOException;
 import java.io.InputStream;
