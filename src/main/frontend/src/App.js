@@ -1,11 +1,11 @@
 import React from 'react';
-import Feeding from './Feeding';
+import PetJournal from './components/PetJournal';
 
 function App() {
     return (
         <div>
-            <h1>멍냥보감</h1>
-            <Feeding />
+            <h1>육아수첩</h1>
+            <PetJournal />
         </div>
     );
 }
