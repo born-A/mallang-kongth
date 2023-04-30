@@ -11,6 +11,6 @@ public class WaterDataProc {
 
     public void Print()
     {
-        System.out.println("WaterDataProc : "+recvData);
+        System.out.println("WaterData : "+recvData);
     }
 }

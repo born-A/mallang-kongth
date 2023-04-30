@@ -19,15 +19,5 @@ public class MallangKongthApplication {
 	public static void main(String[] args) {
 
 		SpringApplication.run(MallangKongthApplication.class, args);
-
-
-		try {
-
-			(new Serial()).connect("COM3");
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
 	}
 }

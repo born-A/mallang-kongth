@@ -12,6 +12,6 @@ public class DataProc
 
     public void Print()
     {
-        System.out.println("DataProc : "+recvData);
+        System.out.println("HeftData : "+recvData);
     }
 }
