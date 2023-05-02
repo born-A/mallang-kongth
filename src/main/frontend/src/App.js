@@ -1,11 +1,13 @@
 import React from 'react';
-import PetJournal from './components/PetJournal';
+import Profile from './components/Mypage/Profile';
+
+import './App.css';
 
 function App() {
     return (
-        <div>
-            <h1>육아수첩</h1>
-            <PetJournal />
+        <div className="App">
+            <Profile />
+
         </div>
     );
 }
