@@ -7,7 +7,7 @@ public class Main {
     {
         try {
 
-            (new Serial()).connect("COM3");
+            (new Serial()).connect("COM5");
         }
         catch(Exception e)
         {

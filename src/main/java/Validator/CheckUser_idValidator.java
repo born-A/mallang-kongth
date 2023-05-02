@@ -1,10 +1,9 @@
 package Validator;
 
 
-import capjjangdol.mallangkongth.domain.repository.MemberRepository;
-import capjjangdol.mallangkongth.dto.MemberDto;
+import capjjangdol.mallangkongth.repository.MemberRepository;
+import dto.MemberDto;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.validator.internal.constraintvalidators.bv.number.bound.AbstractMinValidator;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 @RequiredArgsConstructor
