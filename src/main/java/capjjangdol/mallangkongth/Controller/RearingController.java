@@ -23,17 +23,18 @@ public class RearingController {
         private final HospitalService hospitalService;
         private final PetService petService;
 
-        @GetMapping(value = "/hospitalNote")
+
+    @GetMapping(value = "/hospitalNote/new")
         public String createForm(Model model) {
             List<Pet> pets = petService.findPets();
             model.addAttribute("pets", pets);
             model.addAttribute("form",new HospitalNoteForm());
             return "hospitalNotes/hospitalNoteForm";
         }
-        @PostMapping(value = "/hospitalNotes")
-        public String createHospitalNote(@RequestParam("petId") Long petId) {
 
-            hospitalService.saveHospitalNote(petId);
+    @PostMapping(value = "/hospitalNotes/new")
+        public String createHospitalNote(@RequestParam("petId") Long petId, HospitalNoteForm form) {
+        hospitalService.saveHospitalNote(petId,form);
             return "redirect:/hospitalNotes";
         }
 //        @PostMapping(value = "/hospitalNotes/{hospitalNoteId}/remove")

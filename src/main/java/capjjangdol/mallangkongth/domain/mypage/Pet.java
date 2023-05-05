@@ -1,5 +1,6 @@
 package capjjangdol.mallangkongth.domain.mypage;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,7 +21,6 @@ public class Pet {
     @ManyToOne
     @JoinColumn(name = "member_id")
     private Member member;
-
 
     public Long getId() {
         return id;

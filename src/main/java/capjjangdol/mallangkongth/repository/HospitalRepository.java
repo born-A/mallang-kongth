@@ -12,11 +12,18 @@ import java.util.List;
 public class HospitalRepository {
     private final EntityManager em;
     public void save(HospitalNote hospitalNote) {
+
         em.persist(hospitalNote);
     }
     public HospitalNote findOne(Long id) {
         return em.find(HospitalNote.class, id);
     }
+
+
+    public List<HospitalNote> findAll() {
+        return em.createQuery("select h from HospitalNote h",HospitalNote.class).getResultList();
+    }
+
 
 }
 
