@@ -1,5 +1,6 @@
 package capjjangdol.mallangkongth.domain.rearing;
 
+import capjjangdol.mallangkongth.domain.mypage.Member;
 import capjjangdol.mallangkongth.domain.mypage.Pet;
 import lombok.Getter;
 import lombok.Setter;
@@ -30,4 +31,17 @@ public class HospitalNote {
 
     @Column(name = "IMAGE_URL")
     private String imageUrl;
+
+    //==생성 메서드==//
+    public static HospitalNote createHospitalNote(Pet pet, HospitalNoteForm form){
+        HospitalNote hospitalNote = new HospitalNote();
+        hospitalNote.setPet(pet);
+        hospitalNote.setHospitalName(form.getHospitalName());
+        hospitalNote.setBill(form.getBill());
+        hospitalNote.setMemo(form.getMemo());
+        hospitalNote.setDateOfVisit(form.getDateOfVisit());
+        hospitalNote.setImageUrl(form.getImageUrl());
+
+        return hospitalNote;
+    }
 }
