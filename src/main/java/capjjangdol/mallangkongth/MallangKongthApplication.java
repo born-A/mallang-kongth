@@ -1,6 +1,5 @@
 package capjjangdol.mallangkongth;
 
-import capjjangdol.mallangkongth.domain.feeder.Serial;
 import capjjangdol.mallangkongth.domain.mypage.Member;
 import capjjangdol.mallangkongth.domain.mypage.Orders;
 import capjjangdol.mallangkongth.domain.mypage.RoleType;

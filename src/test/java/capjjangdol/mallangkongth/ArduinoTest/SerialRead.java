@@ -1,6 +1,5 @@
 package capjjangdol.mallangkongth.ArduinoTest;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 //	값을 읽는 클래스로, 이는 Thread로 구현해야 한다.
@@ -29,9 +28,9 @@ public class SerialRead implements Runnable
 
                 String s = new String(buffer,0,len);
                 if (len == 4 && s.charAt(0) == 'w'&& !s.contains("g")){//받아오는 값의 자릿수가 3자리일 때만 출력, 값 중간에 - 나오지 않도록 함
-                    new WaterDataProc(s);
+                    new WaterData(s);
                 } else if (len == 4 && s.charAt(0) == 'g' && !s.contains("w")) {
-                    new DataProc(s);
+                    new HeftData(s);
                 }
             }
         }

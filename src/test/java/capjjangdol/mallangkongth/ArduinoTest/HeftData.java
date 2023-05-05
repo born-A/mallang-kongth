@@ -1,10 +1,10 @@
 package capjjangdol.mallangkongth.ArduinoTest;
 
-public class DataProc
+public class HeftData
 {
     String recvData;
 
-    public DataProc(String recvData)
+    public HeftData(String recvData)
     {
         this.recvData = recvData.replace("g","");
         Print();

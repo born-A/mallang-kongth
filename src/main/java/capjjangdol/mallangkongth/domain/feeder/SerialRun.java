@@ -21,7 +21,6 @@ public class SerialRun implements CommandLineRunner {
 
 
             if (isOpen) {
-
                 // 입력을 받기 위해 InputStream을 가져온다.
                 InputStream in = serialPort.getInputStream();
                 new Thread(new SerialRead(in)).start();
