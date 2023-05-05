@@ -1,4 +1,4 @@
-package capjjangdol.mallangkongth.ArduinoTest;
+package capjjangdol.mallangkongth.domain.feeder;
 
 import javax.persistence.Entity;
 import lombok.*;
