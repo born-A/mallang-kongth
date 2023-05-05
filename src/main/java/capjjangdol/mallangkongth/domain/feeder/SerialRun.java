@@ -18,6 +18,12 @@ public class SerialRun implements CommandLineRunner {
 
         try {
 
+
+            //밑으로 3줄 테스트 하려고 넣어둔 부분 나중에 지워야됨
+            WaterLevel waterLevel = new WaterLevel();
+            waterLevel.setWaterLevel(0); //int 값으로 변환하여 넣기
+            waterLevelRepository.save(waterLevel);
+
             // COM3 포트를 가져온다.
             SerialPort serialPort = SerialPort.getCommPort("COM3");
 

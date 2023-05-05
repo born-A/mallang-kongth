@@ -1,6 +1,5 @@
 package capjjangdol.mallangkongth.ArduinoTest;
 
-import capjjangdol.mallangkongth.domain.feeder.SerialRead;
 import capjjangdol.mallangkongth.domain.feeder.WaterLevel;
 import capjjangdol.mallangkongth.repository.WaterLevelRepository;
 import com.fazecast.jSerialComm.SerialPort;
@@ -19,6 +18,7 @@ public class SerialRun  {
             boolean isOpen = serialPort.openPort();
 
             if (isOpen) {
+                System.out.println("open");
                 // 입력을 받기 위해 InputStream을 가져온다.
                 InputStream in = serialPort.getInputStream();
                 new Thread(new SerialRead(in)).start();

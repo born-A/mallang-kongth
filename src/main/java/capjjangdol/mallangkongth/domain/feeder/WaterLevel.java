@@ -10,16 +10,11 @@ import java.time.LocalDateTime;
 @Data //Getter, Setter 생성
 @Entity //DB에 TABLE을 생성
 public class WaterLevel {
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //번호 증가 전략
+    @GeneratedValue //번호 증가 전략
     @Id
     private Long id;
     private Integer waterLevel;
-    private LocalDateTime createTime;
 
-    @PrePersist
-    public void createTime(){
-        this.createTime = LocalDateTime.now();
-    }
 }
 
 
