@@ -1,16 +1,22 @@
 package capjjangdol.mallangkongth.Controller;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@Controller
 public class IndexController {
 
-    @GetMapping("/main")
+    @GetMapping("/")
     public String main(){
         return "main";
     }
     @GetMapping("/login")
     public String login(){
-        return "main";
+        return "login";
     }
     @GetMapping("/register")
     public String register(){
@@ -20,4 +26,5 @@ public class IndexController {
     public String Pet(){
         return "pet";
     }
+
 }

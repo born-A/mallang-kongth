@@ -1,5 +1,6 @@
 package capjjangdol.mallangkongth.domain.feeder;
 
+import capjjangdol.mallangkongth.Controller.IndexController;
 import com.fazecast.jSerialComm.SerialPort;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -11,9 +12,10 @@ public class SerialRun implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
         try {
 
-            // COM6 포트를 가져온다.
+            // COM3 포트를 가져온다.
             SerialPort serialPort = SerialPort.getCommPort("COM3");
 
             // 시리얼 포트를 오픈한다.
