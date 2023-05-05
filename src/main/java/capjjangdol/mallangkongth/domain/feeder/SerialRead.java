@@ -16,15 +16,12 @@ public class SerialRead implements Runnable
 
     public SerialRead(InputStream in){this.in = in;}
 
-    PetService petService;
 
     @Override
     public void run()
     {
         byte[] buffer = new byte[5];
         int len = -1;
-
-
         try
         {
             //	buffer에 저장하고나서, 그 길이를 반환한다.
