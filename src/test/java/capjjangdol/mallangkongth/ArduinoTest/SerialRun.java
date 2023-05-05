@@ -7,13 +7,10 @@ import org.springframework.stereotype.Component;
 
 import java.io.InputStream;
 
-@Component
-public class SerialRun implements CommandLineRunner {
+public class SerialRun  {
 
-    @Override
-    public void run(String... args) throws Exception {
+    public static void main(String[] args) {
         try {
-
             // COM3 포트를 가져온다.
             SerialPort serialPort = SerialPort.getCommPort("COM3");
 
@@ -32,4 +29,5 @@ public class SerialRun implements CommandLineRunner {
             e.printStackTrace();
         }
     }
+
 }

@@ -1,17 +1,13 @@
 package capjjangdol.mallangkongth.domain.feeder;
 
 
+import capjjangdol.mallangkongth.repository.WaterLevelRepository;
+
 public class WaterData {
-    String recvData;
+    WaterLevelRepository waterLevelRepository;
 
-    public WaterData(String recvData)
+    public WaterData(WaterLevel waterLevel)
     {
-        this.recvData = recvData.replace("w","");
-        Print();
-    }
-
-    public void Print()
-    {
-        System.out.println("WaterDataProc : "+recvData);
+        waterLevelRepository.save(waterLevel);
     }
 }

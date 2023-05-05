@@ -4,13 +4,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 public class IndexController {
 
-    @GetMapping("/")
+    @GetMapping("/main")
     public String main(){
         return "main";
     }
     @GetMapping("/login")
     public String login(){
-        return "login";
+        return "main";
     }
     @GetMapping("/register")
     public String register(){
