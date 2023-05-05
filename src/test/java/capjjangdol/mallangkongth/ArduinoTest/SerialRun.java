@@ -23,6 +23,8 @@ public class SerialRun  {
                 InputStream in = serialPort.getInputStream();
                 new Thread(new SerialRead(in)).start();
 
+            } else {
+                System.out.println("not open");
             }
 
         } catch (Exception e) {

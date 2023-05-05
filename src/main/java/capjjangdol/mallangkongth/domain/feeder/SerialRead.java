@@ -16,12 +16,16 @@ public class SerialRead implements Runnable
 
     public SerialRead(InputStream in){this.in = in;}
 
+    static WaterLevelRepository waterLevelRepository;
 
     @Override
     public void run()
     {
         byte[] buffer = new byte[5];
         int len = -1;
+
+
+
         try
         {
             //	buffer에 저장하고나서, 그 길이를 반환한다.
@@ -37,8 +41,8 @@ public class SerialRead implements Runnable
                     s = s.replaceAll("w", ""); //데이터 앞에 붙은 w 지우기
                     Integer.parseInt(s); //데이터 Int 값으로 변경
                     WaterLevel waterLevel = new WaterLevel();
-                    waterLevel.setWaterLevel(Integer.parseInt(s));
-                    new WaterData(waterLevel);
+                    waterLevel.setWaterLevel(Integer.parseInt(s));;
+                    waterLevelRepository.save(waterLevel);
                 } else if (len == 5 && s.charAt(0) == 'g' && !s.contains("w")) {
                     s = s.replaceAll("g", ""); //데이터 앞에 붙은 g 지우기
                     Integer.parseInt(s); //데이터 Int 값으로 변경

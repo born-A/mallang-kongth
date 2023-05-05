@@ -1,16 +1,16 @@
 package capjjangdol.mallangkongth.ArduinoTest;
 
 public class WaterData {
-    String recvData;
+    int num;
 
-    public WaterData(String recvData)
+    public WaterData(int num)
     {
-        this.recvData = recvData.replace("w","");
+        this.num = num;
         Print();
     }
 
     public void Print()
     {
-        System.out.println("WaterData : "+recvData);
+        System.out.println("WaterData : "+num);
     }
 }

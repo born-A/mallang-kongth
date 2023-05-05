@@ -1,10 +1,8 @@
 package capjjangdol.mallangkongth.ArduinoTest;
 
-import capjjangdol.mallangkongth.domain.feeder.HeftData;
-import capjjangdol.mallangkongth.domain.feeder.WaterData;
+
 import capjjangdol.mallangkongth.domain.feeder.WaterLevel;
 import capjjangdol.mallangkongth.repository.WaterLevelRepository;
-import capjjangdol.mallangkongth.service.PetService;
 import capjjangdol.mallangkongth.service.WaterLevelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,14 +17,11 @@ public class SerialRead implements Runnable
 
     public SerialRead(InputStream in){this.in = in;}
 
-    PetService petService;
-
     @Override
     public void run()
     {
         byte[] buffer = new byte[5];
         int len = -1;
-
 
         try
         {
@@ -41,10 +36,7 @@ public class SerialRead implements Runnable
                 String s = new String(buffer,0,len);
                 if (len == 5 && s.charAt(0) == 'w'&& !s.contains("g")){//받아오는 값의 자릿수가 5자리일 때만 출력, 값 중간에 - 나오지 않도록 함
                     s = s.replaceAll("w", ""); //데이터 앞에 붙은 w 지우기
-                    Integer.parseInt(s); //데이터 Int 값으로 변경
-                    WaterLevel waterLevel = new WaterLevel();
-                    waterLevel.setWaterLevel(Integer.parseInt(s));
-                    new WaterData(waterLevel);
+                    new WaterData(Integer.parseInt(s));
                 } else if (len == 5 && s.charAt(0) == 'g' && !s.contains("w")) {
                     s = s.replaceAll("g", ""); //데이터 앞에 붙은 g 지우기
                     Integer.parseInt(s); //데이터 Int 값으로 변경
