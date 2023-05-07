@@ -26,9 +26,7 @@ public class SerialRun  {
             } else {
                 System.out.println("not open");
             }
-
         } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 

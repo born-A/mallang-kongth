@@ -37,7 +37,7 @@ public class SerialRead implements Runnable
                     WaterLevel waterLevel = new WaterLevel();
                     waterLevel.setWaterLevel(Integer.parseInt(s));
                     WaterData waterData =new WaterData();
-                    waterData.saveWater(waterLevel);//int 값으로 변환하여 넣기
+                    waterData.saveWater(waterLevel);
                 } else if (len == 5 && s.charAt(0) == 'h' && !s.contains("w")) {
                     s = s.replaceAll("h", ""); //데이터 앞에 붙은 h 지우기
                     Integer.parseInt(s); //데이터 Int 값으로 변경
