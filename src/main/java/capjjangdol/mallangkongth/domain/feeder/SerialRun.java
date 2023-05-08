@@ -8,7 +8,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.stereotype.Component;
 
 import java.io.InputStream;
-
+/*
 @Component
 public class SerialRun implements CommandLineRunner {
     @Override
@@ -35,3 +35,4 @@ public class SerialRun implements CommandLineRunner {
         }
     }
 }
+ */

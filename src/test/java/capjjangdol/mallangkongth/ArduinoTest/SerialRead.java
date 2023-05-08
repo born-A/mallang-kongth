@@ -3,10 +3,6 @@ package capjjangdol.mallangkongth.ArduinoTest;
 
 import capjjangdol.mallangkongth.domain.feeder.WaterData;
 import capjjangdol.mallangkongth.domain.feeder.WaterLevel;
-import capjjangdol.mallangkongth.repository.WaterLevelRepository;
-import capjjangdol.mallangkongth.service.WaterLevelService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.io.InputStream;
 

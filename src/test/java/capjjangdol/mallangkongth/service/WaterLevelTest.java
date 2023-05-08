@@ -1,10 +1,8 @@
 package capjjangdol.mallangkongth.service;
 
 import capjjangdol.mallangkongth.domain.feeder.WaterLevel;
-import capjjangdol.mallangkongth.domain.mypage.Member;
-import capjjangdol.mallangkongth.repository.MemberRepository;
 import capjjangdol.mallangkongth.repository.WaterLevelRepository;
-import org.junit.Assert;
+import capjjangdol.mallangkongth.service.feeder.WaterLevelService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

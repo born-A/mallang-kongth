@@ -1,12 +1,5 @@
 package capjjangdol.mallangkongth.domain.feeder;
 
-import capjjangdol.mallangkongth.repository.WaterLevelRepository;
-import capjjangdol.mallangkongth.service.PetService;
-import capjjangdol.mallangkongth.service.WaterLevelService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.io.InputStream;
 
 //	값을 읽는 클래스로, 이는 Thread로 구현해야 한다.

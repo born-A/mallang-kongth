@@ -23,13 +23,12 @@ public class WaterData {
     }
 }
 */
-@Transactional
+
 @Component
 public class WaterData {
 
     @Autowired
     WaterLevelRepository waterLevelRepository;
-
 
     public void saveWater(WaterLevel waterLevel)
     {
