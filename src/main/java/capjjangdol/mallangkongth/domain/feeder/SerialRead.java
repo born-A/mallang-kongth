@@ -1,11 +1,5 @@
 package capjjangdol.mallangkongth.domain.feeder;
 
-import capjjangdol.mallangkongth.repository.WaterLevelRepository;
-import capjjangdol.mallangkongth.service.PetService;
-import capjjangdol.mallangkongth.service.WaterLevelService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.io.InputStream;
 
 //	값을 읽는 클래스로, 이는 Thread로 구현해야 한다.
@@ -16,7 +10,7 @@ public class SerialRead implements Runnable
 
     public SerialRead(InputStream in){this.in = in;}
 
-    static WaterLevelRepository waterLevelRepository;
+
 
     @Override
     public void run()
@@ -38,7 +32,6 @@ public class SerialRead implements Runnable
                     s = s.replaceAll("w", ""); //데이터 앞에 붙은 w 지우기
                     WaterLevel waterLevel = new WaterLevel();
                     waterLevel.setWaterLevel(Integer.parseInt(s)); //int 값으로 변환하여 넣기
-                    waterLevelRepository.save(waterLevel);
                 } else if (len == 5 && s.charAt(0) == 'h' && !s.contains("w")) {
                     s = s.replaceAll("h", ""); //데이터 앞에 붙은 h 지우기
                     Integer.parseInt(s); //데이터 Int 값으로 변경

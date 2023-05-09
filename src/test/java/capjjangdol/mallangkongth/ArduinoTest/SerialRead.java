@@ -39,7 +39,6 @@ public class SerialRead implements Runnable
                 String s = new String(buffer,0,len);
                 if (len == 5 && s.charAt(0) == 'w'&& !s.contains("h")){//받아오는 값의 자릿수가 5자리일 때만 출력, 값 중간에 - 나오지 않도록 함
                     s = s.replaceAll("w", ""); //데이터 앞에 붙은 w 지우기
-                    new WaterData(Integer.parseInt(s));
                     WaterLevel waterLevel = new WaterLevel();
                     waterLevel.setWaterLevel(Integer.parseInt(s)); //int 값으로 변환하여 넣기
                     waterLevelRepository.save(waterLevel);
