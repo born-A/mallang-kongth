@@ -36,6 +36,8 @@ public class HospitalServiceTest {
         form.setHospitalName("test");
         form.setMemo("test");
         form.setImageUrl("test");
+
+        em.persist(pet);
         //When
         Long hospitalNoteId = hospitalService.saveHospitalNote(pet.getId(), form);
 
