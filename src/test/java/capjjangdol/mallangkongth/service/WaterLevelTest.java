@@ -19,21 +19,17 @@ import javax.persistence.EntityManager;
 @SpringBootTest
 @Transactional
 public class WaterLevelTest {
-    @Autowired
-    WaterLevelService waterLevelService;
-    @Autowired
-    WaterLevelRepository waterLevelRepository;
 
     @Autowired
-    EntityManager em;
+    private WaterLevelRepository waterLevelRepository;
 
     @Test
-    @Rollback(value = false)
-    public void memberJoinTest() throws Exception {
-
+    public void saveWaterLevelTest() {
+        // 새로운 WaterLevel 객체 생성
         WaterLevel waterLevel = new WaterLevel();
-        waterLevel.setWaterLevel(0);
-        waterLevelRepository.save(waterLevel);
-    }
+        waterLevel.setWaterLevel(50);
 
+        // WaterLevel 객체 저장
+        WaterLevel savedWaterLevel = waterLevelRepository.save(waterLevel);
+    }
 }
