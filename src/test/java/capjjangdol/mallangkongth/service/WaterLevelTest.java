@@ -1,8 +1,6 @@
 package capjjangdol.mallangkongth.service;
 
 import capjjangdol.mallangkongth.domain.feeder.WaterLevel;
-import capjjangdol.mallangkongth.domain.mypage.Member;
-import capjjangdol.mallangkongth.repository.MemberRepository;
 import capjjangdol.mallangkongth.repository.WaterLevelRepository;
 import org.junit.Assert;
 import org.junit.Test;
