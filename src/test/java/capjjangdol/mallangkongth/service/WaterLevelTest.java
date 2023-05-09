@@ -21,6 +21,9 @@ public class WaterLevelTest {
     @Autowired
     private WaterLevelRepository waterLevelRepository;
 
+    @Autowired
+    EntityManager em;
+
     @Test
     public void saveWaterLevelTest() {
         // 새로운 WaterLevel 객체 생성
@@ -29,5 +32,6 @@ public class WaterLevelTest {
 
         // WaterLevel 객체 저장
         WaterLevel savedWaterLevel = waterLevelRepository.save(waterLevel);
+        em.flush();
     }
 }

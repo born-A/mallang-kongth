@@ -5,7 +5,6 @@ import capjjangdol.mallangkongth.domain.feeder.WaterLevel;
 import capjjangdol.mallangkongth.repository.WaterLevelRepository;
 import capjjangdol.mallangkongth.service.WaterLevelService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.InputStream;
@@ -13,13 +12,15 @@ import java.io.InputStream;
 
 
 //	값을 읽는 클래스로, 이는 Thread로 구현해야 한다.
-@Service
-public class SerialRead
+
+public class SerialRead implements Runnable
 {
     InputStream in;
 
+    public SerialRead(InputStream in){this.in = in;}
 
     static WaterLevelRepository waterLevelRepository;
+    @Override
     public void run()
     {
         byte[] buffer = new byte[10];

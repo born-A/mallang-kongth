@@ -7,17 +7,21 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
+import javax.persistence.EntityManager;
 import java.io.InputStream;
 
 //	값을 읽는 클래스로, 이는 Thread로 구현해야 한다.
 @Service
+@Transactional
 public class SerialRead
 {
     @Autowired
-    private WaterLevelRepository waterLevelRepository;
+    WaterLevelRepository waterLevelRepository;
+
+    @Autowired
+    EntityManager em;
 
     InputStream in = null;
-    @Transactional
     @PostConstruct
     public void SerialRun(){
         SerialPort serialPort = SerialPort.getCommPort("COM3");
@@ -44,23 +48,17 @@ public class SerialRead
                             WaterLevel waterLevel = new WaterLevel();
                             waterLevel.setWaterLevel(Integer.parseInt(s)); //int 값으로 변환하여 넣기
                             waterLevelRepository.save(waterLevel);
-
                         } else if (len == 5 && s.charAt(0) == 'h' && !s.contains("w")) {
                             s = s.replaceAll("h", ""); //데이터 앞에 붙은 h 지우기
                             Integer.parseInt(s); //데이터 Int 값으로 변경
                             new HeftData(s);
                         }
+
                     }
                 }
                 catch (Exception e) {}
             });
             thread.start();
-            try {
-                thread.join();
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-                throw new RuntimeException(e);
-            }
 
         } else {
             System.exit(0);
