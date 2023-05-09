@@ -20,5 +20,5 @@ public class WaterNote {
     private Pet pet;
 
     @Column(name = "WATER_AMOUNT")
-    private Long amount;
+    private Integer amount;
 }
