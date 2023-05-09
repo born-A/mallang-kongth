@@ -1,5 +1,6 @@
 package capjjangdol.mallangkongth.service;
 
+
 import capjjangdol.mallangkongth.domain.mypage.Member;
 import capjjangdol.mallangkongth.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -44,5 +45,5 @@ public class MemberService {
 
     public Member findOne(Long memberId) {
         return memberRepository.findOne(memberId);
-    }
-}
+    }}
+

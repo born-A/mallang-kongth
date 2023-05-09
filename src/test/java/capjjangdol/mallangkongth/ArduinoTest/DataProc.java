@@ -6,7 +6,7 @@ public class DataProc
 
     public DataProc(String recvData)
     {
-        this.recvData = recvData;
+        this.recvData = recvData.replace("g","");
         Print();
     }
 

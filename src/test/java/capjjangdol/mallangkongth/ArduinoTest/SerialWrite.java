@@ -18,7 +18,7 @@ public class SerialWrite implements Runnable
         {
             while ((c = System.in.read()) > -1)
             {
-                out.write(c);
+                out.write(c); //시리얼 보내는 코드
             }
         } catch (IOException e) {e.printStackTrace();}
     }

@@ -13,14 +13,14 @@ public class FoodNote {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "PET_ID")
+    @JoinColumn(name = "pet_id")
     private Pet pet;
 
     @ManyToOne
-    @JoinColumn(name = "FOOD_BOWL_ID")
+    @JoinColumn(name = "food_bowl_id")
     private FoodBowl foodBowl;
 
-    @Column(name = "INGREDIENTS")
+    @Column(name = "ingredients")
     @ElementCollection(targetClass=String.class)
     private List<String> ingredients = new ArrayList<String>();
 

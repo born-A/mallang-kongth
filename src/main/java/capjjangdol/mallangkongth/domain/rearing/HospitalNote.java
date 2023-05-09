@@ -15,11 +15,11 @@ import java.time.LocalDateTime;
 public class HospitalNote {
     @Id
     @GeneratedValue
-    @Column(name = "HOSPITAL_NOTE_ID")
+    @Column(name = "hospital_id")
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "PET_ID")
+    @JoinColumn(name = "pet_id")
     private Pet pet;
 
     private String hospitalName;
@@ -30,7 +30,7 @@ public class HospitalNote {
 
     private String memo;
 
-    @Column(name = "IMAGE_URL")
+    @Column(name = "image_url")
     private String imageUrl;
 
 

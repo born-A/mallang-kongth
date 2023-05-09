@@ -12,12 +12,22 @@ public class IndexController {
     public String login(){
         return "login";
     }
+
+
+
     @GetMapping("/register")
     public String register(){
         return "register";
     }
+
     @GetMapping("/pet")
     public String Pet(){
         return "pet";
     }
+
+    @GetMapping("/rearing")
+    public String rearing(){
+        return "rearing";
+    }
+
 }
