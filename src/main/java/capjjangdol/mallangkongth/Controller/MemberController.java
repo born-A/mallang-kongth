@@ -1,7 +1,7 @@
 package capjjangdol.mallangkongth.Controller;
 
 import Validator.CheckUser_idValidator;
-import capjjangdol.mallangkongth.service.MemberService;
+import service.MemberService;
 import dto.MemberDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

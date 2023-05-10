@@ -1,4 +1,4 @@
-package capjjangdol.mallangkongth.repository;
+package repository;
 
 import capjjangdol.mallangkongth.domain.mypage.Member;
 import lombok.RequiredArgsConstructor;

@@ -1,7 +1,7 @@
-package capjjangdol.mallangkongth.service;
+package service;
 
 import capjjangdol.mallangkongth.domain.mypage.Member;
-import capjjangdol.mallangkongth.repository.MemberRepository;
+import repository.MemberRepository;
 import dto.MemberDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class MemberService {
 
 //    @Override
     /**
-     * ????
+     * register
      */
     public Long join(MemberDto.RequestMemberDto dto){
         dto.encryptPassword(encoder.encode(dto.getPw()));
@@ -40,7 +40,7 @@ public class MemberService {
         return user_idDuplicate;
     }
     /**
-     * ?? ?? ????
+     * login
      */
     private void validateDuplicateMember(Member member) {
         List<Member> findMembers = memberRepository.findByUser_id(member.getUser_id());

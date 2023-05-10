@@ -1,5 +1,14 @@
 # mallang-kongth
 
+<h3 data-ke-size="size20"><b>Front-End :</b></h3>
+<h4 data-ke-size="size20"><b>React</b></h4>
+<h3 data-ke-size="size20"><b>Sever :</b></h3>
+<h4 data-ke-size="size20"><b>Tomcat/AWS</b></h4>
+<h3 data-ke-size="size20"><b>Authentication :</b></h3>
+<h4 data-ke-size="size20"><b>spring-security5</b></h4>
+<h3 data-ke-size="size20"><b>DB :</b></h3>
+<h4 data-ke-size="size20"><b>Mysql</b></h4>
+
 <h4 data-ke-size="size20"><b>커밋 메세지 작성법</b></h4>
 <p data-ke-size="size16">형식: [커밋태그] 커밋 내용 -버전</p>
 <p data-ke-size="size16">커밋태그</p>

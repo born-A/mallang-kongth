@@ -1,7 +1,7 @@
 package Validator;
 
 
-import capjjangdol.mallangkongth.repository.MemberRepository;
+import repository.MemberRepository;
 import dto.MemberDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
