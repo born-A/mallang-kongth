@@ -1,11 +1,9 @@
 package capjjangdol.mallangkongth.repository;
-import capjjangdol.mallangkongth.domain.mypage.Pet;
+import capjjangdol.mallangkongth.repository.domain.mypage.Pet;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository

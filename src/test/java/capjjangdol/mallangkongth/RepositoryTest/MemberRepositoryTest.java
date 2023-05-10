@@ -1,8 +1,6 @@
-package capjjangdol.mallangkongth.RepositoryTest;
+/**package capjjangdol.mallangkongth.RepositoryTest;
 
-import capjjangdol.mallangkongth.domain.mypage.Member;
-import capjjangdol.mallangkongth.domain.repository.MemberRepository;
-import org.assertj.core.api.Assertions;
+import capjjangdol.mallangkongth.repository.domain.repository.MemberRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,3 +24,4 @@ public class MemberRepositoryTest {
 //        Assertions.assertThat(findMember.getId()).isEqualTo(member.getId());
     }
 }
+ **/

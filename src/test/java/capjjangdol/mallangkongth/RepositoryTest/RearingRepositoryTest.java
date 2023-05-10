@@ -1,10 +1,7 @@
 package capjjangdol.mallangkongth.RepositoryTest;
 
 import capjjangdol.mallangkongth.MallangKongthApplicationTests;
-import capjjangdol.mallangkongth.domain.community.board.Board;
-import capjjangdol.mallangkongth.domain.rearing.FoodBowl;
-import capjjangdol.mallangkongth.domain.rearing.RearingRepository;
-import org.junit.jupiter.api.Test;
+import capjjangdol.mallangkongth.repository.domain.rearing.RearingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;

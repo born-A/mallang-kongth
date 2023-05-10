@@ -1,6 +1,6 @@
 package capjjangdol.mallangkongth.dto;
 
-import capjjangdol.mallangkongth.domain.mypage.*;
+import capjjangdol.mallangkongth.repository.domain.mypage.*;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;

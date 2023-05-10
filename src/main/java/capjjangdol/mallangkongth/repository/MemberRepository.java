@@ -1,13 +1,10 @@
 package capjjangdol.mallangkongth.repository;
 
-import capjjangdol.mallangkongth.domain.mypage.Member;
+import capjjangdol.mallangkongth.repository.domain.mypage.Member;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import javax.naming.Name;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository

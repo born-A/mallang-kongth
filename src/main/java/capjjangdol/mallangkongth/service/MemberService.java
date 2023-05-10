@@ -1,6 +1,6 @@
 package capjjangdol.mallangkongth.service;
 
-import capjjangdol.mallangkongth.domain.mypage.Member;
+import capjjangdol.mallangkongth.repository.domain.mypage.Member;
 import capjjangdol.mallangkongth.repository.MemberRepository;
 import capjjangdol.mallangkongth.dto.MemberDto;
 import lombok.extern.slf4j.Slf4j;
