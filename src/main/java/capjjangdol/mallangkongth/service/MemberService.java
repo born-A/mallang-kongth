@@ -1,8 +1,8 @@
-package service;
+package capjjangdol.mallangkongth.service;
 
 import capjjangdol.mallangkongth.domain.mypage.Member;
-import repository.MemberRepository;
-import dto.MemberDto;
+import capjjangdol.mallangkongth.repository.MemberRepository;
+import capjjangdol.mallangkongth.dto.MemberDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

@@ -1,4 +1,4 @@
-package dto;
+package capjjangdol.mallangkongth.dto;
 
 import capjjangdol.mallangkongth.domain.mypage.*;
 import lombok.*;

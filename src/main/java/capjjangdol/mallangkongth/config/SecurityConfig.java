@@ -1,6 +1,6 @@
 package capjjangdol.mallangkongth.config;
 
-import service.MemberService;
+import capjjangdol.mallangkongth.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

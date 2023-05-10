@@ -1,7 +1,7 @@
-package service;
+package capjjangdol.mallangkongth.service;
 
 import capjjangdol.mallangkongth.domain.mypage.Pet;
-import repository.PetRepository;
+import capjjangdol.mallangkongth.repository.PetRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

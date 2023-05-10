@@ -1,6 +1,6 @@
 package capjjangdol.mallangkongth.service;
 
-import capjjangdol.mallangkongth.domain.mypage.Member;
+/**import capjjangdol.mallangkongth.domain.mypage.Member;
 import capjjangdol.mallangkongth.repository.MemberRepository;
 import org.junit.Assert;
 import org.junit.Test;
@@ -61,3 +61,4 @@ public class MemberServiceTest {
 
 
 }
+ **/

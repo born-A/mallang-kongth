@@ -1,4 +1,4 @@
-package repository;
+package capjjangdol.mallangkongth.repository;
 import capjjangdol.mallangkongth.domain.mypage.Pet;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package repository;
+package capjjangdol.mallangkongth.repository;
 
 import capjjangdol.mallangkongth.domain.rearing.HospitalNote;
 import lombok.RequiredArgsConstructor;

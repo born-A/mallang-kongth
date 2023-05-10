@@ -16,7 +16,7 @@ public class IndexController {
     }
     @GetMapping("/login")
     public String login(){
-        log.info("login");
+        log.info("capjjangdol/mallangkongth/login");
         return "login";
     }
     @RequestMapping("/guest")
