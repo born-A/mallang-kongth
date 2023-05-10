@@ -1,15 +1,13 @@
-package capjjangdol.mallangkongth.service;
+package service;
 
-import capjjangdol.mallangkongth.domain.mypage.Member;
 import capjjangdol.mallangkongth.domain.mypage.Pet;
 import capjjangdol.mallangkongth.domain.rearing.HospitalNote;
 import capjjangdol.mallangkongth.domain.rearing.HospitalNoteForm;
-import capjjangdol.mallangkongth.repository.HospitalRepository;
-import capjjangdol.mallangkongth.repository.MemberRepository;
-import capjjangdol.mallangkongth.repository.PetRepository;
+import repository.HospitalRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import repository.PetRepository;
 
 import java.util.List;
 

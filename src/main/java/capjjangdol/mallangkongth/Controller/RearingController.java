@@ -1,16 +1,13 @@
 package capjjangdol.mallangkongth.Controller;
 
 import capjjangdol.mallangkongth.domain.mypage.Pet;
-import capjjangdol.mallangkongth.domain.rearing.HospitalNote;
 import capjjangdol.mallangkongth.domain.rearing.HospitalNoteForm;
-import capjjangdol.mallangkongth.service.HospitalService;
+import service.HospitalService;
 import capjjangdol.mallangkongth.service.PetService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
