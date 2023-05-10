@@ -3,20 +3,17 @@ package capjjangdol.mallangkongth.service;
 import capjjangdol.mallangkongth.domain.mypage.Pet;
 import capjjangdol.mallangkongth.domain.rearing.HospitalNote;
 import capjjangdol.mallangkongth.domain.rearing.HospitalNoteForm;
-import capjjangdol.mallangkongth.repository.HospitalRepository;
+import repository.HospitalRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
+import service.HospitalService;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
-import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
