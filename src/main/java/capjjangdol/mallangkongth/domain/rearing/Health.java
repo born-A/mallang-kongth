@@ -21,4 +21,13 @@ public class Health {
 
     @Column(name = "IMAGE_URL")
     private String imageUrl;
+
+    //==생성 메서드==//
+    public static Health createHealth(Pet pet, HealthForm form){
+        Health health = new Health();
+        health.setText(form.getText());
+        health.setImageUrl(form.getImageUrl());
+
+        return health;
+    }
 }
