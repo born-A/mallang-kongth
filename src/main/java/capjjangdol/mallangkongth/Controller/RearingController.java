@@ -23,6 +23,10 @@ public class RearingController {
         private final HospitalService hospitalService;
         private final PetService petService;
 
+    /**
+     *
+     * 병원 기록 등록 - 폼
+     */
 
     @GetMapping(value = "/hospitalNotes/new")
         public String createForm(Model model) {
@@ -31,7 +35,10 @@ public class RearingController {
             model.addAttribute("form",new HospitalNoteForm());
             return "hospitalNotes/hospitalNoteForm";
         }
-
+    /**
+     *
+     * 병원 기록 등록 - post
+     */
     @PostMapping(value = "/hospitalNotes/new")
         public String createHospitalNote(@RequestParam("petId") Long petId, HospitalNoteForm form) {
         hospitalService.saveHospitalNote(petId,form);
