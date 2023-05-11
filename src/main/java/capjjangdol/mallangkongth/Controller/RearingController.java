@@ -24,7 +24,7 @@ public class RearingController {
         private final PetService petService;
 
 
-    @GetMapping(value = "/hospitalNote/new")
+    @GetMapping(value = "/hospitalNotes/new")
         public String createForm(Model model) {
             List<Pet> pets = petService.findPets();
             model.addAttribute("pets", pets);
@@ -42,5 +42,13 @@ public class RearingController {
 //            hospitalService.removeHospitalNote(hospitalNoteId);
 //            return "redirect:/hospitalNotes";
 //        }
-
+    /**
+     * 병원 기록 목록
+     */
+    @GetMapping(value = "/hospitalNotes")
+    public String list(Model model) {
+        List<HospitalNote> hospitalNotes = hospitalService.findHospitalNotes();
+        model.addAttribute("hospitalNotes", hospitalNotes);
+        return "hospitalNotes/hospitalNoteList";
+    }
 }
