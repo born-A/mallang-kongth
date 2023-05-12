@@ -1,6 +1,6 @@
 package capjjangdol.mallangkongth.repository;
 
-import capjjangdol.mallangkongth.repository.domain.rearing.HospitalNote;
+import capjjangdol.mallangkongth.domain.rearing.HospitalNote;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

@@ -1,9 +1,9 @@
 package capjjangdol.mallangkongth.service;
 
-import capjjangdol.mallangkongth.repository.domain.mypage.Address;
-import capjjangdol.mallangkongth.repository.domain.mypage.Member;
-import capjjangdol.mallangkongth.repository.domain.mypage.Pet;
-import capjjangdol.mallangkongth.repository.domain.mypage.RoleType;
+import capjjangdol.mallangkongth.domain.mypage.Address;
+import capjjangdol.mallangkongth.domain.mypage.Member;
+import capjjangdol.mallangkongth.domain.mypage.Pet;
+import capjjangdol.mallangkongth.domain.mypage.RoleType;
 import capjjangdol.mallangkongth.repository.PetRepository;
 import org.junit.Assert;
 import org.junit.Test;

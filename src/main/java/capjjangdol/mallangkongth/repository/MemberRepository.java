@@ -1,6 +1,6 @@
 package capjjangdol.mallangkongth.repository;
 
-import capjjangdol.mallangkongth.repository.domain.mypage.Member;
+import capjjangdol.mallangkongth.domain.mypage.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

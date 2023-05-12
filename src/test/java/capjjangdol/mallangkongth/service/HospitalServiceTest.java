@@ -1,8 +1,8 @@
 package capjjangdol.mallangkongth.service;
 
-import capjjangdol.mallangkongth.repository.domain.mypage.Pet;
-import capjjangdol.mallangkongth.repository.domain.rearing.HospitalNote;
-import capjjangdol.mallangkongth.repository.domain.rearing.HospitalNoteForm;
+import capjjangdol.mallangkongth.domain.mypage.Pet;
+import capjjangdol.mallangkongth.domain.rearing.HospitalNote;
+import capjjangdol.mallangkongth.domain.rearing.HospitalNoteForm;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

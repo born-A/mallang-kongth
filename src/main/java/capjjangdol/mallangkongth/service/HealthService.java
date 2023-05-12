@@ -1,11 +1,8 @@
 package capjjangdol.mallangkongth.service;
 
-import capjjangdol.mallangkongth.domain.mypage.Member;
 import capjjangdol.mallangkongth.domain.mypage.Pet;
 import capjjangdol.mallangkongth.domain.rearing.Health;
-import capjjangdol.mallangkongth.repository.domain.rearing.HealthForm;
-import capjjangdol.mallangkongth.domain.rearing.HospitalNote;
-import capjjangdol.mallangkongth.domain.rearing.HospitalNoteForm;
+import capjjangdol.mallangkongth.domain.rearing.HealthForm;
 import capjjangdol.mallangkongth.repository.HealthRepository;
 import capjjangdol.mallangkongth.repository.PetRepository;
 import lombok.RequiredArgsConstructor;
