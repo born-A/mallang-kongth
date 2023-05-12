@@ -12,11 +12,11 @@ import java.util.List;
 public class MemberRepository {
     private final EntityManager em;
 
-    public List<Member> findByUser_id(String user_id){
+    public List<Member> findByEmail(String email){
         return em.createQuery("select m from Member m", Member.class).getResultList();
     }
 
-    public boolean existsByUser_id(String user_id) {
+    public boolean existsByEmail(String email) {
         return false;
     }
 

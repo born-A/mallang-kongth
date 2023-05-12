@@ -13,7 +13,7 @@ public class CheckUser_idValidator extends AbstractValidator<MemberDto.RequestMe
 
     @Override
     protected void doValidate(MemberDto.RequestMemberDto dto, Errors errors) {
-        if (memberRepository.existsByUser_id(dto.toEntity().getUser_id())) {
+        if (memberRepository.existsByEmail(dto.toEntity().getEmail())) {
             /* ??? ?? */
             errors.rejectValue("user_id","??? ?? ??", "?? ?? ?? ??????.");
         }

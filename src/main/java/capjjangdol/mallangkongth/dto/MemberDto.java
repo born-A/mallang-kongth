@@ -18,7 +18,7 @@ public class MemberDto {
 
         @NotBlank(message = "???? ?? ??????.")
         @Pattern(regexp = "^[a-z0-9]{4,20}$", message = "???? ?? ???? ??? ???? 4~20???? ???.")
-        private String user_id;
+        private String email;
 
         @NotBlank(message = "??? ?? ??????.")
         @Pattern(regexp = "^[?-?a-zA-Z0-9]{2,10}$" , message = "??? ????? ???? ?? 2~10???? ???.")
@@ -38,7 +38,7 @@ public class MemberDto {
         public Member toEntity() {
             Member member = Member.builder()
                     .id(id)
-                    .user_id(user_id)
+                    .email(email)
                     .pw(pw)
                     .address(address)
                     .roleType(roleType.USER)

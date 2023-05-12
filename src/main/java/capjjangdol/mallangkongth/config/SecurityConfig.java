@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
@@ -17,16 +18,29 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private MemberService memberService;
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        /*
+        permitAll :login, sign Page
+         */
         http
-                .authorizeRequests().antMatchers().authenticated()
-                .and()
+                .authorizeRequests()
+                .antMatchers("/login", "/signup").permitAll()
+                .anyRequest().authenticated();
+
+        http
                 .formLogin()
-                .defaultSuccessUrl("/main", true)
-                .permitAll()
-                .and()
-                .logout();
+                .loginPage("/login")    // GET 요청 (login form을 보여줌)
+                .loginProcessingUrl("/auth")    // POST 요청 (login 창에 입력한 데이터를 처리)
+                .usernameParameter("email")	// login에 필요한 id 값을 email로 설정 (default는 username)
+                .passwordParameter("password")	// login에 필요한 password 값을 password(default)로 설정
+                .defaultSuccessUrl("/");	// login에 성공하면 /로 redirect
+        http
+                .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/");	// logout에 성공하면 /로 redirect
+
+        return http.build();
     }
 
     @Bean

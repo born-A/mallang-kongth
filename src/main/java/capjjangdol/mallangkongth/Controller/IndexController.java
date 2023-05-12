@@ -19,9 +19,9 @@ public class IndexController {
         log.info("capjjangdol/mallangkongth/login");
         return "login";
     }
-    @RequestMapping("/guest")
-    public void forGuest(){
-        log.info("guest");
+    @RequestMapping("/user")
+    public void forUser(){
+        log.info("user");
     }
 
     @RequestMapping("/manager")

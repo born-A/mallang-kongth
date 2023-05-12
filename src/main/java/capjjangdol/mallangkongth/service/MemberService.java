@@ -30,20 +30,20 @@ public class MemberService {
         Member member = dto.toEntity();
         memberRepository.save(member);
         log.info("db save successful");
-        return Long.valueOf(member.getUser_id());
+        return Long.valueOf(member.getEmail());
     }
 
     @Transactional
 //    @Override
     public boolean checkUser_idDuplication(String user_id) {
-        boolean user_idDuplicate = memberRepository.existsByUser_id(user_id);
+        boolean user_idDuplicate = memberRepository.existsByEmail(user_id);
         return user_idDuplicate;
     }
     /**
      * login
      */
     private void validateDuplicateMember(Member member) {
-        List<Member> findMembers = memberRepository.findByUser_id(member.getUser_id());
+        List<Member> findMembers = memberRepository.findByEmail(member.getEmail());
         if(!findMembers.isEmpty()){
             throw new IllegalStateException("?? ???? ?????.");
         }
