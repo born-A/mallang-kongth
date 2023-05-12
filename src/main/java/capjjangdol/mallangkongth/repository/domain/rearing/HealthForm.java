@@ -1,4 +1,4 @@
-package capjjangdol.mallangkongth.domain.rearing;
+package capjjangdol.mallangkongth.repository.domain.rearing;
 
 import capjjangdol.mallangkongth.domain.mypage.Pet;
 import lombok.Getter;
