@@ -3,8 +3,10 @@ package capjjangdol.mallangkongth.domain.rearing;
 import capjjangdol.mallangkongth.domain.mypage.Pet;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -18,6 +20,9 @@ public class WaterNote {
     @ManyToOne
     @JoinColumn(name = "pet_id")
     private Pet pet;
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    private LocalDateTime insertTime;
 
     @Column(name = "water_amount")
     private Integer amount;

@@ -22,7 +22,7 @@ public class WaterBowl {
     @Column(name = "setting_amount")
     private Long settingAmount;
 
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime insertDate;
 
     public Long eatingAmount() {
