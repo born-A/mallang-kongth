@@ -32,7 +32,6 @@ public class WaterNoteRepositoryTest {
         waterNote.setAmount(50);
 
         // WaterNote 객체 저장
-        WaterNote savedWaterNote = waterNoteRepository.save(waterNote);
-        em.flush();
+        waterNoteRepository.save(waterNote);
     }
 }

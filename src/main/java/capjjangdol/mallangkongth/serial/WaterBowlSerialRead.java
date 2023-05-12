@@ -23,11 +23,12 @@ public class WaterBowlSerialRead
     EntityManager em;
 
     InputStream in = null;
+    boolean isOpen = false;
     @PostConstruct
     public void SerialRun(){
         SerialPort serialPort = SerialPort.getCommPort("COM7");
         // 시리얼 포트를 오픈한다.
-        boolean isOpen = serialPort.openPort();
+        isOpen = serialPort.openPort();
         if (isOpen) {
             System.out.println("open");
             // 입력을 받기 위해 InputStream을 가져온다.
