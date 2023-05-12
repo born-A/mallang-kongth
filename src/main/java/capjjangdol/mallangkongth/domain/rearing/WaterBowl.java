@@ -2,6 +2,7 @@ package capjjangdol.mallangkongth.domain.rearing;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -22,6 +23,7 @@ public class WaterBowl {
     @Column(name = "setting_amount")
     private Long settingAmount;
 
+    @CreationTimestamp
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime insertDate;
 
