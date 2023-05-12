@@ -1,49 +1,57 @@
 package capjjangdol.mallangkongth.service;
 
-
 import capjjangdol.mallangkongth.domain.mypage.Member;
 import capjjangdol.mallangkongth.repository.MemberRepository;
-import lombok.RequiredArgsConstructor;
+import capjjangdol.mallangkongth.dto.MemberDto;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
+import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
-
+@Slf4j
 @Service
-@Transactional(readOnly = true)
-@RequiredArgsConstructor
+@Transactional
 public class MemberService {
+    private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    @Autowired
+    private MemberRepository memberRepository;
 
-    private final MemberRepository memberRepository;
+//    @Autowired
+//    private Pet pet;
 
+//    @Override
     /**
-     * 회원가입
+     * register
      */
-    @Transactional
-    public Long join(Member member) {
-        validateDuplicateMember(member);
+    public Long join(MemberDto.RequestMemberDto dto){
+        dto.encryptPassword(encoder.encode(dto.getPw()));
+        Member member = dto.toEntity();
         memberRepository.save(member);
-
-        return member.getId();
+        log.info("db save successful");
+        return Long.valueOf(member.getUser_id());
     }
 
+    @Transactional
+//    @Override
+    public boolean checkUser_idDuplication(String user_id) {
+        boolean user_idDuplicate = memberRepository.existsByUser_id(user_id);
+        return user_idDuplicate;
+    }
     /**
-     * 중복 회원 예외처리
+     * login
      */
     private void validateDuplicateMember(Member member) {
-        List<Member> findMembers = memberRepository.findByName(member.getName());
+        List<Member> findMembers = memberRepository.findByUser_id(member.getUser_id());
         if(!findMembers.isEmpty()){
-            throw new IllegalStateException("이미 존재하는 회원입니다.");
+            throw new IllegalStateException("?? ???? ?????.");
         }
     }
-
-
     public List<Member> findMembers() {
         return memberRepository.findAll();
     }
-
     public Member findOne(Long memberId) {
         return memberRepository.findOne(memberId);
-    }}
-
+    }
+}

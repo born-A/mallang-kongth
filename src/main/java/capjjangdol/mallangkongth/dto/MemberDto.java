@@ -36,14 +36,14 @@ public class MemberDto {
             this.pw = BCryptpassword;
         }
         public Member toEntity() {
-            Member memeber = Member.builder()
+            Member member = Member.builder()
                     .id(id)
                     .user_id(user_id)
                     .pw(pw)
                     .address(address)
                     .roleType(roleType.USER)
                     .build();
-            return memeber;
+            return member;
         }
 
     }

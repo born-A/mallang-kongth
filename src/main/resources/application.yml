@@ -2,7 +2,7 @@ spring:
   datasource:
     username: root
     url: jdbc:mysql://localhost:3306/mallangkongtteok
-    password: '347858Kkk!'
+    password: '0324'
   jpa:
     properties:
       hibernate:
@@ -11,6 +11,6 @@ spring:
     defer-datasource-initialization: 'true'
     show-sql: 'true'
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
 server:
   port: '8080'

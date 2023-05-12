@@ -1,6 +1,5 @@
 package capjjangdol.mallangkongth.domain.community.comment;
 
-import capjjangdol.mallangkongth.domain.community.Category;
 import capjjangdol.mallangkongth.domain.community.board.Board;
 import lombok.Getter;
 import lombok.Setter;

@@ -1,7 +1,6 @@
 package capjjangdol.mallangkongth.domain.mypage;
 
 
-import capjjangdol.mallangkongth.domain.mypage.Orders;
 import lombok.Getter;
 import lombok.Setter;
 

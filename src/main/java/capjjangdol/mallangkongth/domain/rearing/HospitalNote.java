@@ -30,4 +30,18 @@ public class HospitalNote {
 
     @Column(name = "image_url")
     private String imageUrl;
+
+
+    //==생성 메서드==//
+    public static HospitalNote createHospitalNote(Pet pet, HospitalNoteForm form){
+        HospitalNote hospitalNote = new HospitalNote();
+        hospitalNote.setPet(pet);
+        hospitalNote.setHospitalName(form.getHospitalName());
+        hospitalNote.setBill(form.getBill());
+        hospitalNote.setMemo(form.getMemo());
+        hospitalNote.setDateOfVisit(form.getDateOfVisit());
+        hospitalNote.setImageUrl(form.getImageUrl());
+
+        return hospitalNote;
+    }
 }

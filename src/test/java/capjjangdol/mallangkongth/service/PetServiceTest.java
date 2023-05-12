@@ -1,26 +1,20 @@
 package capjjangdol.mallangkongth.service;
-import static org.junit.Assert.*;
 
 import capjjangdol.mallangkongth.domain.mypage.Address;
 import capjjangdol.mallangkongth.domain.mypage.Member;
 import capjjangdol.mallangkongth.domain.mypage.Pet;
 import capjjangdol.mallangkongth.domain.mypage.RoleType;
 import capjjangdol.mallangkongth.repository.PetRepository;
-import org.apache.catalina.filters.AddDefaultCharsetFilter;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import javax.swing.text.html.parser.Entity;
-
-import static org.junit.Assert.*;
 
 @WebAppConfiguration
 @RunWith(SpringRunner.class)

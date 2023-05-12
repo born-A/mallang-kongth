@@ -1,4 +1,4 @@
-package login;
+package capjjangdol.mallangkongth.login;
 
 import lombok.Getter;
 import lombok.Setter;
