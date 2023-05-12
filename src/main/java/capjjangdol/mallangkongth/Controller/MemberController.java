@@ -44,7 +44,6 @@ public class MemberController {
             return "join";
         }
 
-
         memberService.join(memberDto);
         log.info("join success");
         return "redirect:/auth/join";
