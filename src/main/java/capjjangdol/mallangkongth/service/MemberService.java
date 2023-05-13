@@ -9,7 +9,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
+import java.util.Optional;
+
 @Slf4j
 @Service
 @Transactional
@@ -30,25 +31,27 @@ public class MemberService {
         Member member = dto.toEntity();
         memberRepository.save(member);
         log.info("db save successful");
+        validateDuplicateMember(member);
+        checkEmailDuplication(member.getEmail());
         return Long.valueOf(member.getEmail());
     }
 
     @Transactional
 //    @Override
-    public boolean checkUser_idDuplication(String user_id) {
-        boolean user_idDuplicate = memberRepository.existsByEmail(user_id);
-        return user_idDuplicate;
+    public boolean checkEmailDuplication(String email) {
+        boolean emailDuplicate = memberRepository.existsByEmail(email);
+        return emailDuplicate;
     }
     /**
      * login
      */
     private void validateDuplicateMember(Member member) {
-        List<Member> findMembers = memberRepository.findByEmail(member.getEmail());
-        if(!findMembers.isEmpty()){
-            throw new IllegalStateException("?? ???? ?????.");
-        }
+        memberRepository.findMember(member.getName())
+                .ifPresent(m -> {
+                    throw new IllegalStateException("이미 존재하는 회원입니다.");
+        });
     }
-    public List<Member> findMembers() {
+    public Optional<Member> findMembers() {
         return memberRepository.findAll();
     }
     public Member findOne(Long memberId) {

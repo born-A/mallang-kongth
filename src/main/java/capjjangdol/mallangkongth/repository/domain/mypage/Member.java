@@ -18,8 +18,10 @@ public class Member{
 
     @Column(nullable = false, unique = true)
     private String email; //principal
+
     @Column(nullable = false,unique = true) //credential
     private String name;
+
     @Column
     private String pw;
 

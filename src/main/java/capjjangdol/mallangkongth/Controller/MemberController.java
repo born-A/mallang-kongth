@@ -50,6 +50,6 @@ public class MemberController {
     }
     @GetMapping("/auth/joinProcess/{user_id}/exists")
     public ResponseEntity<Boolean> checkUser_idDuplicate(@PathVariable String user_id){
-        return ResponseEntity.ok(memberService.checkUser_idDuplication(user_id));
+        return ResponseEntity.ok(memberService.checkEmailDuplication(user_id));
     }
 }
