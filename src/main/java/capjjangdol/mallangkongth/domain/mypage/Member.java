@@ -1,6 +1,5 @@
-package capjjangdol.mallangkongth.domain.mypage;
+package capjjangdol.mallangkongth.repository.domain.mypage;
 
-import jdk.jfr.Enabled;
 import lombok.*;
 
 import javax.persistence.*;
@@ -18,14 +17,17 @@ public class Member{
     private Long id;
 
     @Column(nullable = false, unique = true)
-    private String email;
-    @Column(nullable = false,unique = true)
+    private String email; //principal
+    @Column(nullable = false,unique = true) //credential
     private String name;
     @Column
     private String pw;
 
     @Embedded
     private Address address;
+
+//    @OneToMany(mappedBy = "member")
+//    private List<Pet> petList = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -37,7 +39,6 @@ public class Member{
     public void setPw(String pw){
         this.pw = pw;
     }
-
 
 
 

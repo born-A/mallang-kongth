@@ -1,14 +1,11 @@
 package capjjangdol.mallangkongth.repository;
 
-import capjjangdol.mallangkongth.domain.mypage.Member;
+import capjjangdol.mallangkongth.repository.domain.mypage.Member;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import java.util.List;
-import java.util.Optional;
-import java.util.OptionalInt;
 
 @Repository
 public interface MemberRepository extends JpaRepository<Member, Long> {

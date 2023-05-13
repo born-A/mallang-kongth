@@ -1,14 +1,17 @@
 package capjjangdol.mallangkongth.service;
 
-import capjjangdol.mallangkongth.config.SecurityUtil;
-import capjjangdol.mallangkongth.domain.mypage.Member;
-import capjjangdol.mallangkongth.domain.mypage.MemberResDto;
+import capjjangdol.mallangkongth.repository.domain.mypage.Member;
 import capjjangdol.mallangkongth.repository.MemberRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import capjjangdol.mallangkongth.dto.MemberDto;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.transaction.Transactional;
+import java.util.List;
+@Slf4j
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
