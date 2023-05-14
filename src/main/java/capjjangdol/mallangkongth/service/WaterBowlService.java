@@ -1,5 +1,6 @@
 package capjjangdol.mallangkongth.service;
 
+
 import capjjangdol.mallangkongth.domain.rearing.WaterBowl;
 import capjjangdol.mallangkongth.repository.WaterBowlRepository;
 import capjjangdol.mallangkongth.repository.WaterNoteRepository;
@@ -20,9 +21,9 @@ public class WaterBowlService {
     WaterNoteRepository waterNoteRepository;
 
     public void renewalWaterBowl(){
-        int waterAmount = waterNoteRepository.findWaterAmountLatestInsertTime();
-        int settingAmount = waterBowlRepository.findLatestSettingAmount();
-        int beforeEatingAmount = waterBowlRepository.findLatestBeforeEatingAmount();
+        int waterAmount = waterNoteRepository.findInsertTime().get(0);
+        int settingAmount = waterBowlRepository.findSettingAmount().get(0);
+        int beforeEatingAmount = waterBowlRepository.findBeforeEatingAmount().get(0);
         WaterBowl waterBowl = new WaterBowl();
         waterBowl.setSettingAmount(settingAmount);
         waterBowl.setRemaining(waterAmount);

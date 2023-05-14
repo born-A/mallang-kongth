@@ -4,8 +4,10 @@ import capjjangdol.mallangkongth.domain.rearing.WaterBowl;
 import capjjangdol.mallangkongth.domain.rearing.WaterNote;
 import capjjangdol.mallangkongth.repository.WaterBowlRepository;
 import capjjangdol.mallangkongth.repository.WaterNoteRepository;
+import capjjangdol.mallangkongth.service.WaterBowlService;
 import com.fazecast.jSerialComm.SerialPort;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,13 +25,13 @@ public class WaterBowlSerialRead
     @Autowired
     WaterBowlRepository waterBowlRepository;
 
+    @Autowired
+    WaterBowlService waterBowlService;
+
     InputStream in = null;
     boolean isOpen = false;
     @PostConstruct
     public void SerialRun(){
-        WaterBowl waterBowl1 = new WaterBowl();
-
-
         SerialPort serialPort = SerialPort.getCommPort("COM7"); //본인 포트 번호로 수정하고 실행해야함
         // 시리얼 포트를 오픈한다.
         isOpen = serialPort.openPort();
@@ -40,8 +42,13 @@ public class WaterBowlSerialRead
             Thread thread = new Thread(() -> {
                 byte[] buffer = new byte[10];
                 int len = -1;
+                int waterAmount;
+                int settingAmount;
+                int beforeEatingAmount;
+                int CurrentEatingAmount;
                 try
                 {
+                    Thread.sleep(3000);
                     //   buffer에 저장하고나서, 그 길이를 반환한다.
                     while ((len = this.in.read(buffer)) > -1)
                     {
@@ -54,12 +61,23 @@ public class WaterBowlSerialRead
                             WaterNote waterNote = new WaterNote();
                             waterNote.setAmount(Integer.parseInt(s)); //int 값으로 변환하여 넣기
                             waterNoteRepository.save(waterNote);
-                            if(waterBowlRepository.findLatestRemaining()< Integer.parseInt(s)){
+                            waterAmount = waterNoteRepository.findAmount().get(0);
+                            settingAmount = waterBowlRepository.findSettingAmount().get(0);
+                            beforeEatingAmount = waterBowlRepository.findBeforeEatingAmount().get(0);
+                            CurrentEatingAmount = waterBowlRepository.findCurrentEatingAmount().get(0);
+                            if(waterBowlRepository.findRemaining().get(0) < Integer.parseInt(s)){
                                 WaterBowl waterBowl = new WaterBowl();
                                 waterBowl.setSettingAmount(Integer.parseInt(s));
                                 waterBowl.setRemaining(Integer.parseInt(s));
-                                waterBowl.setBeforeEatingAmount(waterBowlRepository.findLatestCurrentEatingAmount());
-                                waterBowl.setCurrentEatingAmount(waterBowlRepository.findLatestCurrentEatingAmount());
+                                waterBowl.setBeforeEatingAmount(CurrentEatingAmount);
+                                waterBowl.setCurrentEatingAmount(CurrentEatingAmount);
+                                waterBowlRepository.save(waterBowl);
+                            } else {
+                                WaterBowl waterBowl = new WaterBowl();
+                                waterBowl.setSettingAmount(settingAmount);
+                                waterBowl.setRemaining(waterAmount);
+                                waterBowl.setBeforeEatingAmount(beforeEatingAmount);
+                                waterBowl.setCurrentEatingAmount(settingAmount - waterAmount + beforeEatingAmount);
                                 waterBowlRepository.save(waterBowl);
                             }
                         }

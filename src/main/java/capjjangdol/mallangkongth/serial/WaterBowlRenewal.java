@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 @Component
-@Transactional
 public class WaterBowlRenewal {
 
     @Autowired
@@ -20,7 +19,7 @@ public class WaterBowlRenewal {
 
     @Scheduled(cron = "0 0 0 * * *") // 매일 0시에 음수량 초기화
     public void eatingAmountReset() {
-        int waterAmount = waterNoteRepository.findWaterAmountLatestInsertTime();
+        int waterAmount = waterNoteRepository.findAmount().get(0);
         WaterBowl waterBowl = new WaterBowl();
         waterBowl.setSettingAmount(waterAmount);
         waterBowl.setRemaining(waterAmount);
@@ -28,10 +27,10 @@ public class WaterBowlRenewal {
         waterBowl.setCurrentEatingAmount(0);
         waterBowlRepository.save(waterBowl);
     }
-
-    @Scheduled(fixedDelay = 30000)  //30초에 한번씩 잔여량과 음수량 갱신
+/*
+    @Scheduled(fixedRate = 3000)  //3초에 한번씩 잔여량과 음수량 갱신
     public void eatingAmountRenewal(){
-        int waterAmount = waterNoteRepository.findWaterAmountLatestInsertTime();
+        int waterAmount = waterNoteRepository.findLatestInsertTime();
         int settingAmount = waterBowlRepository.findLatestSettingAmount();
         int beforeEatingAmount = waterBowlRepository.findLatestBeforeEatingAmount();
         WaterBowl waterBowl = new WaterBowl();
@@ -41,6 +40,9 @@ public class WaterBowlRenewal {
         waterBowl.setCurrentEatingAmount(settingAmount - waterAmount + beforeEatingAmount);
         waterBowlRepository.save(waterBowl);
     }
+
+ */
 }
+
 
 

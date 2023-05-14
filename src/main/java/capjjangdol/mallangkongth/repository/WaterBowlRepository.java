@@ -7,16 +7,18 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
-public interface WaterBowlRepository extends JpaRepository<WaterBowl, String> {
+import java.util.List;
+
+public interface WaterBowlRepository extends JpaRepository<WaterBowl, Long> {
     @Query("SELECT wb.settingAmount FROM WaterBowl wb ORDER BY wb.id DESC")
-    Integer findLatestSettingAmount();
+    List<Integer> findSettingAmount();
 
     @Query("SELECT wb.beforeEatingAmount FROM WaterBowl wb ORDER BY wb.id DESC")
-    Integer findLatestBeforeEatingAmount();
+    List<Integer> findBeforeEatingAmount();
 
     @Query("SELECT wb.currentEatingAmount FROM WaterBowl wb ORDER BY wb.id DESC")
-    Integer findLatestCurrentEatingAmount();
+    List<Integer> findCurrentEatingAmount();
 
     @Query("SELECT wb.remaining FROM WaterBowl wb ORDER BY wb.id DESC")
-    Integer findLatestRemaining();
+    List<Integer> findRemaining();
 }
