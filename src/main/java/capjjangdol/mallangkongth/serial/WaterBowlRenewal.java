@@ -24,6 +24,7 @@ public class WaterBowlRenewal {
         waterBowl.setRemaining(waterAmount);
         waterBowl.setBeforeEatingAmount(0);
         waterBowl.setCurrentEatingAmount(0);
+        waterBowlRepository.save(waterBowl);
     }
 
     @Scheduled(fixedDelay = 30000)  //30초에 한번씩 잔여량과 음수량 갱신
@@ -36,6 +37,7 @@ public class WaterBowlRenewal {
         waterBowl.setRemaining(waterAmount);
         waterBowl.setBeforeEatingAmount(beforeEatingAmount);
         waterBowl.setCurrentEatingAmount(settingAmount - waterAmount + beforeEatingAmount);
+        waterBowlRepository.save(waterBowl);
     }
 }
 

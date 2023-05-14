@@ -4,7 +4,9 @@ import capjjangdol.mallangkongth.domain.mypage.Pet;
 import capjjangdol.mallangkongth.domain.rearing.HospitalNoteForm;
 import capjjangdol.mallangkongth.service.HospitalService;
 import capjjangdol.mallangkongth.service.PetService;
+import capjjangdol.mallangkongth.service.WaterBowlService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +22,14 @@ public class RearingController {
         private final HospitalService hospitalService;
         private final PetService petService;
 
+        @Autowired
+        private WaterBowlService waterBowlService;
+
+        @PostMapping(value = "/WaterBowl/renewal")
+        public String renewalWaterBowl(){
+            waterBowlService.renewalWaterBowl();
+            return "redirect:/success";
+        }
 
     @GetMapping(value = "/hospitalNote/new")
         public String createForm(Model model) {

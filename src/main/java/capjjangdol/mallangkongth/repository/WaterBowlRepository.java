@@ -6,12 +6,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 public interface WaterBowlRepository extends JpaRepository<WaterBowl, String> {
-    @Query(value = "SELECT w1.settingAmount FROM WaterBowl w1 WHERE w1.id = (SELECT MAX(w2.id) FROM WaterBowl w2 )")
+    @Query("SELECT wb.settingAmount FROM WaterBowl wb ORDER BY wb.id DESC")
     Integer findSettingAmount();
-    @Query(value = "SELECT w1.beforeEatingAmount FROM WaterBowl w1 WHERE w1.id = (SELECT MAX(w2.id) FROM WaterBowl w2 )")
+    @Query("SELECT wb.beforeEatingAmount FROM WaterBowl wb ORDER BY wb.id DESC")
     Integer findBeforeEatingAmount();
-    @Query(value = "SELECT w1.currentEatingAmount FROM WaterBowl w1 WHERE w1.id = (SELECT MAX(w2.id) FROM WaterBowl w2 )")
+    @Query("SELECT wb.currentEatingAmount FROM WaterBowl wb ORDER BY wb.id DESC")
     Integer findCurrentEatingAmount();
-    @Query(value = "SELECT w1.remaining FROM WaterBowl w1 WHERE w1.id = (SELECT MAX(w2.id) FROM WaterBowl w2 )")
-    Integer findremaining();
+    @Query("SELECT wb.remaining FROM WaterBowl wb ORDER BY wb.id DESC")
+    Integer findRemaining();
 }

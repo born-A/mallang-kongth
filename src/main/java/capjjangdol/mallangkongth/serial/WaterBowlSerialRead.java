@@ -27,6 +27,9 @@ public class WaterBowlSerialRead
     boolean isOpen = false;
     @PostConstruct
     public void SerialRun(){
+        WaterBowl waterBowl1 = new WaterBowl();
+
+
         SerialPort serialPort = SerialPort.getCommPort("COM7"); //본인 포트 번호로 수정하고 실행해야함
         // 시리얼 포트를 오픈한다.
         isOpen = serialPort.openPort();
@@ -51,12 +54,13 @@ public class WaterBowlSerialRead
                             WaterNote waterNote = new WaterNote();
                             waterNote.setAmount(Integer.parseInt(s)); //int 값으로 변환하여 넣기
                             waterNoteRepository.save(waterNote);
-                            if(waterBowlRepository.findremaining()< Integer.parseInt(s)){
+                            if(waterBowlRepository.findRemaining()< Integer.parseInt(s)){
                                 WaterBowl waterBowl = new WaterBowl();
                                 waterBowl.setSettingAmount(Integer.parseInt(s));
                                 waterBowl.setRemaining(Integer.parseInt(s));
                                 waterBowl.setBeforeEatingAmount(waterBowlRepository.findCurrentEatingAmount());
                                 waterBowl.setCurrentEatingAmount(waterBowlRepository.findCurrentEatingAmount());
+                                waterBowlRepository.save(waterBowl);
                             }
                         }
                     }
