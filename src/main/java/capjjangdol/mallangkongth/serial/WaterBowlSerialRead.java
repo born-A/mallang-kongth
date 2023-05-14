@@ -1,6 +1,8 @@
 package capjjangdol.mallangkongth.serial;
 
+import capjjangdol.mallangkongth.domain.rearing.WaterBowl;
 import capjjangdol.mallangkongth.domain.rearing.WaterNote;
+import capjjangdol.mallangkongth.repository.WaterBowlRepository;
 import capjjangdol.mallangkongth.repository.WaterNoteRepository;
 import com.fazecast.jSerialComm.SerialPort;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,15 +20,14 @@ public class WaterBowlSerialRead
 {
     @Autowired
     WaterNoteRepository waterNoteRepository;
-
     @Autowired
-    EntityManager em;
+    WaterBowlRepository waterBowlRepository;
 
     InputStream in = null;
     boolean isOpen = false;
     @PostConstruct
     public void SerialRun(){
-        SerialPort serialPort = SerialPort.getCommPort("COM7");
+        SerialPort serialPort = SerialPort.getCommPort("COM7"); //본인 포트 번호로 수정하고 실행해야함
         // 시리얼 포트를 오픈한다.
         isOpen = serialPort.openPort();
         if (isOpen) {
@@ -50,6 +51,13 @@ public class WaterBowlSerialRead
                             WaterNote waterNote = new WaterNote();
                             waterNote.setAmount(Integer.parseInt(s)); //int 값으로 변환하여 넣기
                             waterNoteRepository.save(waterNote);
+                            if(waterBowlRepository.findremaining()< Integer.parseInt(s)){
+                                WaterBowl waterBowl = new WaterBowl();
+                                waterBowl.setSettingAmount(Integer.parseInt(s));
+                                waterBowl.setRemaining(Integer.parseInt(s));
+                                waterBowl.setBeforeEatingAmount(waterBowlRepository.findCurrentEatingAmount());
+                                waterBowl.setCurrentEatingAmount(waterBowlRepository.findCurrentEatingAmount());
+                            }
                         }
                     }
                 }

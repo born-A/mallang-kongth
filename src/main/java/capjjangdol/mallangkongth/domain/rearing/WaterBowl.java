@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Setter
 public class WaterBowl {
     @Id @GeneratedValue
-    private String id;
+    private Long id;
 
     private Integer remaining;
 
