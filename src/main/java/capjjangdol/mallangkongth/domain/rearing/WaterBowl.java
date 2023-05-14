@@ -15,19 +15,17 @@ public class WaterBowl {
     @Id @GeneratedValue
     private String id;
 
-    private Long remaining;
+    private Integer remaining;
 
-    private Long beforeEatingAmount;
+    private Integer beforeEatingAmount;
 
-    private Long currentEatingAmount;
+    private Integer currentEatingAmount;
     @Column(name = "setting_amount")
-    private Long settingAmount;
+    private Integer settingAmount;
 
     @CreationTimestamp
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime insertDate;
 
-    public Long eatingAmount() {
-        return this.settingAmount - this.remaining;
-    }
+
 }
