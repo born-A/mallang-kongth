@@ -1,11 +1,6 @@
 package capjjangdol.mallangkongth.config;
 
-import capjjangdol.mallangkongth.jwt.JwtAccessDeniedHandler;
-import capjjangdol.mallangkongth.jwt.JwtAuthenticationEntryPoint;
-import capjjangdol.mallangkongth.jwt.TokenProvider;
-import capjjangdol.mallangkongth.service.AuthService;
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import capjjangdol.mallangkongth.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
