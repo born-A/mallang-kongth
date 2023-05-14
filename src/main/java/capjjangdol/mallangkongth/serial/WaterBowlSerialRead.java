@@ -54,12 +54,12 @@ public class WaterBowlSerialRead
                             WaterNote waterNote = new WaterNote();
                             waterNote.setAmount(Integer.parseInt(s)); //int 값으로 변환하여 넣기
                             waterNoteRepository.save(waterNote);
-                            if(waterBowlRepository.findRemaining()< Integer.parseInt(s)){
+                            if(waterBowlRepository.findLatestRemaining()< Integer.parseInt(s)){
                                 WaterBowl waterBowl = new WaterBowl();
                                 waterBowl.setSettingAmount(Integer.parseInt(s));
                                 waterBowl.setRemaining(Integer.parseInt(s));
-                                waterBowl.setBeforeEatingAmount(waterBowlRepository.findCurrentEatingAmount());
-                                waterBowl.setCurrentEatingAmount(waterBowlRepository.findCurrentEatingAmount());
+                                waterBowl.setBeforeEatingAmount(waterBowlRepository.findLatestCurrentEatingAmount());
+                                waterBowl.setCurrentEatingAmount(waterBowlRepository.findLatestCurrentEatingAmount());
                                 waterBowlRepository.save(waterBowl);
                             }
                         }

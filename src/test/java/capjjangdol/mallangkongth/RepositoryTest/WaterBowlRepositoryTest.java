@@ -24,7 +24,7 @@ public class WaterBowlRepositoryTest {
         waterBowl.setRemaining(2);
         waterBowl.setBeforeEatingAmount(3);
         waterBowl.setCurrentEatingAmount(4);
-        int waterAmount = waterBowlRepository.findRemaining();
+        int waterAmount = waterBowlRepository.findLatestRemaining();
         System.out.println(waterAmount);
     }
 

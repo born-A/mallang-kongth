@@ -6,8 +6,10 @@ import capjjangdol.mallangkongth.repository.WaterNoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
+@Transactional
 public class WaterBowlRenewal {
 
     @Autowired
@@ -30,8 +32,8 @@ public class WaterBowlRenewal {
     @Scheduled(fixedDelay = 30000)  //30초에 한번씩 잔여량과 음수량 갱신
     public void eatingAmountRenewal(){
         int waterAmount = waterNoteRepository.findWaterAmountLatestInsertTime();
-        int settingAmount = waterBowlRepository.findSettingAmount();
-        int beforeEatingAmount = waterBowlRepository.findBeforeEatingAmount();
+        int settingAmount = waterBowlRepository.findLatestSettingAmount();
+        int beforeEatingAmount = waterBowlRepository.findLatestBeforeEatingAmount();
         WaterBowl waterBowl = new WaterBowl();
         waterBowl.setSettingAmount(settingAmount);
         waterBowl.setRemaining(waterAmount);
