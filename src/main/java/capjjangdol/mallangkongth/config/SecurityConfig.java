@@ -1,5 +1,7 @@
 package capjjangdol.mallangkongth.config;
 
+import capjjangdol.mallangkongth.jwt.JwtFilter;
+import capjjangdol.mallangkongth.jwt.TokenProvider;
 import capjjangdol.mallangkongth.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -10,8 +12,10 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -29,6 +33,9 @@ public class SecurityConfig {
         permitAll :login, sign Page
          */
         http
+                //cross site request forgery(사이트간 위조 요청)
+                .csrf().disable()
+                //disable -> 서버에 인증정보 저장하지 않기 때문에(JWT 쿠키에 저장안함)
                 .authorizeRequests()
                 .antMatchers("/login", "/signup").permitAll()
                 .anyRequest().authenticated();
