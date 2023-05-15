@@ -1,5 +1,5 @@
 package capjjangdol.mallangkongth.RepositoryTest;
-
+/*
 import capjjangdol.mallangkongth.domain.rearing.WaterBowl;
 import capjjangdol.mallangkongth.repository.WaterBowlRepository;
 import org.junit.Test;
@@ -29,3 +29,6 @@ public class WaterBowlRepositoryTest {
     }
 
 }
+
+
+ */

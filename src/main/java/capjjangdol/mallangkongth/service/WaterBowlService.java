@@ -21,7 +21,7 @@ public class WaterBowlService {
     WaterNoteRepository waterNoteRepository;
 
     public void renewalWaterBowl(){
-        int waterAmount = waterNoteRepository.findInsertTime().get(0);
+        int waterAmount = waterNoteRepository.findAmount().get(0);
         int settingAmount = waterBowlRepository.findSettingAmount().get(0);
         int beforeEatingAmount = waterBowlRepository.findBeforeEatingAmount().get(0);
         WaterBowl waterBowl = new WaterBowl();

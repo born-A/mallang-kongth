@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Spring Boot Example</title>
+</head>
+<body>
+<form method="post" action="/button">
+  <p>DB에서 가져온 값 : <span th:text="${myData.value}"></span></p>
+</form>
+</body>
+</html>

@@ -3,6 +3,7 @@ package capjjangdol.mallangkongth.Controller;
 
 import capjjangdol.mallangkongth.domain.mypage.Pet;
 import capjjangdol.mallangkongth.domain.rearing.HospitalNoteForm;
+import capjjangdol.mallangkongth.repository.WaterBowlRepository;
 import capjjangdol.mallangkongth.service.HospitalService;
 import capjjangdol.mallangkongth.service.PetService;
 import capjjangdol.mallangkongth.service.WaterBowlService;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -24,13 +26,23 @@ public class RearingController {
         private final PetService petService;
 
         @Autowired
-        private WaterBowlService waterBowlService;
+        private WaterBowlRepository waterBowlRepository;
 
-        @PostMapping(value = "/WaterBowl/renewal")
-        public String renewalWaterBowl(){
-            waterBowlService.renewalWaterBowl();
-            return "redirect:/success";
+        @GetMapping (value = "/home")
+        public String renewalWaterBowl(Model model){
+            int value = waterBowlRepository.findRemaining().get(0);
+            model.addAttribute("value", value);
+            return "redirect:water";
         }
+
+    @RequestMapping("/water")
+    public String home(){
+        return "waterBowlTest";
+    }
+    @RequestMapping("/home")
+    public String hoe(){
+        return "home";
+    }
 
     @GetMapping(value = "/hospitalNote/new")
         public String createForm(Model model) {
