@@ -27,6 +27,7 @@ public class RearingController {
     @Autowired
     private WaterBowlRepository waterBowlRepository;
 
+    //급수기 테스트용 코드
     @GetMapping ("/water")
     public String renewalWaterBowl(Model model){
         int value = waterBowlRepository.findRemaining().get(0);

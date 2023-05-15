@@ -16,7 +16,6 @@ public class WaterBowlRenewal {
 
     @Autowired
     WaterBowlRepository waterBowlRepository;
-/*
     @Scheduled(cron = "0 0 0 * * *") // 매일 0시에 음수량 초기화
     public void eatingAmountReset() {
         int waterAmount = waterNoteRepository.findAmount().get(0);
@@ -27,6 +26,7 @@ public class WaterBowlRenewal {
         waterBowl.setCurrentEatingAmount(0);
         waterBowlRepository.save(waterBowl);
     }
+    /*
     @Scheduled(fixedRate = 3000)  //3초에 한번씩 잔여량과 음수량 갱신
     public void eatingAmountRenewal(){
         int waterAmount = waterNoteRepository.findLatestInsertTime();

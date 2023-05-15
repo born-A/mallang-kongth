@@ -34,17 +34,31 @@ public class WaterBowlSerialRead {
     @Autowired
     private TaskExecutor taskExecutor;
 
-    private InputStream in = null;
-    private boolean isOpen = false;
+    private InputStream waterBowlIn = null;
+    private InputStream foodBowlIn = null;
+    private boolean waterBowlIsOpen = false;
+    private boolean foodBowlIsOpen = false;
 
     @PostConstruct
     public void SerialRun(){
-        SerialPort serialPort = SerialPort.getCommPort("COM7");
-        isOpen = serialPort.openPort();
-        if (isOpen) {
+        SerialPort waterBowlSerialPort = SerialPort.getCommPort("COM7");
+        waterBowlIsOpen = waterBowlSerialPort.openPort();
+        SerialPort foodBowlSerialPort = SerialPort.getCommPort("COM8");
+        foodBowlIsOpen = foodBowlSerialPort.openPort();
+
+        WaterBowl waterBowl = new WaterBowl(); //초기 데이터 넣기
+        waterBowl.setSettingAmount(0);
+        waterBowl.setRemaining(0);
+        waterBowl.setBeforeEatingAmount(0);
+        waterBowl.setCurrentEatingAmount(0);
+        waterBowlRepository.save(waterBowl);
+
+        if (waterBowlIsOpen && foodBowlIsOpen) {
             System.out.println("open");
-            in = serialPort.getInputStream();
-            taskExecutor.execute(new WaterBowlSerialReadThread(in, waterNoteRepository, waterBowlRepository));
+            waterBowlIn = waterBowlSerialPort.getInputStream();
+            foodBowlIn = waterBowlSerialPort.getInputStream();
+            taskExecutor.execute(new WaterBowlSerialReadThread(waterBowlIn, waterNoteRepository, waterBowlRepository));
+            taskExecutor.execute(new FoodBowlSerialReadThread(foodBowlIn , waterNoteRepository, waterBowlRepository));
         } else {
             System.exit(0);
         }
