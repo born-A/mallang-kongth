@@ -27,7 +27,6 @@ public class WaterBowlSerialReadThread implements Runnable{
         int beforeEatingAmount;
         int CurrentEatingAmount;
         try {
-            Thread.sleep(3000);
             while ((len = this.in.read(buffer)) > -1) {
                 while(in.available() < 5){
                     Thread.sleep(1);

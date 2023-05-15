@@ -9,6 +9,7 @@ import com.fazecast.jSerialComm.SerialPort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,9 +17,9 @@ import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import java.io.InputStream;
 
-//	값을 읽는 클래스로, 이는 Thread로 구현해야 한다.
-@Service
+//   값을 읽는 클래스로, 이는 Thread로 구현해야 한다.
 @Transactional
+@Component
 public class WaterBowlSerialRead {
 
     @Autowired
@@ -36,7 +37,7 @@ public class WaterBowlSerialRead {
     private InputStream in = null;
     private boolean isOpen = false;
 
-    @Scheduled(fixedRate = 10000)
+    @PostConstruct
     public void SerialRun(){
         SerialPort serialPort = SerialPort.getCommPort("COM7");
         isOpen = serialPort.openPort();
