@@ -47,17 +47,22 @@ public class SerialRead {
     @PostConstruct
     public void SerialRun(){
         taskExecutor = new ThreadPoolTaskExecutor();
+        taskExecutor.setCorePoolSize(2); //thread pool 사이즈 기본크기를 2로 설정
+        taskExecutor.initialize(); // ThreadPoolTaskExecutor 초기화
+
         SerialPort waterBowlSerialPort = SerialPort.getCommPort("COM7");
         waterBowlIsOpen = waterBowlSerialPort.openPort();
         SerialPort foodBowlSerialPort = SerialPort.getCommPort("COM8");
         foodBowlIsOpen = foodBowlSerialPort.openPort();
 
+        /*
         WaterBowl waterBowl = new WaterBowl(); //초기 데이터 넣기
         waterBowl.setSettingAmount(0);
         waterBowl.setRemaining(0);
         waterBowl.setBeforeEatingAmount(0);
         waterBowl.setCurrentEatingAmount(0);
         waterBowlRepository.save(waterBowl);
+         */
 
         if (waterBowlIsOpen && foodBowlIsOpen) {
             System.out.println("open");
