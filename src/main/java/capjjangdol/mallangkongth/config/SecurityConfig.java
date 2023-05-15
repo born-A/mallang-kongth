@@ -18,11 +18,9 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity //spring security filter가 spring filterchain에 등록
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
-    @Autowired
-    private MemberService memberService;
     @Bean
     /*spring Security 5.7.x부터 webSecrurityConfigurerAdapter deprecated
     -> filterChain은 return값과 bean 등록으로 component 기반 보안 설정 가능
@@ -37,15 +35,15 @@ public class SecurityConfig {
                 .csrf().disable()
                 //disable -> 서버에 인증정보 저장하지 않기 때문에(JWT 쿠키에 저장안함)
                 .authorizeRequests()
-                .antMatchers("/login", "/signup").permitAll()
+                .antMatchers("/login", "/auth/signup").permitAll()
                 .anyRequest().authenticated();
 
         http
                 .formLogin()
-                .loginPage("/login")    // GET 요청 (login form을 보여줌)
+                .loginPage("/login/loginForm")    // GET 요청 (login form을 보여줌)
                 .loginProcessingUrl("/auth")    // POST 요청 (login 창에 입력한 데이터를 처리)
                 .usernameParameter("email")	// login에 필요한 id 값을 email로 설정 (default는 username)
-                .passwordParameter("password")	// login에 필요한 password 값을 password(default)로 설정
+                .passwordParameter("pw")	// login에 필요한 password 값을 password(default)로 설정
                 .defaultSuccessUrl("/");	// login에 성공하면 /로 redirect
         http
                 .logout()

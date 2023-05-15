@@ -1,5 +1,6 @@
 package capjjangdol.mallangkongth.jwt;
 
+import capjjangdol.mallangkongth.repository.domain.mypage.RoleType;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -14,6 +15,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
 
+import javax.management.relation.Role;
+import javax.servlet.http.HttpServletRequest;
 import java.security.Key;
 import java.util.Arrays;
 import java.util.Collection;
@@ -31,9 +34,9 @@ public class TokenProvider implements InitializingBean {
     private Key key;
 
     public TokenProvider(
-            @Value("${jwt.secret}")
+            @Value("${spring.jwt.secret}")
             String secret,
-            @Value("${jwt.token-validity-in-seconds}")
+            @Value("${spring.jwt.token-validity-in-seconds}")
             long tokenValidityInSeconds) {
         this.secret = secret;
         this.tokenValidityInMilliseconds = tokenValidityInSeconds * 1000;
@@ -46,18 +49,18 @@ public class TokenProvider implements InitializingBean {
     }
 
     //user 정보로 Access하는 Token과 RefreshToken 생성
-    public String createToken(Authentication authentication) {
-        String authorities = authentication.getAuthorities().stream()
-                .map(GrantedAuthority::getAuthority)
-                .collect(Collectors.joining(","));
+    public String createToken(String email, RoleType roleType) {
+//        String authorities = authentication.getAuthorities().stream()
+//                .map(GrantedAuthority::getAuthority)
+//                .collect(Collectors.joining(","));
 
+        Claims claims = Jwts.claims().setSubject(email);
+        claims.put("RoleType", roleType);
         long now = (new Date()).getTime();
-        Date validity = new Date(now + this.tokenValidityInMilliseconds);
-
+        Date validity = new Date(now + this.tokenValidityInMilliseconds);//set expired
         return Jwts.builder()
-                .setSubject(authentication.getName())
-                .claim(AUTHORITIES_KEY, authorities)
-                .signWith(key, SignatureAlgorithm.HS512)
+                .setClaims(claims)
+                .signWith(key, SignatureAlgorithm.HS256)
                 .setExpiration(validity)
                 .compact();
     }
@@ -97,5 +100,8 @@ public class TokenProvider implements InitializingBean {
             logger.info("JWT 토큰이 잘못되었습니다.JWT claims string is empty");
         }
         return false;
+    }
+    public String resolveToken(HttpServletRequest request) {
+        return request.getHeader("X-AUTH-TOKEN");
     }
 }

@@ -1,15 +1,20 @@
 package capjjangdol.mallangkongth.repository.domain.mypage;
 
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.Collection;
+import java.util.stream.Collectors;
 
 @Entity
 @Getter
-@Setter
 @Builder
+@Data
 @EqualsAndHashCode(of = "id")
-@RequiredArgsConstructor
+@NoArgsConstructor
 @AllArgsConstructor
 public class Member{
     @Id @GeneratedValue
@@ -34,6 +39,7 @@ public class Member{
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private RoleType roleType;
+
 
 //    @OneToMany(mappedBy = "member")
 //    private List<Orders> ordersList = new ArrayList<>();

@@ -35,7 +35,7 @@ public class MemberServiceTest {
         member.setName("신짱구");
 
         //when
-        Long saveId = memberService.join(member);
+        Long saveId = memberService.signUp(member);
 
         //then
         em.flush();
@@ -51,8 +51,8 @@ public class MemberServiceTest {
         Member member2 = new Member();
         member2.setName("shin1");
         //when
-        memberService.join(member1);
-        memberService.join(member2); // exception
+        memberService.signUp(member1);
+        memberService.signUp(member2); // exception
 
 
         //then

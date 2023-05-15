@@ -1,11 +1,13 @@
 package capjjangdol.mallangkongth.service;
 
+import capjjangdol.mallangkongth.jwt.TokenProvider;
 import capjjangdol.mallangkongth.repository.domain.mypage.Member;
 import capjjangdol.mallangkongth.repository.MemberRepository;
-import capjjangdol.mallangkongth.dto.MemberDto;
+import capjjangdol.mallangkongth.dto.MemberSignUpRequestDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -18,17 +20,24 @@ public class MemberService {
     private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     @Autowired
     private MemberRepository memberRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final TokenProvider tokenProvider;
+
+    public MemberService(PasswordEncoder passwordEncoder, TokenProvider tokenProvider) {
+        this.passwordEncoder = passwordEncoder;
+        this.tokenProvider = tokenProvider;
+    }
 
 //    @Autowired
 //    private Pet pet;
 
 //    @Override
     /**
-     * register
+     * signup
      */
-    public Long join(MemberDto.RequestMemberDto dto){
-        dto.encryptPassword(encoder.encode(dto.getPw()));
-        Member member = dto.toEntity();
+    public Long signUp(MemberSignUpRequestDto requestDto){
+        requestDto.encryptPassword(encoder.encode(requestDto.getPw()));
+        Member member = requestDto.toEntity();
         memberRepository.save(member);
         log.info("db save successful");
         validateDuplicateMember(member);
@@ -57,4 +66,14 @@ public class MemberService {
     public Member findOne(Long memberId) {
         return memberRepository.findOne(memberId);
     }
-}
+
+    public String login(MemberSignUpRequestDto memberSignUpRequestDto) {
+        Member member = memberRepository.findByEmail(memberSignUpRequestDto.getEmail())
+                .orElseThrow(()-> new IllegalStateException("가입되지 않은 EMAIL"));
+        if (!passwordEncoder.matches(memberSignUpRequestDto.getPw(), member.getPw())) {
+            throw new IllegalArgumentException("잘못된 비밀번호입니다.");
+        }
+        // 로그인에 성공하면 email, roles 로 토큰 생성 후 반환
+        return tokenProvider.createToken(member.getEmail(), member.getRoleType());
+    }
+    }
