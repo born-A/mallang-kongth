@@ -1,26 +1,24 @@
 package capjjangdol.mallangkongth.serial;
 
 import capjjangdol.mallangkongth.domain.rearing.WaterBowl;
-import capjjangdol.mallangkongth.domain.rearing.WaterNote;
+import capjjangdol.mallangkongth.repository.FoodBowlRepository;
+import capjjangdol.mallangkongth.repository.FoodNoteRepository;
 import capjjangdol.mallangkongth.repository.WaterBowlRepository;
 import capjjangdol.mallangkongth.repository.WaterNoteRepository;
 import capjjangdol.mallangkongth.service.WaterBowlService;
 import com.fazecast.jSerialComm.SerialPort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.task.TaskExecutor;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
-import javax.persistence.EntityManager;
 import java.io.InputStream;
 
 //   값을 읽는 클래스로, 이는 Thread로 구현해야 한다.
 @Transactional
 @Component
-public class WaterBowlSerialRead {
+public class SerialRead {
 
     @Autowired
     WaterNoteRepository waterNoteRepository;
@@ -31,6 +29,11 @@ public class WaterBowlSerialRead {
     @Autowired
     WaterBowlService waterBowlService;
 
+    @Autowired
+    FoodNoteRepository foodNoteRepository;
+
+    @Autowired
+    FoodBowlRepository foodBowlRepository;
     @Autowired
     private TaskExecutor taskExecutor;
 
@@ -58,7 +61,7 @@ public class WaterBowlSerialRead {
             waterBowlIn = waterBowlSerialPort.getInputStream();
             foodBowlIn = waterBowlSerialPort.getInputStream();
             taskExecutor.execute(new WaterBowlSerialReadThread(waterBowlIn, waterNoteRepository, waterBowlRepository));
-            taskExecutor.execute(new FoodBowlSerialReadThread(foodBowlIn , waterNoteRepository, waterBowlRepository));
+            taskExecutor.execute(new FoodBowlSerialReadThread(foodBowlIn , foodNoteRepository, foodBowlRepository));
         } else {
             System.exit(0);
         }
