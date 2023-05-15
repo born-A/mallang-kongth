@@ -11,32 +11,32 @@ public class FoodBowl {
     @Id @GeneratedValue
     private Long id;
 
-    private Long remaining;
+    private Integer  remaining;
 
     @Column(name = "setting_amount")
-    private Long settingAmount;
+    private Integer settingAmount;
 
 
-    public Long eatingAmount() {
+    public Integer  eatingAmount() {
         return this.settingAmount - this.remaining;
     }
 
-    public Long getEatingAmount(){
+    public Integer  getEatingAmount(){
         return eatingAmount();
     }
-    public Long getRemaining() {
+    public Integer  getRemaining() {
         return remaining;
     }
 
-    public void setRemaining(Long remaining) {
+    public void setRemaining(Integer  remaining) {
         this.remaining = remaining;
     }
 
-    public Long getSettingAmount() {
+    public Integer  getSettingAmount() {
         return settingAmount;
     }
 
-    public void setSettingAmount(Long settingAmount) {
+    public void setSettingAmount(Integer  settingAmount) {
         this.settingAmount = settingAmount;
     }
 

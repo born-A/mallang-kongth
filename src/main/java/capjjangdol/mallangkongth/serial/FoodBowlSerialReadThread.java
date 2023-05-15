@@ -30,8 +30,9 @@ public class FoodBowlSerialReadThread implements Runnable{
                 String s = new String(buffer,0,len);
                 if (len == 5 && s.charAt(0) == 'h'&& !s.contains("w")) {
                     s = s.replaceAll("h", "");
-                    FoodNote foodNote = new FoodNote();
-                    foodNoteRepository.save(foodNote);
+                    FoodBowl foodBowl = new FoodBowl();
+                    foodBowl.setRemaining(Integer.parseInt(s));
+                    foodBowlRepository.save(foodBowl);
                 }
             }
         } catch (Exception e) {}

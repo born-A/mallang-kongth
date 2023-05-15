@@ -9,11 +9,13 @@ import capjjangdol.mallangkongth.service.WaterBowlService;
 import com.fazecast.jSerialComm.SerialPort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.task.TaskExecutor;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import java.io.InputStream;
+import java.util.concurrent.ThreadPoolExecutor;
 
 //   값을 읽는 클래스로, 이는 Thread로 구현해야 한다.
 @Transactional
@@ -35,7 +37,7 @@ public class SerialRead {
     @Autowired
     FoodBowlRepository foodBowlRepository;
     @Autowired
-    private TaskExecutor taskExecutor;
+    private ThreadPoolTaskExecutor taskExecutor;
 
     private InputStream waterBowlIn = null;
     private InputStream foodBowlIn = null;
@@ -44,6 +46,7 @@ public class SerialRead {
 
     @PostConstruct
     public void SerialRun(){
+        taskExecutor = new ThreadPoolTaskExecutor();
         SerialPort waterBowlSerialPort = SerialPort.getCommPort("COM7");
         waterBowlIsOpen = waterBowlSerialPort.openPort();
         SerialPort foodBowlSerialPort = SerialPort.getCommPort("COM8");
