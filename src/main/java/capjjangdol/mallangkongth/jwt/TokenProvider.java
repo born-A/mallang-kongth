@@ -1,6 +1,5 @@
 package capjjangdol.mallangkongth.jwt;
 
-import com.sun.org.apache.xml.internal.security.algorithms.SignatureAlgorithm;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -102,6 +101,7 @@ public class TokenProvider {
         }
         return false;
     }
+}
 
     private Claims parseClaims(String accessToken) {
         try {

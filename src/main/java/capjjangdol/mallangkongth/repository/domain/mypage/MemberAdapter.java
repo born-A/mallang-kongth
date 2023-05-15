@@ -11,11 +11,16 @@ import java.util.List;
 //로그인한 사용자 정보 참조할때 account 감싸는 adapter
 @Getter
 public class MemberAdapter extends User {
+    private Member member;
     public MemberAdapter(Member member){
         super(member.getEmail(), member.getPw(),
                 AuthorityUtils.createAuthorityList(member.getRoleType().toString()));
     }
     public String getEmail(){
         return this.getUsername();
+    }
+
+    public Member getMember(){
+        return member;
     }
 }
