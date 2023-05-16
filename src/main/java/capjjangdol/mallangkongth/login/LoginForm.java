@@ -7,9 +7,11 @@ import javax.validation.constraints.NotEmpty;
 
 @Getter
 @Setter
-public class MemberForm {
+public class LoginForm {
     @NotEmpty(message = "?? ?? ????")
     private String name;
+    private String email;
+    private String pw;
     private String city;
     private String zipcode;
 }

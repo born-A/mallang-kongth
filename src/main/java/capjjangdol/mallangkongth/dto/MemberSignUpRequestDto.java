@@ -7,13 +7,12 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
 import java.util.List;
+@AllArgsConstructor
+@Data
+@Builder
+public class MemberSignUpRequestDto {
 
-public class MemberDto {
-    @AllArgsConstructor
-    @NoArgsConstructor
-    @Getter @Setter
-    @Builder
-    public static class RequestMemberDto{
+
         private Long id;
 
         @NotBlank(message = "???? ?? ??????.")
@@ -37,7 +36,6 @@ public class MemberDto {
         }
         public Member toEntity() {
             Member member = Member.builder()
-                    .id(id)
                     .email(email)
                     .pw(pw)
                     .address(address)
@@ -46,5 +44,5 @@ public class MemberDto {
             return member;
         }
 
-    }
+
 }

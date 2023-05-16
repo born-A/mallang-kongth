@@ -1,11 +1,16 @@
 package capjjangdol.mallangkongth.service;
 
+import capjjangdol.mallangkongth.dto.TokenDto;
 import capjjangdol.mallangkongth.jwt.TokenProvider;
 import capjjangdol.mallangkongth.repository.domain.mypage.Member;
 import capjjangdol.mallangkongth.repository.MemberRepository;
 import capjjangdol.mallangkongth.dto.MemberSignUpRequestDto;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -23,15 +28,12 @@ public class MemberService {
     private final PasswordEncoder passwordEncoder;
     private final TokenProvider tokenProvider;
 
+    private  AuthenticationManagerBuilder authenticationManagerBuilder;
     public MemberService(PasswordEncoder passwordEncoder, TokenProvider tokenProvider) {
         this.passwordEncoder = passwordEncoder;
         this.tokenProvider = tokenProvider;
     }
 
-//    @Autowired
-//    private Pet pet;
-
-//    @Override
     /**
      * signup
      */
@@ -44,16 +46,22 @@ public class MemberService {
         checkEmailDuplication(member.getEmail());
         return Long.valueOf(member.getEmail());
     }
-
+    /**
+     * login
+     */
+    public TokenDto login(String email, String pw) {
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(email, pw);
+        Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+        TokenDto tokendto = tokenProvider.generateToken(authentication);
+        return tokendto;
+    }
     @Transactional
 //    @Override
     public boolean checkEmailDuplication(String email) {
         boolean emailDuplicate = memberRepository.existsByEmail(email);
         return emailDuplicate;
     }
-    /**
-     * login
-     */
+
     private void validateDuplicateMember(Member member) {
         memberRepository.findMember(member.getName())
                 .ifPresent(m -> {
@@ -67,13 +75,4 @@ public class MemberService {
         return memberRepository.findOne(memberId);
     }
 
-    public String login(MemberSignUpRequestDto memberSignUpRequestDto) {
-        Member member = memberRepository.findByEmail(memberSignUpRequestDto.getEmail())
-                .orElseThrow(()-> new IllegalStateException("가입되지 않은 EMAIL"));
-        if (!passwordEncoder.matches(memberSignUpRequestDto.getPw(), member.getPw())) {
-            throw new IllegalArgumentException("잘못된 비밀번호입니다.");
-        }
-        // 로그인에 성공하면 email, roles 로 토큰 생성 후 반환
-        return tokenProvider.createToken(member.getEmail(), member.getRoleType());
-    }
     }

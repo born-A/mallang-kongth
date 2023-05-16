@@ -1,6 +1,8 @@
 package capjjangdol.mallangkongth.Controller;
 
 import Validator.CheckUser_idValidator;
+import capjjangdol.mallangkongth.dto.MemberLoginRequestDto;
+import capjjangdol.mallangkongth.dto.TokenDto;
 import capjjangdol.mallangkongth.login.LoginForm;
 import capjjangdol.mallangkongth.repository.domain.mypage.Member;
 import capjjangdol.mallangkongth.repository.domain.mypage.Pet;
@@ -27,21 +29,24 @@ public class MemberController {
     private CheckUser_idValidator checkUser_idValidator;
     private MemberService memberService;
     @PostMapping("/login")
-    public String login(@Valid @RequestBody MemberSignUpRequestDto memberSignUpRequestDto){
-        return memberService.login(memberSignUpRequestDto);
+    public TokenDto login(@RequestBody MemberLoginRequestDto memberLoginRequestDto) {
+        String email = memberLoginRequestDto.getEmail();
+        String pw = memberLoginRequestDto.getPw();
+        TokenDto tokendto = memberService.login(email, pw);
+        return tokendto;
     }
     @GetMapping("/login/new")
     public String createLoginForm(Model model){
     Optional<Member> members = memberService.findMembers();
             model.addAttribute("members", members);
             model.addAttribute("form",new LoginForm());
-            return "login/loginForm";
+            return "/login/loginForm";
     }
-    @GetMapping("/auth/signUp")
+    @GetMapping("/signUp")
     public String signUp(){
-        return "/auth/signUp";
+        return "/signUp";
     }
-    @PostMapping("/auth/signUpProcess")
+    @PostMapping("/signUpProcess")
     public String joinProcess(MemberSignUpRequestDto requestDto, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()) {
             model.addAttribute("memberDto", requestDto);
@@ -59,14 +64,14 @@ public class MemberController {
                 model.addAttribute(key, errorMap.get(key));
             }
 
-            return "/auth/signUp";
+            return "/signUp";
         }
 
         memberService.signUp(requestDto);
         log.info("signUp success");
-        return "redirect:/auth/signUp";
+        return "redirect:/signUp";
     }
-    @GetMapping("/auth/signUpProcess/{email}/exists")
+    @GetMapping("/signUpProcess/{email}/exists")
     public ResponseEntity<Boolean> checkEmailDuplicate(@PathVariable String email){
         return ResponseEntity.ok(memberService.checkEmailDuplication(email));
     }
