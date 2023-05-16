@@ -29,6 +29,6 @@ public class WalkingRepository {
     public List<Walking> findAllOfDay(LocalDateTime dateTime){
         return em.createQuery("select w from Walking w where w.dateOfWalking =: datetime group by w.dateOfWalking", Walking.class)
                 .setParameter("datetime", dateTime)
-            .getResultList();
+                .getResultList();
     }
 }

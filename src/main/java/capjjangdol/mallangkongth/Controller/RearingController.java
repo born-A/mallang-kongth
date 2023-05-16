@@ -1,13 +1,11 @@
 package capjjangdol.mallangkongth.Controller;
 
 import capjjangdol.mallangkongth.domain.mypage.Pet;
-import capjjangdol.mallangkongth.domain.rearing.Health;
-import capjjangdol.mallangkongth.domain.rearing.HealthForm;
-import capjjangdol.mallangkongth.domain.rearing.HospitalNote;
-import capjjangdol.mallangkongth.domain.rearing.HospitalNoteForm;
+import capjjangdol.mallangkongth.domain.rearing.*;
 import capjjangdol.mallangkongth.service.HealthService;
 import capjjangdol.mallangkongth.service.HospitalService;
 import capjjangdol.mallangkongth.service.PetService;
+import capjjangdol.mallangkongth.service.WalkingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
@@ -26,6 +24,7 @@ public class RearingController {
         private final HospitalService hospitalService;
         private final PetService petService;
         private final HealthService healthService;
+        private final WalkingService walkingService;
 
     /**
      *
@@ -65,7 +64,39 @@ public class RearingController {
 
     /**
      *
-     * 건강 기록 등록 - 폼
+     * 산책 기록 등록 - 폼
+     */
+
+    @GetMapping(value = "/walkings/new")
+    public String createWalkingForm(Model model) {
+        List<Pet> pets = petService.findPets();
+        model.addAttribute("pets", pets);
+        model.addAttribute("form",new WalkingForm());
+        return "walkings/walkingForm";
+    }
+    /**
+     *
+     * 산책 기록 등록 - post
+     */
+    @PostMapping(value = "/walkings/new")
+    public String createWalking(@RequestParam("petId") Long petId, WalkingForm form) {
+        walkingService.saveWalking(petId,form);
+        return "redirect:/walkings";
+    }
+
+    /**
+     * 산책 기록 목록
+     */
+    @GetMapping(value = "/walkings")
+    public String walkingList(Model model) {
+        List<Walking> walkings = walkingService.findWalkings();
+        model.addAttribute("walking", walkings);
+        return "walkings/walkingList";
+    }
+
+    /**
+     *
+     * 산책 기록 등록 - 폼
      */
 
     @GetMapping(value = "/healths/new")
