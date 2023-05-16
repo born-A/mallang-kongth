@@ -8,6 +8,7 @@ import capjjangdol.mallangkongth.repository.WaterNoteRepository;
 import capjjangdol.mallangkongth.service.WaterBowlService;
 import com.fazecast.jSerialComm.SerialPort;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import java.io.InputStream;
+import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;
 
 //   값을 읽는 클래스로, 이는 Thread로 구현해야 한다.
@@ -36,6 +38,7 @@ public class SerialRead {
 
     @Autowired
     FoodBowlRepository foodBowlRepository;
+    @Qualifier("")
     @Autowired
     private ThreadPoolTaskExecutor taskExecutor;
 
@@ -46,30 +49,31 @@ public class SerialRead {
 
     @PostConstruct
     public void SerialRun(){
-        taskExecutor = new ThreadPoolTaskExecutor();
-        taskExecutor.setCorePoolSize(2); //thread pool 사이즈 기본크기를 2로 설정
-        taskExecutor.initialize(); // ThreadPoolTaskExecutor 초기화
+
+        Executor waterBowlExcutor = taskExecutor.getThreadPoolExecutor();
+        Executor foodBowlExcutor = taskExecutor.getThreadPoolExecutor();
 
         SerialPort waterBowlSerialPort = SerialPort.getCommPort("COM7");
         waterBowlIsOpen = waterBowlSerialPort.openPort();
         SerialPort foodBowlSerialPort = SerialPort.getCommPort("COM8");
         foodBowlIsOpen = foodBowlSerialPort.openPort();
 
-        /*
+/*
         WaterBowl waterBowl = new WaterBowl(); //초기 데이터 넣기
         waterBowl.setSettingAmount(0);
         waterBowl.setRemaining(0);
         waterBowl.setBeforeEatingAmount(0);
         waterBowl.setCurrentEatingAmount(0);
         waterBowlRepository.save(waterBowl);
-         */
+
+ */
 
         if (waterBowlIsOpen && foodBowlIsOpen) {
             System.out.println("open");
             waterBowlIn = waterBowlSerialPort.getInputStream();
             foodBowlIn = waterBowlSerialPort.getInputStream();
-            taskExecutor.execute(new WaterBowlSerialReadThread(waterBowlIn, waterNoteRepository, waterBowlRepository));
-            taskExecutor.execute(new FoodBowlSerialReadThread(foodBowlIn , foodNoteRepository, foodBowlRepository));
+            waterBowlExcutor.execute(new WaterBowlSerialReadThread(waterBowlIn, waterNoteRepository, waterBowlRepository));
+            foodBowlExcutor.execute(new FoodBowlSerialReadThread(foodBowlIn , foodNoteRepository, foodBowlRepository));
         } else {
             System.exit(0);
         }
