@@ -1,0 +1,125 @@
+.background {
+
+    background-color: rgb(228, 227, 227);
+}
+
+.box {
+    width: 35%;
+    height: 100%;
+    margin: 0 auto;
+    background-color:rgb(255, 255, 255);
+}
+
+.header {
+    width: 100%;
+    height: 80px;
+    background-color: #FEE17A;
+    display: flex;
+}
+
+.header h1{
+    position: relative;
+    margin-left: 20px;
+
+    font-family: 'GeekbleMalang2';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 45px;
+    line-height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0.1em;
+
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.boardName{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    padding: 10px;
+    font-family: 'GeekbleMalang2';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    color:gray
+}
+.missing{
+    color:#545454;
+}
+
+.search-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+
+}
+
+input[type="text"] {
+    width: 200px;
+    height: 30px;
+    padding: 5px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+
+    font-family: 'NEXON Lv1 Gothic';
+}
+
+button {
+    height: 40px;
+    padding: 5px 10px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+
+    font-family: 'NEXON Lv1 Gothic';
+}
+
+.post-list{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-row-gap: 10px;
+    margin-top: 20px;
+    align-items: center;
+    justify-items: center;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.post-image{
+    border: 1px solid rgb(0, 0, 0);
+    width: 200px;
+    height: 200px;
+
+}
+
+.post-content {
+    background-color: #ffffff;
+    border: 1px solid rgb(0, 0, 0);
+    font-family: 'NEXON Lv1 Gothic';
+    width: 200px;
+    height: 70px;
+    text-align: left;
+    line-height: 1;
+}
+
+.post-text{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.post-title{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
