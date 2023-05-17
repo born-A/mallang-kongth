@@ -14,11 +14,9 @@ import java.time.LocalDateTime;
 public class WaterBowl {
     @Id @GeneratedValue
     private Long id;
-
     private Integer remaining;
-
+    private Integer productCode;
     private Integer beforeEatingAmount;
-
     private Integer currentEatingAmount;
     @Column(name = "setting_amount")
     private Integer settingAmount;

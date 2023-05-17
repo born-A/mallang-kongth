@@ -12,16 +12,19 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import java.io.InputStream;
 import java.util.concurrent.Executor;
+import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 //   값을 읽는 클래스로, 이는 Thread로 구현해야 한다.
 @Transactional
-@Component
+@Service
 public class SerialRead {
 
     @Autowired
@@ -38,10 +41,8 @@ public class SerialRead {
 
     @Autowired
     FoodBowlRepository foodBowlRepository;
-    @Qualifier("")
-    @Autowired
-    private ThreadPoolTaskExecutor taskExecutor;
 
+    private Executor executor;
     private InputStream waterBowlIn = null;
     private InputStream foodBowlIn = null;
     private boolean waterBowlIsOpen = false;
@@ -50,8 +51,7 @@ public class SerialRead {
     @PostConstruct
     public void SerialRun(){
 
-        Executor waterBowlExcutor = taskExecutor.getThreadPoolExecutor();
-        Executor foodBowlExcutor = taskExecutor.getThreadPoolExecutor();
+        executor = new ThreadPoolExecutor(2,2,0L, TimeUnit.MICROSECONDS, new LinkedBlockingDeque<Runnable>());
 
         SerialPort waterBowlSerialPort = SerialPort.getCommPort("COM7");
         waterBowlIsOpen = waterBowlSerialPort.openPort();
@@ -72,8 +72,8 @@ public class SerialRead {
             System.out.println("open");
             waterBowlIn = waterBowlSerialPort.getInputStream();
             foodBowlIn = waterBowlSerialPort.getInputStream();
-            waterBowlExcutor.execute(new WaterBowlSerialReadThread(waterBowlIn, waterNoteRepository, waterBowlRepository));
-            foodBowlExcutor.execute(new FoodBowlSerialReadThread(foodBowlIn , foodNoteRepository, foodBowlRepository));
+            executor.execute(new WaterBowlSerialReadThread(waterBowlIn, waterNoteRepository, waterBowlRepository));
+            executor.execute(new FoodBowlSerialReadThread(foodBowlIn , foodNoteRepository, foodBowlRepository));
         } else {
             System.exit(0);
         }
