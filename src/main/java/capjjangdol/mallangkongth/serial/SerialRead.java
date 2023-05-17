@@ -51,7 +51,7 @@ public class SerialRead {
     @PostConstruct
     public void SerialRun(){
 
-        executor = new ThreadPoolExecutor(2,2,0L, TimeUnit.MICROSECONDS, new LinkedBlockingDeque<Runnable>());
+        executor = new ThreadPoolExecutor(2,2,0L, TimeUnit.MICROSECONDS, new LinkedBlockingDeque<Runnable>(5));
 
         SerialPort waterBowlSerialPort = SerialPort.getCommPort("COM7");
         waterBowlIsOpen = waterBowlSerialPort.openPort();
@@ -71,7 +71,7 @@ public class SerialRead {
         if (waterBowlIsOpen && foodBowlIsOpen) {
             System.out.println("open");
             waterBowlIn = waterBowlSerialPort.getInputStream();
-            foodBowlIn = waterBowlSerialPort.getInputStream();
+            foodBowlIn = foodBowlSerialPort.getInputStream();
             executor.execute(new WaterBowlSerialReadThread(waterBowlIn, waterNoteRepository, waterBowlRepository));
             executor.execute(new FoodBowlSerialReadThread(foodBowlIn , foodNoteRepository, foodBowlRepository));
         } else {
