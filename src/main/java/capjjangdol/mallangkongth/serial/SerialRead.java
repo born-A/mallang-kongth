@@ -50,13 +50,13 @@ public class SerialRead {
 
     @PostConstruct
     public void SerialRun(){
+        //스레드 풀은 항상 3개의 스레드를 가지고 최대 10개의 스레드를 가질 수 있습니다 대기열에는 최대 20개의 작업이 들어갈 수 있습니다
+        executor = new ThreadPoolExecutor(3,10,0L, TimeUnit.MICROSECONDS, new LinkedBlockingDeque<Runnable>(20));
 
-        executor = new ThreadPoolExecutor(2,2,0L, TimeUnit.MICROSECONDS, new LinkedBlockingDeque<Runnable>(5));
-
-        SerialPort waterBowlSerialPort = SerialPort.getCommPort("COM7");
-        waterBowlIsOpen = waterBowlSerialPort.openPort();
-        SerialPort foodBowlSerialPort = SerialPort.getCommPort("COM8");
-        foodBowlIsOpen = foodBowlSerialPort.openPort();
+        SerialPort waterBowlSerialPort = SerialPort.getCommPort("COM7"); //급수기 포트 번호 입력
+        waterBowlIsOpen = waterBowlSerialPort.openPort(); //포트 열기
+        SerialPort foodBowlSerialPort = SerialPort.getCommPort("COM8"); //급식기 포트 번호 입력
+        foodBowlIsOpen = foodBowlSerialPort.openPort(); //포트 열기
 
 /*
         WaterBowl waterBowl = new WaterBowl(); //초기 데이터 넣기
@@ -68,12 +68,12 @@ public class SerialRead {
 
  */
 
-        if (waterBowlIsOpen && foodBowlIsOpen) {
+        if (waterBowlIsOpen && foodBowlIsOpen) { // 급수기 급식기 모두 연결 되어야 함
             System.out.println("open");
             waterBowlIn = waterBowlSerialPort.getInputStream();
             foodBowlIn = foodBowlSerialPort.getInputStream();
-            executor.execute(new WaterBowlSerialReadThread(waterBowlIn, waterNoteRepository, waterBowlRepository));
-            executor.execute(new FoodBowlSerialReadThread(foodBowlIn , foodNoteRepository, foodBowlRepository));
+            executor.execute(new WaterBowlSerialReadThread(waterBowlIn, waterNoteRepository, waterBowlRepository)); //급수기 작업을 하는 스레드 실행
+            executor.execute(new FoodBowlSerialReadThread(foodBowlIn , foodNoteRepository, foodBowlRepository)); //급식기 작업을 하는 스레드 실행
         } else {
             System.exit(0);
         }
