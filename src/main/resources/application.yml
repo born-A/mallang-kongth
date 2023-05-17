@@ -17,7 +17,4 @@ spring:
 
 server:
   port: '8080'
-logging:
-  level:
-    org.springframework: debug
-    com.example: trace
+
