@@ -24,7 +24,7 @@ public class HospitalNote {
 
     private String hospitalName;
 
-    private LocalDateTime dateOfVisit;
+    private String dateOfVisit;
 
     private Long Bill;
 

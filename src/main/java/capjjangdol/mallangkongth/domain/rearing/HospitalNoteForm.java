@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 public class HospitalNoteForm {
     private Long id;
     private String hospitalName;
-    private LocalDateTime dateOfVisit;
+    private String dateOfVisit;
     private Long Bill;
     private String memo;
     private String imageUrl;
