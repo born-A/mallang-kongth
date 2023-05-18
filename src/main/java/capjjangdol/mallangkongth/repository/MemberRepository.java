@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,16 +35,10 @@ public class MemberRepository {
         return em.find(Member.class, id);
     }
 
-    public Optional<Member> findAll() {
-        Optional<Member> member = null;
-        try{
-            member =Optional.ofNullable(em.createQuery("select m from Member m", Member.class).getSingleResult());
-        }catch (NoResultException e) {
-            member = Optional.empty();
-        }finally {
-            return member;
-        }
+    public List<Member> findAll() {
+        return new ArrayList<>();
     }
+
     public Optional<Member> findMember(String name){
         Optional<Member> member= null;
         try{
@@ -54,9 +49,8 @@ public class MemberRepository {
             return member;
         }
     }
-    public Long save(Member member){
+    public void save(Member member){
         em.persist(member);
-        return member.getId();
     }
 
 }

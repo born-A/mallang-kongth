@@ -1,64 +1,46 @@
 package capjjangdol.mallangkongth.service;
 
-/**import capjjangdol.mallangkongth.domain.mypage.Member;
-import capjjangdol.mallangkongth.repository.MemberRepository;
-import org.junit.Assert;
+import capjjangdol.mallangkongth.repository.domain.mypage.Address;
+import capjjangdol.mallangkongth.repository.domain.mypage.Member;
+import capjjangdol.mallangkongth.repository.domain.mypage.RoleType;
 import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.DisplayName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
+import static org.junit.Assert.*;
 
-import static org.junit.Assert.fail;
-
-@RunWith(SpringRunner.class)
 @SpringBootTest
 @Transactional
 public class MemberServiceTest {
     @Autowired
     MemberService memberService;
-    @Autowired
-    MemberRepository memberRepository;
 
     @Autowired
-    EntityManager em;
+    PasswordEncoder passwordEncoder;
+    @Test
+    public Member createMember() {
+        Address.SignUpForm memberSignUpRequesDto= Address.SignUpForm.builder()
+                .email("test@email.com")
+                .name("tester")
+                .address(new Address("Suwon","GGG","154-42"))
+                .pw("test1234")
+                .roleType(RoleType.USER)
+                .build();
+        return Member.createMember(memberSignUpRequesDto,passwordEncoder);
+    }
 
     @Test
-    @Rollback(value = false)
-    public void memberJoinTest() throws Exception{
-        //given
-        Member member = new Member();
-        member.setName("신짱구");
-
-        //when
-        Long saveId = memberService.signUp(member);
-
-        //then
-        em.flush();
-        Assert.assertEquals(member, memberRepository.findOne(saveId));
+    @DisplayName("회원가입 테스트")
+    public void saveMemberTest() {
+        Member member = Member.createMember();
+        Long saveId = memberService.signUp(member.getId());
+        assertEquals(member.getId(), saveId);
     }
-
-    @Test(expected = IllegalStateException.class)
-    public void nestedMemberTest() throws Exception {
-        //given
-        Member member1 = new Member();
-        member1.setName("shin1");
-
-        Member member2 = new Member();
-        member2.setName("shin1");
-        //when
-        memberService.signUp(member1);
-        memberService.signUp(member2); // exception
-
-
-        //then
-        Assert.fail("예외가 발생해야 한다.");
-    }
-
-
+//    @Test
+//    public void login() {
+//
+//    }
 }
- **/

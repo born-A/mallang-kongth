@@ -1,53 +1,48 @@
 package capjjangdol.mallangkongth.Controller;
 
-import Validator.CheckUser_idValidator;
-import capjjangdol.mallangkongth.dto.MemberLoginRequestDto;
-import capjjangdol.mallangkongth.dto.TokenDto;
-import capjjangdol.mallangkongth.login.LoginForm;
+import capjjangdol.mallangkongth.repository.domain.mypage.Address;
+import capjjangdol.mallangkongth.repository.domain.mypage.LoginForm;
 import capjjangdol.mallangkongth.repository.domain.mypage.Member;
-import capjjangdol.mallangkongth.repository.domain.mypage.Pet;
 import capjjangdol.mallangkongth.service.MemberService;
-import capjjangdol.mallangkongth.dto.MemberSignUpRequestDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
-import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 @Slf4j
+@Controller
 public class MemberController {
-    private CheckUser_idValidator checkUser_idValidator;
+
     private MemberService memberService;
-    @PostMapping("/login")
-    public TokenDto login(@RequestBody MemberLoginRequestDto memberLoginRequestDto) {
-        String email = memberLoginRequestDto.getEmail();
-        String pw = memberLoginRequestDto.getPw();
-        TokenDto tokendto = memberService.login(email, pw);
-        return tokendto;
-    }
+//    @PostMapping("/login")
+//    public Long login(@RequestBody MemberLoginRequestDto memberLoginRequestDto) {
+//        String email = memberLoginRequestDto.getEmail();
+//        String pw = memberLoginRequestDto.getPw();
+////        TokenDto tokendto = memberService.login(email, pw);
+//        return "/login";
+//    }
     @GetMapping("/login/new")
     public String createLoginForm(Model model){
-    Optional<Member> members = memberService.findMembers();
+    List<Member> members = memberService.findMembers();
             model.addAttribute("members", members);
             model.addAttribute("form",new LoginForm());
-            return "/login/loginForm";
+            return "redirect:/login";
     }
-    @GetMapping("/signUp")
+    @GetMapping("/auth/signUp")
     public String signUp(){
-        return "/signUp";
+        return "/auth/signUp";
     }
-    @PostMapping("/signUpProcess")
-    public String joinProcess(MemberSignUpRequestDto requestDto, BindingResult bindingResult, Model model){
+    @PostMapping("/auth/signUpProcess")
+    public String joinProcess(Address.SignUpForm requestDto, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()) {
             model.addAttribute("memberDto", requestDto);
 
@@ -64,12 +59,12 @@ public class MemberController {
                 model.addAttribute(key, errorMap.get(key));
             }
 
-            return "/signUp";
+            return "/auth/signUp";
         }
-
-        memberService.signUp(requestDto);
+//
+//        memberService.signUp(requestDto);
         log.info("signUp success");
-        return "redirect:/signUp";
+        return "redirect:/guest";
     }
     @GetMapping("/signUpProcess/{email}/exists")
     public ResponseEntity<Boolean> checkEmailDuplicate(@PathVariable String email){

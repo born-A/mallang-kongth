@@ -1,13 +1,9 @@
 package capjjangdol.mallangkongth.Controller;
 
-import capjjangdol.mallangkongth.dto.MemberSignUpRequestDto;
-import capjjangdol.mallangkongth.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 
 @Controller
 @Log
@@ -35,19 +31,5 @@ public class IndexController {
         log.info("admin");
     }
 
-    @GetMapping("/register")
-    public String register(){
-        return "register";
-    }
-
-    @GetMapping("/pet")
-    public String Pet(){
-        return "pet";
-    }
-
-    @GetMapping("/rearing")
-    public String rearing(){
-        return "rearing";
-    }
 
 }

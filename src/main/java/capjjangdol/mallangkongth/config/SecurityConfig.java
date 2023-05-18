@@ -1,17 +1,12 @@
 package capjjangdol.mallangkongth.config;
 
-import capjjangdol.mallangkongth.jwt.JwtFilter;
-import capjjangdol.mallangkongth.jwt.TokenProvider;
-import capjjangdol.mallangkongth.service.MemberService;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -19,46 +14,32 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity //spring security filter가 spring filterchain에 등록
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@RequiredArgsConstructor
 public class SecurityConfig {
-    @Bean
+
     /*spring Security 5.7.x부터 webSecrurityConfigurerAdapter deprecated
     -> filterChain은 return값과 bean 등록으로 component 기반 보안 설정 가능
      */
+
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         /*
         permitAll :login, sign Page
          */
         http
-                //cross site request forgery(사이트간 위조 요청)
                 .csrf().disable()
-                //disable -> 서버에 인증정보 저장하지 않기 때문에(JWT 쿠키에 저장안함)
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
                 .authorizeRequests()
-                .antMatchers("/login", "/auth/signup").permitAll()
+                .antMatchers("/login/loginForm","/login").permitAll()
+//                .antMatchers("/members/test").hasRole("USER")
                 .anyRequest().authenticated();
-
-        http
-                .formLogin()
-                .loginPage("/login/loginForm")    // GET 요청 (login form을 보여줌)
-                .loginProcessingUrl("/auth")    // POST 요청 (login 창에 입력한 데이터를 처리)
-                .usernameParameter("email")	// login에 필요한 id 값을 email로 설정 (default는 username)
-                .passwordParameter("pw")	// login에 필요한 password 값을 password(default)로 설정
-                .defaultSuccessUrl("/");	// login에 성공하면 /로 redirect
-        http
-                .logout()
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/");	// logout에 성공하면 /로 redirect
-
         return http.build();
     }
-    @Bean
-    //webSecrurityConfigurerAdapter의 Configure() 대신 SecurityFilterChain의 WebSecurityCustomizer bean 등록
-    public WebSecurityCustomizer webSecurityCustomizer(){
-        return (web) -> web.ignoring();
-    }
-    @Bean
+
     //password 암호화 메서드 가진 클래스
+    @Bean
     public BCryptPasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }

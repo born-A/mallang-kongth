@@ -1,13 +1,8 @@
 package capjjangdol.mallangkongth.repository.domain.mypage;
 
 import lombok.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.stream.Collectors;
 
 @Entity
 @Getter
@@ -22,9 +17,9 @@ public class Member{
     private Long id;
 
     @Column(nullable = false, unique = true)
-    private String email; //principal
+    private String email;
 
-    @Column(nullable = false,unique = true) //credential
+    @Column(nullable = false)
     private String name;
 
     @Column(nullable = false)
@@ -37,6 +32,13 @@ public class Member{
     @Column(nullable = false)
     private RoleType roleType;
 
-
+    @Builder
+    public Member(String name, String email, String pw, Address address, RoleType roleType) {
+        this.name = name;
+        this.email = email;
+        this.pw = pw;
+        this.address = address;
+        this.roleType = roleType;
+    }
 
 }
