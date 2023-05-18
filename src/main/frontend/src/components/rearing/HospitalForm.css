@@ -1,4 +1,16 @@
+.hospital-form-title {
+    background-color: #f0f0f0;
+    padding: 10px;
+    text-align: center;
+}
+
+.hospital-form-title h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
 .form-field {
+    height: 80px;
     display: flex;
     align-items: center;
     margin-bottom: 10px;
@@ -7,85 +19,107 @@
 .form-label-date {
     display: block;
     display: flex;
+    justify-content: flex-start;
     align-items: center;
-    justify-content: center;
     width: 80px;
-    height: 30px;
-    padding: 5px;
-    margin-top: 40px;
+    height: 10px;
+    margin-bottom: 100px;
+    margin-right: 100px;
+
 }
 
 .form-field input[type="date"] {
-    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
     height: 30px;
-    border: 1px solid #ccc;
     padding: 5px;
-    margin-left: 80px;
-    font-size: 1.1rem;
-    margin-top: 1px;
+    margin-bottom: 90px;
+
 }
 
 .form-label-symptoms {
     display: block;
     display: flex;
+    justify-content: flex-start;
     align-items: center;
-    justify-content: center;
     width: 80px;
-    height: 30px;
-    padding: 5px;
-    margin-left: 30px;
+    height: 10px;
+    margin-bottom: 100px;
+    margin-right: 100px;
 }
 
 .form-field textarea {
-    margin-left: 50px;
-    margin-bottom: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 30px;
+    padding: 5px;
+    margin-bottom: 90px;
 }
 
 .form-label-cost {
     display: block;
     display: flex;
+    justify-content: flex-start;
     align-items: center;
-    justify-content: center;
     width: 80px;
-    height: 30px;
-    padding: 5px;
-    margin-right: 50px;
+    height: 10px;
+    margin-bottom: 100px;
+    margin-right: 100px;
 }
 .form-field input {
-    padding: 10px;
-    margin-bottom: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 30px;
+    padding: 5px;
+    margin-bottom: 90px;
 }
 
 
 .form-label-note {
     display: block;
     display: flex;
+    justify-content: flex-start;
     align-items: center;
-    justify-content: center;
     width: 80px;
-    height: 30px;
-    padding: 5px;
-    margin-right: 30px;
+    height: 10px;
+    margin-bottom: 100px;
+    margin-right: 100px;
 }
 .form-field textarea {
-    margin-left: 50px;
-    margin-bottom: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 30px;
+    padding: 5px;
+}
+.submit-button {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: -30px;
 }
 
-/* 각 버튼에 대한 스타일 */
-.button-submit {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #3c88c6;
-    color: #fff;
+.form-button-submit {
+    background-color: rgba(252, 199, 13, 0.55);
+    color: black;
     border: none;
-    border-radius: 4px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
     cursor: pointer;
-    font-size: 1.2rem;
-    font-weight: bold;
-    transition: background-color 0.2s ease-in-out;
+    border-radius: 4px;
+    width: 300px;
+
 }
 
-.button-submit:hover {
-    background-color: #366da2;
-}
+
