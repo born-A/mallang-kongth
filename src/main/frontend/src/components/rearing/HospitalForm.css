@@ -1,0 +1,125 @@
+.hospital-form-title {
+    background-color: #f0f0f0;
+    padding: 10px;
+    text-align: center;
+}
+
+.hospital-form-title h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.form-field {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.form-label-date {
+    display: block;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 80px;
+    height: 10px;
+    margin-bottom: 100px;
+    margin-right: 100px;
+
+}
+
+.form-field input[type="date"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 30px;
+    padding: 5px;
+    margin-bottom: 90px;
+
+}
+
+.form-label-symptoms {
+    display: block;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 80px;
+    height: 10px;
+    margin-bottom: 100px;
+    margin-right: 100px;
+}
+
+.form-field textarea {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 30px;
+    padding: 5px;
+    margin-bottom: 90px;
+}
+
+.form-label-cost {
+    display: block;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 80px;
+    height: 10px;
+    margin-bottom: 100px;
+    margin-right: 100px;
+}
+.form-field input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 30px;
+    padding: 5px;
+    margin-bottom: 90px;
+}
+
+
+.form-label-note {
+    display: block;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 80px;
+    height: 10px;
+    margin-bottom: 100px;
+    margin-right: 100px;
+}
+.form-field textarea {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 30px;
+    padding: 5px;
+}
+.submit-button {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: -30px;
+}
+
+.form-button-submit {
+    background-color: rgba(252, 199, 13, 0.55);
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 300px;
+
+}
+
+
