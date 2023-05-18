@@ -24,7 +24,5 @@ public class HealthRepository {
     public List<Health> findAll() {
         return em.createQuery("select h from Health h",Health.class).getResultList();
     }
-
-
 }
 
