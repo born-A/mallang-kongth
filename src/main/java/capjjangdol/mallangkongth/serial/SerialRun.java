@@ -69,9 +69,10 @@ public class SerialRun {
             System.out.println("open");
             waterBowlIn = waterBowlSerialPort.getInputStream(); //급수기 수신
             foodBowlIn = foodBowlSerialPort.getInputStream(); //급식기 수신
+            foodBowlOut = foodBowlSerialPort.getOutputStream(); //급식기 송신
             executor.execute(new WaterBowlSerialReadThread(waterBowlIn, waterNoteRepository, waterBowlRepository)); //급수기 수신 작업을 하는 스레드 실행
             executor.execute(new FoodBowlSerialReadThread(foodBowlIn , foodNoteRepository, foodBowlRepository)); //급식기 수신 작업을 하는 스레드 실행
-            executor.execute(new FoodBowlSerialWriteThread(foodBowlSerialPort));
+            executor.execute(new FoodBowlSerialWriteThread(foodBowlOut));
         } else {
             System.exit(0);
         }

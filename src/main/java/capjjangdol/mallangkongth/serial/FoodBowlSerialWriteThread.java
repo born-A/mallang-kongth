@@ -7,20 +7,19 @@ import java.io.OutputStream;
 import java.nio.ByteBuffer;
 
 public class FoodBowlSerialWriteThread implements Runnable {
-    private final SerialPort serialPort;
+    private final OutputStream out;
 
-    public FoodBowlSerialWriteThread(SerialPort serialPort){
-        this.serialPort = serialPort;
+    public FoodBowlSerialWriteThread(OutputStream out){
+        this.out = out;
     }
 
     @Override
     public void run(){
-        //바이트로 변환하여 전송해야함
-        ByteBuffer buffer = ByteBuffer.allocate(4);
-        buffer.putInt(1);
-        byte[] b = buffer.array();
-        try {
-            serialPort.writeBytes(b, b.length);
-        } catch (Exception e) {}
+        while (true){
+            try {
+                out.write(1);
+                Thread.sleep(500);
+            } catch (Exception e) {}
+        }
     }
 }
