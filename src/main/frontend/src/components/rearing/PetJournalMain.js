@@ -66,8 +66,10 @@ function PetJournalMain() {
                 break;
             default:
                 break;
+
         }
     };
+
 
     const handleRecordSubmit = (record) => {
         const formattedRecord = `날짜: ${record.date}, 증상: ${record.symptoms}, 비용: ${record.cost}, 메모: ${record.note}`;
