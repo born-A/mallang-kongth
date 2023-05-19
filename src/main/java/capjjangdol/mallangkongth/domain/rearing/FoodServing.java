@@ -16,10 +16,8 @@ public class FoodServing {
     @Id
     @GeneratedValue
     private Long id;
-
     @ManyToOne
     private FoodBowl foodBowl;
-
     private Integer foodServingSize;
 
     @CreationTimestamp
