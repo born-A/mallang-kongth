@@ -17,7 +17,7 @@ public class Member{
     private Long id;
 
     @Column(nullable = false, unique = true)
-    private String user_id;
+    private String email;
     @Column(nullable = false,unique = true)
     private String name;
     @Column
@@ -26,20 +26,21 @@ public class Member{
     @Embedded
     private Address address;
 
-//    @OneToMany(mappedBy = "member")
-//    private List<Pet> petList = new ArrayList<>();
-
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private RoleType roleType;
+    @Override
+    public String toString(){
+        return "member{"+
+                "id=" + id +
+                ", email=" + email +
+                ", pw="+pw+
+                ", name="+name+
+                ", roletype="+roleType+
+                ", address="+address+
+                "}";
 
-//    @OneToMany(mappedBy = "member")
-//    private List<Orders> ordersList = new ArrayList<>();
-
-////    @ManyToMany
-//    @Column(name ="ORDER_ID")
-//    private Long order_id;
-
+    }
 
 
 }

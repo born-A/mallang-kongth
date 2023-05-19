@@ -12,11 +12,13 @@ import java.util.List;
 public class MemberRepository {
     private final EntityManager em;
 
-    public List<Member> findByUser_id(String user_id){
-        return em.createQuery("select m from Member m", Member.class).getResultList();
+    public List<Member> findByEmail(String email){
+        return em.createQuery("select m from Member m where m.email =:email", Member.class)
+                .setParameter("email",email)
+                .getResultList();
     }
 
-    public boolean existsByUser_id(String user_id) {
+    public boolean existsByEmail(String email) {
         return false;
     }
 
@@ -36,7 +38,7 @@ public class MemberRepository {
 
     public Long save(Member member){
         em.persist(member);
-        return member.getId();
+        return Long.valueOf(member.getEmail());
     }
 
 }
