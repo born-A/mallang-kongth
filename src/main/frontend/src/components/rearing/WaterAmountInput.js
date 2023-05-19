@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import './WaterAmountInput.css';
 
-function FoodAmountInput({ onAmountSubmit }) {
-    const [foodAmount, setFoodAmount] = useState('');
+function WaterAmountInput({ onAmountSubmit }) {
+    const [foodAmount, setWaterAmount] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -9,13 +10,13 @@ function FoodAmountInput({ onAmountSubmit }) {
     };
 
     return (
-        <div>
+        <div className="water-amount-input">
             <h2>급수량 입력</h2>
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
                     value={foodAmount}
-                    onChange={(e) => setFoodAmount(e.target.value)}
+                    onChange={(e) => setWaterAmount(e.target.value)}
                     required
                 />
                 <button type="submit">입력</button>
@@ -24,4 +25,4 @@ function FoodAmountInput({ onAmountSubmit }) {
     );
 }
 
-export default FoodAmountInput;
+export default WaterAmountInput;

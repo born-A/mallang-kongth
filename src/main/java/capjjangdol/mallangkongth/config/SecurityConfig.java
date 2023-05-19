@@ -28,11 +28,7 @@
 //                .defaultSuccessUrl("/main", true)
 //                .permitAll()
 //                .and()
-//                .logout();
+//                .logout()
 //    }
-//
-//    @Bean
-//    public BCryptPasswordEncoder passwordEncoder(){
-//        return new BCryptPasswordEncoder();
 //    }
 //}
