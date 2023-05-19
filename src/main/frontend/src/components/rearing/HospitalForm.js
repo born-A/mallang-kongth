@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import './HospitalForm.css';
 
+import axios, { AxiosResponse } from 'axios';
+import apiAxios from "../../apiAxios";
+
 function HospitalForm({ onRecordSubmit }) {
+
     const [date, setDate] = useState('');
     const [symptoms, setSymptoms] = useState('');
     const [cost, setCost] = useState('');
@@ -17,6 +21,7 @@ function HospitalForm({ onRecordSubmit }) {
 
         onRecordSubmit(record);
     };
+
 
     return (
         <div className="hospital-form-container">

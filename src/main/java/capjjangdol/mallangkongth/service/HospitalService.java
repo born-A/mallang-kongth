@@ -36,4 +36,8 @@ public class HospitalService {
         return hospitalRepository.findOne(hospitalNoteId);
     }
 
+    public List<HospitalNote> deleteById(Long hospitalNoteId){
+        return hospitalRepository.deleteById(hospitalNoteId);
+    }
+
 }
