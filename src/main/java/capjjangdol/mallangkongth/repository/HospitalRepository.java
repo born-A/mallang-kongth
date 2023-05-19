@@ -24,6 +24,10 @@ public class HospitalRepository {
         return em.createQuery("select h from HospitalNote h",HospitalNote.class).getResultList();
     }
 
+//    public void deleteById(Long id) {
+//        return em.createQuery("delete h grom ")
+//    }
+
 
 }
 
