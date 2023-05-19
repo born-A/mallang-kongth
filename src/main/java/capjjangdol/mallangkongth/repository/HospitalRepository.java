@@ -24,6 +24,5 @@ public class HospitalRepository {
         return em.createQuery("select h from HospitalNote h",HospitalNote.class).getResultList();
     }
 
-
 }
 
