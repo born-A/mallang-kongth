@@ -31,4 +31,11 @@ public class WalkingRepository {
                 .setParameter("datetime", dateTime)
                 .getResultList();
     }
+
+    /**
+     * 건강기록 삭제
+     */
+    public List<Walking> deleteById(Long id){
+        return em.createQuery("delete from Walking w where w.id =: id", Walking.class).getResultList();
+    }
 }

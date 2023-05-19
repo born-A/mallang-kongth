@@ -51,4 +51,8 @@ public class PetController {
         model.addAttribute("pets", pets);
         return "pets/petList";
     }
+
+    /**
+     * 펫 삭제
+     */
 }

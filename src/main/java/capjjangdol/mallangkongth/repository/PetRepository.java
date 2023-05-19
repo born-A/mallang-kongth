@@ -1,5 +1,6 @@
 package capjjangdol.mallangkongth.repository;
 import capjjangdol.mallangkongth.domain.mypage.Pet;
+import capjjangdol.mallangkongth.domain.rearing.Health;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -28,5 +29,11 @@ public class PetRepository {
         return em.createQuery("select p from Pet p where p.name = :name", Pet.class)
                 .setParameter("name", name)
                 .getResultList();
+    }
+    /**
+     * 반려동물 삭제
+     */
+    public List<Pet> deleteById(Long id){
+        return em.createQuery("delete from Pet p where p.id =: id", Pet.class).getResultList();
     }
 }
