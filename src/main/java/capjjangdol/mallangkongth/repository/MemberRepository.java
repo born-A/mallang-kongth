@@ -38,7 +38,7 @@ public class MemberRepository {
 
     public Long save(Member member){
         em.persist(member);
-        return Long.valueOf(member.getEmail());
+        return member.getId();
     }
 
 }

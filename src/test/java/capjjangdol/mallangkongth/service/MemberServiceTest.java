@@ -1,7 +1,10 @@
 package capjjangdol.mallangkongth.service;
 
-/**import capjjangdol.mallangkongth.domain.mypage.Member;
+import capjjangdol.mallangkongth.domain.mypage.Address;
+import capjjangdol.mallangkongth.domain.mypage.JoinForm;
+import capjjangdol.mallangkongth.domain.mypage.Member;
 import capjjangdol.mallangkongth.repository.MemberRepository;
+import org.assertj.core.api.Assertions;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 
+import static capjjangdol.mallangkongth.domain.mypage.RoleType.USER;
 import static org.junit.Assert.fail;
 
 @RunWith(SpringRunner.class)
@@ -28,31 +32,34 @@ public class MemberServiceTest {
     EntityManager em;
 
     @Test
-    @Rollback(value = false)
+//    @Rollback(value = false)
     public void memberJoinTest() throws Exception{
         //given
-        Member member = new Member();
-        member.setName("신짱구");
-
+        JoinForm joinform = new JoinForm();
+        joinform.setName("신짱구");
+        joinform.setEmail("test@gmail.com");
+        joinform.setAddress(new Address("suwon","gangkyosanro","1111"));
+        joinform.setPw("test1234");
+        joinform.setRoleType(USER);
         //when
-        Long saveId = memberService.join(member);
+        Long saveId = memberService.join(joinform);
 
         //then
         em.flush();
-        Assert.assertEquals(member, memberRepository.findOne(saveId));
+        Assertions.assertThat(memberRepository.existsByEmail("test@gmail.com"));
     }
 
     @Test(expected = IllegalStateException.class)
     public void nestedMemberTest() throws Exception {
         //given
-        Member member1 = new Member();
-        member1.setName("shin1");
+        JoinForm joinForm = new JoinForm();
+        joinForm.setEmail("test");
 
-        Member member2 = new Member();
-        member2.setName("shin1");
+        JoinForm joinForm2 = new JoinForm();
+        joinForm2.setEmail("test");
         //when
-        memberService.join(member1);
-        memberService.join(member2); // exception
+        memberService.join(joinForm);
+        memberService.join(joinForm2); // exception
 
 
         //then
@@ -61,4 +68,3 @@ public class MemberServiceTest {
 
 
 }
- **/

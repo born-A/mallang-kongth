@@ -4,6 +4,8 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
@@ -25,9 +27,9 @@ public class JoinForm {
     private String pw;
     private Address address;
     private RoleType roleType;
-    private List<Orders> ordersList = new ArrayList<>();
-
-    private Pet pet;
+//    private List<Orders> ordersList = new ArrayList<>();
+//
+//    private Pet pet;
 
     public void encryptPassword(String BCryptpassword) {
         this.pw = BCryptpassword;
@@ -40,6 +42,7 @@ public class JoinForm {
                 .pw(pw)
                 .address(address)
                 .roleType(roleType.USER)
+                .name(name)
                 .build();
         return member;
     }
