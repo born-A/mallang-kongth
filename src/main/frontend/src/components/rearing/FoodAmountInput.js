@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import './FoodAmountInput.css';
 
 function FoodAmountInput({ onAmountSubmit }) {
     const [foodAmount, setFoodAmount] = useState('');
