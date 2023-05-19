@@ -3,6 +3,8 @@ spring:
     username: root
     url: jdbc:mysql://localhost:3306/mallangkongtteok
     password: '0324'
+  thymeleaf:
+    enabled: true
   jpa:
     properties:
       hibernate:
@@ -12,5 +14,7 @@ spring:
     show-sql: 'true'
     hibernate:
       ddl-auto: update
+
 server:
   port: '8080'
+
