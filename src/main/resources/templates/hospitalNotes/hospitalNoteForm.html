@@ -4,12 +4,18 @@
 <div class="container">
   <form th:action="@{/hospitalNotes/new}" th:object="${form}" method="post">
     <div class="form-group">
+      <label th:for="pets">반려동물</label>
+      <select name="petId" id="pet" class="form-control">
+        <option value="">반려동물선택</option> <option th:each="pet : ${pets}"
+                                               th:value="${pet.id}"
+                                               th:text="${pet.name}" />
+      </select>
       <label th:for="hospitalName">병원명</label>
       <input type="text" th:field="*{hospitalName}" class="form-control"
              placeholder="병원명을 입력하세요"> </div>
     <div class="form-group">
       <label th:for="dateOfVisit">방문일자</label>
-      <input type="number" th:field="*{dateOfVisit}" class="form-control" placeholder="방문일자를 입력하세요">
+      <input type="text" th:field="*{dateOfVisit}" class="form-control" placeholder="방문일자를 입력하세요">
     </div>
     <div class="form-group">
       <label th:for="bill">병원비</label>
