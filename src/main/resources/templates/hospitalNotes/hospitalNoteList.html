@@ -17,8 +17,14 @@
         <td th:text="${hospitalNote.memo}"></td>
         <td th:text="${hospitalNote.imageUrl}"></td>
         <td>
-          <a href="#" th:href="@{/hospitalNotes/{id}/edit (id=${hospitalNote.id})}" class="btn btn-primary" role="button">수정</a>
+          <a th:href="@{'/hospitalNotes/edit/'+ ${hospitalNote.id}}" class="btn btn-primary" role="button">수정</a>
+          <a th:href="@{'/hospitalNotes/delete/'+ ${hospitalNote.id}}">삭제</a>
         </td> </tr>
+      <div>
+
+
+
+      </div>
       </tbody>
     </table>
   </div>
