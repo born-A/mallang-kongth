@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 public class FoodBowlRenwal {
     @Autowired
     WaterNoteRepository foodNoteRepository;
-
     @Autowired
     WaterBowlRepository foodBowlRepository;
 
@@ -19,8 +18,10 @@ public class FoodBowlRenwal {
     public void eatingAmountReset() {
         int foodAmount = foodNoteRepository.findAmount().get(0);
         WaterBowl foodBowl = new WaterBowl();
-        //요소 set 하는 코드 추가 해야함
+        foodBowl.setSettingAmount(foodAmount);
+        foodBowl.setRemaining(foodAmount);
+        foodBowl.setBeforeEatingAmount(0);
+        foodBowl.setCurrentEatingAmount(0);
         foodBowlRepository.save(foodBowl);
     }
-    
 }
