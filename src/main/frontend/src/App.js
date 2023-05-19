@@ -28,12 +28,13 @@ export default App;*/
 import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import Login from './Login';
 import Signup from './Signup';
+import PetJournalMain from "./components/rearing/PetJournalMain";
 
 function App() {
     return (
         <div>
                 <Routes>
-                    <Route path="/" element={<Login />} />
+                    <Route path="/" element={<PetJournalMain />} />
                     <Route path="/Signup" element={<Signup />}/>
                 </Routes>
         </div>
