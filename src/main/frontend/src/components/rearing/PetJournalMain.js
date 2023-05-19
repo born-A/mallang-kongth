@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './PetJournalMain.css';
 import FoodAmountInput from './FoodAmountInput';
 import WaterAmountInput from './WaterAmountInput';
-import WalkCountInput from './WalkCountInput';
+import WalkCountInput from './WalkAmountInput';
 import BathroomAmountInput from './BathroomAmountInput';
 import HospitalForm from './HospitalForm';
 import MemoForm from './Memo'; // MemoForm 컴포넌트를 import 합니다.
