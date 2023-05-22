@@ -3,6 +3,7 @@ package capjjangdol.mallangkongth.Controller;
 
 import capjjangdol.mallangkongth.domain.mypage.Pet;
 import capjjangdol.mallangkongth.domain.rearing.*;
+import capjjangdol.mallangkongth.dto.PetFormDto;
 import capjjangdol.mallangkongth.service.HealthService;
 import capjjangdol.mallangkongth.service.HospitalService;
 import capjjangdol.mallangkongth.service.PetService;
@@ -18,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 public class RearingController {
 
@@ -33,13 +34,22 @@ public class RearingController {
      */
 
 
-    @GetMapping(value = "/hospitalNotes/new")
-        public String createForm(Model model) {
-            List<Pet> pets = petService.findPets();
-            model.addAttribute("pets", pets);
-            model.addAttribute("form",new HospitalNoteForm());
-            return "hospitalNotes/hospitalNoteForm";
+//    @GetMapping(value = "/hospitalNotes/new")
+//        public String createForm(Model model) {
+//            List<Pet> pets = petService.findPets();
+//            model.addAttribute("pets", pets);
+//            model.addAttribute("form",new HospitalNoteForm());
+////            return "hospitalNotes/hospitalNoteForm";
+//            return "rearing/HospitalForm.js";
+//        }
+        @GetMapping(value = "/hospitalNotes/new")
+        public PetFormDto createForm() {
+            PetFormDto petFormDto = new PetFormDto();
+            petFormDto.setPets(petService.findPets());
+            petFormDto.setForm(new HospitalNoteForm());
+            return petFormDto;
         }
+
     /**
      *
      * 병원 기록 등록 - post
