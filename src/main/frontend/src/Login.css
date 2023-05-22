@@ -14,6 +14,25 @@
     height: 80px;
     background-color: #FEE17A;
     display: flex;
+    font-family: 'GeekbleMalang2';
+    font-style: normal;
+}
+
+.header h1{
+    position: relative;
+    margin-left: 20px;
+
+    font-family: 'GeekbleMalang2';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 45px;
+    line-height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0.1em;
+
+    color: rgba(0, 0, 0, 0.8);
 }
 
 .box2 {
@@ -25,7 +44,7 @@
     font-family: "NEXON Lv1 Gothic";
     display: flex;
     justify-content: center;
-    font-size: 30px;
+    font-size: 35px;
     padding: 20px;
     margin-bottom: 20px;
 }
@@ -126,3 +145,8 @@ input {
     justify-content: center;
     align-content: center;
 }
+
+button:hover {
+    background-color: #545454;
+}
+

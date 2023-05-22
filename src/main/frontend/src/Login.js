@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import "./Login.css";
+import {Link} from "react-router-dom";
 
 export default function Login() {
 
@@ -81,7 +82,7 @@ export default function Login() {
 
                     <div className="go-signup">
                         <span>아직 계정이 없으신가요?</span>
-                        회원가입
+                        <Link to ="/Signup">회원가입</Link>
                     </div>
 
                 </div>
