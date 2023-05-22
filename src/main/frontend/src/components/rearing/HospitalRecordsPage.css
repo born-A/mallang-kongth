@@ -1,0 +1,49 @@
+.background {
+height: 500px;
+    background-color: rgb(228, 227, 227);
+}
+
+.box {
+    width: 35px;
+    height: 100px;
+    margin: 0 auto;
+    background-color:rgb(255, 255, 255);
+}
+
+.header {
+    width: 100%;
+    height: 80px;
+    background-color: #FEE17A;
+    display: flex;
+}
+.header h1{
+    position: relative;
+    margin-left: 20px;
+    font-family: 'GeekbleMalang2';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 45px;
+    line-height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0.1em;
+    color: rgba(0, 0, 0, 0.8);
+}
+.center {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.yellow-button {
+    background-color: #FEE17A;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    margin-top: 200px;
+}
+
