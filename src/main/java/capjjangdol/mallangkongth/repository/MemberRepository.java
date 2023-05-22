@@ -2,43 +2,39 @@ package capjjangdol.mallangkongth.repository;
 
 import capjjangdol.mallangkongth.domain.mypage.Member;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.Optional;
+import java.util.OptionalInt;
 
 @Repository
-@RequiredArgsConstructor
-public class MemberRepository {
-    private final EntityManager em;
+public interface MemberRepository extends JpaRepository<Member, Long> {
+//    private final EntityManager em;
 
-    public List<Member> findByEmail(String email){
-        return em.createQuery("select m from Member m where m.email =:email", Member.class)
-                .setParameter("email",email)
-                .getResultList();
-    }
+    Optional<Member> findByEmail(String email);
 
-    public boolean existsByEmail(String email) {
-        return false;
-    }
+    public boolean existsByEmail(String email);
 
-    public Member findOne(Long id) {
-
-        return em.find(Member.class, id);
-    }
-    public List<Member> findByName(String name) {
-        return em.createQuery("select m from Member m where m.name = :name", Member.class)
-                .setParameter("name", name)
-                .getResultList();
-    }
-    public List<Member> findAll() {
-
-        return em.createQuery("select m from Member m", Member.class).getResultList();
-    }
-
-    public Long save(Member member){
-        em.persist(member);
-        return member.getId();
-    }
+//    public Member findOne(Long id) {
+//
+//        return em.find(Member.class, id);
+//    }
+//    public List<Member> findByName(String name) {
+//        return em.createQuery("select m from Member m where m.name = :name", Member.class)
+//                .setParameter("name", name)
+//                .getResultList();
+//    }
+//    public List<Member> findAll() {
+//
+//        return em.createQuery("select m from Member m", Member.class).getResultList();
+//    }
+//
+//    public Long save(Member member){
+//        em.persist(member);
+//        return member.getId();
+//    }
 
 }

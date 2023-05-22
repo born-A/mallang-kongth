@@ -1,5 +1,6 @@
 package capjjangdol.mallangkongth.domain.mypage;
 
+import jdk.jfr.Enabled;
 import lombok.*;
 
 import javax.persistence.*;
@@ -29,18 +30,15 @@ public class Member{
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private RoleType roleType;
-    @Override
-    public String toString(){
-        return "member{"+
-                "id=" + id +
-                ", email=" + email +
-                ", pw="+pw+
-                ", name="+name+
-                ", roletype="+roleType+
-                ", address="+address+
-                "}";
 
+    public void setEmail(String email){
+        this.email = email;
     }
+    public void setPw(String pw){
+        this.pw = pw;
+    }
+
+
 
 
 }

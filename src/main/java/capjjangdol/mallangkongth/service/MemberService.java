@@ -1,71 +1,42 @@
 package capjjangdol.mallangkongth.service;
 
-import capjjangdol.mallangkongth.domain.mypage.JoinForm;
-import capjjangdol.mallangkongth.domain.mypage.LoginForm;
+import capjjangdol.mallangkongth.config.SecurityUtil;
 import capjjangdol.mallangkongth.domain.mypage.Member;
+import capjjangdol.mallangkongth.domain.mypage.MemberResDto;
 import capjjangdol.mallangkongth.repository.MemberRepository;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
-import java.util.List;
-@Slf4j
 @Service
-@Transactional
-public class MemberService implements UserDetailsService{
-//    private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-    @Autowired
-    private MemberRepository memberRepository;
+@RequiredArgsConstructor
+@Transactional(readOnly = true)
+public class MemberService {
+    private final MemberRepository memberRepository;
+    private final PasswordEncoder passwordEncoder;
 
-//    @Autowired
-//    private Pet pet;
-
-//    @Override
-    /**
-     * register
-     */
-    public Long join(JoinForm joinForm){
-//        dto.encryptPassword(encoder.encode(dto.getPw()));
-        Member member = joinForm.toEntity();
-        memberRepository.save(member);
-        log.info("db save successful");
-        return member.getId();
+    //헤더 토큰값 전달 메소드
+    public MemberResDto getMyInfoBySecurity() {
+        return memberRepository.findById(SecurityUtil.getCurrentMemberId())
+                .map(MemberResDto::of)
+                .orElseThrow(() -> new RuntimeException("로그인 유저 정보가 없습니다"));
     }
-    /**
-     * login
-     */
-    public Long login(LoginForm loginForm){
-        Member member = loginForm.toEntity();
-//        memberRepository
-
-    }
+    //이름 변경
     @Transactional
-//    @Override
-    public boolean checkEmailDuplication(String email) {
-        boolean emailDuplicate = memberRepository.existsByEmail(email);
-        return emailDuplicate;
+    public MemberResDto changeMembername(String email, String name) {
+        Member member = memberRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("로그인 유저 정보가 없습니다"));
+        member.setName(name);
+        return MemberResDto.of(memberRepository.save(member));
     }
-
-    private void validateDuplicateMember(Member member) {
-        List<Member> findMembers = memberRepository.findByEmail(member.getEmail());
-        if(!findMembers.isEmpty()){
-            throw new IllegalStateException("?? ???? ?????.");
+    //pw 변경
+    @Transactional
+    public MemberResDto changeMemberPw(String exPw, String newPw) {
+        Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(() -> new RuntimeException("로그인 유저 정보가 없습니다"));
+        if (!passwordEncoder.matches(exPw, member.getPw())) {
+            throw new RuntimeException("비밀번호가 맞지 않습니다");
         }
-    }
-    public List<Member> findMembers() {
-        return memberRepository.findAll();
-    }
-    public Member findOne(Long memberId) {
-        return memberRepository.findOne(memberId);
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
+        member.setPw(passwordEncoder.encode((newPw)));
+        return MemberResDto.of(memberRepository.save(member));
     }
 }
