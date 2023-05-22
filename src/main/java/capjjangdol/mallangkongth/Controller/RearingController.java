@@ -3,6 +3,7 @@ package capjjangdol.mallangkongth.Controller;
 
 import capjjangdol.mallangkongth.domain.mypage.Pet;
 import capjjangdol.mallangkongth.domain.rearing.*;
+import capjjangdol.mallangkongth.repository.FoodBowlRepository;
 import capjjangdol.mallangkongth.repository.WaterBowlRepository;
 import capjjangdol.mallangkongth.dto.PetFormDto;
 import capjjangdol.mallangkongth.service.HealthService;
@@ -28,7 +29,7 @@ public class RearingController {
         private final PetService petService;
         private final HealthService healthService;
         private final WalkingService walkingService;
-
+        private final FoodBowlRepository foodBowlRepository;
         private final WaterBowlRepository waterBowlRepository;
 
     /**
@@ -39,8 +40,15 @@ public class RearingController {
     //급수기 테스트용 코드
     @GetMapping ("/water")
     public String renewalWaterBowl(Model model){
-        int value = waterBowlRepository.findRemaining().get(0);
-        model.addAttribute("water", String.valueOf(value));
+        int value1 = waterBowlRepository.findRemaining().get(0);
+        int value2 = waterBowlRepository.findCurrentEatingAmount().get(0);
+        int value3 = foodBowlRepository.findRemaining().get(0);
+        int value4 = foodBowlRepository.findCurrentEatingAmount().get(0);
+        model.addAttribute("water1", String.valueOf(value1));
+        model.addAttribute("water2", String.valueOf(value2));
+        model.addAttribute("food1", String.valueOf(value3));
+        model.addAttribute("food2", String.valueOf(value4));
+
         return "waterBowlTest";
     }
 

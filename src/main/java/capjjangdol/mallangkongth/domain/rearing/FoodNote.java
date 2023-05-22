@@ -15,7 +15,6 @@ import java.util.List;
 @Getter
 @Setter
 public class FoodNote {
-
     @Id
     @GeneratedValue
     @Column(name = "food_id")
@@ -29,9 +28,6 @@ public class FoodNote {
     @JoinColumn(name = "food_bowl_id")
     private FoodBowl foodBowl;
 
-    @Column(name = "ingredients")
-    @ElementCollection(targetClass=String.class)
-    private List<String> ingredients = new ArrayList<String>();
 
     @CreationTimestamp
     @Column(name = "food_insert_time")
