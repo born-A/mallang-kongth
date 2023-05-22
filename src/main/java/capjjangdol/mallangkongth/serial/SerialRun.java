@@ -1,6 +1,7 @@
 package capjjangdol.mallangkongth.serial;
 
 import capjjangdol.mallangkongth.domain.rearing.FoodBowl;
+import capjjangdol.mallangkongth.domain.rearing.FoodServing;
 import capjjangdol.mallangkongth.domain.rearing.WaterBowl;
 import capjjangdol.mallangkongth.repository.*;
 import capjjangdol.mallangkongth.service.WaterBowlService;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.PostConstruct;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.time.LocalDateTime;
 import java.util.concurrent.Executor;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -70,6 +72,9 @@ public class SerialRun {
         foodBowl.setBeforeEatingAmount(0);
         foodBowl.setCurrentEatingAmount(0);
         foodBowlRepository.save(foodBowl);
+        FoodServing foodServing = new FoodServing();
+        foodServing.setFoodServingSize(0);
+        foodServingRepository.save(foodServing);
 
 
         if (waterBowlIsOpen && foodBowlIsOpen) { // 급수기 급식기 모두 연결 되어야 함
@@ -79,7 +84,7 @@ public class SerialRun {
             foodBowlOut = foodBowlSerialPort.getOutputStream(); //급식기 송신
             executor.execute(new WaterBowlSerialReadThread(waterBowlIn, waterNoteRepository, waterBowlRepository)); //급수기 수신 작업을 하는 스레드 실행
             executor.execute(new FoodBowlSerialReadThread(foodBowlIn , foodNoteRepository, foodBowlRepository)); //급식기 수신 작업을 하는 스레드 실행
-           //executor.execute(new FoodBowlSerialWriteThread(foodBowlOut, foodServingRepository));
+            executor.execute(new FoodBowlSerialWriteThread(foodBowlOut, foodServingRepository));
         } else {
             System.exit(0);
         }
