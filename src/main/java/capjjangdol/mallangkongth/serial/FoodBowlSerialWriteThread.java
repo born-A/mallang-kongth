@@ -1,24 +1,24 @@
 package capjjangdol.mallangkongth.serial;
 
-import com.fazecast.jSerialComm.SerialPort;
+import capjjangdol.mallangkongth.repository.FoodServingRepository;
 
-import java.io.IOException;
 import java.io.OutputStream;
-import java.nio.ByteBuffer;
 
 public class FoodBowlSerialWriteThread implements Runnable {
     private final OutputStream out;
+    private final FoodServingRepository foodServingRepository;
 
-    public FoodBowlSerialWriteThread(OutputStream out){
+    public FoodBowlSerialWriteThread(OutputStream out, FoodServingRepository foodServingRepository){
         this.out = out;
+        this.foodServingRepository = foodServingRepository;
     }
 
     @Override
     public void run(){
+        int temp = -1;
         while (true){
             try {
-                out.write(1);
-                Thread.sleep(500);
+                foodServingRepository.findFoodServingSize().get(0);
             } catch (Exception e) {}
         }
     }

@@ -10,4 +10,7 @@ public interface FoodServingRepository extends JpaRepository<FoodServing, Long> 
     @Query("SELECT fs.foodServingSize FROM FoodServing fs ORDER BY fs.id DESC")
     List<Integer> findFoodServingSize();
 
+    @Query("SELECT fs.insertTime FROM FoodServing fs ORDER BY fs.insertTime DESC")
+    List<Integer> findInsertTime();
+
 }

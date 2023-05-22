@@ -1,9 +1,6 @@
 package capjjangdol.mallangkongth.serial;
 
-import capjjangdol.mallangkongth.repository.FoodBowlRepository;
-import capjjangdol.mallangkongth.repository.FoodNoteRepository;
-import capjjangdol.mallangkongth.repository.WaterBowlRepository;
-import capjjangdol.mallangkongth.repository.WaterNoteRepository;
+import capjjangdol.mallangkongth.repository.*;
 import capjjangdol.mallangkongth.service.WaterBowlService;
 import com.fazecast.jSerialComm.SerialPort;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +34,9 @@ public class SerialRun {
 
     @Autowired
     FoodBowlRepository foodBowlRepository;
+
+    @Autowired
+    FoodServingRepository foodServingRepository;
 
     private Executor executor;
     private InputStream waterBowlIn = null;
@@ -72,7 +72,7 @@ public class SerialRun {
             foodBowlOut = foodBowlSerialPort.getOutputStream(); //급식기 송신
             executor.execute(new WaterBowlSerialReadThread(waterBowlIn, waterNoteRepository, waterBowlRepository)); //급수기 수신 작업을 하는 스레드 실행
             executor.execute(new FoodBowlSerialReadThread(foodBowlIn , foodNoteRepository, foodBowlRepository)); //급식기 수신 작업을 하는 스레드 실행
-            executor.execute(new FoodBowlSerialWriteThread(foodBowlOut));
+            executor.execute(new FoodBowlSerialWriteThread(foodBowlOut, foodServingRepository));
         } else {
             System.exit(0);
         }

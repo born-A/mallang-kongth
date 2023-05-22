@@ -3,6 +3,7 @@ package capjjangdol.mallangkongth.Controller;
 
 import capjjangdol.mallangkongth.domain.mypage.Pet;
 import capjjangdol.mallangkongth.domain.rearing.*;
+import capjjangdol.mallangkongth.repository.WaterBowlRepository;
 import capjjangdol.mallangkongth.service.HealthService;
 import capjjangdol.mallangkongth.service.HospitalService;
 import capjjangdol.mallangkongth.service.PetService;
@@ -27,11 +28,20 @@ public class RearingController {
         private final HealthService healthService;
         private final WalkingService walkingService;
 
+        private final WaterBowlRepository waterBowlRepository;
+
     /**
      *
      * 병원 기록 등록 - 폼
      */
 
+    //급수기 테스트용 코드
+    @GetMapping ("/water")
+    public String renewalWaterBowl(Model model){
+        int value = waterBowlRepository.findRemaining().get(0);
+        model.addAttribute("water", String.valueOf(value));
+        return "waterBowlTest";
+    }
 
     @GetMapping(value = "/hospitalNotes/new")
         public String createForm(Model model) {
