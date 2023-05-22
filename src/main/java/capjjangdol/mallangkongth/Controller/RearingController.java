@@ -30,8 +30,10 @@ public class RearingController {
     //급수기 테스트용 코드
     @GetMapping ("/water")
     public String renewalWaterBowl(Model model){
-        int value = waterBowlRepository.findRemaining().get(0);
-        model.addAttribute("water", String.valueOf(value));
+        int value1 = waterBowlRepository.findRemaining().get(0);
+        int value2 = waterBowlRepository.findCurrentEatingAmount().get(0);
+        model.addAttribute("water", String.valueOf(value1));
+        model.addAttribute("water2", String.valueOf(value2));
         return "waterBowlTest";
     }
 
