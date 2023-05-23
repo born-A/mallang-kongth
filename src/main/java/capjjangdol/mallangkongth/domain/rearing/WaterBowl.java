@@ -12,10 +12,11 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class WaterBowl {
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private Long id;
+    private String productCode;
     private Integer remaining;
-    private Integer productCode;
     private Integer beforeEatingAmount;
     private Integer currentEatingAmount;
     @Column(name = "setting_amount")

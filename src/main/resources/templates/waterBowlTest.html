@@ -6,7 +6,17 @@
 </head>
 <body>
 <form method="post" action="/button">
-  <p>DB에서 가져온 값 : <span th:text="${water}"></span></p>
+  <p>급수기 잔여량 : <span th:text="${water1}"></span></p>
+  <p>음수량 : <span th:text="${water2}"></span></p>
+  <p>급식기 잔여량 : <span th:text="${food1}"></span></p>
+  <p>섭취량 : <span th:text="${food2}"></span></p>
+  <h2>값 입력</h2>
+</form>
+
+<form action="#" th:action="@{/water}" th:object="${foodServingForm}" method="post">
+  <label for="servingSize">크기:</label>
+  <input type="text" id="servingSize" th:field="*{servingSize}" />
+  <input type="submit" value="전송" />
 </form>
 </body>
 </html>

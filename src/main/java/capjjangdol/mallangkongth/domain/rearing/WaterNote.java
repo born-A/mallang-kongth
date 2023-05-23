@@ -22,8 +22,12 @@ public class WaterNote {
     @JoinColumn(name = "pet_id")
     private Pet pet;
 
+    @ManyToOne
+    @JoinColumn(name = "water_bowl_id")
+    private WaterBowl waterBowl;
+
     @CreationTimestamp
-    @Column(name = "insert_time")
+    @Column(name = "water_insert_time")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime insertTime;
 

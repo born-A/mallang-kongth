@@ -3,7 +3,9 @@ package capjjangdol.mallangkongth.Controller;
 
 import capjjangdol.mallangkongth.domain.mypage.Pet;
 import capjjangdol.mallangkongth.domain.rearing.*;
-import capjjangdol.mallangkongth.dto.HospitalFormDto;
+import capjjangdol.mallangkongth.repository.FoodBowlRepository;
+import capjjangdol.mallangkongth.repository.FoodServingRepository;
+import capjjangdol.mallangkongth.repository.WaterBowlRepository;
 import capjjangdol.mallangkongth.dto.PetFormDto;
 import capjjangdol.mallangkongth.service.HealthService;
 import capjjangdol.mallangkongth.service.HospitalService;
@@ -30,11 +32,40 @@ public class RearingController {
         private final PetService petService;
         private final HealthService healthService;
         private final WalkingService walkingService;
+        private final FoodBowlRepository foodBowlRepository;
+        private final WaterBowlRepository waterBowlRepository;
+        private final FoodServingRepository foodServingRepository;
 
     /**
      *
      * 병원 기록 등록 - 폼
      */
+
+    //급수기, 급식기 테스트용 코드
+    @GetMapping ("/water")
+    public String renewalWaterBowl(Model model){
+        int value1 = waterBowlRepository.findRemaining().get(0);
+        int value2 = waterBowlRepository.findCurrentEatingAmount().get(0);
+        int value3 = foodBowlRepository.findRemaining().get(0);
+        int value4 = foodBowlRepository.findCurrentEatingAmount().get(0);
+        model.addAttribute("water1", String.valueOf(value1));
+        model.addAttribute("water2", String.valueOf(value2));
+        model.addAttribute("food1", String.valueOf(value3));
+        model.addAttribute("food2", String.valueOf(value4));
+        model.addAttribute("foodServingForm", new FoodServingForm());
+        return "waterBowlTest";
+    }
+
+    //급식기 테스트용 코드
+    @PostMapping("/water")
+    public String submitForm(@ModelAttribute("foodServingForm") FoodServingForm foodServingForm) {
+        // 폼에서 받아온 값 처리
+        int servingSize = foodServingForm.getServingSize();
+        FoodServing foodServing = new FoodServing();
+        foodServing.setFoodServingSize(servingSize);
+        foodServingRepository.save(foodServing);
+        return "waterBowlTest";
+    }
 
 
 //    @GetMapping(value = "/hospitalNotes/new")
