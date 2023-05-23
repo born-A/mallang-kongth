@@ -41,6 +41,8 @@ public class SerialRun {
 
     @Autowired
     FoodServingRepository foodServingRepository;
+    @Autowired
+    FoodServingTimeRepository foodServingTimeRepository;
 
     private Executor executor;
     private InputStream waterBowlIn = null;
@@ -84,7 +86,7 @@ public class SerialRun {
             foodBowlOut = foodBowlSerialPort.getOutputStream(); //급식기 송신
             executor.execute(new WaterBowlSerialReadThread(waterBowlIn, waterNoteRepository, waterBowlRepository)); //급수기 수신 작업을 하는 스레드 실행
             executor.execute(new FoodBowlSerialReadThread(foodBowlIn , foodNoteRepository, foodBowlRepository)); //급식기 수신 작업을 하는 스레드 실행
-            executor.execute(new FoodBowlSerialWriteThread(foodBowlOut, foodServingRepository));
+            executor.execute(new FoodBowlSerialWriteThread(foodBowlOut, foodServingRepository, foodServingTimeRepository));
         } else {
             System.exit(0);
         }
