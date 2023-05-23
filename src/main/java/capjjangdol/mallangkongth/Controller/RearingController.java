@@ -5,6 +5,7 @@ import capjjangdol.mallangkongth.domain.mypage.Pet;
 import capjjangdol.mallangkongth.domain.rearing.*;
 import capjjangdol.mallangkongth.repository.FoodBowlRepository;
 import capjjangdol.mallangkongth.repository.FoodServingRepository;
+import capjjangdol.mallangkongth.repository.FoodServingTimeRepository;
 import capjjangdol.mallangkongth.repository.WaterBowlRepository;
 import capjjangdol.mallangkongth.dto.PetFormDto;
 import capjjangdol.mallangkongth.service.HealthService;
@@ -13,18 +14,22 @@ import capjjangdol.mallangkongth.service.PetService;
 import capjjangdol.mallangkongth.service.WalkingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
-@RestController
+@Controller
 @RequiredArgsConstructor
 public class RearingController {
 
@@ -35,6 +40,7 @@ public class RearingController {
         private final FoodBowlRepository foodBowlRepository;
         private final WaterBowlRepository waterBowlRepository;
         private final FoodServingRepository foodServingRepository;
+        private final FoodServingTimeRepository foodServingTimeRepository;
 
     /**
      *
@@ -56,7 +62,7 @@ public class RearingController {
         return "waterBowlTest";
     }
 
-    //급식기 테스트용 코드
+    //급식기 테스트용 코드0
     @PostMapping("/water")
     public String submitForm(@ModelAttribute("foodServingForm") FoodServingForm foodServingForm) {
         // 폼에서 받아온 값 처리
@@ -67,6 +73,23 @@ public class RearingController {
         return "waterBowlTest";
     }
 
+    @PostMapping("/servingTime")
+    public String processDate(@RequestParam("timeInput") @DateTimeFormat(pattern = "HH:mm") LocalTime time, @RequestParam("servingInput") int size) {
+        FoodServingTime foodServingTime = new FoodServingTime();
+        foodServingTime.setServingTime(time);
+        foodServingTime.setServingSize(size);
+        foodServingTimeRepository.save(foodServingTime);
+        return "redirect:/servingTimeList";
+    }
+
+    @GetMapping("/servingTimeList")
+    public String getList(Model model) {
+        // 데이터베이스에서 리스트를 조회하는 로직
+        List<Integer> list = foodServingTimeRepository.findServingSize();
+
+        model.addAttribute("list", list);
+        return "servingTime"; // 타임리프 템플릿 이름 반환
+    }
 
 //    @GetMapping(value = "/hospitalNotes/new")
 //        public String createForm(Model model) {

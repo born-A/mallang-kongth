@@ -10,13 +10,22 @@
   <p>음수량 : <span th:text="${water2}"></span></p>
   <p>급식기 잔여량 : <span th:text="${food1}"></span></p>
   <p>섭취량 : <span th:text="${food2}"></span></p>
-  <h2>값 입력</h2>
 </form>
 
 <form action="#" th:action="@{/water}" th:object="${foodServingForm}" method="post">
+  <h2>값 입력</h2>
   <label for="servingSize">크기:</label>
   <input type="text" id="servingSize" th:field="*{servingSize}" />
   <input type="submit" value="전송" />
+</form>
+
+<form th:action="@{/servingTime}" method="POST">
+  <h2>값 입력</h2>
+  <label for="timeInput">시간 입력:</label>
+  <input type="time" id="timeInput" name="timeInput"><br>
+  <label for="servingInput">급식량 입력:</label>
+  <input type="number" id="servingInput" name="servingInput"><br>
+  <button type="submit">전송</button>
 </form>
 </body>
 </html>
