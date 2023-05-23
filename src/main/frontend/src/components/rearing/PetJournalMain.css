@@ -7,7 +7,7 @@
     width: 35%;
     height: 100%;
     margin: 0 auto;
-    background-color:rgb(255, 255, 255);
+    background-color: #ffffff;
 }
 
 .header {
@@ -90,10 +90,11 @@
 .hospital-amount {
     padding: 10px;
     margin-bottom: 10px;
+    background-color: White;
 }
 
 .hospital-amount p {
-    background-color: #fff;
+
     margin: 0;
     font-size: 16px;
     font-weight: bold;
@@ -103,4 +104,6 @@
     width: 100%;
     margin-left: 10px;
 
+
 }
+

@@ -20,6 +20,7 @@ function PetJournalMain() {
     const [showMemoRecordInput, setShowMemoRecordInput] = useState(false); // 메모 기록을 표시할 상태를 추가합니다.
     const [hospitalRecord, setHospitalRecord] = useState('');
     const [memoRecord, setMemoRecord] = useState(''); // 메모 기록을 저장할 상태를 추가합니다.
+    const [hospitalRecords, setHospitalRecords] = useState([]); // 병원 기록을 저장할 상태를 추가합니다.
 
     const handleAmountSubmit = (amount, type) => {
         switch (type) {
@@ -73,7 +74,7 @@ function PetJournalMain() {
 
     const handleRecordSubmit = (record) => {
         const formattedRecord = `날짜: ${record.date}, 증상: ${record.symptoms}, 비용: ${record.cost}, 메모: ${record.note}`;
-        setHospitalRecord(formattedRecord);
+        setHospitalRecords([...hospitalRecords, formattedRecord]);
         setShowHospitalRecordInput(false);
     };
 
@@ -145,9 +146,11 @@ function PetJournalMain() {
                                 {showHospitalRecordInput ? (
                                     <HospitalForm onRecordSubmit={handleRecordSubmit} />
                                 ) : null}
-                                {hospitalRecord && !showHospitalRecordInput ? (
+                                {hospitalRecords.length > 0 && !showHospitalRecordInput ? (
                                     <div className="hospital-record-box">
-                                        <p className="record-text">{hospitalRecord}</p>
+                                        {hospitalRecords.map((record, index) => (
+                                            <p key={index} className="record-text">{record}</p>
+                                        ))}
                                     </div>
                                 ) : null}
                             </div>
@@ -172,7 +175,8 @@ function PetJournalMain() {
             </div>
         </div>
 
-);
+    );
 }
 
 export default PetJournalMain;
+

@@ -5,7 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.Embeddable;
 
-@Embeddable // 어딘가에 내장이 될 수도 있다
+//@Embeddable // 어딘가에 내장이 될 수도 있다
 @Getter
 @Setter
 public class Address {

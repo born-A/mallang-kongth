@@ -17,7 +17,7 @@ public class Member{
     private Long id;
 
     @Column(nullable = false, unique = true)
-    private String user_id;
+    private String email;
     @Column(nullable = false,unique = true)
     private String name;
     @Column
@@ -26,19 +26,17 @@ public class Member{
     @Embedded
     private Address address;
 
-//    @OneToMany(mappedBy = "member")
-//    private List<Pet> petList = new ArrayList<>();
-
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private RoleType roleType;
 
-//    @OneToMany(mappedBy = "member")
-//    private List<Orders> ordersList = new ArrayList<>();
+    public void setEmail(String email){
+        this.email = email;
+    }
+    public void setPw(String pw){
+        this.pw = pw;
+    }
 
-////    @ManyToMany
-//    @Column(name ="ORDER_ID")
-//    private Long order_id;
 
 
 

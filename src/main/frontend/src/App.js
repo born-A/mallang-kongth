@@ -29,6 +29,8 @@ import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import Login from './Login';
 import Signup from './Signup';
 import PetJournalMain from "./components/rearing/PetJournalMain";
+import HospitalForm from "./components/rearing/HospitalForm";
+import ExHospitalList from "./components/rearing/ExHospitalList";
 
 function App() {
     return (
@@ -36,6 +38,9 @@ function App() {
                 <Routes>
                     <Route path="/" element={<PetJournalMain />} />
                     <Route path="/Signup" element={<Signup />}/>
+                    <Route path="/hospitalForm" element={<HospitalForm />} />
+                    <Route path="/hospitalNotes" element={<ExHospitalList />} />
+
                 </Routes>
         </div>
     );
