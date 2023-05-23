@@ -1,6 +1,5 @@
 package capjjangdol.mallangkongth.domain.mypage;
 
-import jdk.jfr.Enabled;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

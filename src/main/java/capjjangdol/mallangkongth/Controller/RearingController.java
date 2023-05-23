@@ -3,6 +3,7 @@ package capjjangdol.mallangkongth.Controller;
 
 import capjjangdol.mallangkongth.domain.mypage.Pet;
 import capjjangdol.mallangkongth.domain.rearing.*;
+import capjjangdol.mallangkongth.dto.HospitalFormDto;
 import capjjangdol.mallangkongth.dto.PetFormDto;
 import capjjangdol.mallangkongth.service.HealthService;
 import capjjangdol.mallangkongth.service.HospitalService;
@@ -16,7 +17,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -43,12 +46,22 @@ public class RearingController {
 //            return "rearing/HospitalForm.js";
 //        }
         @GetMapping(value = "/hospitalNotes/new")
+        @ResponseBody
         public PetFormDto createForm() {
             PetFormDto petFormDto = new PetFormDto();
             petFormDto.setPets(petService.findPets());
             petFormDto.setForm(new HospitalNoteForm());
             return petFormDto;
         }
+
+//    @GetMapping("/hospitalNotes/new")
+//    @ResponseBody
+//    public Map<String, Object> getNoticeList() {
+//        Map<String, Object> result = new HashMap<>();
+//        List<HospitalFormDto> noticeList = petService.getNoticeList();
+//        result.put("noticeList", noticeList);
+//        return result;
+//    }
 
     /**
      *
@@ -74,11 +87,20 @@ public class RearingController {
     /**
      * 병원 기록 목록
      */
-    @GetMapping(value = "/hospitalNotes")
-    public String list(Model model) {
-        List<HospitalNote> hospitalNotes = hospitalService.findHospitalNotes();
-        model.addAttribute("hospitalNotes", hospitalNotes);
-        return "hospitalNotes/hospitalNoteList";
+//    @GetMapping(value = "/hospitalNotes")
+//    public String list(Model model) {
+//        List<HospitalNote> hospitalNotes = hospitalService.findHospitalNotes();
+//        model.addAttribute("hospitalNotes", hospitalNotes);
+//        return "hospitalNotes/hospitalNoteList";
+//    }
+
+    @GetMapping("/hospitalNotes")
+    @ResponseBody
+    public Map<String, Object> getHospitalNoteList() {
+        Map<String, Object> result = new HashMap<>();
+        List<HospitalNote> hospitalNoteList = hospitalService.findHospitalNotes();
+        result.put("hospitalNoteList", hospitalNoteList);
+        return result;
     }
 
     /**

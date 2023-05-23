@@ -1,6 +1,5 @@
 package capjjangdol.mallangkongth.domain.mypage;
 
-import jdk.jfr.Enabled;
 import lombok.*;
 
 import javax.persistence.*;
