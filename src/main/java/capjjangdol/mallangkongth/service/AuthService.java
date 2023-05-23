@@ -45,28 +45,6 @@ public class AuthService {
         return tokenProvider.generateTokenDto(authentication);
     }
 
-//    @Autowired
-//    private Pet pet;
-
-//    @Override
-    /**
-     * register
-     */
-//    public Long join(JoinForm joinForm){
-////        dto.encryptPassword(encoder.encode(dto.getPw()));
-//        Member member = joinForm.toEntity();
-//        memberRepository.save(member);
-//        log.info("db save successful");
-//        return member.getId();
-//    }
-    /**
-     * login
-     */
-//    public Long login(LoginForm loginForm){
-//        Member member = loginForm.toEntity();
-////        memberRepository
-//
-//    }
     @Transactional
 //    @Override
     public boolean checkEmailDuplication(String email) {
@@ -74,17 +52,9 @@ public class AuthService {
         return emailDuplicate;
     }
 
-//    private void validateDuplicateMember(Member member) {
-//        Optional<Member> findMembers = memberRepository.findByEmail(member.getEmail());
-//        if(!findMembers.empty()){
-//            throw new IllegalStateException("?? ???? ?????.");
-//        }
-//    }
+
     public List<Member> findMembers() {
         return memberRepository.findAll();
     }
-//    public Member findOne(Long memberId) {
-//        return memberRepository.findOne(memberId);
-//    }
 
 }
