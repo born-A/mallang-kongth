@@ -25,5 +25,7 @@ public class FoodServingTime {
     private FoodBowl foodBowl;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    private LocalDateTime insertTime;
+    private LocalDateTime servingTime;
+
+    private Integer servingSize;
 }
