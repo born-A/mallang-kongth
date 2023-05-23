@@ -1,6 +1,5 @@
 package capjjangdol.mallangkongth.service;
 
-import capjjangdol.mallangkongth.domain.mypage.Address;
 import capjjangdol.mallangkongth.domain.mypage.Member;
 import capjjangdol.mallangkongth.domain.mypage.Pet;
 import capjjangdol.mallangkongth.domain.mypage.RoleType;
@@ -33,10 +32,10 @@ public class PetServiceTest {
     public void petSaveTest() throws Exception{
         //given
         Member member = new Member();
-        member.setName("신예진");
-        member.setRoleType(RoleType.GUEST);
+//        member.setName("신예진");
+//        member.setRoleType(RoleType.GUEST);
         member.setPw("1111");
-        member.setAddress(new Address("aaa","bbb","1111"));
+//        member.setAddress("aaa bbb1111");
         em.persist(member);
 
         Pet pet = new Pet();

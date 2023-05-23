@@ -1,57 +1,42 @@
 package capjjangdol.mallangkongth.service;
 
+import capjjangdol.mallangkongth.config.SecurityUtil;
 import capjjangdol.mallangkongth.domain.mypage.Member;
+import capjjangdol.mallangkongth.domain.mypage.MemberResDto;
 import capjjangdol.mallangkongth.repository.MemberRepository;
-import capjjangdol.mallangkongth.dto.MemberDto;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
-import java.util.List;
-@Slf4j
 @Service
-@Transactional
+@RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class MemberService {
-    private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-    @Autowired
-    private MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
+    private final PasswordEncoder passwordEncoder;
 
-//    @Autowired
-//    private Pet pet;
-
-//    @Override
-    /**
-     * register
-     */
-    public Long join(MemberDto.RequestMemberDto dto){
-        dto.encryptPassword(encoder.encode(dto.getPw()));
-        Member member = dto.toEntity();
-        memberRepository.save(member);
-        log.info("db save successful");
-        return Long.valueOf(member.getUser_id());
+    //헤더 토큰값 전달 메소드
+    public MemberResDto getMyInfoBySecurity() {
+        return memberRepository.findById(SecurityUtil.getCurrentMemberId())
+                .map(MemberResDto::of)
+                .orElseThrow(() -> new RuntimeException("로그인 유저 정보가 없습니다"));
     }
-
+    //이름 변경
     @Transactional
-//    @Override
-    public boolean checkUser_idDuplication(String user_id) {
-        boolean user_idDuplicate = memberRepository.existsByUser_id(user_id);
-        return user_idDuplicate;
+    public MemberResDto changeMembername(String email, String name) {
+        Member member = memberRepository.findByEmail(email).orElseThrow(() -> new RuntimeException("로그인 유저 정보가 없습니다"));
+        member.setName(name);
+        return MemberResDto.of(memberRepository.save(member));
     }
-    /**
-     * login
-     */
-    private void validateDuplicateMember(Member member) {
-        List<Member> findMembers = memberRepository.findByUser_id(member.getUser_id());
-        if(!findMembers.isEmpty()){
-            throw new IllegalStateException("?? ???? ?????.");
+    //pw 변경
+    @Transactional
+    public MemberResDto changeMemberPw(String exPw, String newPw) {
+        Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(() -> new RuntimeException("로그인 유저 정보가 없습니다"));
+        if (!passwordEncoder.matches(exPw, member.getPw())) {
+            throw new RuntimeException("비밀번호가 맞지 않습니다");
         }
-    }
-    public List<Member> findMembers() {
-        return memberRepository.findAll();
-    }
-    public Member findOne(Long memberId) {
-        return memberRepository.findOne(memberId);
+        member.setPw(passwordEncoder.encode((newPw)));
+        return MemberResDto.of(memberRepository.save(member));
     }
 }
