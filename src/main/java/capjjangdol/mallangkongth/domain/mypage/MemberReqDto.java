@@ -1,5 +1,6 @@
 package capjjangdol.mallangkongth.domain.mypage;
 
+import capjjangdol.mallangkongth.domain.mypage.Member;
 import jdk.jfr.Enabled;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,6 +11,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.Embedded;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -31,9 +33,10 @@ public class MemberReqDto {
 
     @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[$@$!%*#?&])[A-Za-z\\d$@$!%*#?&]{8,16}$", message = "????? 8~16????? ???. ?? ????, ??, ????? 1? ?? ???? ???.")
     private String pw;
+
     @Embedded
     private Address address;
-
+    @Enumerated(EnumType.STRING)
     private RoleType roleType;
 
     public Member toMember(PasswordEncoder passwordEncoder) {
@@ -42,7 +45,7 @@ public class MemberReqDto {
                 .pw(passwordEncoder.encode(pw))
                 .name(name)
                 .address(new Address())
-                .roleType(roleType.USER)
+                .roleType(RoleType.USER)
                 .build();
     }
 

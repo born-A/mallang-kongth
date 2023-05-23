@@ -4,6 +4,7 @@ import capjjangdol.mallangkongth.domain.mypage.*;
 import capjjangdol.mallangkongth.jwt.TokenDto;
 import capjjangdol.mallangkongth.jwt.TokenProvider;
 import capjjangdol.mallangkongth.repository.MemberRepository;
+import capjjangdol.mallangkongth.domain.mypage.Member;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ import java.util.List;
 @Transactional
 @RequiredArgsConstructor
 public class AuthService {
-//    private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    //    private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     @Autowired
     private MemberRepository memberRepository;
     private final AuthenticationManagerBuilder managerBuilder;
@@ -32,7 +33,6 @@ public class AuthService {
         if (memberRepository.existsByEmail(reqDto.getEmail())) {
             throw new RuntimeException("이미 가입되어 있는 유저입니다");
         }
-
         Member member = reqDto.toMember(passwordEncoder);
         return MemberResDto.of(memberRepository.save(member));
     }

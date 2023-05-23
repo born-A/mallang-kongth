@@ -1,5 +1,6 @@
-package capjjangdol.mallangkongth.repository.domain.mypage;
+package capjjangdol.mallangkongth.domain.mypage;
 
+import capjjangdol.mallangkongth.domain.mypage.Address;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -43,6 +44,7 @@ public class Member{
         this.pw = pw;
     }
 
-
-
+    public void setName(String name) {
+        this.name = name;
+    }
 }

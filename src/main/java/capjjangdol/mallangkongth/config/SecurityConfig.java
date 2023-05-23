@@ -1,8 +1,11 @@
 package capjjangdol.mallangkongth.config;
 
+import capjjangdol.mallangkongth.jwt.JwtAccessDeniedHandler;
+import capjjangdol.mallangkongth.jwt.JwtAuthenticationEntryPoint;
 import capjjangdol.mallangkongth.jwt.JwtFilter;
 import capjjangdol.mallangkongth.jwt.TokenProvider;
 import capjjangdol.mallangkongth.service.MemberService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,12 +17,15 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.stereotype.Component;
 
 @Configuration
 @EnableWebSecurity
 @Component
+@RequiredArgsConstructor
 public class SecurityConfig{
     private final TokenProvider tokenProvider;
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
@@ -44,7 +50,7 @@ public class SecurityConfig{
 
                 .and()
                 .authorizeRequests()
-                .antMatchers("/auth/**").permitAll() //auth/**:login page
+                .antMatchers("/auth/**","/board/**", "/recommend/**", "/comment/**").permitAll() //auth/**:login page, /board/** :board
                 .anyRequest().authenticated()
 
                 .and()

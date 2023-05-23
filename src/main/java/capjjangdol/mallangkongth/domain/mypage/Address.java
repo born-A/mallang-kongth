@@ -10,7 +10,7 @@ import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 
-//@Embeddable // 어딘가에 내장이 될 수도 있다
+@Embeddable // 어딘가에 내장이 될 수도 있다
 @Getter
 @Setter
 public class Address {

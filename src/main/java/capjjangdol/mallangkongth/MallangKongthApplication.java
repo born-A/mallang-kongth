@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 
 
-//@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
-@SpringBootApplication
+@SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
+//@SpringBootApplication
 public class MallangKongthApplication {
 
 	public static void main(String[] args) {

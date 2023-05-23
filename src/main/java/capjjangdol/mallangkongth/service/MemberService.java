@@ -1,10 +1,11 @@
 package capjjangdol.mallangkongth.service;
 
-import capjjangdol.mallangkongth.dto.TokenDto;
+import capjjangdol.mallangkongth.config.SecurityUtil;
+import capjjangdol.mallangkongth.domain.mypage.MemberResDto;
+import capjjangdol.mallangkongth.jwt.TokenDto;
 import capjjangdol.mallangkongth.jwt.TokenProvider;
-import capjjangdol.mallangkongth.repository.domain.mypage.Member;
+import capjjangdol.mallangkongth.domain.mypage.Member;
 import capjjangdol.mallangkongth.repository.MemberRepository;
-import capjjangdol.mallangkongth.dto.MemberSignUpRequestDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

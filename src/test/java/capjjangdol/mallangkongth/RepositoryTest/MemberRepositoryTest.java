@@ -1,9 +1,6 @@
 package capjjangdol.mallangkongth.RepositoryTest;
 
 import capjjangdol.mallangkongth.repository.MemberRepository;
-import capjjangdol.mallangkongth.repository.domain.mypage.Address;
-import capjjangdol.mallangkongth.repository.domain.mypage.Member;
-import capjjangdol.mallangkongth.repository.domain.mypage.RoleType;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

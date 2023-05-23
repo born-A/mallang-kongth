@@ -1,8 +1,11 @@
 package capjjangdol.mallangkongth.Controller;
 
-import Validator.CheckUser_idValidator;
+import capjjangdol.mallangkongth.domain.mypage.ChangePwReqDto;
+import capjjangdol.mallangkongth.domain.mypage.MemberReqDto;
+import capjjangdol.mallangkongth.domain.mypage.MemberResDto;
 import capjjangdol.mallangkongth.service.MemberService;
-import capjjangdol.mallangkongth.dto.MemberDto;
+
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

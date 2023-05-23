@@ -1,5 +1,6 @@
 package capjjangdol.mallangkongth.domain.mypage;
 
+import capjjangdol.mallangkongth.domain.mypage.Member;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
