@@ -66,12 +66,10 @@ input {
     border: none;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-
     font-family: "NEXON Lv1 Gothic";
 }
 
 .Id {
-
     margin-left:15px;
 }
 
@@ -117,7 +115,6 @@ input {
     color: white;
 }
 .naver{
-
     width: 250px;
     height: 40px;
     padding: 5px;

@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import "./Login.css";
 import {Link} from "react-router-dom";
+import axios from "axios";
 
 export default function Login() {
 
@@ -16,9 +17,28 @@ export default function Login() {
     };
 
     const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(`Id: ${id}, Password: ${password}`);
-        // 여기서는 console.log로만 출력했지만, 이 부분을 실제 로그인 로직으로 대체하면 됩니다.
+        if(id==''){
+            e.preventDefault();
+            alert("아이디를 입력해주세요!");
+        }
+        else if (password==''){
+            e.preventDefault();
+            alert("비밀번호를 입력해주세요");
+        }
+        else{
+            e.preventDefault();
+            // 입력된 아이디와 패스워드를 백엔드로 전달하는 axios 요청
+            axios.post('/api/login', { id, password })
+                .then((response) => {
+                    // 성공적으로 요청을 처리한 경우의 로직
+                    console.log('로그인 성공:', response.data);
+                })
+                .catch((error) => {
+                    // 요청 처리 중에 에러가 발생한 경우의 로직
+                    console.error('로그인 실패:', error);
+                });
+        }
+
     };
 
     const handleKakaoLogin = () => {
@@ -56,12 +76,13 @@ export default function Login() {
                     </div>
 
                     {/* 로그인하기 */}
+                    <form onSubmit={handleSubmit}>
                     <div className="loginInput">
                         <span>아이디 <input className="Id" type="email" value={id} onChange={handleIdChange} /></span>
                         <span>비밀번호 <input type="password" value={password} onChange={handlePasswordChange} /></span>
                     </div>
                     <div className="login">
-                        <button className="login-button" onChange={handleSubmit}> 로그인</button>
+                        <button className="login-button"> 로그인</button>
                     </div>
 
                     <div className="Integration-login">
@@ -84,7 +105,7 @@ export default function Login() {
                         <span>아직 계정이 없으신가요?</span>
                         <Link to ="/Signup">회원가입</Link>
                     </div>
-
+                    </form>
                 </div>
             </div>
         </div>
