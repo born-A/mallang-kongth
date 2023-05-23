@@ -26,19 +26,14 @@ public class SerialRun {
 
     @Autowired
     WaterNoteRepository waterNoteRepository;
-
     @Autowired
     WaterBowlRepository waterBowlRepository;
-
     @Autowired
     WaterBowlService waterBowlService;
-
     @Autowired
     FoodNoteRepository foodNoteRepository;
-
     @Autowired
     FoodBowlRepository foodBowlRepository;
-
     @Autowired
     FoodServingRepository foodServingRepository;
     @Autowired
@@ -60,7 +55,6 @@ public class SerialRun {
         waterBowlIsOpen = waterBowlSerialPort.openPort(); //포트 열기
         SerialPort foodBowlSerialPort = SerialPort.getCommPort("COM8"); //급식기 포트 번호 입력
         foodBowlIsOpen = foodBowlSerialPort.openPort(); //포트 열기
-
 
         WaterBowl waterBowl = new WaterBowl(); //초기 데이터 넣기
         waterBowl.setSettingAmount(0);

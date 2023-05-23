@@ -12,4 +12,7 @@ public interface FoodServingTimeRepository extends JpaRepository<FoodServingTime
     @Query("SELECT new capjjangdol.mallangkongth.dto.FoodServingTimeDto(fst.id,fst.servingTime, fst.servingSize) FROM FoodServingTime fst ORDER BY fst.id DESC")
     List<FoodServingTimeDto> findFoodServingTime();
 
+    @Query("SELECT fst.servingSize FROM FoodServingTime fst ORDER BY fst.id DESC")
+    List<Integer> findServingSize();
+
 }

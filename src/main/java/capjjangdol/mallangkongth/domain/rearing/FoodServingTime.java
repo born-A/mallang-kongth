@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 @Getter
@@ -24,8 +25,8 @@ public class FoodServingTime {
     @JoinColumn(name = "food_bowl_id")
     private FoodBowl foodBowl;
 
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    private LocalDateTime servingTime;
+    @DateTimeFormat(pattern = "HH:mm")
+    private LocalTime servingTime;
 
     private Integer servingSize;
 }

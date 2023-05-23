@@ -43,14 +43,14 @@ public class FoodBowlSerialReadThread implements Runnable{
                     settingAmount = foodBowlRepository.findSettingAmount().get(0);
                     beforeEatingAmount = foodBowlRepository.findBeforeEatingAmount().get(0);
                     CurrentEatingAmount = foodBowlRepository.findCurrentEatingAmount().get(0);
-                    if(foodBowlRepository.findRemaining().get(0) < Integer.parseInt(s)){ // 급식기에 물 추가 했을때 foodBowl DB에 저장하는 코드
+                    if(foodBowlRepository.findRemaining().get(0) < Integer.parseInt(s)){ // 급식기에 사료 추가 했을때 foodBowl DB에 저장하는 코드
                         FoodBowl foodBowl = new FoodBowl();
                         foodBowl.setSettingAmount(Integer.parseInt(s));
                         foodBowl.setRemaining(Integer.parseInt(s));
-                        foodBowl.setBeforeEatingAmount(CurrentEatingAmount); //물 증가 하기 전의 음수량
+                        foodBowl.setBeforeEatingAmount(CurrentEatingAmount); //물 증가 하기 전의 섭취량
                         foodBowl.setCurrentEatingAmount(CurrentEatingAmount);
                         foodBowlRepository.save(foodBowl);
-                    } else { // 급식기에 물 추가 없이 그대로 일떄 foodBowl DB에 저장하는 코드
+                    } else { // 급식기에 사료 추가 없이 그대로 일때 foodBowl DB에 저장하는 코드
                         FoodBowl foodBowl = new FoodBowl();
                         foodBowl.setSettingAmount(settingAmount);
                         foodBowl.setRemaining(foodAmount);
