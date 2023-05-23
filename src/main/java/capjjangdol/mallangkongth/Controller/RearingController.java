@@ -3,6 +3,7 @@ package capjjangdol.mallangkongth.Controller;
 
 import capjjangdol.mallangkongth.domain.mypage.Pet;
 import capjjangdol.mallangkongth.domain.rearing.*;
+import capjjangdol.mallangkongth.dto.FoodServingTimeDto;
 import capjjangdol.mallangkongth.repository.FoodBowlRepository;
 import capjjangdol.mallangkongth.repository.FoodServingRepository;
 import capjjangdol.mallangkongth.repository.FoodServingTimeRepository;
@@ -85,10 +86,17 @@ public class RearingController {
     @GetMapping("/servingTimeList")
     public String getList(Model model) {
         // 데이터베이스에서 리스트를 조회하는 로직
-        List<Integer> list = foodServingTimeRepository.findServingSize();
+        List<FoodServingTimeDto> list = foodServingTimeRepository.findFoodServingTime();
 
         model.addAttribute("list", list);
         return "servingTime"; // 타임리프 템플릿 이름 반환
+    }
+
+    @PostMapping("/deleteServingTime")
+    public String deleteEntity(@RequestParam("id") Long id) {
+        foodServingTimeRepository.deleteById(id); // 데이터베이스에서 데이터 삭제
+
+        return "redirect:/servingTimeList"; // 리스트 페이지로 리다이렉트
     }
 
 //    @GetMapping(value = "/hospitalNotes/new")

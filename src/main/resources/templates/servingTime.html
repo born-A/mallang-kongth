@@ -6,9 +6,27 @@
 </head>
 <body>
 <ul>
-    <li th:each="item : ${list}">
-        <span th:text="${item}"></span>
-    </li>
+    <table>
+        <thead>
+        <tr>
+            <th>배식량</th>
+            <th>배식시간</th>
+            <th>삭제</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="serving : ${list}">
+            <td th:text="${serving.servingSize}"></td>
+            <td th:text="${serving.servingTime}"></td>
+            <td>
+                <form th:action="@{/deleteServingTime}" method="post">
+                    <input type="hidden" th:name="id" th:value="${serving.id}" />
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </ul>
 </body>
 </html>
