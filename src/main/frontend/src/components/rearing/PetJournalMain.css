@@ -1,0 +1,106 @@
+.background {
+
+    background-color: rgb(228, 227, 227);
+}
+
+.box {
+    width: 35%;
+    height: 100%;
+    margin: 0 auto;
+    background-color:rgb(255, 255, 255);
+}
+
+.header {
+    width: 100%;
+    height: 80px;
+    background-color: #FEE17A;
+    display: flex;
+}
+.header h1{
+    position: relative;
+    margin-left: 20px;
+
+    font-family: 'GeekbleMalang2';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 45px;
+    line-height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0.1em;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+
+.pet-journal-container {
+    width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+
+    border-radius: 10px;
+}
+
+.pet-journal-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.pet-journal-container div {
+    margin-bottom: 10px;
+}
+
+
+.pet-journal-container p:hover {
+    background-color: #f0f0f0;
+}
+
+.pet-journal-container .form-group {
+    display: flex;
+}
+
+.pet-journal-container .input-wrapper {
+    flex: 1;
+}
+
+.pet-journal-container .input-container {
+    margin: 15px;
+}
+
+@media (max-width: 600px) {
+    .pet-journal-container .form-group {
+        flex-direction: column;
+    }
+}
+
+.food-amount,
+.water-amount,
+.walk-amount,
+.bathroom-amount {
+    padding: 30px;
+    width: 200px;
+    height: 250px;
+    background-color: #fff;
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.67);
+    border-radius: 10px;
+    border: 1px solid #ccc;
+
+}
+
+.hospital-amount {
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.hospital-amount p {
+    background-color: #fff;
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.hospital-amount input {
+    width: 100%;
+    margin-left: 10px;
+
+}

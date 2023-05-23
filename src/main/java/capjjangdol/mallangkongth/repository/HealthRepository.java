@@ -25,6 +25,11 @@ public class HealthRepository {
         return em.createQuery("select h from Health h",Health.class).getResultList();
     }
 
-
+    /**
+     * 건강기록 삭제
+     */
+    public List<Health> deleteById(Long id){
+        return em.createQuery("delete from Health h where h.id =: id", Health.class).getResultList();
+    }
 }
 

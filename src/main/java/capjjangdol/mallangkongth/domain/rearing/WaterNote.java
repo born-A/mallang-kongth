@@ -23,6 +23,7 @@ public class WaterNote {
     private Pet pet;
 
     @CreationTimestamp
+    @Column(name = "insert_time")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime insertTime;
 
