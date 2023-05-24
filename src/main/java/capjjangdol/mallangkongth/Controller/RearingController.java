@@ -132,39 +132,80 @@ public class RearingController {
     }
 
     /**
-     *
-     * 산책 기록 등록 - 폼
+     * 산책기록 등록 폼
      */
-
-    @GetMapping(value = "/walkings/new")
+    @GetMapping(value = "/walking/new")
     public String createWalkingForm(Model model) {
         List<Pet> pets = petService.findPets();
         model.addAttribute("pets", pets);
         model.addAttribute("form",new WalkingForm());
-        return "walkings/walkingForm";
+        return "walking/walkingForm";
     }
     /**
-     *
      * 산책 기록 등록 - post
      */
-    @PostMapping(value = "/walkings/new")
-    public String createWalking(@RequestParam("petId") Long petId, WalkingForm form) {
+    @PostMapping(value = "/walking/new")
+    public String createWalkingForm(@RequestParam("petId") Long petId, WalkingForm form) {
         walkingService.saveWalking(petId,form);
-        return "redirect:/walkings";
+        return "redirect:/walking/list";
     }
 
     /**
      * 산책 기록 목록
      */
-    @GetMapping(value = "/walkings")
+    @GetMapping(value = "/walking/list")
     public String walkingList(Model model) {
         List<Walking> walkings = walkingService.findWalkings();
-        model.addAttribute("walking", walkings);
-        return "walkings/walkingList";
+        model.addAttribute("walkings", walkings);
+        return "walking/walkingList";
     }
 
     /**
-     * 건강기록 등로 폼
+     * 산책 기록 상세
+     */
+    @GetMapping("/walking/view")
+    public String walkingView(Model model, Long id){
+        model.addAttribute("walking", walkingService.walkingView(id));
+        return "walking/walkingView";
+    }
+
+    /**
+     * 산책 기록 삭제
+     */
+
+    @GetMapping("/walking/delete")
+    public String walkingDelete(Long id){
+        walkingService.deleteById(id);
+        return "redirect:/walking/list";
+    }
+
+    /**
+     * 산책 기록 수정
+     */
+
+    @GetMapping("/walking/modify/{id}")
+    public String walkingModify(@PathVariable("id") Long id, Model model){
+        List<Pet> pets = petService.findPets();
+        model.addAttribute("pets", pets);
+        model.addAttribute("walking", walkingService.walkingView(id));
+        return "walking/walkingModify";
+    }
+
+    /**
+     * 산책 기록 업데이트
+     */
+    @PostMapping("/walking/update/{id}")
+    public String walkingUpdate(@PathVariable("id") Long id, WalkingForm form){
+        Walking walkingTemp = walkingService.walkingView(id);
+
+        walkingTemp.setDateOfWalking(form.getDateOfWalking());
+
+        walkingService.saveWalking(walkingTemp);
+        return "redirect:/walking/list";
+    }
+
+    /**
+     * 건강기록 등록 폼
      */
     @GetMapping(value = "/health/new")
     public String createHealthForm(Model model) {

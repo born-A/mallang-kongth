@@ -33,7 +33,7 @@ package capjjangdol.mallangkongth.repository;
 //    }
 //
 //    /**
-//     * 건강기록 삭제
+//     *  삭제
 //     */
 //    public List<Walking> deleteById(Long id){
 //        return em.createQuery("delete from Walking w where w.id =: id", Walking.class).getResultList();
