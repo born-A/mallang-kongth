@@ -9,7 +9,7 @@
 <h1 th:text="${hospitalNote.id}">id</h1>
 
 <!--id값은 상세페이지마다 다르다-->
-<a th:href="@{'/hospitalNote/edit/'+ ${hospitalNote.id}}" class="btn btn-primary" role="button">수정</a>
+<a th:href="@{/hospitalNote/modify/{id}(id = ${hospitalNote.id})}">수정</a>
 <a th:href="@{/hospitalNote/delete(id=${hospitalNote.id})}">삭제</a>
 <!--<a th:href="@{'/hospitalNote/delete/'+${hospitalNote.id}}">삭제</a>-->
 

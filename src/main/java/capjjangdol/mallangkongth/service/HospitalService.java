@@ -29,6 +29,14 @@ public class HospitalService {
         hospitalRepository.save(hospitalNote);
         return hospitalNote.getId();
     }
+
+    //업데이트용
+    @Transactional
+    public void saveHospitalNote(HospitalNote note) {
+        hospitalRepository.save(note);
+    }
+
+
     public List<HospitalNote> findHospitalNotes() {
         return hospitalRepository.findAll();
     }

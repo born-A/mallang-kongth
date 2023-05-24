@@ -100,6 +100,36 @@ public class RearingController {
         return "redirect:/hospitalNote/list";
     }
 
+    /**
+     * 병원 기록 수정
+     */
+
+    @GetMapping("/hospitalNote/modify/{id}")
+    public String hospitalNoteModify(@PathVariable("id") Integer id, Model model){
+        List<Pet> pets = petService.findPets();
+        model.addAttribute("pets", pets);
+        model.addAttribute("hospitalNote", hospitalService.hospitalNotesView(id));
+        return "hospitalModify";
+    }
+
+    /**
+     * 병원 기록 업데이트
+     */
+    @PostMapping("/hospitalNote/update/{id}")
+    public String hospitalNoteUpdate(@PathVariable("id") Integer id, HospitalNoteForm form){
+        //기존 기록이 담겨져서 온다.
+        HospitalNote hospitalNoteTemp = hospitalService.hospitalNotesView(id);
+
+        //기존에있던 내용을 새로운 내용으로 덮어씌운다.
+        hospitalNoteTemp.setHospitalName(form.getHospitalName());
+        hospitalNoteTemp.setDateOfVisit(form.getDateOfVisit());
+        hospitalNoteTemp.setBill(form.getBill());
+        hospitalNoteTemp.setMemo(form.getMemo());
+        hospitalNoteTemp.setImageUrl(form.getImageUrl());
+
+        hospitalService.saveHospitalNote(hospitalNoteTemp);
+        return "redirect:/hospitalNote/list";
+    }
 
     /**
      *
