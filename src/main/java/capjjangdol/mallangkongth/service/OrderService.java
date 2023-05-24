@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
@@ -37,5 +39,11 @@ public class OrderService {
         Orders order = orderRepository.findById(orderId).get();
         order.cancel();
     }
+    public List<Orders> findOrders() {
+        return orderRepository.findAll();
+    }
 
+//    public List <Orders> findOrders(OrderSearch orderSearch) {
+//        return orderRepository.findAll(orderSearch);
+//    }
 }
