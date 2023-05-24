@@ -46,7 +46,7 @@ public class RearingController {
 //            return petFormDto;
 //        }
 
-//    @GetMapping("/hospitalNotes/new")
+//    @GetMapping("/hospitalNotes/ne")
 //    @ResponseBody
 //    public Map<String, Object> getNoticeList() {
 //        Map<String, Object> result = new HashMap<>();
@@ -164,34 +164,76 @@ public class RearingController {
     }
 
     /**
-     *
-     * 산책 기록 등록 - 폼
+     * 건강기록 등로 폼
      */
-
-    @GetMapping(value = "/healths/new")
+    @GetMapping(value = "/health/new")
     public String createHealthForm(Model model) {
         List<Pet> pets = petService.findPets();
         model.addAttribute("pets", pets);
         model.addAttribute("form",new HealthForm());
-        return "healths/healthForm";
+        return "health/healthForm";
     }
     /**
-     *
      * 건강 기록 등록 - post
      */
-    @PostMapping(value = "/healths/new")
-    public String createHealth(@RequestParam("petId") Long petId, HealthForm form) {
+    @PostMapping(value = "/health/new")
+    public String createHealthForm(@RequestParam("petId") Long petId, HealthForm form) {
         healthService.saveHealth(petId,form);
-        return "redirect:/healths";
+        return "redirect:/health/list";
     }
 
     /**
      * 건강 기록 목록
      */
-    @GetMapping(value = "/healths")
-    public String healthList(Model model) {
+    @GetMapping(value = "/health/list")
+    public String healhList(Model model) {
         List<Health> healths = healthService.findHealths();
         model.addAttribute("healths", healths);
-        return "healths/healthList";
+        return "health/healthList";
+    }
+
+    /**
+     * 건강 기록 상세
+     */
+    @GetMapping("/health/view")
+    public String healthView(Model model, Long id){
+        model.addAttribute("health", healthService.healthView(id));
+        return "health/healthView";
+    }
+
+    /**
+     * 건강 기록 삭제
+     */
+
+    @GetMapping("/health/delete")
+    public String healthDelete(Long id){
+        healthService.deleteById(id);
+        return "redirect:/health/list";
+    }
+
+    /**
+     * 건강 기록 수정
+     */
+
+    @GetMapping("/health/modify/{id}")
+    public String healthModify(@PathVariable("id") Long id, Model model){
+        List<Pet> pets = petService.findPets();
+        model.addAttribute("pets", pets);
+        model.addAttribute("health", healthService.healthView(id));
+        return "health/healthModify";
+    }
+
+    /**
+     * 건강 기록 업데이트
+     */
+    @PostMapping("/health/update/{id}")
+    public String healthUpdate(@PathVariable("id") Long id, HealthForm form){
+        Health healthTemp = healthService.healthView(id);
+
+        healthTemp.setText(form.getText());
+        healthTemp.setImageUrl(form.getImageUrl());
+
+        healthService.saveHealth(healthTemp);
+        return "redirect:/health/list";
     }
 }

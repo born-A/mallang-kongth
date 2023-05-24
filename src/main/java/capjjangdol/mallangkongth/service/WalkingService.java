@@ -35,17 +35,17 @@ public class WalkingService {
     }
     //산책 기록 하나 조회
     public Walking findOne(Long walkingId) {
-        return walkingRepository.findOne(walkingId);
+        return walkingRepository.findById(walkingId).get();
     }
 
     //날짜별 산책 횟수 카운트
-    public int takeACount(LocalDateTime dateTime){
-        int count = 0;
-        List<Walking> walkings = walkingRepository.findAllOfDay(dateTime);
-        for(Walking walking : walkings){
-            count++;
-        }
-        return count;
-    }
+//    public int takeACount(LocalDateTime dateTime){
+//        int count = 0;
+//        List<Walking> walkings = walkingRepository.findAllOfDay(dateTime);
+//        for(Walking walking : walkings){
+//            count++;
+//        }
+//        return count;
+//    }
 
 }
