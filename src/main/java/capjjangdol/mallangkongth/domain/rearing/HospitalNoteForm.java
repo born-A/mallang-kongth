@@ -7,7 +7,6 @@ import java.time.LocalDateTime;
 
 @Getter @Setter
 public class HospitalNoteForm {
-    private Long id;
     private String hospitalName;
     private String dateOfVisit;
     private Long Bill;

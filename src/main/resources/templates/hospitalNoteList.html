@@ -11,14 +11,16 @@
       <tbody>
 
       <tr th:each="hospitalNote : ${hospitalNotes}">
+        <a th:href="@{/hospitalNote/view(id=${hospitalNote.id})}">상세</a>
+        <td th:text="${hospitalNote.id}"></td>
         <td th:text="${hospitalNote.hospitalName}"></td>
         <td th:text="${hospitalNote.dateOfVisit}"></td>
         <td th:text="${hospitalNote.bill}"></td>
         <td th:text="${hospitalNote.memo}"></td>
         <td th:text="${hospitalNote.imageUrl}"></td>
         <td>
-          <a th:href="@{'/hospitalNotes/edit/'+ ${hospitalNote.id}}" class="btn btn-primary" role="button">수정</a>
-          <a th:href="@{'/hospitalNotes/delete/'+ ${hospitalNote.id}}">삭제</a>
+<!--          <a th:href="@{'/hospitalNotes/edit/'+ ${hospitalNote.id}}" class="btn btn-primary" role="button">수정</a>-->
+<!--          <a th:href="@{/hospitalNotes/delete(id=${hospitalNote.id})}">삭제</a>-->
         </td> </tr>
       <div>
 

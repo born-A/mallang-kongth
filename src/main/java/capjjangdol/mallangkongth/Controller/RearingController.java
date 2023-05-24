@@ -3,26 +3,19 @@ package capjjangdol.mallangkongth.Controller;
 
 import capjjangdol.mallangkongth.domain.mypage.Pet;
 import capjjangdol.mallangkongth.domain.rearing.*;
-import capjjangdol.mallangkongth.dto.HospitalFormDto;
-import capjjangdol.mallangkongth.dto.PetFormDto;
 import capjjangdol.mallangkongth.service.HealthService;
 import capjjangdol.mallangkongth.service.HospitalService;
 import capjjangdol.mallangkongth.service.PetService;
 import capjjangdol.mallangkongth.service.WalkingService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
-@RestController
+@Controller
 @RequiredArgsConstructor
 public class RearingController {
 
@@ -37,22 +30,21 @@ public class RearingController {
      */
 
 
-//    @GetMapping(value = "/hospitalNotes/new")
-//        public String createForm(Model model) {
-//            List<Pet> pets = petService.findPets();
-//            model.addAttribute("pets", pets);
-//            model.addAttribute("form",new HospitalNoteForm());
-////            return "hospitalNotes/hospitalNoteForm";
-//            return "rearing/HospitalForm.js";
-//        }
-        @GetMapping(value = "/hospitalNotes/new")
-        @ResponseBody
-        public PetFormDto createForm() {
-            PetFormDto petFormDto = new PetFormDto();
-            petFormDto.setPets(petService.findPets());
-            petFormDto.setForm(new HospitalNoteForm());
-            return petFormDto;
+    @GetMapping(value = "/hospitalNote/new")
+        public String createForm(Model model) {
+            List<Pet> pets = petService.findPets();
+            model.addAttribute("pets", pets);
+            model.addAttribute("form",new HospitalNoteForm());
+            return "hospitalNoteForm";
         }
+//        @GetMapping(value = "/hospitalNotes/new")
+//        @ResponseBody
+//        public PetFormDto createForm() {
+//            PetFormDto petFormDto = new PetFormDto();
+//            petFormDto.setPets(petService.findPets());
+//            petFormDto.setForm(new HospitalNoteForm());
+//            return petFormDto;
+//        }
 
 //    @GetMapping("/hospitalNotes/new")
 //    @ResponseBody
@@ -67,10 +59,10 @@ public class RearingController {
      *
      * 병원 기록 등록 - post
      */
-    @PostMapping(value = "/hospitalNotes/new")
+    @PostMapping(value = "/hospitalNote/new")
     public String createHospitalNote(@RequestParam("petId") Long petId, HospitalNoteForm form) {
         hospitalService.saveHospitalNote(petId,form);
-        return "redirect:/hospitalNotes";
+        return "redirect:/hospitalNote/list";
     }
 //        @PostMapping(value = "/hospitalNotes/{hospitalNoteId}/remove")
 //        public String removeHospitalNote(@PathVariable("hospitalNoteId") Long hospitalNoteId) {
@@ -78,30 +70,36 @@ public class RearingController {
 //            return "redirect:/hospitalNotes";
 //        }
 
-    @GetMapping("/hospitalNotes/delete")
-    public String hospitalNotesDelete(Long id){
-        hospitalService.deleteById(id);
 
-        return "redirect:/hospitalNotes";
-    }
     /**
      * 병원 기록 목록
      */
-//    @GetMapping(value = "/hospitalNotes")
-//    public String list(Model model) {
-//        List<HospitalNote> hospitalNotes = hospitalService.findHospitalNotes();
-//        model.addAttribute("hospitalNotes", hospitalNotes);
-//        return "hospitalNotes/hospitalNoteList";
-//    }
-
-    @GetMapping("/hospitalNotes")
-    @ResponseBody
-    public Map<String, Object> getHospitalNoteList() {
-        Map<String, Object> result = new HashMap<>();
-        List<HospitalNote> hospitalNoteList = hospitalService.findHospitalNotes();
-        result.put("hospitalNoteList", hospitalNoteList);
-        return result;
+    @GetMapping(value = "/hospitalNote/list")
+    public String list(Model model) {
+        List<HospitalNote> hospitalNotes = hospitalService.findHospitalNotes();
+        model.addAttribute("hospitalNotes", hospitalNotes);
+        return "hospitalNoteList";
     }
+
+    /**
+     * 병원 기록 상세
+     */
+    @GetMapping("/hospitalNote/view") //localhost:8080/hospitalNotes/view?id=1 //(get방식 파라미터)
+    public String hospitalNotesView(Model model, Integer id){
+        model.addAttribute("hospitalNote", hospitalService.hospitalNotesView(id));
+        return "hospitalNoteView";
+    }
+
+    /**
+     * 병원 기록 삭제
+     */
+
+    @GetMapping("/hospitalNote/delete")
+    public String hospitalNotesDeleteV(Integer id){
+        hospitalService.deleteById(id);
+        return "redirect:/hospitalNote/list";
+    }
+
 
     /**
      *
