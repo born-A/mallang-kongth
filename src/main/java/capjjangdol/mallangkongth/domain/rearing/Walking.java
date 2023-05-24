@@ -21,11 +21,12 @@ public class Walking {
     private Pet pet;
 
     @Column(name = "DATE_OF_VISIT")
-    private LocalDateTime dateOfWalking;
+    private String dateOfWalking;
 
     //==생성 메서드==//
     public static Walking createWalking(Pet pet, WalkingForm form){
         Walking walking = new Walking();
+        walking.setPet(pet);
         walking.setDateOfWalking(form.getDateOfWalking());
 
         return walking;
