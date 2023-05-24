@@ -16,8 +16,12 @@ public class Orders {
     @Id @GeneratedValue
     @Column(name = "order_id")
     private Long id;
-    @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "member_id")
-    private Member member;
+//    @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "member_id")
+//    private Member member;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pet__id")
+    private Pet pet;
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

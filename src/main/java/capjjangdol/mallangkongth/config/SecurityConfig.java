@@ -47,7 +47,7 @@ public class SecurityConfig{
 
                 .and()
                 .authorizeRequests()
-                .antMatchers("/item/**","/pets/**","/auth/**","/hospitalNote/**","/health/**","/walking/**").permitAll() //auth/**:login page
+                .antMatchers("/order/**","/item/**","/pets/**","/auth/**","/hospitalNote/**","/health/**","/walking/**").permitAll() //auth/**:login page
                 .anyRequest().authenticated()
 
                 .and()
