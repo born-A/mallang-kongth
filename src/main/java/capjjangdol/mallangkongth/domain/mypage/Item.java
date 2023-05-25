@@ -15,20 +15,22 @@ public abstract class Item {
     @GeneratedValue
     @Column(name = "item_id")
     private Long id;
-//
-//    @OneToMany(mappedBy = "item")
-//    private List<OrderItem> orderItems = new ArrayList<>();
-//
+
+    @OneToMany(mappedBy = "item")
+    private List<OrderItem> orderItems = new ArrayList<>();
+
     private String name;
-//    private String category;
+
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
+    private List<CategoryItem> categoryItems = new ArrayList<>();
 
 //    private String information; //????
 //    private String company; //???
 
     private int price;
     private int stockQuantity;
-    @ManyToMany(mappedBy = "items")
-    private List<ItemCategory> categories = new ArrayList<ItemCategory>();
+//    @ManyToMany(mappedBy = "items")
+//    private List<Category> categories = new ArrayList<Category>();
 
     //==비즈니스 로직==//
     public void addStock(int quantity) {
