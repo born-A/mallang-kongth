@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/member")
 public class MemberController {
     private final MemberService memberService;
-
     @GetMapping("/me")
     public ResponseEntity<MemberResDto> getMyMemberInfo() {
         MemberResDto myInfoBySecurity = memberService.getMyInfoBySecurity();
