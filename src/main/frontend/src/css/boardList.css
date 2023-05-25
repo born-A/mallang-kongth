@@ -6,6 +6,7 @@
 .box {
     width: 35%;
     height: 100%;
+    resize: none;
     margin: 0 auto;
     background-color:rgb(255, 255, 255);
 }
@@ -15,6 +16,13 @@
     height: 80px;
     background-color: #FEE17A;
     display: flex;
+    font-family: 'NEXON Lv1 Gothic';
+    align-items: center;
+    justify-content: space-between;
+}
+.home{
+    margin-right: 20px;
+    color: rgba(0, 0, 0, 0.8);
 }
 
 .header h1{
@@ -26,11 +34,7 @@
     font-weight: 400;
     font-size: 45px;
     line-height: 46px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     letter-spacing: 0.1em;
-
     color: rgba(0, 0, 0, 0.8);
 }
 
@@ -58,7 +62,7 @@
 
 }
 
-input[type="text"] {
+.search-keyword {
     width: 200px;
     height: 30px;
     padding: 5px;

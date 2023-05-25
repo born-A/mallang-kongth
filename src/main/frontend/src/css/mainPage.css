@@ -1,0 +1,143 @@
+
+.before-mainpage{
+    display: grid;
+    justify-content: center;
+
+}
+
+.greeting h2{
+    font-family: "GeekbleMalang2";
+    font-weight: 200;
+    margin-top: 10px;
+    padding: 10px;
+    margin-bottom: 0;
+}
+.greeting{
+    width: 500px;
+    height: 180px;
+    border-radius: 10px;
+    background-color: #EBF6FF;
+    margin-top: 30px;
+    display: grid;
+    grid-row-gap: 20px;
+    font-family: "NEXON Lv1 Gothic";
+    text-align: center;
+}
+.registering{
+    width: 100px;
+    height: 30px;
+    margin-left: 75%;
+    border: none;
+    border-radius: 5px;
+    background-color: #D2ECFF;
+    color: #545454;
+    cursor: pointer;
+    font-family: 'NEXON Lv1 Gothic';
+}
+
+.mainpage-board{
+
+    width: 500px;
+    height: 180px;
+    border-radius: 10px;
+    background-color: #FFF5F1;
+    margin-top: 30px;
+
+}
+
+.board-header{
+    text-align: center;
+    box-sizing: border-box;
+    width: 100%;
+    height: 30px;
+    background: #FAD4C8;
+    border: 5px solid #FAD4C8;
+    border-radius: 5px;
+    font-family: "GeekbleMalang2";
+    font-weight: 200;
+}
+.board-list{
+    display: flex;
+    justify-content: center;
+    column-gap: 15px;
+    margin-top: 15px;
+
+}
+.board-image1{
+    width: 150px;
+    height: 120px;
+    background: #FAD4C8;
+    border-radius: 5px;
+}
+
+.go-board{
+    width: 150px;
+    height: 25px;
+    border: none;
+    border-radius: 5px;
+    background-color: #FAD4C8;
+    color: #545454;
+    cursor: pointer;
+    font-family: 'NEXON Lv1 Gothic';
+    margin-left: 68%;
+    margin-top: 5px;
+}
+
+.mainpage-purchase{
+    width: 500px;
+    height: 180px;
+    border-radius: 10px;
+    background-color: #FFF8E1;
+    margin-top: 20px;
+}
+.purchase-header{
+    text-align: center;
+    box-sizing: border-box;
+    width: 100%;
+    height: 30px;
+    background: #FFEFB6;
+    border: 5px solid #FFEFB6;
+    border-radius: 5px;
+    font-family: "GeekbleMalang2";
+    font-weight: 200;
+}
+
+.board-purchase{
+    display: flex;
+    justify-content: center;
+    column-gap: 30px;
+    margin-top: 15px;
+}
+.board-image2{
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    width: 200px;
+    height: 120px;
+    background: #FFEFB6;
+    border-radius: 5px;
+}
+
+.current-remaining-amount{
+    width: 160px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+    color: #545454;
+    cursor: pointer;
+    font-family: 'NEXON Lv1 Gothic';
+    margin-right:10px;
+}
+.go-apply{
+    width: 160px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+    color: #545454;
+    cursor: pointer;
+    font-family: 'NEXON Lv1 Gothic';
+    margin-right:10px;
+}
+

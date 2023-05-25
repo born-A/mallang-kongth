@@ -1,0 +1,112 @@
+.background {
+    background-color: rgb(228, 227, 227);
+}
+
+.box {
+    width: 35%;
+    height: 100%;
+    margin: 0 auto;
+    resize: none;
+    background-color: rgb(255, 255, 255);
+}
+
+.header {
+    width: 100%;
+    height: 80px;
+    background-color: #fee17a;
+    display: flex;
+}
+
+.header h1 {
+    position: relative;
+    margin-left: 20px;
+
+    font-family: "GeekbleMalang2";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 45px;
+    line-height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 0.1em;
+
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.boardName {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    padding: 10px;
+    font-family: "GeekbleMalang2";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    color: gray;
+}
+.missing {
+    color: #302f2f;
+    font-weight: 500;
+}
+
+.boardHead {
+    font-family: "NEXON Lv1 Gothic";
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    margin: 0 40px;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.boardWrite {
+    margin-top: 0;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.Title {
+    width: 400px;
+    height: 40px;
+    /* resize: none;  크기 조절 비활성화 */
+    padding: 10px; /* 내용과의 간격을 위한 padding */
+    font-family: "NEXON Lv1 Gothic";
+    font-size: 18px;
+    overflow-wrap: break-word;
+}
+
+.Content {
+    width: 400px;
+    height: 250px;
+    resize: none; /* 크기 조절 비활성화 */
+    padding: 10px;
+    font-family: "NEXON Lv1 Gothic";
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.imageBox {
+    display: flex;
+    align-items: center;
+    width: 400px;
+    height: 130px;
+    resize: none; /* 크기 조절 비활성화 */
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+}
+
+.small-box {
+    resize: none;
+    padding: 5px;
+}
+
+.linkback {
+    color: rgba(0, 0, 0, 0.8);
+}

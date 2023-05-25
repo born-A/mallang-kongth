@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import '../../css/boardList.css';
+import {Link} from 'react-router-dom';
 
 
 const posts = [
@@ -37,9 +38,9 @@ function BoardList() {
     const handleSearchChange = (event) => {
         setSearchKeyword(event.target.value);
     };
-    /*const filteredPosts = posts.filter((post) =>
+    const filteredPosts = posts.filter((post) =>
       post.title.includes(searchKeyword)
-    );*/
+    );
 
 
     return (
@@ -48,6 +49,7 @@ function BoardList() {
                 {/* 헤더부분 */}
                 <div className="header">
                     <h1>말랑콩떡</h1>
+                    <Link to ="/mainPage"><span className="home">home</span></Link>
                 </div>
 
                 {/* 게시판 선택 */}
@@ -61,13 +63,14 @@ function BoardList() {
                 <div className="search-input">
                     <input
                         type="text"
+                        className="search-keyword"
                         value={searchKeyword}
                         onChange={handleSearchChange}
                         placeholder="🔎검색어를 입력하세요."
                     />
                     <button>검색</button>
-                    <button>글 작성하기</button>
-                    {/*<Link to="/write">글쓰기</Link>로 바꾸기기*/}
+                    <Link to="/boardWrite"><button>글 작성하기</button></Link>
+
                 </div>
 
                 {/* 게시글 목록 */}
