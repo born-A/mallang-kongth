@@ -33,7 +33,7 @@ public class OrderController {
     public String order(@RequestParam("memberId") Long memberId,
                         @RequestParam("itemId") Long itemId, @RequestParam("count") int count) {
         orderService.order(memberId, itemId, count);
-        return "redirect:/order/orderList";
+        return "redirect:/order/list";
     }
 
     @GetMapping(value = "/order/list")
@@ -42,9 +42,9 @@ public class OrderController {
         model.addAttribute("orders", orders);
         return "order/orderList";
     }
-    @PostMapping(value = "/orders/{orderId}/cancel")
+    @PostMapping(value = "/order/{orderId}/cancel")
     public String cancelOrder(@PathVariable("orderId") Long orderId) {
         orderService.cancelOrder(orderId);
-        return "redirect:/orders";
+        return "redirect:/order/list";
     }
 }
