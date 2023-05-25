@@ -29,10 +29,12 @@ public class OrderController {
         model.addAttribute("items", items);
         return "order/orderForm";
     }
+
+    //회원 세션 받도록 수정
     @PostMapping(value = "/order/new")
-    public String order(@RequestParam("memberId") Long memberId,
+    public String order(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member member,
                         @RequestParam("itemId") Long itemId, @RequestParam("count") int count) {
-        orderService.order(memberId, itemId, count);
+        orderService.order(member.getId(), itemId, count);
         return "redirect:/order/list";
     }
 
