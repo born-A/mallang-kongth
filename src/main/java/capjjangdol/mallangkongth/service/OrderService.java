@@ -1,6 +1,7 @@
 package capjjangdol.mallangkongth.service;
 
 import capjjangdol.mallangkongth.domain.mypage.*;
+import capjjangdol.mallangkongth.repository.CategoryRepository;
 import capjjangdol.mallangkongth.repository.ItemRepository;
 import capjjangdol.mallangkongth.repository.MemberRepository;
 import capjjangdol.mallangkongth.repository.OrderRepository;
@@ -22,7 +23,6 @@ public class OrderService {
     public Long order(Long memberId, Long itemId, int count) {
         Member member = memberRepository.findById(memberId).get();
         Item item = itemRepository.findById(itemId).get();
-
         Delivery delivery = new Delivery();
         delivery.setAddress(member.getAddress());
         delivery.setStatus(DeliveryStatus.READY);
@@ -43,7 +43,5 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
-//    public List <Orders> findOrders(OrderSearch orderSearch) {
-//        return orderRepository.findAll(orderSearch);
-//    }
+
 }

@@ -1,9 +1,7 @@
 package capjjangdol.mallangkongth.Controller;
 
-import capjjangdol.mallangkongth.domain.mypage.Item;
-import capjjangdol.mallangkongth.domain.mypage.Member;
-import capjjangdol.mallangkongth.domain.mypage.OrderSearch;
-import capjjangdol.mallangkongth.domain.mypage.Orders;
+import capjjangdol.mallangkongth.domain.mypage.*;
+import capjjangdol.mallangkongth.service.CategoryService;
 import capjjangdol.mallangkongth.service.ItemService;
 import capjjangdol.mallangkongth.service.MemberService;
 import capjjangdol.mallangkongth.service.OrderService;
@@ -21,12 +19,16 @@ public class OrderController {
     private final MemberService memberService;
     private final ItemService itemService;
 
+    private final CategoryService categoryService;
+
     @GetMapping(value = "/order/new")
     public String createForm(Model model) {
         List<Member> members = memberService.findMembers();
         List<Item> items = itemService.findItems();
+        List<CategoryOfItem> categories = categoryService.findCategories();
         model.addAttribute("members", members);
         model.addAttribute("items", items);
+        model.addAttribute("categories", categories); //카테고리
         return "order/orderForm";
     }
 
