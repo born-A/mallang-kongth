@@ -9,5 +9,4 @@ import java.time.LocalDateTime;
 public class WalkingForm {
     private Long id;
     private String dateOfWalking;
-
 }
