@@ -3,6 +3,8 @@ package capjjangdol.mallangkongth.domain.mypage;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -26,9 +28,13 @@ public class Member{
     @Embedded
     private Address address;
 
+    @OneToMany(mappedBy = "member")
+    private List<Orders> orders = new ArrayList<>();
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private RoleType roleType;
+
 
     public void setEmail(String email){
         this.email = email;

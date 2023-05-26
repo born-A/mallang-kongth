@@ -3,11 +3,14 @@ package capjjangdol.mallangkongth.service;
 import capjjangdol.mallangkongth.config.SecurityUtil;
 import capjjangdol.mallangkongth.domain.mypage.Member;
 import capjjangdol.mallangkongth.domain.mypage.MemberResDto;
+import capjjangdol.mallangkongth.domain.mypage.Orders;
 import capjjangdol.mallangkongth.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -38,5 +41,8 @@ public class MemberService {
         }
         member.setPw(passwordEncoder.encode((newPw)));
         return MemberResDto.of(memberRepository.save(member));
+    }
+    public List<Member> findMembers() {
+        return memberRepository.findAll();
     }
 }
