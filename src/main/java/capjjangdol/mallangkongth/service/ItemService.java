@@ -2,6 +2,7 @@ package capjjangdol.mallangkongth.service;
 
 
 import capjjangdol.mallangkongth.domain.mypage.Item;
+import capjjangdol.mallangkongth.domain.mypage.ItemForm;
 import capjjangdol.mallangkongth.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,9 +27,10 @@ public class ItemService {
     }
 
     @Transactional
-    public void updateItem(Long id, String name, int price) {
+    public void updateItem(Long id, ItemForm itemForm) {
         Item item = itemRepository.findById(id).get();
-        item.setName(name);
-        item.setPrice(price);
+        item.setName(itemForm.getName());
+        item.setPrice(itemForm.getPrice());
+        item.setStockQuantity(itemForm.getStockQuantity());
     }
 }

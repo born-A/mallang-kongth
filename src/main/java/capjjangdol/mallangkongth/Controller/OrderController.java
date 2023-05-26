@@ -33,13 +33,19 @@ public class OrderController {
     }
 
     //회원 세션 받도록 수정
+//    @PostMapping(value = "/order/new")
+//    public String order(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member member,
+//                        @RequestParam("itemId") Long itemId, @RequestParam("count") int count) {
+//        orderService.order(member.getId(), itemId, count);
+//        return "redirect:/order/list";
+//    }
+
     @PostMapping(value = "/order/new")
-    public String order(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member member,
+        public String order(@RequestParam("memberId") Long memberId,
                         @RequestParam("itemId") Long itemId, @RequestParam("count") int count) {
-        orderService.order(member.getId(), itemId, count);
+        orderService.order(memberId, itemId, count);
         return "redirect:/order/list";
     }
-
     @GetMapping(value = "/order/list")
     public String orderList(Model model) {
         List<Orders> orders = orderService.findOrders();
