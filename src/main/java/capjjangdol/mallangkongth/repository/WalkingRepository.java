@@ -41,9 +41,18 @@ package capjjangdol.mallangkongth.repository;
 //}
 
 import capjjangdol.mallangkongth.domain.rearing.Walking;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 @Repository
 public interface WalkingRepository extends JpaRepository<Walking, Long> {
+//    Long countBy();
+//
+    List<Walking> findByDateOfWalking(String date);
+    Long countByDateOfWalking(String date);
 }

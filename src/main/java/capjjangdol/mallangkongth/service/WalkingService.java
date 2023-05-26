@@ -39,6 +39,9 @@ public class WalkingService {
     public List<Walking> findWalkings() {
         return walkingRepository.findAll();
     }
+
+    //날짜별 산책
+    public List<Walking> findWalkingsByDate(String date){ return walkingRepository.findByDateOfWalking(date);}
     //산책 기록 하나 조회
     public Walking findOne(Long walkingId) {
         return walkingRepository.findById(walkingId).get();
@@ -53,7 +56,9 @@ public class WalkingService {
 //        }
 //        return count;
 //    }
-
+    public Long takeACount(String date){
+        return walkingRepository.countByDateOfWalking(date);
+    }
     public Walking walkingView(Long id){
         return walkingRepository.findById(id).get();
     }
