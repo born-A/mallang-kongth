@@ -48,8 +48,14 @@ public class SecurityConfig{
                 .and()
                 .authorizeRequests()
                 .antMatchers("/pets/**","/auth/**","/hospitalNote/**","/health/**","/walking/**").permitAll() //auth/**:login page
+                .antMatchers("/member/mypage").hasRole("USER")
                 .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/auth/LoginForm")
+                .defaultSuccessUrl("/auth/LoginResult")
 
+                .permitAll()
                 .and()
                 .apply(new JwtSecurityConfig(tokenProvider));
 
