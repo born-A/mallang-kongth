@@ -1,6 +1,7 @@
 package capjjangdol.mallangkongth.domain.mypage;
 
 import lombok.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 
@@ -30,13 +31,17 @@ public class Member{
     @Column(nullable = false)
     private RoleType roleType;
 
-    public void setEmail(String email){
-        this.email = email;
-    }
-    public void setPw(String pw){
-        this.pw = pw;
-    }
+    public static Member createMember(JoinForm joinForm, PasswordEncoder passwordEncoder){
+        Member member = new Member();
+        member.setName(member.getName());
+        member.setEmail(member.getEmail());
+        member.setAddress(member.getAddress());
+        String pw = passwordEncoder.encode(joinForm.getPw());
+        member.setPw(member.getPw());
+        member.setRoleType(RoleType.USER);
+        return member;
 
+    }
 
 
 
