@@ -4,11 +4,11 @@ import capjjangdol.mallangkongth.domain.mypage.*;
 //import capjjangdol.mallangkongth.jwt.TokenDto;
 
 import capjjangdol.mallangkongth.service.AuthService;
+import com.mysql.cj.log.Log;
 import jnr.a64asm.Mem;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.mapping.Join;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -67,4 +67,11 @@ public class AuthController {
         return "auth/createLoginForm";
     }
 
+    @PostMapping("/login")
+    public String Login(@Valid LoginForm loginForm, BindingResult bindingResult,Model model){
+        if(bindingResult.hasErrors()){
+            return "auth/createLoginForm";
+        }
+        return null;
+    }
 }

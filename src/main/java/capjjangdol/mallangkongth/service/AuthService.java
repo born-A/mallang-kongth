@@ -19,6 +19,8 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 
+import static jdk.nashorn.internal.objects.NativeArray.map;
+
 @Slf4j
 @Service
 @Transactional
@@ -38,13 +40,17 @@ public class AuthService implements UserDetailsService {
         return memberRepository.save(member);
     }
 
-//    public TokenDto login(MemberReqDto reqDto) {
-//        UsernamePasswordAuthenticationToken authenticationToken = reqDto.toAuthentication();
-//
-//        Authentication authentication = managerBuilder.getObject().authenticate(authenticationToken);
-//
-//        return tokenProvider.generateTokenDto(authentication);
-//    }
+    public Member login(LoginForm loginForm) throws IllegalAccessException {
+       Member member = memberRepository.findByEmail(loginForm.getEmail());
+       if(member.equals(null)){
+        throw new IllegalAccessException("아이디가 맞지 않습니다.");
+       }
+       if(!loginForm.getPw().equals(member.getPw())){
+               throw new IllegalAccessException("비밀번호가 맞지 않습니다.");}
+       return member;
+       }
+
+
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
