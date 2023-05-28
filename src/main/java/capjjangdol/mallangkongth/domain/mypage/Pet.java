@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,21 +24,16 @@ public class Pet {
     @JoinColumn(name = "member_id")
     private Member member;
 
+    @Column(name = "birthday")
+    private String birthday;
+
+    private double weight;
+
+    private boolean Gender; // 성별 (true: 남성, false: 여성)
+
+    private String breed;
+
     @OneToMany(mappedBy = "pet", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<HospitalNote> hospitalNoteList = new ArrayList<>();
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Member getMember() {
-        return member;
-    }
-
-    public void setMember(Member member) {
-        this.member = member;
-    }
 }
