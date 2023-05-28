@@ -1,17 +1,13 @@
 package capjjangdol.mallangkongth.domain.mypage;
 
-import capjjangdol.mallangkongth.domain.mypage.Address;
 import lombok.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.stream.Collectors;
 
 @Entity
 @Getter
+@Setter
 @Builder
 @EqualsAndHashCode(of = "id")
 @RequiredArgsConstructor
@@ -22,12 +18,10 @@ public class Member{
     private Long id;
 
     @Column(nullable = false, unique = true)
-    private String email; //principal
-
-    @Column(nullable = false,unique = true) //credential
+    private String email;
+    @Column(nullable = false,unique = true)
     private String name;
-
-    @Column(nullable = false)
+    @Column
     private String pw;
 
     @Embedded
@@ -37,14 +31,17 @@ public class Member{
     @Column(nullable = false)
     private RoleType roleType;
 
-    public void setEmail(String email){
-        this.email = email;
-    }
-    public void setPw(String pw){
-        this.pw = pw;
+    public static Member createMember(JoinForm joinForm, PasswordEncoder passwordEncoder){
+        Member member = new Member();
+        member.setName(member.getName());
+        member.setEmail(member.getEmail());
+        member.setAddress(member.getAddress());
+        String pw = passwordEncoder.encode(joinForm.getPw());
+        member.setPw(member.getPw());
+        member.setRoleType(RoleType.USER);
+        return member;
+
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+
 }

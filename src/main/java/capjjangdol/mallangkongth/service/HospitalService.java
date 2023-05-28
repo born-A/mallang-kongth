@@ -22,22 +22,34 @@ public class HospitalService {
     private final HospitalRepository hospitalRepository;
 
     @Transactional
-    public Long saveHospitalNote(Long petId, HospitalNoteForm form) {
+    public Integer saveHospitalNote(Long petId, HospitalNoteForm form) {
         //엔티티 조회
         Pet pet = petRepository.findOne(petId);
         HospitalNote hospitalNote = HospitalNote.createHospitalNote(pet,form);
         hospitalRepository.save(hospitalNote);
         return hospitalNote.getId();
     }
+
+    //업데이트용
+    @Transactional
+    public void saveHospitalNote(HospitalNote note) {
+        hospitalRepository.save(note);
+    }
+
+
     public List<HospitalNote> findHospitalNotes() {
         return hospitalRepository.findAll();
     }
-    public HospitalNote findOne(Long hospitalNoteId) {
-        return hospitalRepository.findOne(hospitalNoteId);
+    public HospitalNote findOne(Integer hospitalNoteId) {
+        return hospitalRepository.findById(hospitalNoteId).get();
     }
 
-    public List<HospitalNote> deleteById(Long hospitalNoteId){
-        return hospitalRepository.deleteById(hospitalNoteId);
+    @Transactional
+    public void deleteById(Integer hospitalNoteId){
+        hospitalRepository.deleteById(hospitalNoteId);
     }
 
+    public HospitalNote hospitalNotesView(Integer id){
+        return hospitalRepository.findById(id).get();
+    }
 }

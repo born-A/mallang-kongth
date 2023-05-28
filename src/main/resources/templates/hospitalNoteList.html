@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class="container">
+  <div>
+    <table class="table table-striped">
+      <thead> <tr>
+        <th>펫이름</th> <th>병원명</th> <th>방문일자</th> <th>병원비</th> <th>메모</th> <th>url</th>
+      </tr>
+      </thead>
+      <tbody>
+
+      <tr th:each="hospitalNote : ${hospitalNotes}">
+        <a th:href="@{/hospitalNote/view(id=${hospitalNote.id})}">상세</a>
+        <td th:text="${hospitalNote.id}"></td>
+        <td th:text="${hospitalNote.hospitalName}"></td>
+        <td th:text="${hospitalNote.dateOfVisit}"></td>
+        <td th:text="${hospitalNote.bill}"></td>
+        <td th:text="${hospitalNote.memo}"></td>
+        <td th:text="${hospitalNote.imageUrl}"></td>
+        <td>
+<!--          <a th:href="@{'/hospitalNotes/edit/'+ ${hospitalNote.id}}" class="btn btn-primary" role="button">수정</a>-->
+<!--          <a th:href="@{/hospitalNotes/delete(id=${hospitalNote.id})}">삭제</a>-->
+        </td> </tr>
+      <div>
+
+
+
+      </div>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>

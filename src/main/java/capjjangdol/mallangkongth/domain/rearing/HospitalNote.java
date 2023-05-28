@@ -14,7 +14,7 @@ public class HospitalNote {
     @Id
     @GeneratedValue
     @Column(name = "hospital_id")
-    private Long id;
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "pet_id")

@@ -8,6 +8,6 @@ import java.time.LocalDateTime;
 @Getter @Setter
 public class WalkingForm {
     private Long id;
-    private LocalDateTime dateOfWalking;
+    private String dateOfWalking;
 
 }

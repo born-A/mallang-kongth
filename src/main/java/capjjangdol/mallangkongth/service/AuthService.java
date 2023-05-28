@@ -1,58 +1,70 @@
 package capjjangdol.mallangkongth.service;
 
 import capjjangdol.mallangkongth.domain.mypage.*;
-import capjjangdol.mallangkongth.jwt.TokenDto;
-import capjjangdol.mallangkongth.jwt.TokenProvider;
+//import capjjangdol.mallangkongth.jwt.TokenDto;
+//import capjjangdol.mallangkongth.jwt.TokenProvider;
 import capjjangdol.mallangkongth.repository.MemberRepository;
-import capjjangdol.mallangkongth.domain.mypage.Member;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
 
+import static jdk.nashorn.internal.objects.NativeArray.map;
+
 @Slf4j
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class AuthService {
-    //    private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+public class AuthService implements UserDetailsService {
+//    private final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     @Autowired
     private MemberRepository memberRepository;
-    private final AuthenticationManagerBuilder managerBuilder;
+//    private final AuthenticationManagerBuilder managerBuilder;
     private final PasswordEncoder passwordEncoder;
-    private final TokenProvider tokenProvider;
+//    private final TokenProvider tokenProvider;
 
-    public MemberResDto join(MemberReqDto reqDto) {
-        if (memberRepository.existsByEmail(reqDto.getEmail())) {
+    public Member join(Member member) {
+        if (memberRepository.existsByEmail(member.getEmail())) {
             throw new RuntimeException("이미 가입되어 있는 유저입니다");
         }
-        Member member = reqDto.toMember(passwordEncoder);
-        return MemberResDto.of(memberRepository.save(member));
+        return memberRepository.save(member);
     }
 
-    public TokenDto login(MemberReqDto reqDto) {
-        UsernamePasswordAuthenticationToken authenticationToken = reqDto.toAuthentication();
+    public Member login(LoginForm loginForm) throws IllegalAccessException {
+       Member member = memberRepository.findByEmail(loginForm.getEmail());
+       if(member.equals(null)){
+        throw new IllegalAccessException("아이디가 맞지 않습니다.");
+       }
+       if(!loginForm.getPw().equals(member.getPw())){
+               throw new IllegalAccessException("비밀번호가 맞지 않습니다.");}
+       return member;
+       }
 
-        Authentication authentication = managerBuilder.getObject().authenticate(authenticationToken);
 
-        return tokenProvider.generateTokenDto(authentication);
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Member member = memberRepository.findByEmail(email);
+
+        if (member == null) {
+            throw new UsernameNotFoundException(email);
+        }
+        return User.builder()
+                .username(member.getEmail())
+                .password(member.getPw())
+                .roles(member.getRoleType().toString())
+                .build();
     }
-
-    @Transactional
-//    @Override
-    public boolean checkEmailDuplication(String email) {
-        boolean emailDuplicate = memberRepository.existsByEmail(email);
-        return emailDuplicate;
-    }
-
-
     public List<Member> findMembers() {
         return memberRepository.findAll();
     }

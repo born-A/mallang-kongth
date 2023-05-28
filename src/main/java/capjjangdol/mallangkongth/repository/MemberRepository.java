@@ -13,7 +13,7 @@ import java.util.Optional;
 public interface MemberRepository extends JpaRepository<Member, Long> {
 //    private final EntityManager em;
 
-    Optional<Member> findByEmail(String email);
+    Member findByEmail(String email);
 
     public boolean existsByEmail(String email);
 
