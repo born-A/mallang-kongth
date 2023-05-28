@@ -31,7 +31,8 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
+	//파일 업로드 / 다운로드 로직 구현 시 편리한 메소드 사용 가능
+	implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
 
 	testImplementation("org.junit.vintage:junit-vintage-engine") {
 		exclude group: "org.hamcrest", module: "hamcrest-core" }

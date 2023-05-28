@@ -7,9 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @Slf4j
 public class HomeController {
-    @RequestMapping("/")
+//    @RequestMapping("/")
+//    public String home(){
+//        log.info("home controller");
+//        return "home";
+//    }
+        @RequestMapping("/")
     public String home(){
         log.info("home controller");
-        return "home";
+        return "index";
     }
 }

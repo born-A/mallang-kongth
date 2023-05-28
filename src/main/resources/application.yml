@@ -4,7 +4,7 @@ spring:
     url: jdbc:mysql://localhost:3306/mallangkongtteok
     password: '0331'
   thymeleaf:
-    prefix=classpath:/templates:
+#    prefix=classpath:/templates:
     enabled: true
     cache: false
   jpa:
@@ -25,12 +25,16 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
-      location: /Users/bona/mcUpload/
+      location: /Users/bona/mcUpload
+      enabled: true
+      file-size-threshold: 2KB
   output:
     ansi:
       enabled: DETECT
 server:
   port: '8080'
+file:
+  dir: /Users/bona/bonaUpload
 #logging:
 #  pattern:
 #    console: "[%d{HH:mm:ss.SSS}][%-5level][%logger.%method:line%line] - %msg%n"
