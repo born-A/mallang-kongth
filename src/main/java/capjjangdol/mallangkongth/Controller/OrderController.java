@@ -1,9 +1,10 @@
 package capjjangdol.mallangkongth.Controller;
 
 import capjjangdol.mallangkongth.domain.mypage.*;
+import capjjangdol.mallangkongth.service.AuthService;
 import capjjangdol.mallangkongth.service.CategoryService;
 import capjjangdol.mallangkongth.service.ItemService;
-import capjjangdol.mallangkongth.service.MemberService;
+//import capjjangdol.mallangkongth.service.MemberService;
 import capjjangdol.mallangkongth.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -16,14 +17,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class OrderController {
     private final OrderService orderService;
-    private final MemberService memberService;
+    private final AuthService authService;
     private final ItemService itemService;
 
     private final CategoryService categoryService;
 
     @GetMapping(value = "/order/new")
     public String createForm(Model model) {
-        List<Member> members = memberService.findMembers();
+        List<Member> members = authService.findMembers();
         List<Item> items = itemService.findItems();
         List<CategoryOfItem> categories = categoryService.findCategories();
         model.addAttribute("members", members);
