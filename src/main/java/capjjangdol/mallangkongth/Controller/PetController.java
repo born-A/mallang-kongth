@@ -38,7 +38,7 @@ public class PetController {
         breeds.add("치와와");
         breeds.add("요크셔테리어");
         model.addAttribute("breeds", breeds);
-        return "pets/createPetForm";
+        return "template/petAddForm";
     }
 
     @PostMapping(value = "/pets/new")

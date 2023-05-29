@@ -1,0 +1,59 @@
+// Bootstrap variables
+@import "functions";
+@import "variables";
+@import "variables-dark";
+
+// Theme variables
+@import "variables";
+@import "variables-dark";
+
+// User variables
+@import "user-variables";
+
+// Bootstrap core
+@import "bootstrap";
+
+// Extended bootstrap utilities
+@import "utilities";
+@import "api";
+
+// Extended bootstrap components
+@import "accordion";
+@import "breadcrumb";
+@import "buttons";
+@import "badge";
+@import "card";
+@import "dropdowns";
+@import "list-group";
+@import "nav";
+@import "navbar";
+@import "pagination";
+@import "offcanvas";
+@import "progress";
+@import "reboot";
+@import "tables";
+@import "type";
+@import "form-check";
+@import "form-control";
+
+// Theme components 
+@import "general";
+@import "avatar";
+@import "form-guest";
+@import "navbar-mobile";
+@import "sidebar-admin";
+@import "utilities";
+@import "choices";
+@import "tiny-slider";
+@import "stepper";
+@import "quill";
+@import "splide-slider";
+@import "nouislider";
+@import "flatpickr";
+@import "dropzone";
+
+// Theme dark
+@import "dark-mode";
+
+// In this scss you can write your scss/css
+@import "user";
