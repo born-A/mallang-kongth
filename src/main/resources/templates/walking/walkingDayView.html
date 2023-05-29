@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th=http://www.thymeleaf.org>
+<head>
+  <meta charset="UTF-8">
+  <title>산책횟수</title>
+</head>
+<body>
+
+<h1 th:text="${walkingsOfDay}">산책한 날짜</h1>
+<h1 th:text="${walkingCount}">산책횟수</h1>
+<tr th:each="walking : ${walkingsOfDay}">
+  <td th:text="${walking.getId()}"></td>
+  <td th:text="${walking.getPet().getName()}"></td>
+  <td th:text="${walking.dateOfWalking}"></td>
+  <td>
+  </td> </tr>
+</body>
+</html>

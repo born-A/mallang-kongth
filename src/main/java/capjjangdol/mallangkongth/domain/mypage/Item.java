@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Getter @Setter
-public class Item {
+public abstract class Item {
     @Id
     @GeneratedValue
     @Column(name = "item_id")
@@ -20,10 +20,28 @@ public class Item {
     private List<OrderItem> orderItems = new ArrayList<>();
 
     private String name;
-    private String category;
-    private Integer price;
-    private Integer stock; //???
-    private String information; //????
-    private String company; //???
+
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
+    private List<CategoryItem> categoryItems = new ArrayList<>();
+
+//    private String information; //????
+//    private String company; //???
+
+    private int price;
+    private int stockQuantity;
+//    @ManyToMany(mappedBy = "items")
+//    private List<Category> categories = new ArrayList<Category>();
+
+    //==비즈니스 로직==//
+    public void addStock(int quantity) {
+        this.stockQuantity += quantity;
+    }
+    public void removeStock(int quantity) {
+        int restStock = this.stockQuantity - quantity;
+        if (restStock > 0) {
+            this.stockQuantity = restStock;
+        }
+
+    }
 
 }

@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: header"/>
+<body>
+<div class="container">
+  <div th:replace="fragments/bodyHeader :: bodyHeader"/>
+  <div>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>회원명</th> <th>대표상품 이름</th> <th>대표상품 주문가격</th>
+        <th>대표상품 주문수량</th> <th>상태</th> <th>일시</th> <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <th:block th:each="order : ${orders}">
+        <tr th:each="orderItem : ${order.orderItems}">
+          <td th:text="${order.id}"></td>
+          <td th:text="${order.member.name}"></td>
+          <td th:text="${orderItem.item.name}"></td>
+          <td th:text="${orderItem.orderPrice}"></td>
+          <td th:text="${orderItem.count}"></td>
+          <td th:text="${order.status}"></td>
+          <td th:text="${order.orderDate}"></td>
+          <td>
+            <a th:if="${order.status.name() == 'ORDER'}" href="#"
+               th:href="'javascript:cancel('+${order.id}+')'"
+               class="btn btn-outline-danger btn-sm">CANCEL</a>
+          </td>
+        </tr>
+      </th:block>
+      </tbody>
+    </table>
+  </div>
+  <div th:replace="fragments/footer :: footer"/>
+</div> <!-- /container -->
+</body>
+<script type="text/javascript" th:inline="javascript">
+  function cancel(id) {
+    const form = document.createElement("form");
+    form.setAttribute("method", "post");
+    form.setAttribute("action", "/order/" + id + "/cancel");
+    document.body.appendChild(form);
+    form.submit();
+  }
+</script>
+</html>

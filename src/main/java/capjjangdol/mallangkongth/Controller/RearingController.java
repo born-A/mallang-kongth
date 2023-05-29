@@ -159,6 +159,15 @@ public class RearingController {
         model.addAttribute("walkings", walkings);
         return "walking/walkingList";
     }
+    /**
+     * 산책 기록 상세 - 날짜별 횟수
+     */
+    @GetMapping("/walking/day/{id}")
+    public String walkingCountView(@PathVariable("id") String id, Model model){
+        model.addAttribute("walkingsOfDay", walkingService.findWalkingsByDate(id));
+        model.addAttribute("walkingCount", walkingService.takeACount(id));
+        return "walking/walkingDayView";
+    }
 
     /**
      * 산책 기록 상세

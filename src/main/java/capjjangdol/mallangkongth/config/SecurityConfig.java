@@ -1,8 +1,8 @@
 package capjjangdol.mallangkongth.config;
-//
-//import capjjangdol.mallangkongth.jwt.JwtAccessDeniedHandler;
-//import capjjangdol.mallangkongth.jwt.JwtAuthenticationEntryPoint;
-//import capjjangdol.mallangkongth.jwt.TokenProvider;
+
+import capjjangdol.mallangkongth.jwt.JwtAccessDeniedHandler;
+import capjjangdol.mallangkongth.jwt.JwtAuthenticationEntryPoint;
+import capjjangdol.mallangkongth.jwt.TokenProvider;
 import capjjangdol.mallangkongth.service.AuthService;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +17,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
@@ -25,37 +24,34 @@ import org.springframework.stereotype.Component;
 @EnableWebSecurity
 @Component
 public class SecurityConfig{
-//    private final TokenProvider tokenProvider;
-//    private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
-//    private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
+    private final TokenProvider tokenProvider;
+    private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+    private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .httpBasic().disable()
                 .csrf().disable() // token localstorage에 저장 위해
-                .authorizeRequests()
-                .antMatchers("/pets/**","/auth/**","/hospitalNote/**","/health/**","/walking/**").permitAll() //auth/**:login page
-                .antMatchers("/member/mypage").hasRole("USER")
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/auth/LoginForm")
-                .defaultSuccessUrl("/")
-                .usernameParameter("email")
-                .failureUrl("/auth/login/error")
-                .and()
-                .logout()
-                .logoutRequestMatcher(new AntPathRequestMatcher("/auth/logout"))
-                .logoutSuccessUrl("/")
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
-                .permitAll();
-//                .and()
-//                .apply(new JwtSecurityConfig(tokenProvider));
+                .and()
+                .exceptionHandling()
+                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
+                .accessDeniedHandler(jwtAccessDeniedHandler)
+
+                .and()
+                .authorizeRequests()
+                .antMatchers("/images/**","/attach/**","/view/**","/upload/**","/index","/","/upload/**","/uploadFile/**","/order/**","/item/**","/pets/**","/auth/**","/hospitalNote/**","/health/**","/walking/**").permitAll() //auth/**:login page
+                .anyRequest().authenticated()
+
+                .and()
+                .apply(new JwtSecurityConfig(tokenProvider));
 
         return http.build();
     }
