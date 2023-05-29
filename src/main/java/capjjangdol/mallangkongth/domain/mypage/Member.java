@@ -4,6 +4,7 @@ import lombok.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Getter
@@ -44,4 +45,7 @@ public class Member{
     }
 
 
+    public Collection<Orders> getOrders() {
+            return null;
+    }
 }

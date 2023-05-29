@@ -1,8 +1,6 @@
 package capjjangdol.mallangkongth.config;
 
-import capjjangdol.mallangkongth.jwt.JwtAccessDeniedHandler;
-import capjjangdol.mallangkongth.jwt.JwtAuthenticationEntryPoint;
-import capjjangdol.mallangkongth.jwt.TokenProvider;
+
 import capjjangdol.mallangkongth.service.AuthService;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -24,9 +22,7 @@ import org.springframework.stereotype.Component;
 @EnableWebSecurity
 @Component
 public class SecurityConfig{
-    private final TokenProvider tokenProvider;
-    private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
-    private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -41,17 +37,9 @@ public class SecurityConfig{
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
                 .and()
-                .exceptionHandling()
-                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
-                .accessDeniedHandler(jwtAccessDeniedHandler)
-
-                .and()
                 .authorizeRequests()
                 .antMatchers("/images/**","/attach/**","/view/**","/upload/**","/index","/","/upload/**","/uploadFile/**","/order/**","/item/**","/pets/**","/auth/**","/hospitalNote/**","/health/**","/walking/**").permitAll() //auth/**:login page
-                .anyRequest().authenticated()
-
-                .and()
-                .apply(new JwtSecurityConfig(tokenProvider));
+                .anyRequest().authenticated();
 
         return http.build();
     }

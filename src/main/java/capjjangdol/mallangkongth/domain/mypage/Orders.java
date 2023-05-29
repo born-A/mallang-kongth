@@ -32,7 +32,8 @@ public class Orders {
     private Delivery delivery;
 
     private LocalDateTime orderDate;
-    private OrderStatus status;
+    @Enumerated(EnumType.STRING)
+    private OrderStatus orderStatus;
 
 
     public void setMember(Member member) {
@@ -54,7 +55,7 @@ public class Orders {
         for (OrderItem orderItem : orderItems) {
             order.addOrderItem(orderItem);
         }
-        order.setStatus(OrderStatus.ORDER);
+        order.setOrderStatus(OrderStatus.ORDER);
         order.setOrderDate(LocalDateTime.now());
         return order;
     }
@@ -62,7 +63,7 @@ public class Orders {
         if (delivery.getStatus() == DeliveryStatus.COMP) {
             throw new IllegalStateException("배송완료 취소 불가!");
         }
-        this.setStatus(OrderStatus.CANCEL);
+        this.setOrderStatus(OrderStatus.CANCEL);
         for (OrderItem orderItem : orderItems) {
             orderItem.cancel();
         }
@@ -74,4 +75,5 @@ public class Orders {
         }
         return totalPrice;
     }
+
 }
