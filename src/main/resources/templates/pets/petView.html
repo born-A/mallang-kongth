@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th=http://www.thymeleaf.org>
+<head>
+    <meta charset="UTF-8">
+    <title>게시글상세페이지</title>
+</head>
+<body>
+
+<h1 th:text="${pet.id}">id</h1>
+
+<!--id값은 상세페이지마다 다르다-->
+<a th:href="@{/pets/modify/{id}(id = ${pet.id})}">수정</a>
+<a th:href="@{/pets/delete(id=${pet.id})}">삭제</a>
+
+</body>
+</html>

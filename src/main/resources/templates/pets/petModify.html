@@ -1,0 +1,57 @@
+<!--수정3-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th=http://www.thymeleaf.org>
+<head>
+  <meta charset="UTF-8">
+  <title>펫 수정</title>
+</head>
+
+<style>
+  .layout{
+    width : 500px;
+    margin : 0 auto;
+    margin-top: 40px;
+  } /*layout 하위에 있는 input태그 스타일 설정*/
+  .layout input{
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .layout textarea{
+    width: 100%;
+    margin-top: 10px;
+    min-height: 300px;
+  }
+</style>
+
+<body>
+<div class="layout">
+  <form th:action="@{/pets/update/{id}(id=${pet.id})}" method="post">
+    <div class="form-group">
+      <label th:for="name">이름</label>
+      <input type="text" th:field="*{pet.name}" class="form-control" placeholder="이름을 입력하세요"
+             th:class="${#fields.hasErrors('pet.name')}? 'form-control fieldError' : 'form-control'">
+      <p th:if="${#fields.hasErrors('pet.name')}"
+         th:errors="*{pet.name}">Incorrect name</p>
+      <label th:for="birthday">생년월일</label>
+      <input type="datetime-local" th:field="*{pet.birthday}" class="form-control"
+             placeholder="생년월일을 입력하세요"> </div>
+    <label th:for="weight">몸무게</label>
+    <input type="text" th:field="*{pet.weight}" class="form-control"
+           placeholder="몸무게를 입력하세요">
+    <div>&lt;성별&gt;</div>
+    <div>
+      <label th:for="isMale">남성</label>
+      <input type="radio" th:field="*{pet.gender}" value="true"/>
+      <label th:for="isMale">여성</label>
+      <input type="radio" th:field="*{pet.gender}" value="false"/>
+    </div>
+    <div>&lt;견종&gt;</div>
+    <select th:field="*{pet.breed}" style="width: 150px;">
+      <option value="">견종을 선택하세요</option>
+      <option th:each="breed : ${breeds}" th:value="${breed}" th:text="${breed}"/>
+    </select>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+</body>
+</html>

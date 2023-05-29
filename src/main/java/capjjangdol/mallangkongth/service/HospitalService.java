@@ -24,7 +24,7 @@ public class HospitalService {
     @Transactional
     public Integer saveHospitalNote(Long petId, HospitalNoteForm form) {
         //엔티티 조회
-        Pet pet = petRepository.findOne(petId);
+        Pet pet = petRepository.findById(petId).get();
         HospitalNote hospitalNote = HospitalNote.createHospitalNote(pet,form);
         hospitalRepository.save(hospitalNote);
         return hospitalNote.getId();

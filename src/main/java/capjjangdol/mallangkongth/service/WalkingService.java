@@ -24,7 +24,7 @@ public class WalkingService {
     @Transactional
     public Long saveWalking(Long petId, WalkingForm form) {
         //엔티티 조회
-        Pet pet = petRepository.findOne(petId);
+        Pet pet = petRepository.findById(petId).get();
         Walking walking = Walking.createWalking(pet,form);
         walkingRepository.save(walking);
         return walking.getId();

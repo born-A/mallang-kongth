@@ -4,7 +4,7 @@ spring:
     url: jdbc:mysql://localhost:3306/mallangkongtteok
     password: '0331'
   thymeleaf:
-#    prefix=classpath:/templates:
+    prefix=classpath:/templates:
     enabled: true
     cache: false
   jpa:
