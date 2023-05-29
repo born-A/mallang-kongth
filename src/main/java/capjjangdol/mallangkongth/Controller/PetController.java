@@ -1,6 +1,5 @@
 package capjjangdol.mallangkongth.Controller;
 
-import capjjangdol.mallangkongth.domain.mypage.Member;
 import capjjangdol.mallangkongth.domain.mypage.Pet;
 import capjjangdol.mallangkongth.domain.mypage.PetForm;
 import capjjangdol.mallangkongth.service.PetService;
@@ -63,7 +62,7 @@ public class PetController {
     public String list(Model model) {
         List<Pet> pets = petService.findPets();
         model.addAttribute("pets", pets);
-        return "pets/petList";
+        return "pets/pet-listings";
     }
 
     /**

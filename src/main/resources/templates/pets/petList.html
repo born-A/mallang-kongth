@@ -2,27 +2,27 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
 <div class="container">
-  <div>
-    <table class="table table-striped">
-      <thead>
-      <tr>
-        <th>#</th>
-        <th>이름</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr th:each="pet : ${pets}">
-        <td th:text="${pet.name}"></td>
-        <td th:if="${pet.gender == true}" th:text="'성별 : 수컷'" />
-        <td th:unless="${pet.gender == true}" th:text="'성별 : 암컷'" />
-        <td th:text="'생년월일: ' + ${pet.birthday}"/>
-        <td th:text="'몸무게: ' + ${pet.weight}"/>
-        <td th:text="'견종 : ' + ${pet.breed}" />
-      </tr>
+    <div>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>이름</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="pet : ${pets}">
+                <td th:text="${pet.name}"></td>
+                <td th:if="${pet.gender == true}" th:text="'성별 : 수컷'" />
+                <td th:unless="${pet.gender == true}" th:text="'성별 : 암컷'" />
+                <td th:text="'생년월일: ' + ${pet.birthday}"/>
+                <td th:text="'몸무게: ' + ${pet.weight}"/>
+                <td th:text="'견종 : ' + ${pet.breed}" />
+            </tr>
 
-      </tbody>
-    </table>
-  </div>
+            </tbody>
+        </table>
+    </div>
 </div>
 </body>
 </html>

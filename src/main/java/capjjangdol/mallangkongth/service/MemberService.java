@@ -1,14 +1,24 @@
 //package capjjangdol.mallangkongth.service;
 //
 //import capjjangdol.mallangkongth.config.SecurityUtil;
-//import capjjangdol.mallangkongth.domain.mypage.Member;
 //import capjjangdol.mallangkongth.domain.mypage.MemberResDto;
+//import capjjangdol.mallangkongth.jwt.TokenDto;
+//import capjjangdol.mallangkongth.jwt.TokenProvider;
+//import capjjangdol.mallangkongth.domain.mypage.Member;
 //import capjjangdol.mallangkongth.repository.MemberRepository;
 //import lombok.RequiredArgsConstructor;
+//import lombok.extern.slf4j.Slf4j;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+//import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+//import org.springframework.security.core.Authentication;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 //import org.springframework.stereotype.Service;
 //import org.springframework.transaction.annotation.Transactional;
 //
+//import java.util.List;
+//@Slf4j
 //@Service
 //@RequiredArgsConstructor
 //@Transactional(readOnly = true)

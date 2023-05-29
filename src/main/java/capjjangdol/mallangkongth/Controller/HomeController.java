@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 public class HomeController {
 
     private SessionManager sessionManager;
-    @GetMapping("/")
+    /*@GetMapping("/")
     public String home(HttpServletRequest httpServletRequest, Model model){
         log.info("home controller");
         Member member = (Member) sessionManager.getSession(httpServletRequest);
@@ -23,11 +23,12 @@ public class HomeController {
         return "home";}
         model.addAttribute("member",member);
         return "loginHome";
-    }
+    }*/
 
-//        @RequestMapping("/")
-//    public String home(){
-//        log.info("home controller");
-//        return "index";
-//    }
+
+        @RequestMapping("/")
+    public String home(){
+        log.info("home controller");
+        return "home";
+    }
 }

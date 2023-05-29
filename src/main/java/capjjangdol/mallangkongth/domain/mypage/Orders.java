@@ -1,5 +1,6 @@
 package capjjangdol.mallangkongth.domain.mypage;
 
+import capjjangdol.mallangkongth.domain.mypage.Member;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,11 +34,11 @@ public class Orders {
     private LocalDateTime orderDate;
     private OrderStatus status;
 
-
-    public void setMember(Member member) {
-        this.member = member;
-        member.getOrders().add(this);
-    }
+//rb
+//    public void setMember(Member member) {
+//        this.member = member;
+//        member.getOrders().add(this);
+//    }
     public void addOrderItem(OrderItem orderItem) {
         orderItems.add(orderItem);
         orderItem.setOrder(this);
