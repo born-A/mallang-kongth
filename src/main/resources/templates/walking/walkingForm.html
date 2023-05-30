@@ -11,8 +11,8 @@
                                                  th:text="${pet.name}" />
       </select>
       <label th:for="date">산책 날짜</label>
-      <input type="datetime-local" th:field="*{dateOfWalking}" class="form-control"
-             placeholder="메모를 입력하세요"> </div>
+      <input type="date"  th:field="*{dateOfWalking}" class="form-control" placeholder="산책날짜를 입력하세요">
+    </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
   <br/>

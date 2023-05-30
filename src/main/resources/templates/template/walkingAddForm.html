@@ -502,76 +502,45 @@
                         <!-- Main content START -->
                         <div class="col-12">
 <!--                            <form onsubmit="return false">-->
-                                <form th:action="@{/pets/new}" th:object="${petForm}" method="post">
+                                <form th:action="@{/walking/new}" th:object="${form}" method="post">
                                 <!-- Step 1 content START -->
 <!--                                <div id="step-1" role="tabpanel" class="content fade" aria-labelledby="steppertrigger1">-->
                                     <div class="vstack gap-4">
                                         <!-- Title -->
-                                        <h4 class="mb-0">반려동물 등록</h4>
+                                        <h4 class="mb-0">산책 기록 등록</h4>
 
                                         <!-- Listing category START -->
                                         <div class="card shadow">
                                             <!-- Card header -->
                                             <div class="card-header border-bottom">
                                                 <!-- Title -->
-                                                <h5 class="mb-0">우리 아이 정보를 등록하세요 :)</h5>
+                                                <h5 class="mb-0">우리 아이 산책 기록을 등록하세요 :)</h5>
                                             </div>
 
                                             <!-- Card body START -->
                                             <div class="card-body">
                                                 <div class="row g-4">
 
-
                                                     <!-- Listing Name -->
-                                                    <div class="col-12">
-                                                        <label class="form-label">이름</label>
-                                                        <input class="form-control" type="text" th:field="*{name}" placeholder="Enter place name">
-                                                        <small>A catchy name usually includes: House name - Room name - A tourist destination</small>
-                                                    </div>
-
-                                                    <!-- listing type -->
-                                                    <div class="col-12">
-                                                        <label class="form-label">성별</label>
-                                                        <div class="d-sm-flex">
-                                                            <!-- Radio -->
-                                                            <div class="form-check radio-bg-light me-4">
-                                                                <input class="form-check-input" type="radio" th:field="*{gender}" value="true" name="flexRadioDefault" id="flexRadioDefault1" checked>
-                                                                <label class="form-check-label" for="flexRadioDefault1" th:for="isMale">
-                                                                    남성
-                                                                </label>
-                                                            </div>
-                                                            <!-- Radio -->
-                                                            <div class="form-check radio-bg-light me-4">
-                                                                <input th:field="*{gender}" value="false" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                                                                <label th:for="isMale" class="form-check-label" for="flexRadioDefault2">
-                                                                    여성
-                                                                </label>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-12">
-                                                        <label th:for="birthday" class="form-label">생년월일</label>
-                                                        <input type="date" th:field="*{birthday}" class="form-control"   placeholder="생년월일을 입력하세요">
-                                                        <small>A catchy name usually includes: House name - Room name - A tourist destination</small>
-                                                    </div>
-
-                                                    <div class="col-12">
-                                                        <label th:for="weight" class="form-label">몸무게</label>
-                                                        <input type="text" th:field="*{weight}" class="form-control"  placeholder="몸무게를 입력하세요">
-                                                        <small>A catchy name usually includes: House name - Room name - A tourist destination</small>
-                                                    </div>
-
                                                     <!-- Choose type -->
                                                     <div class="col-12">
-                                                        <label class="form-label">견종</label>
-                                                        <select th:field="*{breed}" class="form-select js-choice">
-                                                            <option value="">견종을 선택하세요</option>
-                                                            <option th:each="breed : ${breeds}" th:value="${breed}" th:text="${breed}"/>
+                                                        <label class="form-label">반려동물</label>
+                                                        <select  name="petId" id="pet" class="form-select js-choice">
+                                                            <option value="">반려동물 선택</option>
+                                                            <option th:each="pet : ${pets}"
+                                                                    th:value="${pet.id}"
+                                                                    th:text="${pet.name}" />
                                                         </select>
-                                                        <small>Hotel: Professional hospitality businesses that usually have a unique style or theme defining their brand and decor</small>
                                                     </div>
+
+
+
+                                                    <div class="col-12">
+                                                        <label th:for="dateOfWalking" class="form-label">산책 날짜</label>
+                                                        <input type="date" th:field="*{dateOfWalking}" class="form-control"   placeholder="산책날짜를 입력하세요">
+                                                    </div>
+
+
 
 <!--                                                    &lt;!&ndash; Short description &ndash;&gt;-->
 <!--                                                    <div class="col-12">-->

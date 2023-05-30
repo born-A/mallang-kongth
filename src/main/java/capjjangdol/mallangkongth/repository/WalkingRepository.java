@@ -54,5 +54,7 @@ public interface WalkingRepository extends JpaRepository<Walking, Long> {
 //    Long countBy();
 //
     List<Walking> findByDateOfWalking(String date);
+
+
     Long countByDateOfWalking(String date);
 }

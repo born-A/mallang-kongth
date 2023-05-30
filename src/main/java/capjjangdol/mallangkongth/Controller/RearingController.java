@@ -139,7 +139,7 @@ public class RearingController {
         List<Pet> pets = petService.findPets();
         model.addAttribute("pets", pets);
         model.addAttribute("form",new WalkingForm());
-        return "walking/walkingForm";
+        return "template/walkingAddForm";
     }
     /**
      * 산책 기록 등록 - post
@@ -157,7 +157,7 @@ public class RearingController {
     public String walkingList(Model model) {
         List<Walking> walkings = walkingService.findWalkings();
         model.addAttribute("walkings", walkings);
-        return "walking/walkingList";
+        return "template/walking-listing";
     }
     /**
      * 산책 기록 상세 - 날짜별 횟수
@@ -165,8 +165,9 @@ public class RearingController {
     @GetMapping("/walking/day/{id}")
     public String walkingCountView(@PathVariable("id") String id, Model model){
         model.addAttribute("walkingsOfDay", walkingService.findWalkingsByDate(id));
+        model.addAttribute("walkingRealDay", walkingService.findWalkingsByDate(id).get(0).getDateOfWalking());
         model.addAttribute("walkingCount", walkingService.takeACount(id));
-        return "walking/walkingDayView";
+        return "template/walking-dayView";
     }
 
     /**

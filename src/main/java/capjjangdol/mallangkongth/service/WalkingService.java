@@ -47,6 +47,7 @@ public class WalkingService {
         return walkingRepository.findById(walkingId).get();
     }
 
+
     //날짜별 산책 횟수 카운트
 //    public int takeACount(LocalDateTime dateTime){
 //        int count = 0;
