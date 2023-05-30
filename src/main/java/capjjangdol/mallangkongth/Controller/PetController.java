@@ -1,6 +1,5 @@
 package capjjangdol.mallangkongth.Controller;
 
-import capjjangdol.mallangkongth.domain.mypage.Member;
 import capjjangdol.mallangkongth.domain.mypage.Pet;
 import capjjangdol.mallangkongth.domain.mypage.PetForm;
 import capjjangdol.mallangkongth.service.PetService;

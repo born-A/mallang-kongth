@@ -15,12 +15,9 @@ public class BoardComment {
     @Column(name = "board_comment_id")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "board_id")
-    private Board board;
 
-    @ManyToOne
-    @JoinColumn(name = "comment_id")
-    private Comment comment;
+//    @ManyToOne
+//    @JoinColumn(name = "comment_id")
+//    private Comment comment;
 
 }

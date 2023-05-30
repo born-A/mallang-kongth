@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.Optional;
-import java.util.OptionalInt;
 
 @Repository
 public interface MemberRepository extends JpaRepository<Member, Long> {

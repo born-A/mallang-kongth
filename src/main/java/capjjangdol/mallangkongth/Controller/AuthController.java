@@ -1,5 +1,6 @@
 package capjjangdol.mallangkongth.Controller;
 
+import capjjangdol.mallangkongth.config.SessionManager;
 import capjjangdol.mallangkongth.domain.mypage.*;
 //import capjjangdol.mallangkongth.jwt.TokenDto;
 
@@ -13,8 +14,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.HttpMediaTypeException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 @Slf4j
@@ -25,6 +29,8 @@ public class AuthController {
     private AuthService authService;
     @Autowired
     private  PasswordEncoder passwordEncoder;
+    @Autowired
+    private SessionManager sessionManager;
     @GetMapping("/join")
     public String CreateJoinForm(Model model){
         model.addAttribute("joinForm", new JoinForm());
@@ -68,10 +74,26 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String Login(@Valid LoginForm loginForm, BindingResult bindingResult,Model model){
+    public String Login(@Valid LoginForm loginForm,BindingResult bindingResult, Model model, HttpServletResponse httpServletResponse){
         if(bindingResult.hasErrors()){
             return "auth/createLoginForm";
         }
-        return null;
+        Member member = null;
+        try {
+            member = authService.login(loginForm.getEmail(), loginForm.getPw());
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+        if(member == null){
+            bindingResult.reject("loginFail","아이디 또는 패스워드가 맞지 않습니다.");
+            return "auth/createLoginForm";
+        }
+        sessionManager.createSession(member,httpServletResponse);
+        return "redirect:/";
+    }
+    @PostMapping("/logout")
+    public String Logout(HttpServletRequest httpServletRequest){
+        sessionManager.expire(httpServletRequest);
+        return "redirect:/";
     }
 }
