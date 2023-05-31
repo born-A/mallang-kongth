@@ -2,6 +2,7 @@ package capjjangdol.mallangkongth.domain.mypage;
 
 import lombok.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import java.util.Collection;

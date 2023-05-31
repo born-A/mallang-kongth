@@ -1,12 +1,20 @@
 spring:
+  mvc:
+    throw-exception-if-no-handler-found: true
+  web:
+    resources:
+      add-mappings: true
   datasource:
     username: root
     url: jdbc:mysql://localhost:3306/mallangkongtteok
     password: '0331'
-  thymeleaf:
-    prefix=classpath:/templates:
-    enabled: true
-    cache: false
+#  thymeleaf:
+#    prefix=classpath: templates/
+#    suffix: .html
+#    check-template-location: true
+#    cache: false
+#    mvc:
+#      static-path-pattern: "/static/**"
   jpa:
     properties:
       hibernate:

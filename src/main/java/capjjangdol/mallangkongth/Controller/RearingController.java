@@ -35,7 +35,7 @@ public class RearingController {
             List<Pet> pets = petService.findPets();
             model.addAttribute("pets", pets);
             model.addAttribute("form",new HospitalNoteForm());
-            return "hospitalNoteForm";
+            return "hospitalAddForm";
         }
 //        @GetMapping(value = "/hospitalNotes/new")
 //        @ResponseBody
@@ -78,7 +78,7 @@ public class RearingController {
     public String list(Model model) {
         List<HospitalNote> hospitalNotes = hospitalService.findHospitalNotes();
         model.addAttribute("hospitalNotes", hospitalNotes);
-        return "hospitalNoteList";
+        return "hospital-listing";
     }
 
     /**
@@ -86,8 +86,9 @@ public class RearingController {
      */
     @GetMapping("/hospitalNote/view") //localhost:8080/hospitalNotes/view?id=1 //(get방식 파라미터)
     public String hospitalNotesView(Model model, Integer id){
+
         model.addAttribute("hospitalNote", hospitalService.hospitalNotesView(id));
-        return "hospitalNoteView";
+        return "hospital-view";
     }
 
     /**
@@ -139,7 +140,7 @@ public class RearingController {
         List<Pet> pets = petService.findPets();
         model.addAttribute("pets", pets);
         model.addAttribute("form",new WalkingForm());
-        return "template/walkingAddForm";
+        return "walkingAddForm";
     }
     /**
      * 산책 기록 등록 - post

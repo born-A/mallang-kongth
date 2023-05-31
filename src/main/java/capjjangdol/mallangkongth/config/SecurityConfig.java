@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -43,9 +44,23 @@ public class SecurityConfig{
 
                 .and()
                 .authorizeRequests()
-                .antMatchers("/images/**","/attach/**","/view/**","/upload/**","/index","/","/upload/**","/uploadFile/**","/order/**","/item/**","/pets/**","/auth/**","/hospitalNote/**","/health/**","/walking/**").permitAll() //auth/**:login page
+                .antMatchers("/css/**",
+                        "/images/**",
+                        "/js/**",
+                        "/scss/**",
+                        "/vendor/**","/images/**","/attach/**","/view/**","/upload/**","/index","/","/upload/**","/uploadFile/**","/order/**","/item/**","/pets/**","/auth/**","/hospitalNote/**","/health/**","/walking/**").permitAll() //auth/**:login page
+                .mvcMatchers(
+                        "/",
+                        "/css/**",
+                        "/images/**",
+                        "/js/**",
+                        "/scss/**",
+                        "/vendor/**"
+                )
+                .permitAll()
                 .anyRequest().authenticated();
 
         return http.build();
     }
+
 }

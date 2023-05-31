@@ -2,8 +2,6 @@ package capjjangdol.mallangkongth.Controller;
 
 import capjjangdol.mallangkongth.domain.mypage.Pet;
 import capjjangdol.mallangkongth.domain.mypage.PetForm;
-import capjjangdol.mallangkongth.domain.rearing.Walking;
-import capjjangdol.mallangkongth.domain.rearing.WalkingForm;
 import capjjangdol.mallangkongth.service.PetService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
