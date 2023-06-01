@@ -42,8 +42,7 @@ public class Board {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @OneToMany(mappedBy = "category")
-    private List<BoardCategory> boardCategories = new ArrayList<>(); //게시판 카테고리
+    private BoardCategory boardCategory;//게시판 카테고리
 
     @OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE)
     private List<Comment> comments = new ArrayList<>();

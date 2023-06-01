@@ -21,9 +21,9 @@ public class SessionManager {
     public void createSession(Object value, HttpServletResponse response){
         String sessionId = UUID.randomUUID().toString();
         sessionStore.put(sessionId,value);
-
         Cookie mySessionCookie = new Cookie(SESSION_COOKIE_NAME,sessionId);
         response.addCookie(mySessionCookie);
+
     }
 
     public Object getSession(HttpServletRequest request){

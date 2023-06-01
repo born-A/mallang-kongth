@@ -63,12 +63,12 @@ public class AuthService implements UserDetailsService {
         return memberRepository.findAll();
     }
 
-    public Member login(String email, String pw) throws IllegalAccessException {
-        Member member = memberRepository.findByEmail(email);
+    public Member login(LoginForm loginForm) throws IllegalAccessException {
+        Member member = memberRepository.findByEmail(loginForm.getEmail());
         if(member.equals(null)){
             throw new IllegalAccessException("아이디가 맞지 않습니다.");
         }
-        if(!pw.equals(member.getPw())){
+        if(!loginForm.getPw().equals(member.getPw())){
             throw new IllegalAccessException("비밀번호가 맞지 않습니다.");}
         return member;}
 }

@@ -47,21 +47,21 @@ public class AuthController {
         authService.join(member);
         return "redirect:/";
     }
-    @PostMapping("/joinProc")
-    public String newMember(@Valid JoinForm joinForm, BindingResult bindingResult,Model model) {
-        if (bindingResult.hasErrors()) {
-            return "auth/createJoinForm";
-        }
-
-        try {
-            Member member = Member.createMember(joinForm, passwordEncoder);
-        } catch (IllegalStateException e) {
-            model.addAttribute("errorMessage", e.getMessage());
-            return "auth/createJoinForm";
-        }
-
-        return "redirect:/";
-    }
+//    @PostMapping("/join")
+//    public String newMember(@Valid JoinForm joinForm, BindingResult bindingResult,Model model) {
+//        if (bindingResult.hasErrors()) {
+//            return "auth/createJoinForm";
+//        }
+//
+//        try {
+//            Member member = Member.createMember(joinForm, passwordEncoder);
+//        } catch (IllegalStateException e) {
+//            model.addAttribute("errorMessage", e.getMessage());
+//            return "auth/createJoinForm";
+//        }
+//
+//        return "redirect:/";
+//    }
     @GetMapping("/login")
     public String CreateLoginForm(){
         return "auth/createLoginForm";
@@ -74,16 +74,12 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String Login(@Valid LoginForm loginForm,BindingResult bindingResult, Model model, HttpServletResponse httpServletResponse){
+    public String Login(@Valid LoginForm loginForm,BindingResult bindingResult, Model model, HttpServletResponse httpServletResponse) throws IllegalAccessException {
         if(bindingResult.hasErrors()){
             return "auth/createLoginForm";
         }
-        Member member = null;
-        try {
-            member = authService.login(loginForm.getEmail(), loginForm.getPw());
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        }
+        Member member;
+        member= authService.login(loginForm);
         if(member == null){
             bindingResult.reject("loginFail","아이디 또는 패스워드가 맞지 않습니다.");
             return "auth/createLoginForm";

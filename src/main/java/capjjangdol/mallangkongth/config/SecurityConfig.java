@@ -1,8 +1,8 @@
 package capjjangdol.mallangkongth.config;
-
-import capjjangdol.mallangkongth.jwt.JwtAccessDeniedHandler;
-import capjjangdol.mallangkongth.jwt.JwtAuthenticationEntryPoint;
-import capjjangdol.mallangkongth.jwt.TokenProvider;
+//
+//import capjjangdol.mallangkongth.jwt.JwtAccessDeniedHandler;
+//import capjjangdol.mallangkongth.jwt.JwtAuthenticationEntryPoint;
+//import capjjangdol.mallangkongth.jwt.TokenProvider;
 import capjjangdol.mallangkongth.service.AuthService;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -40,16 +40,19 @@ public class SecurityConfig{
                 .csrf().disable() // token localstorage에 저장 위해
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
-                .and()
-                .exceptionHandling()
-                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
-                .accessDeniedHandler(jwtAccessDeniedHandler)
+//                .and()
+//                .exceptionHandling()
+//                .authenticationEntryPoint(jwtAuthenticationEntryPoint)
+//                .accessDeniedHandler(jwtAccessDeniedHandler)
 
                 .and()
                 .authorizeRequests()
-                .antMatchers("/images/**","/attach/**","/view/**","/upload/**","/index","/","/upload/**","/uploadFile/**","/order/**","/item/**","/pets/**","/auth/**","/hospitalNote/**","/health/**","/walking/**").permitAll() //auth/**:login page
-                .anyRequest().authenticated();
-
+                .antMatchers("/images/**","/attach/**","/view/**","/upload/**","/index","/","/upload/**","/uploadFile/**","/order/**","/item/**","/pets/**","/auth/**","/hospitalNote/**","/health/**","/walking/**","/css/**").permitAll() //auth/**:login page
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/auth/createLoginForm")
+                .defaultSuccessUrl("/");
         return http.build();
     }
 }
