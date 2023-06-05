@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class="container">
+  <div>
+    <table class="table table-striped">
+      <thead> <tr>
+        <th>펫이름</th> <th>산책일자</th> <th>url</th>
+      </tr>
+      </thead>
+      <tbody>
+
+      <tr th:each="walking : ${walkings}">
+        <a th:href="@{/walking/view(id=${walking.id})}">상세</a>
+        <td th:text="${walking.getPet().getName()}"></td>
+        <td th:text="${walking.dateOfWalking}"></td>
+        <td>
+        </td> </tr>
+      <div>
+
+
+
+      </div>
+      </tbody>
+    </table>
+  </div>
+</div>
+</body>
+</html>

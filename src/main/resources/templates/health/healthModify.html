@@ -1,0 +1,49 @@
+<!--수정3-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th=http://www.thymeleaf.org>
+<head>
+    <meta charset="UTF-8">
+    <title>게시물수정</title>
+</head>
+
+<style>
+    .layout{
+        width : 500px;
+        margin : 0 auto;
+        margin-top: 40px;
+    } /*layout 하위에 있는 input태그 스타일 설정*/
+    .layout input{
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .layout textarea{
+        width: 100%;
+        margin-top: 10px;
+        min-height: 300px;
+    }
+</style>
+
+<body>
+<div class="layout">
+
+
+    <form th:action="@{/health/update/{id}(id=${health.id})}" method="post">
+        <div class="form-group">
+            <label th:for="pets">반려동물</label>
+            <select name="petId" id="pet" class="form-control">
+                <option value="">반려동물선택</option> <option th:each="pet : ${pets}"
+                                                         th:value="${pet.id}"
+                                                         th:text="${pet.name}" />
+            </select>
+            <label th:for="text">메모</label>
+            <input type="text" th:field="*{health.text}" class="form-control"
+                   placeholder="메모를 입력하세요"> </div>
+        <div class="form-group">
+            <label th:for="imageUrl">이미지url</label>
+            <input type="text" th:field="*{health.imageUrl}" class="form-control"
+                   placeholder="이미지 url을 입력하세요"> </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+</body>
+</html>

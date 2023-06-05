@@ -1,9 +1,12 @@
 package capjjangdol.mallangkongth.domain.mypage;
 
+import capjjangdol.mallangkongth.domain.rearing.HospitalNote;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter @Setter
@@ -19,6 +22,8 @@ public class Pet {
     @JoinColumn(name = "member_id")
     private Member member;
 
+    @OneToMany(mappedBy = "pet", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<HospitalNote> hospitalNoteList = new ArrayList<>();
     public Long getId() {
         return id;
     }

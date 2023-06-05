@@ -3,6 +3,7 @@ package capjjangdol.mallangkongth.service;
 import capjjangdol.mallangkongth.domain.mypage.Pet;
 import capjjangdol.mallangkongth.domain.rearing.Health;
 import capjjangdol.mallangkongth.domain.rearing.HealthForm;
+import capjjangdol.mallangkongth.domain.rearing.HospitalNote;
 import capjjangdol.mallangkongth.repository.HealthRepository;
 import capjjangdol.mallangkongth.repository.PetRepository;
 import lombok.RequiredArgsConstructor;
@@ -27,11 +28,22 @@ public class HealthService {
         healthRepository.save(health);
         return health.getId();
     }
+
+    @Transactional
+    public void saveHealth(Health health) {
+        healthRepository.save(health);
+    }
     public List<Health> findHealths() {
         return healthRepository.findAll();
     }
     public Health findOne(Long healthId) {
-        return healthRepository.findOne(healthId);
+        return healthRepository.findById(healthId).get();
     }
-
+    public Health healthView(Long id){
+        return healthRepository.findById(id).get();
+    }
+    @Transactional
+    public void deleteById(Long healthId){
+        healthRepository.deleteById(healthId);
+    }
 }
