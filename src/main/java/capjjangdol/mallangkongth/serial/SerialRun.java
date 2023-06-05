@@ -71,7 +71,7 @@ public class SerialRun {
         FoodServing foodServing = new FoodServing();
         foodServing.setFoodServingSize(0);
         foodServingRepository.save(foodServing);
-
+/*
 
         if (waterBowlIsOpen && foodBowlIsOpen) { // 급수기 급식기 모두 연결 되어야 함
             System.out.println("open");
@@ -84,5 +84,7 @@ public class SerialRun {
         } else {
             System.exit(0);
         }
+        
+ */
     }
 }

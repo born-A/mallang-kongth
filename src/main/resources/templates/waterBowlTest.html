@@ -3,29 +3,67 @@
 <head>
   <meta charset="UTF-8">
   <title>Spring Boot Example</title>
+  <style>
+    .h{
+     margin: auto;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 400px;
+      height: 70px;
+
+      background: #FEE17A;
+    }
+    .c{
+      margin: auto;
+      margin-top: 10px;
+      width: 300px;
+      border-radius: 15px;
+      background-color: rgba(255, 239, 182, 0.51);
+      padding: 20px;
+    }
+
+  </style>
 </head>
-<body>
-<form method="post" action="/button">
-  <p>급수기 잔여량 : <span th:text="${water1}"></span></p>
-  <p>음수량 : <span th:text="${water2}"></span></p>
-  <p>급식기 잔여량 : <span th:text="${food1}"></span></p>
-  <p>섭취량 : <span th:text="${food2}"></span></p>
-</form>
+<body bgcolor="#d3d3d3">
+<div class="h">
+  <img src="img/p.PNG" width="70" height="70">
+  <img src="img/p2.PNG" width="70" height="70" align="right">
+</div>
+<div style="background-color: white; padding-top: 5px; margin: auto; width: 400px; height: 1000px; margin-top: 70px;">
+<div class="c">
+  <h2>급수기</h2>
+  <p>급수기 잔여량 : 0<span th:text="${water1}"></span></p>
+  <p>음수량 : 0<span th:text="${water2}"></span></p>
 
-<form action="#" th:action="@{/water}" th:object="${foodServingForm}" method="post">
-  <h2>값 입력</h2>
-  <label for="servingSize">크기:</label>
-  <input type="text" id="servingSize" th:field="*{servingSize}" />
-  <input type="submit" value="전송" />
-</form>
+    <h2>급식기</h2>
+  <p>급식기 잔여량 : 13<span th:text="${food1}"></span></p>
+  <p>섭취량 : 7<span th:text="${food2}"></span></p>
+</div>
 
-<form th:action="@{/servingTime}" method="POST">
-  <h2>값 입력</h2>
-  <label for="timeInput">시간 입력:</label>
-  <input type="time" id="timeInput" name="timeInput"><br>
-  <label for="servingInput">급식량 입력:</label>
-  <input type="number" id="servingInput" name="servingInput"><br>
-  <button type="submit">전송</button>
-</form>
+<div class="c" style="background-color:#EBF6FF;">
+  <form action="#" th:action="@{/water}" th:object="${foodServingForm}" method="post">
+    <h2>실시간 배식</h2>
+    <label for="servingSize"></label>
+    <input type="text" id="servingSize" th:field="*{servingSize}"  />
+    g <br><br>
+    <input type="submit" value="배식하기" />
+  </form>
+</div>
+
+<div class="c" style="background: #FFF5F1;">
+  <form th:action="@{/servingTime}" method="POST">
+    <h2>배식 시간 설정</h2>
+    <label for="timeInput">시간 입력:</label>
+    <input type="time" id="timeInput" name="timeInput"><br>
+    <br>
+    <label for="servingInput">급식량 입력:</label>
+    <input type="number" id="servingInput" name="servingInput"><br>
+    <br>
+    <button type="submit">배식 예약 하기</button>
+  </form>
+</div>
+</div>
 </body>
 </html>
