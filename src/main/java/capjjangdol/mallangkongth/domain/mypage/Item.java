@@ -8,6 +8,8 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static javax.persistence.FetchType.LAZY;
+
 @Entity
 @Getter @Setter
 public abstract class Item {
@@ -23,6 +25,11 @@ public abstract class Item {
 
     @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
     private List<CategoryItem> categoryItems = new ArrayList<>();
+
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "member_id")
+    protected Member member;
+
 
 //    private String information; //????
 //    private String company; //???
@@ -42,6 +49,12 @@ public abstract class Item {
             this.stockQuantity = restStock;
         }
 
+    }
+    /** Item 객체 업데이트 **/
+    public void updateBaseItem(String name, int price, int stockQuantity){
+        this.name = name;
+        this.price = price;
+        this.stockQuantity = stockQuantity;
     }
 
 }

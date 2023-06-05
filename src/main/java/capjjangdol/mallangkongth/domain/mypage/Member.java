@@ -1,52 +1,65 @@
 package capjjangdol.mallangkongth.domain.mypage;
-
-import lombok.*;
-import org.springframework.security.crypto.password.PasswordEncoder;
-//import org.springframework.security.crypto.password.PasswordEncoder;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
+
+import static javax.persistence.CascadeType.ALL;
+import static lombok.AccessLevel.PROTECTED;
 
 @Entity
 @Getter
-@Setter
-@Builder
-@EqualsAndHashCode(of = "id")
-@RequiredArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor(access = PROTECTED)
 public class Member{
+
     @Id @GeneratedValue
     @Column(name = "member_id")
     private Long id;
 
-    @Column(nullable = false, unique = true)
     private String email;
-    @Column(nullable = false,unique = true)
-    private String name;
-    @Column
-    private String pw;
+    private String password;
+
+    private String username;
 
     @Embedded
     private Address address;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private RoleType roleType;
+    @JsonIgnore
+    @OneToMany(mappedBy = "member")
+    private List<Orders> orders = new ArrayList<>();
 
-    public static Member createMember(JoinForm joinForm, PasswordEncoder passwordEncoder){
+    @JsonIgnore
+    @OneToMany(mappedBy = "member")
+    private List<Item> items = new ArrayList<>();
+
+//    @OneToMany(mappedBy = "member", cascade = ALL)
+//    private List<CartItem> cartItems = new ArrayList<>();
+
+    public static Member createMember(String email, String password, String name, Address address){
         Member member = new Member();
-        member.setName(member.getName());
-        member.setEmail(member.getEmail());
-        member.setAddress(member.getAddress());
-        String pw = passwordEncoder.encode(joinForm.getPw());
-        member.setPw(member.getPw());
-        member.setRoleType(RoleType.USER);
+        member.email = email;
+        member.password = password;
+        member.username = name;
+        member.address = address;
         return member;
-
     }
 
-
-    public Collection<Orders> getOrders() {
-        return null;
+    public void changeName(String name) {
+        this.username = name;
     }
+    public boolean checkPassword(String password){
+        return this.password.equals(password);
+    }
+
+    public void update(String email, String password, String username, String city, String street, String zipcode){
+        this.email = email;
+        this.password = password;
+        this.username = username;
+        this.address.update(city,street,zipcode);
+    }
+
 }

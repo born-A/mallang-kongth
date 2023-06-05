@@ -14,7 +14,9 @@ import java.util.OptionalInt;
 public interface MemberRepository extends JpaRepository<Member, Long> {
 //    private final EntityManager em;
 
-    Member findByEmail(String email);
+    Optional<Member> findByEmail(String email);
+
+    List<Member> findByUsername(String name);
 
     public boolean existsByEmail(String email);
 
