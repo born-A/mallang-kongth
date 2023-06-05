@@ -14,11 +14,14 @@ import capjjangdol.mallangkongth.service.HospitalService;
 import capjjangdol.mallangkongth.service.PetService;
 import capjjangdol.mallangkongth.service.WalkingService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.MalformedURLException;
 import java.util.List;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -40,6 +43,7 @@ public class RearingController {
     private final WaterBowlRepository waterBowlRepository;
     private final FoodServingRepository foodServingRepository;
     private final FoodServingTimeRepository foodServingTimeRepository;
+
 
     //급수기, 급식기 테스트용 코드
     @GetMapping ("/water")
