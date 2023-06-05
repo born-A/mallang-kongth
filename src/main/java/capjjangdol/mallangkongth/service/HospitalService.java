@@ -24,7 +24,7 @@ public class HospitalService {
     @Transactional
     public Integer saveHospitalNote(Long petId, HospitalNoteForm form) {
         //엔티티 조회
-        Pet pet = petRepository.findOne(petId);
+        Pet pet = petRepository.findById(petId).get();
         HospitalNote hospitalNote = HospitalNote.createHospitalNote(pet,form);
         hospitalRepository.save(hospitalNote);
         return hospitalNote.getId();
@@ -39,6 +39,9 @@ public class HospitalService {
 
     public List<HospitalNote> findHospitalNotes() {
         return hospitalRepository.findAll();
+    }
+    public List<HospitalNote> findHospitalNotes(Pet pet) {
+        return hospitalRepository.findByPet(pet);
     }
     public HospitalNote findOne(Integer hospitalNoteId) {
         return hospitalRepository.findById(hospitalNoteId).get();

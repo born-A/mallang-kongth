@@ -1,6 +1,7 @@
 package capjjangdol.mallangkongth.Controller;
 
 
+import capjjangdol.mallangkongth.domain.mypage.Member;
 import capjjangdol.mallangkongth.domain.mypage.Pet;
 import capjjangdol.mallangkongth.domain.rearing.*;
 import capjjangdol.mallangkongth.dto.FoodServingTimeDto;
@@ -98,11 +99,11 @@ public class RearingController {
 
 
     @GetMapping(value = "/hospitalNote/new")
-        public String createForm(Model model) {
-            List<Pet> pets = petService.findPets();
+        public String createForm(@SessionAttribute(name= SessionConst.LOGIN_MEMBER,required = false)Member member,Model model) {
+            List<Pet> pets = petService.findPets(member);
             model.addAttribute("pets", pets);
             model.addAttribute("form",new HospitalNoteForm());
-            return "hospitalNoteForm";
+            return "hospitalAddForm";
         }
 //        @GetMapping(value = "/hospitalNotes/new")
 //        @ResponseBody
@@ -142,10 +143,10 @@ public class RearingController {
      * 병원 기록 목록
      */
     @GetMapping(value = "/hospitalNote/list")
-    public String list(Model model) {
-        List<HospitalNote> hospitalNotes = hospitalService.findHospitalNotes();
+    public String list(Model model,@SessionAttribute(name= SessionPet.LOGIN_MEMBER_PET,required = false)Pet pet) {
+        List<HospitalNote> hospitalNotes = hospitalService.findHospitalNotes(pet);
         model.addAttribute("hospitalNotes", hospitalNotes);
-        return "hospitalNoteList";
+        return "hospital-listing";
     }
 
     /**
@@ -153,8 +154,9 @@ public class RearingController {
      */
     @GetMapping("/hospitalNote/view") //localhost:8080/hospitalNotes/view?id=1 //(get방식 파라미터)
     public String hospitalNotesView(Model model, Integer id){
+
         model.addAttribute("hospitalNote", hospitalService.hospitalNotesView(id));
-        return "hospitalNoteView";
+        return "hospital-view";
     }
 
     /**
@@ -202,11 +204,11 @@ public class RearingController {
      * 산책기록 등록 폼
      */
     @GetMapping(value = "/walking/new")
-    public String createWalkingForm(Model model) {
-        List<Pet> pets = petService.findPets();
+    public String createWalkingForm(Model model,@SessionAttribute(name= SessionConst.LOGIN_MEMBER,required = false)Member member) {
+        List<Pet> pets = petService.findPets(member);
         model.addAttribute("pets", pets);
         model.addAttribute("form",new WalkingForm());
-        return "walking/walkingForm";
+        return "walkingAddForm";
     }
     /**
      * 산책 기록 등록 - post
@@ -221,10 +223,20 @@ public class RearingController {
      * 산책 기록 목록
      */
     @GetMapping(value = "/walking/list")
-    public String walkingList(Model model) {
-        List<Walking> walkings = walkingService.findWalkings();
+    public String walkingList(Model model,@SessionAttribute(name= SessionPet.LOGIN_MEMBER_PET,required = false)Pet pet) {
+        List<Walking> walkings = walkingService.findWalkings(pet);
         model.addAttribute("walkings", walkings);
-        return "walking/walkingList";
+        return "walking-listing";
+    }
+    /**
+     * 산책 기록 상세 - 날짜별 횟수
+     */
+    @GetMapping("/walking/day/{id}")
+    public String walkingCountView(@PathVariable("id") String id, Model model){
+        model.addAttribute("walkingsOfDay", walkingService.findWalkingsByDate(id));
+        model.addAttribute("walkingRealDay", walkingService.findWalkingsByDate(id).get(0).getDateOfWalking());
+        model.addAttribute("walkingCount", walkingService.takeACount(id));
+        return "walking-dayView";
     }
 
     /**

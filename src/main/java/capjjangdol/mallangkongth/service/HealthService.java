@@ -23,7 +23,7 @@ public class HealthService {
     @Transactional
     public Long saveHealth(Long petId, HealthForm form) {
         //엔티티 조회
-        Pet pet = petRepository.findOne(petId);
+        Pet pet = petRepository.findById(petId).get();
         Health health = Health.createHealth(pet,form);
         healthRepository.save(health);
         return health.getId();

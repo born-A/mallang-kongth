@@ -1,5 +1,6 @@
 package capjjangdol.mallangkongth.service;
 
+import capjjangdol.mallangkongth.domain.mypage.Member;
 import capjjangdol.mallangkongth.domain.mypage.Pet;
 import capjjangdol.mallangkongth.domain.rearing.Health;
 import capjjangdol.mallangkongth.domain.rearing.Walking;
@@ -24,7 +25,7 @@ public class WalkingService {
     @Transactional
     public Long saveWalking(Long petId, WalkingForm form) {
         //엔티티 조회
-        Pet pet = petRepository.findOne(petId);
+        Pet pet = petRepository.findById(petId).get();
         Walking walking = Walking.createWalking(pet,form);
         walkingRepository.save(walking);
         return walking.getId();
@@ -39,10 +40,17 @@ public class WalkingService {
     public List<Walking> findWalkings() {
         return walkingRepository.findAll();
     }
+    public List<Walking> findWalkings(Pet pet) {
+        return walkingRepository.findByPet(pet);
+    }
+
+    //날짜별 산책
+    public List<Walking> findWalkingsByDate(String date){ return walkingRepository.findByDateOfWalking(date);}
     //산책 기록 하나 조회
     public Walking findOne(Long walkingId) {
         return walkingRepository.findById(walkingId).get();
     }
+
 
     //날짜별 산책 횟수 카운트
 //    public int takeACount(LocalDateTime dateTime){
@@ -53,7 +61,9 @@ public class WalkingService {
 //        }
 //        return count;
 //    }
-
+    public Long takeACount(String date){
+        return walkingRepository.countByDateOfWalking(date);
+    }
     public Walking walkingView(Long id){
         return walkingRepository.findById(id).get();
     }
