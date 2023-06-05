@@ -1,5 +1,6 @@
 package capjjangdol.mallangkongth.Controller;
 
+import capjjangdol.mallangkongth.domain.mypage.Member;
 import capjjangdol.mallangkongth.domain.mypage.Pet;
 import capjjangdol.mallangkongth.domain.mypage.PetForm;
 import capjjangdol.mallangkongth.service.PetService;
@@ -10,7 +11,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,23 +40,30 @@ public class PetController {
         breeds.add("치와와");
         breeds.add("요크셔테리어");
         model.addAttribute("breeds", breeds);
-        return "template/petAddForm";
+        return "petAddForm";
     }
 
     @PostMapping(value = "/pets/new")
-    public String create(@Valid PetForm form, BindingResult result) {
+    public String create(@SessionAttribute(name= SessionConst.LOGIN_MEMBER,required = false) Member member,
+                         @Valid PetForm form, BindingResult result,HttpServletRequest request) {
         if (result.hasErrors()) {
 //            return "pets/createPetForm";
             return "home";
         }
 
         Pet pet = new Pet();
+        pet.setMember(member); //
         pet.setName(form.getName());
         pet.setGender(form.isGender());
         pet.setWeight(form.getWeight());
         pet.setBirthday(form.getBirthday());
         pet.setBreed(form.getBreed());
         petService.savePet(pet);
+
+        HttpSession session = request.getSession();
+
+        //세션에 로그인 회원의 펫 정보 보관
+        session.setAttribute(SessionPet.LOGIN_MEMBER_PET, pet.getId());
         return "redirect:/";
     }
 
@@ -60,8 +71,8 @@ public class PetController {
      * 펫 목록 조회
      */
     @GetMapping(value = "/pets")
-    public String list(Model model) {
-        List<Pet> pets = petService.findPets();
+    public String list(Model model,@SessionAttribute(name= SessionConst.LOGIN_MEMBER,required = false) Member member) {
+        List<Pet> pets = petService.findPets(member);
         model.addAttribute("pets", pets);
         return "pets/pet-listings";
     }

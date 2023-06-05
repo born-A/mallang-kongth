@@ -49,10 +49,15 @@ package capjjangdol.mallangkongth.repository;
 //}
 //
 
+import capjjangdol.mallangkongth.domain.mypage.Member;
+import capjjangdol.mallangkongth.domain.mypage.Pet;
 import capjjangdol.mallangkongth.domain.rearing.HospitalNote;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface HospitalRepository extends JpaRepository<HospitalNote, Integer> {
+    List<HospitalNote> findByPet(Pet pet);
 }

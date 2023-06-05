@@ -1,4 +1,5 @@
 package capjjangdol.mallangkongth.repository;
+import capjjangdol.mallangkongth.domain.mypage.Member;
 import capjjangdol.mallangkongth.domain.mypage.Pet;
 import capjjangdol.mallangkongth.domain.rearing.Health;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,7 @@ import java.util.List;
 
 @Repository
 public interface PetRepository extends JpaRepository<Pet,Long> {
+    List<Pet> findByMember(Member member);
 
 //    private final EntityManager em;
 //

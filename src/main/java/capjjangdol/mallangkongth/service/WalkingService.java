@@ -1,5 +1,6 @@
 package capjjangdol.mallangkongth.service;
 
+import capjjangdol.mallangkongth.domain.mypage.Member;
 import capjjangdol.mallangkongth.domain.mypage.Pet;
 import capjjangdol.mallangkongth.domain.rearing.Health;
 import capjjangdol.mallangkongth.domain.rearing.Walking;
@@ -38,6 +39,9 @@ public class WalkingService {
     //전체 산책 기록
     public List<Walking> findWalkings() {
         return walkingRepository.findAll();
+    }
+    public List<Walking> findWalkings(Pet pet) {
+        return walkingRepository.findByPet(pet);
     }
 
     //날짜별 산책

@@ -40,6 +40,9 @@ public class HospitalService {
     public List<HospitalNote> findHospitalNotes() {
         return hospitalRepository.findAll();
     }
+    public List<HospitalNote> findHospitalNotes(Pet pet) {
+        return hospitalRepository.findByPet(pet);
+    }
     public HospitalNote findOne(Integer hospitalNoteId) {
         return hospitalRepository.findById(hospitalNoteId).get();
     }

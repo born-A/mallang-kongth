@@ -24,7 +24,7 @@ public class HomeController {
         return "loginHome";
     }*/
 
-    @GetMapping("/")
+    @RequestMapping ("/")
     public String homeLogin(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false)Long memberId, Model model){
 
         /** 로그인 페이지로 이동 **/

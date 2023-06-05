@@ -1,5 +1,6 @@
 package capjjangdol.mallangkongth.service;
 
+import capjjangdol.mallangkongth.domain.mypage.Member;
 import capjjangdol.mallangkongth.domain.mypage.Pet;
 import capjjangdol.mallangkongth.domain.mypage.PetForm;
 import capjjangdol.mallangkongth.domain.rearing.Walking;
@@ -43,6 +44,9 @@ public class PetService {
         return petRepository.findAll();
     }
 
+    public List<Pet> findPets(Member member) {
+        return petRepository.findByMember(member);
+    }
     public Pet findOne(Long memberId) {
         return petRepository.findById(memberId).get();
     }

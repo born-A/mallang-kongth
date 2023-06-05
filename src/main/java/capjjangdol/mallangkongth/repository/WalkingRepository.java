@@ -40,6 +40,8 @@ package capjjangdol.mallangkongth.repository;
 //    }
 //}
 
+import capjjangdol.mallangkongth.domain.mypage.Member;
+import capjjangdol.mallangkongth.domain.mypage.Pet;
 import capjjangdol.mallangkongth.domain.rearing.Walking;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -54,6 +56,8 @@ public interface WalkingRepository extends JpaRepository<Walking, Long> {
 //    Long countBy();
 //
     List<Walking> findByDateOfWalking(String date);
+
+    List<Walking> findByPet(Pet pet);
 
 
     Long countByDateOfWalking(String date);
