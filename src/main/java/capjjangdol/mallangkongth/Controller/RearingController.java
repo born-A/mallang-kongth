@@ -3,26 +3,93 @@ package capjjangdol.mallangkongth.Controller;
 
 import capjjangdol.mallangkongth.domain.mypage.Pet;
 import capjjangdol.mallangkongth.domain.rearing.*;
+import capjjangdol.mallangkongth.dto.FoodServingTimeDto;
+import capjjangdol.mallangkongth.repository.FoodBowlRepository;
+import capjjangdol.mallangkongth.repository.FoodServingRepository;
+import capjjangdol.mallangkongth.repository.FoodServingTimeRepository;
+import capjjangdol.mallangkongth.repository.WaterBowlRepository;
 import capjjangdol.mallangkongth.service.HealthService;
 import capjjangdol.mallangkongth.service.HospitalService;
 import capjjangdol.mallangkongth.service.PetService;
 import capjjangdol.mallangkongth.service.WalkingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 @Controller
 @RequiredArgsConstructor
 public class RearingController {
 
-        private final HospitalService hospitalService;
-        private final PetService petService;
-        private final HealthService healthService;
-        private final WalkingService walkingService;
+    private final HospitalService hospitalService;
+    private final PetService petService;
+    private final HealthService healthService;
+    private final WalkingService walkingService;
+    private final FoodBowlRepository foodBowlRepository;
+    private final WaterBowlRepository waterBowlRepository;
+    private final FoodServingRepository foodServingRepository;
+    private final FoodServingTimeRepository foodServingTimeRepository;
+
+    //급수기, 급식기 테스트용 코드
+    @GetMapping ("/water")
+    public String renewalWaterBowl(Model model){
+        int value1 = waterBowlRepository.findRemaining().get(0);
+        int value2 = waterBowlRepository.findCurrentEatingAmount().get(0);
+        int value3 = foodBowlRepository.findRemaining().get(0);
+        int value4 = foodBowlRepository.findCurrentEatingAmount().get(0);
+        model.addAttribute("water1", String.valueOf(value1));
+        model.addAttribute("water2", String.valueOf(value2));
+        model.addAttribute("food1", String.valueOf(value3));
+        model.addAttribute("food2", String.valueOf(value4));
+        model.addAttribute("foodServingForm", new FoodServingForm());
+        return "waterBowlTest";
+    }
+
+    //급식기 테스트용 코드0
+    @PostMapping("/water")
+    public String submitForm(@ModelAttribute("foodServingForm") FoodServingForm foodServingForm) {
+        // 폼에서 받아온 값 처리
+        int servingSize = foodServingForm.getServingSize();
+        FoodServing foodServing = new FoodServing();
+        foodServing.setFoodServingSize(servingSize);
+        foodServingRepository.save(foodServing);
+        return "waterBowlTest";
+    }
+
+    @PostMapping("/servingTime")
+    public String processDate(@RequestParam("timeInput") @DateTimeFormat(pattern = "HH:mm") LocalTime time, @RequestParam("servingInput") int size) {
+        FoodServingTime foodServingTime = new FoodServingTime();
+        foodServingTime.setServingTime(time);
+        foodServingTime.setServingSize(size);
+        foodServingTimeRepository.save(foodServingTime);
+        return "redirect:/servingTimeList";
+    }
+
+    @GetMapping("/servingTimeList")
+    public String getList(Model model) {
+        // 데이터베이스에서 리스트를 조회하는 로직
+        List<FoodServingTimeDto> list = foodServingTimeRepository.findFoodServingTime();
+
+        model.addAttribute("list", list);
+        return "servingTime"; // 타임리프 템플릿 이름 반환
+    }
+
+    @PostMapping("/deleteServingTime")
+    public String deleteEntity(@RequestParam("id") Long id) {
+        foodServingTimeRepository.deleteById(id); // 데이터베이스에서 데이터 삭제
+
+        return "redirect:/servingTimeList"; // 리스트 페이지로 리다이렉트
+    }
 
     /**
      *
