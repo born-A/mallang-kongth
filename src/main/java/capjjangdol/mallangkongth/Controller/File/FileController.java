@@ -32,6 +32,7 @@ public class FileController {
     public String testUploadForm() {
 
         return "file/fileUpload";
+
     }
 
     @PostMapping("/upload")
@@ -52,6 +53,7 @@ public class FileController {
         List<FileEntity> files = fileRepository.findAll();
         model.addAttribute("all",files);
         return "view";
+//        return "members/account-profile";
     }
 
 

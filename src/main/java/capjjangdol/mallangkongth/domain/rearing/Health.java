@@ -1,4 +1,5 @@
 package capjjangdol.mallangkongth.domain.rearing;
+import capjjangdol.mallangkongth.domain.mypage.Member;
 import capjjangdol.mallangkongth.domain.mypage.Pet;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,6 +17,10 @@ public class Health {
     @ManyToOne
     @JoinColumn(name = "pet_id")
     private Pet pet;
+
+    @ManyToOne
+    @JoinColumn(name = "member_id")
+    private Member member;
 
     private String text;
 
