@@ -73,13 +73,13 @@ public class MemberController {
     @GetMapping("/members/new")
     public String createForm(Model model){
         model.addAttribute("memberForm", new MemberForm());
-        return "members/createMemberForm";
+        return "members/sign-up";
     }
 
     @PostMapping("/members/new")
     public String create(@Valid MemberForm form, BindingResult result){
         if(result.hasErrors()){
-            return "members/createMemberForm";
+            return "members/sign-up";
         }
         Address address = Address.createAddress(form.getCity(), form.getStreet(), form.getZipcode());
         Member member = Member.createMember(form.getEmail(), form.getPassword(), form.getUsername(),address);
