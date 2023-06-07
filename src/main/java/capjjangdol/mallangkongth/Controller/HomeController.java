@@ -30,7 +30,7 @@ public class HomeController {
         /** 로그인 페이지로 이동 **/
         if(memberId == null) {
             model.addAttribute("loginForm", new LoginForm());
-            return "logins/loginForm";
+            return "logins/sign-in";
         }
 
         /** 메인 페이지로 이동 **/
