@@ -1,5 +1,6 @@
 package capjjangdol.mallangkongth.domain.rearing;
 
+import capjjangdol.mallangkongth.domain.mypage.Member;
 import capjjangdol.mallangkongth.domain.mypage.Pet;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,6 +21,10 @@ public class HospitalNote {
     @JoinColumn(name = "pet_id")
     private Pet pet;
 
+    @ManyToOne
+    @JoinColumn(name = "member_id")
+    private Member member;
+
     private String hospitalName;
 
     private String dateOfVisit;
@@ -36,6 +41,7 @@ public class HospitalNote {
     public static HospitalNote createHospitalNote(Pet pet, HospitalNoteForm form){
         HospitalNote hospitalNote = new HospitalNote();
         hospitalNote.setPet(pet);
+        hospitalNote.setMember(pet.getMember());
         hospitalNote.setHospitalName(form.getHospitalName());
         hospitalNote.setBill(form.getBill());
         hospitalNote.setMemo(form.getMemo());

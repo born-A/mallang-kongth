@@ -147,8 +147,8 @@ public class RearingController {
      * 병원 기록 목록
      */
     @GetMapping(value = "/hospitalNote/list")
-    public String list(Model model,@SessionAttribute(name= SessionPet.LOGIN_MEMBER_PET,required = false)Pet pet) {
-        List<HospitalNote> hospitalNotes = hospitalService.findHospitalNotes(pet);
+    public String list(Model model,@SessionAttribute(name= SessionConst.LOGIN_MEMBER,required = false)Member member) {
+        List<HospitalNote> hospitalNotes = hospitalService.findHospitalNotes(member);
         model.addAttribute("hospitalNotes", hospitalNotes);
         return "hospital-listing";
     }

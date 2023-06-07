@@ -37,10 +37,13 @@ package capjjangdol.mallangkongth.Controller;
 //}
 
 
+import capjjangdol.mallangkongth.domain.file.FileEntity;
 import capjjangdol.mallangkongth.domain.mypage.Address;
 import capjjangdol.mallangkongth.domain.mypage.Member;
 import capjjangdol.mallangkongth.domain.mypage.MemberDto;
 import capjjangdol.mallangkongth.domain.mypage.MemberForm;
+import capjjangdol.mallangkongth.repository.FileRepository;
+import capjjangdol.mallangkongth.service.FileService;
 import capjjangdol.mallangkongth.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -50,27 +53,33 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.io.IOException;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
 public class MemberController {
 
     private final MemberService memberService;
+    private final FileService fileService;
+    private final FileRepository fileRepository;
+
 
     @GetMapping("/members/new")
     public String createForm(Model model){
         model.addAttribute("memberForm", new MemberForm());
-        return "members/createMemberForm";
+        return "members/sign-up";
     }
 
     @PostMapping("/members/new")
     public String create(@Valid MemberForm form, BindingResult result){
         if(result.hasErrors()){
-            return "members/createMemberForm";
+            return "members/sign-up";
         }
         Address address = Address.createAddress(form.getCity(), form.getStreet(), form.getZipcode());
         Member member = Member.createMember(form.getEmail(), form.getPassword(), form.getUsername(),address);
@@ -90,21 +99,27 @@ public class MemberController {
     public String updateMemberForm(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false)Long memberId, Model model){
         Member findMember = memberService.findOne(memberId);
         MemberForm form = MemberForm.createMemberForm(findMember);
+        model.addAttribute("member",findMember);
         model.addAttribute("memberForm", form);
-        return "members/memberInfo";
+        List<FileEntity> files = fileRepository.findAll();
+        model.addAttribute("all",files);
+        return "members/account-profile";
     }
 
     @PostMapping("/member/edit")
     public String updateMember(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false)Long memberId,
                                @Valid @ModelAttribute("memberForm")MemberForm form,
                                BindingResult bindingResult,
-                               HttpServletRequest request){
+                               HttpServletRequest request,
+                               @RequestParam("file") MultipartFile file)throws IOException {
         // MemberForm 에 email 혹은 password 의 값이 존재하지 않을 때
         if (bindingResult.hasErrors()) {
             return "/members/memberInfo";
         }
 
         memberService.updateMember(memberId, form.getEmail(), form.getPassword(), form.getUsername(), form.getCity(), form.getStreet(), form.getZipcode(), request);
+        fileService.saveFile(file);
+
         return "redirect:/member/info";
     }
 }

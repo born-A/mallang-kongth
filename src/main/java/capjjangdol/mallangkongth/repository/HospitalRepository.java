@@ -59,5 +59,5 @@ import java.util.List;
 
 @Repository
 public interface HospitalRepository extends JpaRepository<HospitalNote, Integer> {
-    List<HospitalNote> findByPet(Pet pet);
+    List<HospitalNote> findByMember(Member member);
 }

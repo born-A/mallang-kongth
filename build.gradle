@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '2.7.10'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+	id "com.github.node-gradle.node" version "3.1.1"
 }
 
 group = 'capjjangdol'
@@ -58,6 +59,22 @@ dependencies {
 	implementation group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect', version: '3.1.0'
 }
 
+
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+// task 등록
+tasks.register("npm-install") {
+	group = "application"
+	description = "Installs dependencies from package.json"
+	tasks.appNpmInstall.exec();
+}
+
+// npm install task
+task appNpmInstall(type: NpmTask) {
+	description = "Installs dependencies from pacakage.json"
+	workingDir = file("/src/main/resources/static")
+	args = ["install"]
+}
+

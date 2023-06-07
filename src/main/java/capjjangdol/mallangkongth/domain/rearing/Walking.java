@@ -1,6 +1,7 @@
 package capjjangdol.mallangkongth.domain.rearing;
 
 
+import capjjangdol.mallangkongth.domain.mypage.Member;
 import capjjangdol.mallangkongth.domain.mypage.Pet;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,14 +14,18 @@ import java.time.LocalDateTime;
 public class Walking {
     @Id
     @GeneratedValue
-    @Column(name = "WALKKING_ID")
+    @Column(name = "walking_id")
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "PET_ID")
+    @JoinColumn(name = "pet_id")
     private Pet pet;
 
-    @Column(name = "DATE_OF_VISIT")
+    @ManyToOne
+    @JoinColumn(name = "member_id")
+    private Member member;
+
+    @Column(name = "date_of_visit")
     private String dateOfWalking;
 
     //==생성 메서드==//
