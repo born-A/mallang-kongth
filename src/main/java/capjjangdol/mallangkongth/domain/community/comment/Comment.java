@@ -12,7 +12,7 @@ import java.util.List;
 @Getter @Setter
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE) //한테이블에 다 때려박음
 @DiscriminatorColumn(name = "ctype")
-public abstract class Comment {
+public class Comment {
     @Id
     @GeneratedValue
     @Column(name = "comment_id")
