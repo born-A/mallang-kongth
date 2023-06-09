@@ -61,7 +61,7 @@ public class SerialRun {
 
 
 
-        /*
+
         WaterBowl waterBowl = new WaterBowl(); //초기 데이터 넣기
         waterBowl.setSettingAmount(0);
         waterBowl.setRemaining(0);
@@ -77,7 +77,7 @@ public class SerialRun {
         FoodServing foodServing = new FoodServing();
         foodServing.setFoodServingSize(0);
         foodServingRepository.save(foodServing);
-         */
+
 
 
         if (waterBowlIsOpen /*&& foodBowlIsOpen*/) { // 급수기 급식기 모두 연결 되어야 함
