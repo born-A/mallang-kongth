@@ -2,8 +2,7 @@ package capjjangdol.mallangkongth.Controller;
 
 import capjjangdol.mallangkongth.domain.mypage.ChangePwReqDto;
 import capjjangdol.mallangkongth.domain.mypage.Member;
-import capjjangdol.mallangkongth.domain.mypage.MemberReqDto;
-import capjjangdol.mallangkongth.domain.mypage.MemberResDto;
+import capjjangdol.mallangkongth.repository.MemberRepository;
 import capjjangdol.mallangkongth.service.AuthService;
 import capjjangdol.mallangkongth.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -28,11 +27,12 @@ public class LoginController {
         System.out.println(myInfoBySecurity.getName());
         model.addAttribute(myInfoBySecurity);
         // return ResponseEntity.ok(memberService.getMyInfoBySecurity());
+        return "/login/me";
     }
 
     @PostMapping("/name")
-    public String getMemberName(Model model) {
-        Member member =memberService.changeMembername(member.getEmail(), member.getName());
+    public String getMemberName(Model model, String email, String pw) {
+        Member member = memberService.changeMembername(email, pw);
         return"/";
     }
 

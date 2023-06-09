@@ -2,7 +2,6 @@ package capjjangdol.mallangkongth.service;
 
 import capjjangdol.mallangkongth.config.SecurityUtil;
 import capjjangdol.mallangkongth.domain.mypage.Member;
-import capjjangdol.mallangkongth.domain.mypage.MemberResDto;
 import capjjangdol.mallangkongth.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,11 +18,11 @@ public class MemberService {
     //헤더 토큰값 전달 메소드
     public Member getMyInfoBySecurity(){
         Member member = memberRepository.findById(SecurityUtil.getCurrentMemberId()).orElseThrow(()->new RuntimeException("로그인 유저 정보가 없습니다"));
-                return;
+                return member;
     }
     //이름 변경
     @Transactional
-    public Member changeMembername(String email, String name){
+    public Member changeMembername(String email, String name)throws RuntimeException{
         Member member = memberRepository.findByEmail(email);
 //        try {
 //            catch(RuntimeException e)
