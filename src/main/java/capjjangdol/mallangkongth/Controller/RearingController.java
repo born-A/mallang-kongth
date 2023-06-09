@@ -14,21 +14,13 @@ import capjjangdol.mallangkongth.service.HospitalService;
 import capjjangdol.mallangkongth.service.PetService;
 import capjjangdol.mallangkongth.service.WalkingService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.MalformedURLException;
 import java.util.List;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 
 @Controller
@@ -46,7 +38,7 @@ public class RearingController {
 
 
     //급수기, 급식기 테스트용 코드
-    @GetMapping ("/water")
+    @GetMapping ("/petIntake")
     public String renewalWaterBowl(Model model){
         int value1 = waterBowlRepository.findRemaining().get(0);
         int value2 = waterBowlRepository.findCurrentEatingAmount().get(0);
@@ -57,18 +49,18 @@ public class RearingController {
         model.addAttribute("food1", String.valueOf(value3));
         model.addAttribute("food2", String.valueOf(value4));
         model.addAttribute("foodServingForm", new FoodServingForm());
-        return "waterBowlTest";
+        return "petIntake/petIntake";
     }
 
     //급식기 테스트용 코드0
-    @PostMapping("/water")
+    @PostMapping("petIntake/petIntake")
     public String submitForm(@ModelAttribute("foodServingForm") FoodServingForm foodServingForm) {
         // 폼에서 받아온 값 처리
         int servingSize = foodServingForm.getServingSize();
         FoodServing foodServing = new FoodServing();
         foodServing.setFoodServingSize(servingSize);
         foodServingRepository.save(foodServing);
-        return "waterBowlTest";
+        return "petIntake";
     }
 
     @PostMapping("/servingTime")
