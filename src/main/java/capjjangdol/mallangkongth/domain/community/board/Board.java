@@ -1,5 +1,6 @@
 package capjjangdol.mallangkongth.domain.community.board;
 
+import capjjangdol.mallangkongth.domain.community.Category;
 import capjjangdol.mallangkongth.domain.community.Time;
 import capjjangdol.mallangkongth.domain.mypage.Member;
 import lombok.*;
@@ -24,18 +25,21 @@ public class Board extends Time {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @OneToMany(mappedBy = "category")
-    private List<BoardCategory> boardCategories = new ArrayList<>();
+    private String writer;
 
+    @Embedded
+    private Category category;
     private String title;
-    private String context;
+    private String content;
     @Builder
-    public Board(Long id, String title, String context, Member member){
+    public Board(Long id, String title, String content, String writer,Member member, Category category){
         Assert.hasText(title, "제목을 입력하세요");
-        Assert.hasText(context,"내용을 입력하세요");
+        Assert.hasText(content,"내용을 입력하세요");
         this.id = id;
         this.title = title;
-        this.context = context;
+        this.writer = writer;
+        this.content = content;
         this.member = member;
+        this.category = category;
     }
 }
