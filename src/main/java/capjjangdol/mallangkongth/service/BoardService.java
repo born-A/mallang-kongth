@@ -1,6 +1,7 @@
 package capjjangdol.mallangkongth.service;
 
 import capjjangdol.mallangkongth.domain.community.board.Board;
+import capjjangdol.mallangkongth.domain.mypage.Member;
 import capjjangdol.mallangkongth.dto.BoardDto;
 import capjjangdol.mallangkongth.repository.BoardRepository;
 import jdk.nashorn.internal.runtime.options.Option;
@@ -66,9 +67,11 @@ public class BoardService {
     }
 
     @Transactional
-    public Long save(BoardDto boardDto){
+    public Long save(BoardDto boardDto, Member member){
+        boardDto.setMember(member);
         return boardRepository.save(boardDto.toEntity()).getId();
     }
+    //board.html에는 th:if:${board.member.id== #authentication.principal.id}"로 삭제/수정버튼 글쓴이만 볼수 있도록
 
     @Transactional
     public void delete(Long id){

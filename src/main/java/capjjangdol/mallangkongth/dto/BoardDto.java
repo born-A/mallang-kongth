@@ -2,6 +2,7 @@ package capjjangdol.mallangkongth.dto;
 
 import capjjangdol.mallangkongth.domain.community.Category;
 import capjjangdol.mallangkongth.domain.community.board.Board;
+import capjjangdol.mallangkongth.domain.mypage.Member;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -17,9 +18,13 @@ public class BoardDto {
     private String title;
     private String content;
 
+
     private Category category;
     private LocalDateTime createdDate;
     private LocalDateTime modifitedDate;
+
+    private Member member;
+
 
     public Board toEntity(){
         Board board = Board.builder()
@@ -28,6 +33,7 @@ public class BoardDto {
                 .content(content)
                 .writer(writer)
                 .category(category)
+                .member(member)
                 .build();
         return board;
     }
@@ -42,4 +48,8 @@ public class BoardDto {
         this.modifitedDate = modifitedDate;
         this.category = category;
     }
+    public void setMember(Member member){
+        this.member = member;
+    }
+
 }
