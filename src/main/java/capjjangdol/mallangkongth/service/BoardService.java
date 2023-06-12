@@ -67,8 +67,8 @@ public class BoardService {
     }
 
     @Transactional
-    public Long save(BoardDto boardDto, Member member){
-        boardDto.setMember(member);
+    public Long save(BoardDto boardDto){
+//        boardDto.setMember(member);
         return boardRepository.save(boardDto.toEntity()).getId();
     }
     //board.html에는 th:if:${board.member.id== #authentication.principal.id}"로 삭제/수정버튼 글쓴이만 볼수 있도록

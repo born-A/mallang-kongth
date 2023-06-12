@@ -39,7 +39,7 @@ public class BoardDto {
     }
 
     @Builder
-    public BoardDto(Long id, String title, String content, String writer, LocalDateTime createdDate, LocalDateTime modifitedDate , Category category){
+    public BoardDto(Long id, String title, String content, String writer, LocalDateTime createdDate, LocalDateTime modifitedDate , Category category, Member member){
         this.id = id;
         this.writer =writer;
         this.title = title;
@@ -47,9 +47,10 @@ public class BoardDto {
         this.createdDate = createdDate;
         this.modifitedDate = modifitedDate;
         this.category = category;
-    }
-    public void setMember(Member member){
         this.member = member;
     }
+//    public void setMember(Member member){
+//        this.member = member;
+//    }
 
 }
