@@ -1,8 +1,11 @@
 package capjjangdol.mallangkongth.Controller;
 
+import capjjangdol.mallangkongth.domain.file.FileEntity;
 import capjjangdol.mallangkongth.domain.mypage.Member;
 import capjjangdol.mallangkongth.domain.mypage.Pet;
 import capjjangdol.mallangkongth.domain.mypage.PetForm;
+import capjjangdol.mallangkongth.repository.FileRepository;
+import capjjangdol.mallangkongth.service.FileService;
 import capjjangdol.mallangkongth.service.PetService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -24,6 +27,7 @@ import java.util.List;
 public class PetController {
 
     private final PetService petService;
+    private final FileRepository fileRepository;
 
 
     /**
@@ -73,7 +77,10 @@ public class PetController {
     @GetMapping(value = "/pets")
     public String list(Model model,@SessionAttribute(name= SessionConst.LOGIN_MEMBER,required = false) Member member) {
         List<Pet> pets = petService.findPets(member);
+        model.addAttribute("member", member);
         model.addAttribute("pets", pets);
+        List<FileEntity> files = fileRepository.findAll();
+        model.addAttribute("all",files);
         return "pets/pet-listings";
     }
     /**

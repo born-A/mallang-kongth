@@ -23,28 +23,21 @@ public class OrderController {
 
     private final CategoryService categoryService;
 
-    @GetMapping(value = "/order/new")
-    public String createForm(Model model) {
+    @GetMapping(value = "/item/order/{id}")
+    public String createForm(@PathVariable("id") Long id,Model model) {
         List<Member> members = memberService.findAll();
-        List<Item> items = itemService.findItems();
+        Item item = itemService.findOne(id);
         List<CategoryOfItem> categories = categoryService.findCategories();
         model.addAttribute("members", members);
-        model.addAttribute("items", items);
+        model.addAttribute("item", item);
         model.addAttribute("categories", categories); //카테고리
         return "order/orderForm";
     }
 
-    //회원 세션 받도록 수정
-//    @PostMapping(value = "/order/new")
-//    public String order(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) Member member,
-//                        @RequestParam("itemId") Long itemId, @RequestParam("count") int count) {
-//        orderService.order(member.getId(), itemId, count);
-//        return "redirect:/order/list";
-//    }
 
-    @PostMapping(value = "/order/new")
+    @PostMapping(value = "/item/order/{id}")
         public String order(@SessionAttribute(name= SessionConst.LOGIN_MEMBER,required = false)Member member,
-                        @RequestParam("itemId") Long itemId, @RequestParam("count") int count) {
+                            @PathVariable("id") Long itemId, @RequestParam("count") int count) {
         orderService.order(member.getId(), itemId, count);
         return "redirect:/order/list";
     }

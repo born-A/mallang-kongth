@@ -122,4 +122,10 @@ public class MemberController {
 
         return "redirect:/member/info";
     }
+
+    @GetMapping("/member/delete")
+    public String membersDelete(@SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false)Long memberId){
+        memberService.deleteById(memberId);
+        return "redirect:/";
+    }
 }

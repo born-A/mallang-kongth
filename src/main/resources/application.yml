@@ -1,16 +1,13 @@
 spring:
   mvc:
     throw-exception-if-no-handler-found: true
-    hiddenmethod:
-      filter:
-        enabled: true
   web:
     resources:
       add-mappings: true
   datasource:
     username: root
     url: jdbc:mysql://localhost:3306/mallangkongtteok
-    password: '347858Kkk!'
+    password: '0331'
   devtools:
     livereload:
       enabled: true
@@ -29,7 +26,7 @@ spring:
     defer-datasource-initialization: 'true'
     show-sql: 'true'
     hibernate:
-      ddl-auto:  update
+      ddl-auto: update
 #  jwt:
 #    header: Authorization
 #    #HS512 알고리즘을 사용할 것이기 때문에 512bit, 즉 64byte 이상의 secret key를 사용해야 한다.
