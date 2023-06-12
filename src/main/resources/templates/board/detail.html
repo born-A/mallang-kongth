@@ -477,8 +477,11 @@ Blog content START -->
 			</div>	
 		</div>
 		<div class="text-end">
-			<a th:href="@{'/board/post/edit/'+${boardDto.id}}" class="btn btn-primary mb-0">뒤로가기</a>
-			<button type="input" class="btn btn-primary mb-0">등록하기</button>
+			<a th:href="@{'/board/post/edit/'+${boardDto.id}}" class="btn btn-primary mb-0">수정하기</a>
+			<form id="delete-form" th:action="@{'/board/post/' + ${boardDto.id}}" method="post">
+				<input type="hidden" name="_method" value="delete"/>
+				<button class="btn btn-primary mb-0">삭제하기</button>
+			</form>
 		</div>
 	</div>
 </section>
@@ -637,7 +640,11 @@ Footer START -->
 			</div>
 		</div>
 	</div>
+			</div>
+		</div>
+	</div>
 </footer>
+
 <!-- =======================
 Footer END -->
 
@@ -649,6 +656,10 @@ Footer END -->
 
 <!-- ThemeFunctions -->
 <script src="../bootstrap/assets/js/functions.js"></script>
-
+<script th:inline="javascript">
+	/*<![CDATA[*/
+	var boardDto = /*[[${boardDto}]]*/ "";
+	/*]]>*/
+</script>
 </body>
 </html>
