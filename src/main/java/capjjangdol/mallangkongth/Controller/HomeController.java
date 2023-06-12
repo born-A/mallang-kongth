@@ -1,8 +1,10 @@
 package capjjangdol.mallangkongth.Controller;
 
 import capjjangdol.mallangkongth.config.SessionManager;
+import capjjangdol.mallangkongth.domain.file.FileEntity;
 import capjjangdol.mallangkongth.domain.mypage.LoginForm;
 import capjjangdol.mallangkongth.domain.mypage.Member;
+import capjjangdol.mallangkongth.repository.FileRepository;
 import capjjangdol.mallangkongth.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -11,13 +13,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import java.util.List;
+
 @Controller
 @Slf4j
 public class HomeController {
 
 
     private SessionManager sessionManager;
-
+    private FileRepository fileRepository;
 
     /*@GetMapping("/")
     public String home(HttpServletRequest httpServletRequest, Model model){
@@ -38,6 +42,8 @@ public class HomeController {
         }
 
         /** 메인 페이지로 이동 **/
+//        List<FileEntity> files = fileRepository.findAll();
+//        model.addAttribute("all",files);
         model.addAttribute("member", member);
         return "index";
     }

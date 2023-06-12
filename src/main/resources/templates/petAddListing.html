@@ -505,8 +505,8 @@
     Packages START -->
     <section class="pt-0 pt-md-5">
         <div class="d-flex justify-content-center">
-        <div class="rounded-5 col-8" style=" opacity: 0.5; background-image: url('/images/bg/21.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover; height: 500px;">
-        </div>
+            <div class="rounded-5 col-8" style=" opacity: 0.5; background-image: url('/images/bg/21.jpg'); background-position: center; background-repeat: no-repeat; background-size: cover; height: 500px;">
+            </div>
         </div>
         <div class="container" style="position: relative; top: -240px;">
             <!-- Bg image -->
@@ -528,7 +528,7 @@
                             <div class="card-img-overlay d-flex flex-column z-index-1 p-4">
                                 <!-- Card overlay top -->
                                 <div class="d-flex justify-content-between">
-                                    <span class="badge text-bg-dark" style="font-size: large">잔여량/섭취량</span>
+                                    <span class="badge text-bg-dark" style="font-size: large">반려동물 등록하기</span>
                                 </div>
                             </div>
                         </div>
@@ -538,10 +538,12 @@
                             <br>
                             <br>
                             <div style="text-align: center">
-                                <p>잔여량</p>
-                                <span th:text="${food1}"></span>
-                                <p>섭취량</p>
-                                <span th:text="${food2}"></span>
+                                <form action="#" th:action="@{/pets/new}" th:object="${petForm}" method="post">
+                                    <label for="servingSize"></label>
+                                    <input  placeholder="g 단위로 입력하세요" class="form-control flatpickr py-2" type="text"  th:field="*{name}"  />
+                                    <br>
+                                    <button class="form-control flatpickr py-2" type="submit">배식하기</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -557,7 +559,7 @@
                             <div class=" d-flex flex-column z-index-1 p-4">
                                 <!-- Card overlay top -->
                                 <div class="d-flex justify-content-between">
-                                    <span class="badge text-bg-dark " style="font-size: large">실시간 배식</span>
+                                    <span class="badge text-bg-dark" style="font-size: large">반려동물 등록하기</span>
                                 </div>
                             </div>
                         </div>
@@ -567,7 +569,7 @@
                             <form action="#" th:action="@{/petIntake/realTime}" th:object="${foodServingForm}" method="post">
                                 <label for="servingSize"></label>
                                 <input  placeholder="g 단위로 입력하세요" class="form-control flatpickr py-2" type="text" id="servingSize" th:field="*{servingSize}"  />
-                                 <br>
+                                <br>
                                 <button class="form-control flatpickr py-2" type="submit">배식하기</button>
                             </form>
                         </div>
@@ -583,14 +585,14 @@
                             <div class="d-flex flex-column z-index-1 p-4">
                                 <!-- Card overlay top -->
                                 <div class="d-flex justify-content-between">
-                                    <span class="badge text-bg-dark" style="font-size: large">예약 배식</span>
+                                    <span class="badge text-bg-dark" style="font-size: large">반려동물 등록하기</span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Card body -->
                         <div class="card-body px-2">
-                            <form th:action="@{/petIntake/reservation}" method="POST">
+                            <form th:action="@{/pets/new}" method="POST">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock-fill" viewBox="0 0 16 16">
                                     <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
                                 </svg>
@@ -603,9 +605,9 @@
                                 <button class="form-control flatpickr py-2" type="submit">배식 예약 하기</button>
                             </form>
 
-                            </div>
                         </div>
                     </div>
+                </div>
 
                 <!-- Package item -->
                 <div class="col-8">
@@ -615,35 +617,18 @@
                             <!-- Overlay -->
                             <div class=" d-flex flex-column z-index-1 p-4">
                                 <!-- Card overlay top -->
-                                <div class="d-flex justify-content-between">
-                                    <span class="badge text-bg-dark " style="font-size: large">예약 리스트</span>
-                                </div>
+
                             </div>
                         </div>
 
                         <!-- Card body -->
                         <div class="card-body px-2 justify-content-center" style="align-items: center">
-                                <table class="table" style="width: 100%">
-                                    <thead>
-                                    <tr>
-                                        <th>배식량</th>
-                                        <th>배식시간</th>
-                                        <th>삭제</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr th:each="serving : ${list}">
-                                        <td th:text="${serving.servingSize}"></td>
-                                        <td th:text="${serving.servingTime}"></td>
-                                        <td>
-                                            <form th:action="@{/petIntake/deleteServingTime}" method="post">
-                                                <input type="hidden" th:name="id" th:value="${serving.id}" />
-                                                <button type="submit">Delete</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                            <table class="table" style="width: 100%">
+
+                                <tbody>
+
+                                </tbody>
+                            </table>
 
                         </div>
                     </div>
@@ -653,21 +638,19 @@
             </div>
 
 
-            </div> <!-- Row END -->
+        </div> <!-- Row END -->
         </div>
 
-    <!-- =======================
-    Packages END -->
-    <!-- =======================
-    Packages START -->
+        <!-- =======================
+        Packages END -->
+        <!-- =======================
+        Packages START -->
 
 
         <div class="container" style="position: relative; top: -100px;">
             <!-- Title -->
             <div class="row mb-4">
-                <div class="col-12 text-center">
-                    <h2 class="mb-0"><strong>급수기 관리</strong></h2>
-                </div>
+
             </div>
 
             <div class="row g-4 justify-content-center">
@@ -682,9 +665,7 @@
                             <!-- Overlay -->
                             <div class="card-img-overlay d-flex flex-column z-index-1 p-4">
                                 <!-- Card overlay top -->
-                                <div class="d-flex justify-content-between">
-                                    <span class="badge text-bg-dark" style="font-size: large">잔여량/섭취량</span>
-                               </div>
+
                             </div>
                         </div>
 
@@ -692,12 +673,7 @@
                         <div class="card-body px-2">
                             <br>
                             <br>
-                            <div style="text-align: center">
-                                <p>잔여량</p>
-                                <span th:text="${water1}"></span>
-                                <p>섭취량</p>
-                                <span th:text="${water2}"></span>
-                            </div>
+
                         </div>
                     </div>
                     <!-- Card END -->
