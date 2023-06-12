@@ -7,7 +7,7 @@ spring:
   datasource:
     username: root
     url: jdbc:mysql://localhost:3306/mallangkongtteok
-    password: '0324'
+    password: '0331'
   devtools:
     livereload:
       enabled: true

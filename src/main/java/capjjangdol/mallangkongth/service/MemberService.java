@@ -128,4 +128,9 @@ public class MemberService {
         Member member = findMember.orElseThrow(() -> new IllegalStateException("해당하는 멤버가 존재하지 않습니다."));
         member.update(email,password,username,city,street,zipcode);
     }
+
+    @Transactional
+    public void deleteById(Long memberId){
+        memberRepository.deleteById(memberId);
+    }
 }
