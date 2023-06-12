@@ -51,7 +51,7 @@ public class SecurityConfig{
                         "/images/**",
                         "/js/**",
                         "/scss/**",
-                        "/vendor/**","/logout.do/**","/login/**","/logout/**","/login?logout","/members/**","/member/**","/images/**","/attach/**","/view/**","/upload/**","/index","/","/upload/**","/uploadFile/**","/order/**","/item/**","/pets/**","/auth/**","/hospitalNote/**","/health/**","/walking/**","/water/**","/petIntake/**").permitAll() //auth/**:login page
+                        "/vendor/**","/items/**","/order/**","/logout.do/**","/login/**","/logout/**","/login?logout","/members/**","/member/**","/images/**","/attach/**","/view/**","/upload/**","/index","/","/upload/**","/uploadFile/**","/order/**","/item/**","/pets/**","/auth/**","/hospitalNote/**","/health/**","/walking/**","/water/**","/petIntake/**").permitAll() //auth/**:login page
                 .mvcMatchers(
                         "/",
                         "/css/**",
