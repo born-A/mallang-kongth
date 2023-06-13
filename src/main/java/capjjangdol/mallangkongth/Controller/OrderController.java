@@ -1,8 +1,6 @@
 package capjjangdol.mallangkongth.Controller;
 
-import capjjangdol.mallangkongth.domain.file.FileEntity;
 import capjjangdol.mallangkongth.domain.mypage.*;
-import capjjangdol.mallangkongth.repository.FileRepository;
 import capjjangdol.mallangkongth.repository.MemberRepository;
 import capjjangdol.mallangkongth.service.CategoryService;
 import capjjangdol.mallangkongth.service.ItemService;
