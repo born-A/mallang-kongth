@@ -89,7 +89,7 @@ public class SerialRun {
             executor.execute(new FoodBowlSerialReadThread(foodBowlIn , foodNoteRepository, foodBowlRepository)); //급식기 수신 작업을 하는 스레드 실행
             executor.execute(new FoodBowlSerialWriteThread(foodBowlOut, foodServingRepository, foodServingTimeRepository));
         } else {
-          System.exit(0);
+          //System.exit(0);
         }
     }
 }

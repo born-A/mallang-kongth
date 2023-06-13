@@ -17,7 +17,7 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 	<!-- JavaScript Bundle with Popper -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-	<!-- Meta Tags -->
+
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="author" content="Webestica.com">
@@ -26,7 +26,7 @@
 	<!-- Dark mode -->
 	<script>
 		const storedTheme = localStorage.getItem('theme')
-
+ 
 		const getPreferredTheme = () => {
 			if (storedTheme) {
 				return storedTheme
@@ -45,67 +45,66 @@
 		setTheme(getPreferredTheme())
 
 		window.addEventListener('DOMContentLoaded', () => {
-			var el = document.querySelector('.theme-icon-active');
+		    var el = document.querySelector('.theme-icon-active');
 			if(el != 'undefined' && el != null) {
 				const showActiveTheme = theme => {
-					const activeThemeIcon = document.querySelector('.theme-icon-active use')
-					const btnToActive = document.querySelector(`[data-bs-theme-value="${theme}"]`)
-					const svgOfActiveBtn = btnToActive.querySelector('.mode-switch use').getAttribute('href')
+				const activeThemeIcon = document.querySelector('.theme-icon-active use')
+				const btnToActive = document.querySelector(`[data-bs-theme-value="${theme}"]`)
+				const svgOfActiveBtn = btnToActive.querySelector('.mode-switch use').getAttribute('href')
 
-					document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
-						element.classList.remove('active')
-					})
-
-					btnToActive.classList.add('active')
-					activeThemeIcon.setAttribute('href', svgOfActiveBtn)
-				}
-
-				window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-					if (storedTheme !== 'light' || storedTheme !== 'dark') {
-						setTheme(getPreferredTheme())
-					}
+				document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
+					element.classList.remove('active')
 				})
 
-				showActiveTheme(getPreferredTheme())
+				btnToActive.classList.add('active')
+				activeThemeIcon.setAttribute('href', svgOfActiveBtn)
+			}
 
-				document.querySelectorAll('[data-bs-theme-value]')
-						.forEach(toggle => {
-							toggle.addEventListener('click', () => {
-								const theme = toggle.getAttribute('data-bs-theme-value')
-								localStorage.setItem('theme', theme)
-								setTheme(theme)
-								showActiveTheme(theme)
-							})
-						})
+			window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+				if (storedTheme !== 'light' || storedTheme !== 'dark') {
+					setTheme(getPreferredTheme())
+				}
+			})
+
+			showActiveTheme(getPreferredTheme())
+
+			document.querySelectorAll('[data-bs-theme-value]')
+				.forEach(toggle => {
+					toggle.addEventListener('click', () => {
+						const theme = toggle.getAttribute('data-bs-theme-value')
+						localStorage.setItem('theme', theme)
+						setTheme(theme)
+						showActiveTheme(theme)
+					})
+				})
 
 			}
 		})
-
+		
 	</script>
 
 	<!-- Favicon -->
-	<link rel="shortcut icon" href="/images/mallang.png">
+	<link rel="shortcut icon" href="/images/favicon.ico">
 
 	<!-- Google Font -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Poppins:wght@400;500;700&display=swap">
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 	<!-- Plugins CSS -->
 	<link rel="stylesheet" type="text/css" href="/vendor/font-awesome/css/all.min.css">
 	<link rel="stylesheet" type="text/css" href="/vendor/bootstrap-icons/bootstrap-icons.css">
-	<link rel="stylesheet" type="text/css" href="/vendor/choices/css/choices.min.css">
+	<link rel="stylesheet" type="text/css" href="/vendor/glightbox/css/glightbox.css">
 	<link rel="stylesheet" type="text/css" href="/vendor/flatpickr/css/flatpickr.min.css">
+	<link rel="stylesheet" type="text/css" href="/vendor/choices/css/choices.min.css">
+	<link rel="stylesheet" type="text/css" href="/vendor/tiny-slider/tiny-slider.css">
 
 	<!-- Theme CSS -->
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
 
-
 </head>
 
 <body>
-
-<!-- Top alert END -->
 
 <!-- Header START -->
 <header class="navbar-light header-sticky">
@@ -305,193 +304,256 @@
 
 <!-- **************** MAIN CONTENT START **************** -->
 <main>
+<!-- =======================
+Main Title START -->
+<section class="py-0 pt-sm-5">
+	<div class="container position-relative">
+		<!-- Title and button START -->
+		<div class="rounded-3 p-3 p-sm-5" style="background-image: url(/images/bg/23.jpg); opacity: 0.8; background-position: center center; background-repeat: no-repeat; background-size: cover;">
+			<!-- Banner title -->
+			<div class="row">
+				<div class="col-md-10 mx-auto text-center">
+					<h1 class="text-dark display-3 pt-sm-5 my-5"><strong> <td th:text="${health.getTitle()}"></strong></h1>
 
-	<!-- =======================
-    Main Banner START -->
-	<section class="py-0">
-		<div class="container">
-			<!-- Background image -->
-			<div class="rounded-3 p-3 p-sm-5" style="background-image: url(/images/bg/walking.jpg); opacity: 0.8; background-position: center center; background-repeat: no-repeat; background-size: 1500px 322px;">
-				<!-- Banner title -->
-				<div class="row">
-					<div class="col-md-10 mx-auto text-center">
-						<h1 class="text-dark display-3 pt-sm-5 my-5"><strong>산책 기록</strong></h1>
-
-					</div>
 				</div>
-				<form class="bg-mode position-relative px-3 px-sm-4 pt-4 mb-4 mb-sm-0">
-					<div class="col-12 text-end pt-0">
-						<a  class="btn btn-primary mb-n4" th:href="@{/walking/new}">산책 기록 등록하기<i class="bi bi-arrow-right ps-3"></i></a>
-					</div>
-				</form>
+			</div>
+			<form class="bg-mode position-relative px-3 px-sm-4 pt-4 mb-4 mb-sm-0">
+				<div class="col-12 text-end pt-0">
+					<a  class="btn btn-primary mb-n4" th:href="@{/health/new}">건강 기록 등록하기<i class="bi bi-arrow-right ps-3"></i></a>
+				</div>
+				<br>
+				<div class="col-12 text-end pt-0">
+					<a  class="btn btn-primary mb-n4" th:href="@{/health/list}">건강 기록 목록으로<i class="bi bi-arrow-right ps-3"></i></a>
+				</div>
+			</form>
+		<div class="row mb-3">
+			<div class="col-12">
+				<!-- Meta -->
+				<div class="d-lg-flex justify-content-lg-between mb-1">
+
+
+					<!-- Buttons -->
+					<ul class="list-inline text-end">
+						<!-- Heart icon -->
+						<li class="list-inline-item">
+							<a href="#" class="btn btn-sm btn-light px-2"><i class="fa-solid fa-fw fa-heart"></i></a>
+						</li>
+						<!-- Share icon -->
+						<li class="list-inline-item dropdown">
+							<!-- Share button -->
+							<a href="#" class="btn btn-sm btn-light px-2" role="button" id="dropdownShare" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="fa-solid fa-fw fa-share-alt"></i>
+							</a>
+							<!-- dropdown button -->
+							<ul class="dropdown-menu dropdown-menu-end min-w-auto shadow rounded" aria-labelledby="dropdownShare">
+								<li><a class="dropdown-item" href="#"><i class="fab fa-twitter-square me-2"></i>Twitter</a></li>
+								<li><a class="dropdown-item" href="#"><i class="fab fa-facebook-square me-2"></i>Facebook</a></li>
+								<li><a class="dropdown-item" href="#"><i class="fab fa-linkedin me-2"></i>LinkedIn</a></li>
+								<li><a class="dropdown-item" href="#"><i class="fa-solid fa-copy me-2"></i>Copy link</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</div>
-	</section>
-	<!-- =======================
-    Main Banner END -->
+		<!-- Title and button END -->
+		</div>
+	</div>
+</section>
+<!-- =======================
+Main Title END -->
 
-	<!-- =======================
-    Special offer START -->
-	<section>
-		<div class="container">
-			<!-- Responsive navbar toggler -->
-			<button class="btn btn-primary w-100 d-block d-xl-none mt-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#dashboardMenu" aria-controls="dashboardMenu">
-				<i class="bi bi-list"></i> Dashboard Menu
-			</button>
+<!-- =======================
+Image gallery END -->
 
-			<!-- Nav links START -->
-			<div class="offcanvas-xl offcanvas-end mt-xl-3" tabindex="-1" id="dashboardMenu">
-				<div class="offcanvas-header border-bottom p-3">
-					<h5 class="offcanvas-title">Menu</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#dashboardMenu" aria-label="Close"></button>
+<!-- =======================
+About hotel START -->
+<section class="pt-0">
+	<div class="container" data-sticky-container>
+		<!-- Responsive navbar toggler -->
+		<button class="btn btn-primary w-100 d-block d-xl-none mt-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#dashboardMenu" aria-controls="dashboardMenu">
+			<i class="bi bi-list"></i> Dashboard Menu
+		</button>
+
+		<!-- Nav links START -->
+		<div class="offcanvas-xl offcanvas-end mt-xl-3" tabindex="-1" id="dashboardMenu">
+			<div class="offcanvas-header border-bottom p-3">
+				<h5 class="offcanvas-title">Menu</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#dashboardMenu" aria-label="Close"></button>
+			</div>
+			<!-- Offcanvas body -->
+			<div class="offcanvas-body p-3 p-xl-0">
+				<!-- Nav item -->
+				<div class="navbar navbar-expand-xl">
+					<ul class="navbar-nav navbar-offcanvas-menu">
+
+						<li class="nav-item"> <a class="nav-link" href="/"><i class="bi bi-house-door fa-fw me-1"></i>Home</a>	</li>
+						<li class="nav-item"> <a class="nav-link" href="/member/info"> <i class="bi bi-person fa-fw me-2"></i>마이페이지</a>	</li>
+
+						<li class="nav-item"> <a class="nav-link active" href="/pets/"><i class="bi bi-journals fa-fw me-1"></i>육아수첩</a> </li>
+
+						<li class="nav-item"> <a class="nav-link" href="/petIntake/petIntake"><i class="bi bi-bookmark-heart fa-fw me-1"></i>급식/급수기</a> </li>
+
+						<li class="nav-item"> <a class="nav-link" href="agent-earnings.html"><i class="bi bi-people fa-fw me-2"></i>커뮤니티</a>	</li>
+
+						<li class="nav-item"> <a class="nav-link" href="/item/list"><i class="fa-solid fa-hotel me-2"></i>Mallang SHOP</a> </li>
+
+					</ul>
 				</div>
-				<!-- Offcanvas body -->
-				<div class="offcanvas-body p-3 p-xl-0">
-					<!-- Nav item -->
-					<div class="navbar navbar-expand-xl">
-						<ul class="navbar-nav navbar-offcanvas-menu">
+			</div>
+		</div>
+		<!-- Nav links END -->
+		<br>
 
-							<li class="nav-item"> <a class="nav-link" href="/"><i class="bi bi-house-door fa-fw me-1"></i>Home</a>	</li>
-							<li class="nav-item"> <a class="nav-link" href="/member/info"> <i class="bi bi-person fa-fw me-2"></i>마이페이지</a>	</li>
-
-							<li class="nav-item"> <a class="nav-link active" href="/pets/"><i class="bi bi-journals fa-fw me-1"></i>육아수첩</a> </li>
-
-							<li class="nav-item"> <a class="nav-link" href="/petIntake/petIntake"><i class="bi bi-bookmark-heart fa-fw me-1"></i>급식/급수기</a> </li>
-
-							<li class="nav-item"> <a class="nav-link" href="agent-earnings.html"><i class="bi bi-people fa-fw me-2"></i>커뮤니티</a>	</li>
-
-							<li class="nav-item"> <a class="nav-link" href="/item/list"><i class="fa-solid fa-hotel me-2"></i>Mallang SHOP</a> </li>
-
-						</ul>
+		<div class="row g-4 g-xl-5">
+			<!-- Content START -->
+			<div class="col-xl-7 order-1">
+				<div class="vstack gap-5">
+					<!-- Title -->
+					<div class="mb-2 mb-lg-0">
+						<h1 class="fs-2"><h3 th:text="'제목 : '+${health.getTitle()} "/></h1>
 					</div>
-				</div>
-			</div>
-			<!-- Nav links END -->
-			<!-- Title -->
-			<div class="row mb-4">
-				<div class="col-12">
-					<h4 class="mb-0">산책 기록</h4>
-				</div>
-			</div>
+					<!-- About hotel START -->
+					<div class="card bg-transparent">
+						<!-- Card header -->
+						<div class="card-header border-bottom bg-transparent px-0 pt-0">
+							<h3 class="mb-0"><td th:text="${health.getPet().getName()}"></td></h3>
+						</div>
 
-			<div>
-				<div class="row g-4">
-					<tr th:each="walking : ${walkings}">
-						<!-- Card item -->
-						<div class="col-sm-6 col-lg-4 col-xl-3">
-							<div class="card bg-success bg-opacity-10 h-100 p-4">
-								<!-- Image -->
-								<!--					<img src="/images/client/07.svg" class="w-75" alt="">-->
-								<!-- Card body START -->
-								<div class="card-body mt-4 p-0">
-									<h4 class="mb-1"><a th:href="@{/walking/day/{id}(id = ${walking.dateOfWalking})}"><td th:text="${walking.dateOfWalking}"></td></a></h4>
-									<h3 class="fw-normal"><td th:text="${walking.getPet().getName()}"></td></h3>
+						<!-- Card body START -->
+						<div class="card-body pt-4 p-0">
+							<h5 class="fw-light mb-4"><td th:text="${health.getText()}"></td></h5>
 
-									<div class="d-flex justify-content-between align-items-center mt-4">
-										<div class="bg-primary bg-opacity-10 border border-2 border-primary border-dashed rounded-2 px-3 py-2">
-											<h5 class="fw-normal user-select-all mb-0"><a th:href="@{/walking/modify/{id}(id = ${walking.id})}">수정</a></h5>
-										</div>
-										<div class="bg-primary bg-opacity-10 border border-2 border-primary border-dashed rounded-2 px-3 py-2">
-											<h5 class="fw-normal user-select-all mb-0"><a th:href="@{/walking/delete(id=${walking.id})}">삭제</a></h5>
-										</div>
-										<a th:href="@{/walking/day/{id}(id = ${walking.dateOfWalking})}" class="btn btn-lg btn-white btn-round mb-0"><i class="bi bi-arrow-right"></i></a>
-									</div>
-
+							<!-- Highlights Icons -->
+							<div class="hstack gap-3 mb-3">
+								<div class="icon-lg bg-light h5 rounded-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Free wifi">
+									<i class="fa-solid fa-wifi"></i>
 								</div>
-
-								<!-- Card body END -->
+								<div class="icon-lg bg-light h5 rounded-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Swimming Pool">
+									<i class="fa-solid fa-swimming-pool"></i>
+								</div>
+								<div class="icon-lg bg-light h5 rounded-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Central AC">
+									<i class="fa-solid fa-snowflake"></i>
+								</div>
+								<div class="icon-lg bg-light h5 rounded-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Free Service">
+									<i class="fa-solid fa-concierge-bell"></i>
+								</div>
 							</div>
 						</div>
-					</tr>
-				</div>
+						<!-- Card body END -->
+					</div>
+					<!-- About hotel START -->
+
+				</div>	
+			</div>
+			<!-- Content END -->
+
+			<!-- Right side content START -->
+			<aside class="col-xl-5 order-xl-2">
+				<div data-sticky data-margin-top="100" data-sticky-for="1199">
+					<!-- Book now START -->
+					<div class="card card-body border">
+						<!-- Title -->
+						<div class="d-sm-flex justify-content-sm-between align-items-center mb-3">
+							<div>
+								<br>
+								<div class="bg-primary bg-opacity-10 border border-2 border-primary border-dashed rounded-2 px-3 py-2">
+									<h5 class="fw-normal user-select-all mb-0"><a th:href="@{/health/modify/{id}(id = ${health.id})}">수정하기</a></h5>
+								</div>
+								<br>
+								<div class="bg-primary bg-opacity-10 border border-2 border-primary border-dashed rounded-2 px-3 py-2">
+									<h5 class="fw-normal user-select-all mb-0"><a th:href="@{/health/delete(id=${health.id})}">삭제하기</a></h5>
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+					<!-- Book now END -->
+
+				</div>	
+			</aside>
+			<!-- Right side content END -->
+		</div> <!-- Row END -->
+	</div>
+	<br>
+	<br>
+</section>
+<!-- =======================
+About hotel END -->
+<br>
+	<br>
+	<br>
+</main>
+<!-- **************** MAIN CONTENT END **************** -->
+
+<!-- =======================
+Footer START -->
+<footer class="bg-dark py-7">
+	<div class="container">
+		<div class="row mx-auto">
+			<div class="col-md-10 col-xl-6 mx-auto text-center">
+				<!-- Logo -->
+
+				<p class="mt-3 text-white">말랑콩떡</p>
+				<!-- Links -->
+				<ul class="nav justify-content-between text-primary-hover mt-3 mt-md-0">
+					<li class="nav-item"><a class="nav-link p-2 text-white" href="#">About</a></li>
+					<li class="nav-item"><a class="nav-link p-2 text-white" href="#">Terms</a></li>
+					<li class="nav-item"><a class="nav-link p-2 text-white" href="#">Privacy</a></li>
+					<li class="nav-item"><a class="nav-link p-2 text-white" href="#">Career</a></li>
+					<li class="nav-item"><a class="nav-link p-2 text-white" href="#">Contact us</a></li>
+					<li class="nav-item"><a class="nav-link p-2 text-white" href="#">Cookies</a></li>
+				</ul>
+				<!-- Social media button -->
+				<ul class="list-inline mt-3 mb-0">
+					<li class="list-inline-item">
+						<a class="btn btn-white btn-sm shadow px-2 text-facebook" href="#">
+							<i class="fab fa-fw fa-facebook-f"></i>
+						</a>
+					</li>
+					<li class="list-inline-item">
+						<a class="btn btn-white btn-sm shadow px-2 text-instagram" href="#">
+							<i class="fab fa-fw fa-instagram"></i>
+						</a>
+					</li>
+					<li class="list-inline-item">
+						<a class="btn btn-white btn-sm shadow px-2 text-twitter" href="#">
+							<i class="fab fa-fw fa-twitter"></i>
+						</a>
+					</li>
+					<li class="list-inline-item">
+						<a class="btn btn-white btn-sm shadow px-2 text-linkedin" href="#">
+							<i class="fab fa-fw fa-linkedin-in"></i>
+						</a>
+					</li>
+				</ul>
+				<!-- copyright text -->
+				<div class="text-muted text-primary-hover mt-3"> Copyrights ©2023 말랑콩떡. Build by <a href="https://github.com/born-A/mallang-kongth" class="text-muted">캡짱돌</a>. </div>
 			</div>
 		</div>
-		</div>
-	</section>
-	<!-- =======================
-    Special offer END -->
 
+	</div>
+</footer>
+<!-- =======================
 
-	<!-- =======================
-    Popular Destinations END -->
+Footer END -->
 
+<!-- Back to top -->
+<div class="back-top"></div>
 
-	<!-- =======================
-    Steps END -->
+<!-- Bootstrap JS -->
+<script src="/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
-	<!-- =======================
-    Action box START -->
-	<section class="py-0" >
-		<br>
-		<br>
-	</section>
-	<!-- =======================
-    Action box END -->
+<!-- Vendors -->
+<script src="/vendor/glightbox/js/glightbox.js"></script>
+<script src="/vendor/flatpickr/js/flatpickr.min.js"></script>
+<script src="/vendor/choices/js/choices.min.js"></script>
+<script src="/vendor/tiny-slider/tiny-slider.js"></script>
+<script src="/vendor/sticky-js/sticky.min.js"></script>
 
-	<!-- =======================
-    Footer START -->
-	<footer class="bg-warning py-7">
-		<div class="container">
-			<div class="row mx-auto">
-				<div class="col-md-10 col-xl-6 mx-auto text-center">
-					<!-- Logo -->
-
-					<p class="mt-3 text-white">말랑콩떡</p>
-					<!-- Links -->
-					<ul class="nav justify-content-between text-primary-hover mt-3 mt-md-0">
-						<li class="nav-item"><a class="nav-link p-2 text-white" href="#">About</a></li>
-						<li class="nav-item"><a class="nav-link p-2 text-white" href="#">Terms</a></li>
-						<li class="nav-item"><a class="nav-link p-2 text-white" href="#">Privacy</a></li>
-						<li class="nav-item"><a class="nav-link p-2 text-white" href="#">Career</a></li>
-						<li class="nav-item"><a class="nav-link p-2 text-white" href="#">Contact us</a></li>
-						<li class="nav-item"><a class="nav-link p-2 text-white" href="#">Cookies</a></li>
-					</ul>
-					<!-- Social media button -->
-					<ul class="list-inline mt-3 mb-0">
-						<li class="list-inline-item">
-							<a class="btn btn-white btn-sm shadow px-2 text-facebook" href="#">
-								<i class="fab fa-fw fa-facebook-f"></i>
-							</a>
-						</li>
-						<li class="list-inline-item">
-							<a class="btn btn-white btn-sm shadow px-2 text-instagram" href="#">
-								<i class="fab fa-fw fa-instagram"></i>
-							</a>
-						</li>
-						<li class="list-inline-item">
-							<a class="btn btn-white btn-sm shadow px-2 text-twitter" href="#">
-								<i class="fab fa-fw fa-twitter"></i>
-							</a>
-						</li>
-						<li class="list-inline-item">
-							<a class="btn btn-white btn-sm shadow px-2 text-linkedin" href="#">
-								<i class="fab fa-fw fa-linkedin-in"></i>
-							</a>
-						</li>
-					</ul>
-					<!-- copyright text -->
-					<div class="text-muted text-primary-hover mt-3"> Copyrights ©2023 말랑콩떡. Build by <a href="https://github.com/born-A/mallang-kongth" class="text-muted">캡짱돌</a>. </div>
-				</div>
-			</div>
-
-		</div>
-	</footer>
-	<!-- =======================
-
-    Footer END -->
-
-	<!-- Back to top -->
-	<div class="back-top"></div>
-
-	<!-- Bootstrap JS -->
-	<script src="/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
-	<!-- Vendors -->
-	<script src="/vendor/choices/js/choices.min.js"></script>
-	<script src="/vendor/flatpickr/js/flatpickr.min.js"></script>
-
-	<!-- ThemeFunctions -->
-	<script src="/js/functions.js"></script>
+<!-- ThemeFunctions -->
+<script src="/js/functions.js"></script>
 
 </body>
 </html>

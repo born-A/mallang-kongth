@@ -311,17 +311,17 @@
 	<section class="py-0">
 		<div class="container">
 			<!-- Background image -->
-			<div class="rounded-3 p-3 p-sm-5" style="background-image: url(/images/bg/walking.jpg); opacity: 0.8; background-position: center center; background-repeat: no-repeat; background-size: 1500px 322px;">
+			<div class="rounded-3 p-3 p-sm-5" style="background-image: url(/images/bg/health.jpg); opacity: 0.8; background-position: center Top; background-size: 1500px 522px;">
 				<!-- Banner title -->
 				<div class="row">
 					<div class="col-md-10 mx-auto text-center">
-						<h1 class="text-dark display-3 pt-sm-5 my-5"><strong>산책 기록</strong></h1>
+						<h1 class="text-dark display-3 pt-sm-5 my-5"><strong>건강 기록</strong></h1>
 
 					</div>
 				</div>
 				<form class="bg-mode position-relative px-3 px-sm-4 pt-4 mb-4 mb-sm-0">
 					<div class="col-12 text-end pt-0">
-						<a  class="btn btn-primary mb-n4" th:href="@{/walking/new}">산책 기록 등록하기<i class="bi bi-arrow-right ps-3"></i></a>
+						<a  class="btn btn-primary mb-n4" th:href="@{/health/new}">건강 기록 등록하기<i class="bi bi-arrow-right ps-3"></i></a>
 					</div>
 				</form>
 			</div>
@@ -370,13 +370,13 @@
 			<!-- Title -->
 			<div class="row mb-4">
 				<div class="col-12">
-					<h4 class="mb-0">산책 기록</h4>
+					<h4 class="mb-0">건강 기록</h4>
 				</div>
 			</div>
 
 			<div>
 				<div class="row g-4">
-					<tr th:each="walking : ${walkings}">
+					<tr th:each="health : ${healths}">
 						<!-- Card item -->
 						<div class="col-sm-6 col-lg-4 col-xl-3">
 							<div class="card bg-success bg-opacity-10 h-100 p-4">
@@ -384,19 +384,17 @@
 								<!--					<img src="/images/client/07.svg" class="w-75" alt="">-->
 								<!-- Card body START -->
 								<div class="card-body mt-4 p-0">
-									<h4 class="mb-1"><a th:href="@{/walking/day/{id}(id = ${walking.dateOfWalking})}"><td th:text="${walking.dateOfWalking}"></td></a></h4>
-									<h3 class="fw-normal"><td th:text="${walking.getPet().getName()}"></td></h3>
-
 									<div class="d-flex justify-content-between align-items-center mt-4">
 										<div class="bg-primary bg-opacity-10 border border-2 border-primary border-dashed rounded-2 px-3 py-2">
-											<h5 class="fw-normal user-select-all mb-0"><a th:href="@{/walking/modify/{id}(id = ${walking.id})}">수정</a></h5>
+											<h4 class="fw-normal user-select-all mb-0"><a th:href="@{/health/view(id=${health.id})}"><td th:text="${health.getTitle()}"></td></a></h4>
 										</div>
-										<div class="bg-primary bg-opacity-10 border border-2 border-primary border-dashed rounded-2 px-3 py-2">
-											<h5 class="fw-normal user-select-all mb-0"><a th:href="@{/walking/delete(id=${walking.id})}">삭제</a></h5>
-										</div>
-										<a th:href="@{/walking/day/{id}(id = ${walking.dateOfWalking})}" class="btn btn-lg btn-white btn-round mb-0"><i class="bi bi-arrow-right"></i></a>
+										<br>
 									</div>
-
+									<h3 class="fw-normal"><td th:text="${health.getPet().getName()}"></td></h3>
+									<div class="d-flex justify-content-between align-items-center mt-4">
+										<h5><a th:href="@{/health/modify/{id}(id = ${health.id})}" class="btn btn-lg btn-white btn-round mb-0">수정</a></h5>
+										<h5><a th:href="@{/health/delete(id=${health.id})}" class="btn btn-lg btn-white btn-round mb-0">삭제</a></h5>
+									</div>
 								</div>
 
 								<!-- Card body END -->
