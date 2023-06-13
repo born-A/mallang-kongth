@@ -444,14 +444,24 @@ About hotel START -->
 				<div data-sticky data-margin-top="100" data-sticky-for="1199">
 					<!-- Book now START -->
 					<div class="card card-body border">
-						<br>
-						<br>
 						<!-- Title -->
 						<div class="d-sm-flex justify-content-sm-between align-items-center mb-3">
 							<div>
 								<span>병원비</span>
 								<br>
 								<h4 class="card-title mb-0"><td th:text="${hospitalNote.bill} +'원'"></td></h4>
+							</div>
+						</div>
+						<div class="d-sm-flex justify-content-sm-between align-items-center mb-3">
+							<div>
+								<br>
+								<div class="bg-primary bg-opacity-10 border border-2 border-primary border-dashed rounded-2 px-3 py-2">
+									<h5 class="fw-normal user-select-all mb-0"><a th:href="@{/hospitalNote/modify/{id}(id = ${hospitalNote.id})}">수정하기</a></h5>
+								</div>
+								<br>
+								<div class="bg-primary bg-opacity-10 border border-2 border-primary border-dashed rounded-2 px-3 py-2">
+									<h5 class="fw-normal user-select-all mb-0"><a th:href="@{/hospitalNote/delete(id=${hospitalNote.id})}">삭제하기</a></h5>
+								</div>
 							</div>
 						</div>
 

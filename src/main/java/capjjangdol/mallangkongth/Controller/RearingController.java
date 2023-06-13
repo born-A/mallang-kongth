@@ -177,10 +177,13 @@ public class RearingController {
      */
 
     @GetMapping("/hospitalNote/modify/{id}")
-    public String hospitalNoteModify(@PathVariable("id") Integer id, Model model){
+    public String hospitalNoteModify(@SessionAttribute(name= SessionConst.LOGIN_MEMBER,required = false)Member member,@PathVariable("id") Integer id, Model model){
         List<Pet> pets = petService.findPets();
+        model.addAttribute("member", member);
         model.addAttribute("pets", pets);
         model.addAttribute("hospitalNote", hospitalService.hospitalNotesView(id));
+        List<FileEntity> files = fileRepository.findAll();
+        model.addAttribute("all",files);
         return "hospitalModify";
     }
 
