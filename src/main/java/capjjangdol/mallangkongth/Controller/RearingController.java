@@ -1,14 +1,12 @@
 package capjjangdol.mallangkongth.Controller;
 
 
+import capjjangdol.mallangkongth.domain.file.FileEntity;
 import capjjangdol.mallangkongth.domain.mypage.Member;
 import capjjangdol.mallangkongth.domain.mypage.Pet;
 import capjjangdol.mallangkongth.domain.rearing.*;
 import capjjangdol.mallangkongth.dto.FoodServingTimeDto;
-import capjjangdol.mallangkongth.repository.FoodBowlRepository;
-import capjjangdol.mallangkongth.repository.FoodServingRepository;
-import capjjangdol.mallangkongth.repository.FoodServingTimeRepository;
-import capjjangdol.mallangkongth.repository.WaterBowlRepository;
+import capjjangdol.mallangkongth.repository.*;
 import capjjangdol.mallangkongth.service.HealthService;
 import capjjangdol.mallangkongth.service.HospitalService;
 import capjjangdol.mallangkongth.service.PetService;
@@ -35,11 +33,13 @@ public class RearingController {
     private final WaterBowlRepository waterBowlRepository;
     private final FoodServingRepository foodServingRepository;
     private final FoodServingTimeRepository foodServingTimeRepository;
+    private final FileRepository fileRepository;
 
 
     //급수기, 급식기 코드
     @GetMapping ("/petIntake/petIntake")
-    public String renewalWaterBowl(Model model){
+    public String renewalWaterBowl(@SessionAttribute(name= SessionConst.LOGIN_MEMBER,required = false)Member member,Model model){
+        model.addAttribute("member", member);
         int value1 = waterBowlRepository.findRemaining().get(0);
         int value2 = waterBowlRepository.findCurrentEatingAmount().get(0);
         int value3 = foodBowlRepository.findRemaining().get(0);
@@ -51,6 +51,9 @@ public class RearingController {
         model.addAttribute("food2", String.valueOf(value4));
         model.addAttribute("foodServingForm", new FoodServingForm());
         model.addAttribute("list", list);
+
+        List<FileEntity> files = fileRepository.findAll();
+        model.addAttribute("all",files);
         return "petIntake/petIntake";
     }
 

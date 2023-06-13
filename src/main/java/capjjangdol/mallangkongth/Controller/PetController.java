@@ -34,7 +34,8 @@ public class PetController {
      * 펫 등록
      */
     @GetMapping(value = "/pets/new")
-    public String createForm(Model model) {
+    public String createForm(@SessionAttribute(name= SessionConst.LOGIN_MEMBER,required = false)Member member,Model model) {
+        model.addAttribute("member", member);
         Pet pet = new Pet();
         pet.setGender(true);
         model.addAttribute("pet", pet);
@@ -45,16 +46,19 @@ public class PetController {
         breeds.add("치와와");
         breeds.add("요크셔테리어");
         model.addAttribute("breeds", breeds);
+
+        List<FileEntity> files = fileRepository.findAll();
+        model.addAttribute("all",files);
         return "petAddListing";
     }
 
     @PostMapping(value = "/pets/new")
     public String create(@SessionAttribute(name= SessionConst.LOGIN_MEMBER,required = false) Member member,
-                         PetForm form, BindingResult result,HttpServletRequest request) {
-        if (result.hasErrors()) {
-//            return "pets/createPetForm";
-            return "home";
-        }
+                         @Valid PetForm form, BindingResult result,HttpServletRequest request) {
+//        if (result.hasErrors()) {
+////            return "pets/createPetForm";
+//            return "/index";
+//        }
 
         Pet pet = new Pet();
         pet.setMember(member);
