@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>말랑콩떡</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -514,7 +514,7 @@
             <!-- Title -->
             <div class="row mb-4">
                 <div class="col-12 text-center">
-                    <h2 class="mb-0"><strong>급식기 관리</strong></h2>
+                    <h2 class="mb-0"><strong>반려동물 등록</strong></h2>
                 </div>
             </div>
 
@@ -538,11 +538,54 @@
                             <br>
                             <br>
                             <div style="text-align: center">
-                                <form action="#" th:action="@{/pets/new}" th:object="${petForm}" method="post">
-                                    <label for="servingSize"></label>
-                                    <input  placeholder="g 단위로 입력하세요" class="form-control flatpickr py-2" type="text"  th:field="*{name}"  />
+                                <form th:action="@{/pets/new}" th:object="${petForm}" method="post">
+                                    <div class="col-12">
+                                        <label th:for="name" class="form-label">이름</label>
+                                        <input type="text" th:field="*{name}" class="form-control"   placeholder="이름을 입력하세요">
+                                    </div>
                                     <br>
-                                    <button class="form-control flatpickr py-2" type="submit">배식하기</button>
+                                    <!-- listing type -->
+                                    <div class="col-12">
+                                        <label th:for="gender" class="form-label">성별</label>
+                                        <div class="d-sm-flex">
+                                            <!-- Radio -->
+                                            <div class="form-check radio-bg-light me-4">
+                                                <input class="form-check-input" type="radio" th:field="*{gender}" value="true" name="flexRadioDefault" id="flexRadioDefault1" checked>
+                                                <label class="form-check-label" for="flexRadioDefault1" th:for="isMale">
+                                                    남성
+                                                </label>
+                                            </div>
+                                            <!-- Radio -->
+                                            <div class="form-check radio-bg-light me-4">
+                                                <input th:field="*{gender}" value="false" class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                                                <label th:for="isMale" class="form-check-label" for="flexRadioDefault2">
+                                                    여성
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                            <div class="col-12">
+                                                <label th:for="birthday" class="form-label">생년월일</label>
+                                                <input type="date" th:field="*{birthday}" class="form-control"   placeholder="생년월일을 입력하세요">
+                                            </div>
+                                    <br>
+                                            <div class="col-12">
+                                                <label th:for="weight" class="form-label">몸무게</label>
+                                                <input type="text" th:field="*{weight}" class="form-control"  placeholder="몸무게를 입력하세요">
+                                            </div>
+                                    <br>
+                                            <!-- Choose type -->
+                                            <div class="col-12">
+                                                <label class="form-label">견종</label>
+                                                <select th:field="*{breed}" class="form-select js-choice">
+                                                    <option value="">견종을 선택하세요</option>
+                                                    <option th:each="breed : ${breeds}" th:value="${breed}" th:text="${breed}"/>
+                                                </select>
+                                            </div>
+
+                                     <br>
+                                    <button class="form-control flatpickr py-2" type="submit">등록하기</button>
                                 </form>
                             </div>
                         </div>
@@ -550,89 +593,7 @@
                     <!-- Card END -->
                 </div>
 
-                <!-- Package item -->
-                <div class="col-8">
-                    <!-- Card START -->
-                    <div class="card card-img-scale overflow-hidden">
-                        <div class="card-img-scale-wrapper rounded-3">
-                            <!-- Overlay -->
-                            <div class=" d-flex flex-column z-index-1 p-4">
-                                <!-- Card overlay top -->
-                                <div class="d-flex justify-content-between">
-                                    <span class="badge text-bg-dark" style="font-size: large">반려동물 등록하기</span>
-                                </div>
-                            </div>
-                        </div>
 
-                        <!-- Card body -->
-                        <div class="card-body px-2">
-                            <form action="#" th:action="@{/petIntake/realTime}" th:object="${foodServingForm}" method="post">
-                                <label for="servingSize"></label>
-                                <input  placeholder="g 단위로 입력하세요" class="form-control flatpickr py-2" type="text" id="servingSize" th:field="*{servingSize}"  />
-                                <br>
-                                <button class="form-control flatpickr py-2" type="submit">배식하기</button>
-                            </form>
-                        </div>
-                    </div>
-                    <!-- Card END -->
-                </div>
-
-                <!-- Package item -->
-                <div class="col-8">
-                    <div class="card card-img-scale overflow-hidden bg-transparent">
-                        <div class="card-img-scale-wrapper rounded-3">
-                            <!-- Overlay -->
-                            <div class="d-flex flex-column z-index-1 p-4">
-                                <!-- Card overlay top -->
-                                <div class="d-flex justify-content-between">
-                                    <span class="badge text-bg-dark" style="font-size: large">반려동물 등록하기</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Card body -->
-                        <div class="card-body px-2">
-                            <form th:action="@{/pets/new}" method="POST">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock-fill" viewBox="0 0 16 16">
-                                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
-                                </svg>
-                                <label for="timeInput">예약 시간 입력:</label>
-                                <input class="form-control flatpickr py-2" type="time" id="timeInput" name="timeInput"><br>
-                                <br>
-                                <label for="servingInput">급식량 입력:</label>
-                                <input class="form-control flatpickr py-2" type="number" id="servingInput" name="servingInput" placeholder="g 단위로 입력하세요"><br>
-                                <br>
-                                <button class="form-control flatpickr py-2" type="submit">배식 예약 하기</button>
-                            </form>
-
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Package item -->
-                <div class="col-8">
-                    <!-- Card START -->
-                    <div class="card card-img-scale overflow-hidden">
-                        <div class="card-img-scale-wrapper rounded-3">
-                            <!-- Overlay -->
-                            <div class=" d-flex flex-column z-index-1 p-4">
-                                <!-- Card overlay top -->
-
-                            </div>
-                        </div>
-
-                        <!-- Card body -->
-                        <div class="card-body px-2 justify-content-center" style="align-items: center">
-                            <table class="table" style="width: 100%">
-
-                                <tbody>
-
-                                </tbody>
-                            </table>
-
-                        </div>
-                    </div>
-                    <!-- Card END -->
                 </div>
 
             </div>

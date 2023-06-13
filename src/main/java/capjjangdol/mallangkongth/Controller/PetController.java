@@ -37,8 +37,9 @@ public class PetController {
     public String createForm(Model model) {
         Pet pet = new Pet();
         pet.setGender(true);
-        model.addAttribute("Pet", pet);
+        model.addAttribute("pet", pet);
         model.addAttribute("petForm", new PetForm());
+
         List<String> breeds = new ArrayList<>();
         breeds.add("말티즈");
         breeds.add("치와와");
@@ -49,14 +50,14 @@ public class PetController {
 
     @PostMapping(value = "/pets/new")
     public String create(@SessionAttribute(name= SessionConst.LOGIN_MEMBER,required = false) Member member,
-                         @Valid PetForm form, BindingResult result,HttpServletRequest request) {
+                         PetForm form, BindingResult result,HttpServletRequest request) {
         if (result.hasErrors()) {
 //            return "pets/createPetForm";
             return "home";
         }
 
         Pet pet = new Pet();
-        pet.setMember(member); //
+        pet.setMember(member);
         pet.setName(form.getName());
         pet.setGender(form.isGender());
         pet.setWeight(form.getWeight());
@@ -64,10 +65,6 @@ public class PetController {
         pet.setBreed(form.getBreed());
         petService.savePet(pet);
 
-        HttpSession session = request.getSession();
-
-        //세션에 로그인 회원의 펫 정보 보관
-        session.setAttribute(SessionPet.LOGIN_MEMBER_PET, pet.getId());
         return "redirect:/";
     }
 
