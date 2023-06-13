@@ -1,5 +1,6 @@
 package capjjangdol.mallangkongth.service;
 
+import capjjangdol.mallangkongth.domain.mypage.Member;
 import capjjangdol.mallangkongth.domain.mypage.Pet;
 import capjjangdol.mallangkongth.domain.rearing.Health;
 import capjjangdol.mallangkongth.domain.rearing.HealthForm;
@@ -36,6 +37,10 @@ public class HealthService {
     public List<Health> findHealths() {
         return healthRepository.findAll();
     }
+    public List<Health> findHealths(Member member) {
+        return healthRepository.findByMember(member);
+    }
+
     public Health findOne(Long healthId) {
         return healthRepository.findById(healthId).get();
     }

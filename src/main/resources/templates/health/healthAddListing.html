@@ -327,7 +327,7 @@
             <!-- Title -->
             <div class="row mb-4">
                 <div class="col-12 text-center">
-                    <h2 class="mb-0"><strong>산책기록 등록하기</strong></h2>
+                    <h2 class="mb-0"><strong>건강기록 등록하기</strong></h2>
                     <!-- Responsive navbar toggler -->
                     <button class="btn btn-primary w-100 d-block d-xl-none mt-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#dashboardMenu" aria-controls="dashboardMenu">
                         <i class="bi bi-list"></i> Dashboard Menu
@@ -378,7 +378,7 @@
                         <div class="card-img-overlay d-flex flex-column z-index-1 p-4">
                             <!-- Card overlay top -->
                             <div class="d-flex justify-content-between">
-                                <span class="badge text-bg-dark" style="font-size: large">산책기록 등록하기</span>
+                                <span class="badge text-bg-dark" style="font-size: large">건강기록 등록하기</span>
                             </div>
                         </div>
                         <br>
@@ -401,6 +401,9 @@
                                                                                      th:value="${pet.id}"
                                                                                      th:text="${pet.name}" />
                                         </select>
+                                        <label th:for="text">제목</label>
+                                        <input type="text" th:field="*{title}" class="form-control"
+                                               placeholder="제목을 입력하세요">
                                         <label th:for="text">메모</label>
                                         <input type="text" th:field="*{text}" class="form-control"
                                                placeholder="메모를 입력하세요"> </div>

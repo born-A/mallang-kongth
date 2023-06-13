@@ -316,10 +316,13 @@ public class RearingController {
      * 건강 기록 목록
      */
     @GetMapping(value = "/health/list")
-    public String healhList(Model model) {
-        List<Health> healths = healthService.findHealths();
+    public String healhList(Model model,@SessionAttribute(name= SessionConst.LOGIN_MEMBER,required = false)Member member) {
+        model.addAttribute("member", member);
+        List<Health> healths = healthService.findHealths(member);
         model.addAttribute("healths", healths);
-        return "health/healthList";
+        List<FileEntity> files = fileRepository.findAll();
+        model.addAttribute("all",files);
+        return "health/health-listing";
     }
 
     /**

@@ -11,5 +11,6 @@ import javax.persistence.*;
 public class HealthForm {
     private Long id;
     private String text;
+    private String title;
     private String imageUrl;
 }
