@@ -95,9 +95,13 @@ public class RearingController {
     @GetMapping(value = "/hospitalNote/new")
         public String createForm(@SessionAttribute(name= SessionConst.LOGIN_MEMBER,required = false)Member member,Model model) {
             List<Pet> pets = petService.findPets(member);
+            model.addAttribute("member", member);
             model.addAttribute("pets", pets);
             model.addAttribute("form",new HospitalNoteForm());
-            return "hospitalAddForm";
+
+            List<FileEntity> files = fileRepository.findAll();
+            model.addAttribute("all",files);
+            return "hospitalAddListing";
         }
 //        @GetMapping(value = "/hospitalNotes/new")
 //        @ResponseBody
@@ -200,9 +204,12 @@ public class RearingController {
     @GetMapping(value = "/walking/new")
     public String createWalkingForm(Model model,@SessionAttribute(name= SessionConst.LOGIN_MEMBER,required = false)Member member) {
         List<Pet> pets = petService.findPets(member);
+        model.addAttribute("member", member);
         model.addAttribute("pets", pets);
         model.addAttribute("form",new WalkingForm());
-        return "walkingAddForm";
+        List<FileEntity> files = fileRepository.findAll();
+        model.addAttribute("all",files);
+        return "walkingAddListing";
     }
     /**
      * 산책 기록 등록 - post
@@ -217,8 +224,8 @@ public class RearingController {
      * 산책 기록 목록
      */
     @GetMapping(value = "/walking/list")
-    public String walkingList(Model model,@SessionAttribute(name= SessionPet.LOGIN_MEMBER_PET,required = false)Pet pet) {
-        List<Walking> walkings = walkingService.findWalkings(pet);
+    public String walkingList(Model model,@SessionAttribute(name= SessionConst.LOGIN_MEMBER,required = false)Member member) {
+        List<Walking> walkings = walkingService.findWalkings(member);
         model.addAttribute("walkings", walkings);
         return "walking-listing";
     }
