@@ -337,9 +337,12 @@ public class RearingController {
      * 건강 기록 상세
      */
     @GetMapping("/health/view")
-    public String healthView(Model model, Long id){
+    public String healthView(@SessionAttribute(name= SessionConst.LOGIN_MEMBER,required = false)Member member,Model model, Long id){
         model.addAttribute("health", healthService.healthView(id));
-        return "health/healthView";
+        model.addAttribute("member", member);
+        List<FileEntity> files = fileRepository.findAll();
+        model.addAttribute("all",files);
+        return "health/health-view";
     }
 
     /**
