@@ -36,7 +36,11 @@ public class FoodBowlSerialWriteThread implements Runnable {
             try {
                 insertTime = foodServingRepository.findInsertTime().get(0);
                 if( lastInsertTime.isBefore(insertTime)) {
-                    out.write(foodServingRepository.findFoodServingSize().get(0));
+                    int send1;
+                    send1 = foodServingRepository.findFoodServingSize().get(0);
+                    String send2 = String.valueOf(send1);
+                    out.write(send2.getBytes());
+                    System.out.println("입력");
                     lastInsertTime = insertTime;
                 }
                 List<FoodServingTimeDto> timeDtoList = foodServingTimeRepository.findFoodServingTime();
@@ -44,7 +48,9 @@ public class FoodBowlSerialWriteThread implements Runnable {
                     localTime = LocalTime.now();
                     localTime2 = localTime.format(DateTimeFormatter.ofPattern("HH:mm")).toString(); //비교를 위해 string으로 변환
                   if(timeDto.getServingTime().toString().compareTo(localTime2) == 0 && check == false){ //check는 그 시간대에 한번만 동작하기 위해 넣음
-                        out.write(timeDto.getServingSize());
+                      int send1 = timeDto.getServingSize();
+                      String send2 = String.valueOf(send1);
+                        out.write(send2.getBytes());
                         temp2 = localTime2;
                         check = true;
                     }
