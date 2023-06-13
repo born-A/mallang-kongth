@@ -1,6 +1,8 @@
 package capjjangdol.mallangkongth.Controller;
 
+import capjjangdol.mallangkongth.domain.file.FileEntity;
 import capjjangdol.mallangkongth.domain.mypage.*;
+import capjjangdol.mallangkongth.repository.FileRepository;
 import capjjangdol.mallangkongth.repository.MemberRepository;
 import capjjangdol.mallangkongth.service.CategoryService;
 import capjjangdol.mallangkongth.service.ItemService;
@@ -46,9 +48,12 @@ public class OrderController {
         return "redirect:/order/list";
     }
     @GetMapping(value = "/order/list")
-    public String orderList(Model model) {
+    public String orderList(@SessionAttribute(name= SessionConst.LOGIN_MEMBER,required = false)Member member,Model model) {
+        model.addAttribute("member", member);
         List<Orders> orders = orderService.findOrders();
         model.addAttribute("orders", orders);
+        List<FileEntity> files = fileRepository.findAll();
+        model.addAttribute("all",files);
         return "order/orderList";
     }
     @PostMapping(value = "/order/{orderId}/cancel")
