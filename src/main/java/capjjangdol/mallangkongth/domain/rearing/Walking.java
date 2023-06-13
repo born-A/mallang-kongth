@@ -32,6 +32,7 @@ public class Walking {
     public static Walking createWalking(Pet pet, WalkingForm form){
         Walking walking = new Walking();
         walking.setPet(pet);
+        walking.setMember(pet.getMember());
         walking.setDateOfWalking(form.getDateOfWalking());
 
         return walking;

@@ -40,8 +40,8 @@ public class WalkingService {
     public List<Walking> findWalkings() {
         return walkingRepository.findAll();
     }
-    public List<Walking> findWalkings(Pet pet) {
-        return walkingRepository.findByPet(pet);
+    public List<Walking> findWalkings(Member member) {
+        return walkingRepository.findByMember(member);
     }
 
     //날짜별 산책

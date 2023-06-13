@@ -22,6 +22,8 @@ public class Health {
     @JoinColumn(name = "member_id")
     private Member member;
 
+    private String title;
+
     private String text;
 
     @Column(name = "image_url")
@@ -31,6 +33,9 @@ public class Health {
     public static Health createHealth(Pet pet, HealthForm form){
         Health health = new Health();
         health.setText(form.getText());
+        health.setTitle(form.getTitle());
+        health.setPet(pet);
+        health.setMember(pet.getMember());
         health.setImageUrl(form.getImageUrl());
 
         return health;

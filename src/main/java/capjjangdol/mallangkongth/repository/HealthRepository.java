@@ -1,9 +1,13 @@
 package capjjangdol.mallangkongth.repository;
 
+import capjjangdol.mallangkongth.domain.mypage.Member;
 import capjjangdol.mallangkongth.domain.rearing.Health;
+import capjjangdol.mallangkongth.domain.rearing.HospitalNote;
 import capjjangdol.mallangkongth.domain.rearing.Walking;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 //import capjjangdol.mallangkongth.domain.rearing.Health;
 //import capjjangdol.mallangkongth.domain.rearing.HospitalNote;
@@ -40,4 +44,6 @@ import org.springframework.stereotype.Repository;
 //
 @Repository
 public interface HealthRepository extends JpaRepository<Health, Long> {
+
+    List<Health> findByMember(Member member);
 }

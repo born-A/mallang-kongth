@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
 	<title>말랑콩떡</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -84,7 +84,7 @@
 	</script>
 
 	<!-- Favicon -->
-	<link rel="shortcut icon" href="/images/avatar/mallangs.png">
+	<link rel="shortcut icon" href="/images/avatar/mallang.jpg">
 
 	<!-- Google Font -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
@@ -113,24 +113,19 @@
 	<nav class="navbar navbar-expand-xl">
 		<div class="container">
 			<!-- Logo START -->
-			<a class="navbar-brand" href="index.html">
-				<img class="light-mode-item navbar-brand-item" src="/images/avatar/mallangs.png" alt="logo">
+			<a  href="/">
+				<img src="/images/avatar/mallangs.png" alt="logo">
+				<!--                <img class="dark-mode-item navbar-brand-item" src="/images/logo-light.svg" alt="logo">-->
 			</a>
 			<!-- Logo END -->
 
-<!--			&lt;!&ndash; Responsive navbar toggler &ndash;&gt;-->
-<!--			<button class="navbar-toggler ms-auto ms-sm-0 p-0 p-sm-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--				<span class="navbar-toggler-animation">-->
-<!--					<span></span>-->
-<!--					<span></span>-->
-<!--					<span></span>-->
-<!--				</span>-->
-<!--        <span class="d-none d-sm-inline-block small">Menu</span>-->
-<!--			</button>-->
-
-			<!-- Responsive category toggler -->
-			<button class="navbar-toggler ms-sm-auto mx-3 me-md-0 p-0 p-sm-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCategoryCollapse" aria-controls="navbarCategoryCollapse" aria-expanded="false" aria-label="Toggle navigation">
-				<i class="bi bi-grid-3x3-gap-fill fa-fw"></i><span class="d-none d-sm-inline-block small">Category</span>
+			<!-- Responsive navbar toggler -->
+			<button class="navbar-toggler ms-auto mx-3 me-md-0 p-0 p-sm-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-animation">
+					<span></span>
+					<span></span>
+					<span></span>
+				</span>
 			</button>
 
 			<!-- Main navbar START -->
@@ -153,7 +148,7 @@
 
 					</li>
 
-          <!-- Nav item link-->
+					<!-- Nav item link-->
 					<li class="nav-item dropdown">
 					</li>
 				</ul>
@@ -164,34 +159,33 @@
 			<div class="navbar-collapse collapse" id="navbarCategoryCollapse">
 				<ul class="navbar-nav navbar-nav-scroll nav-pills-primary-soft text-center ms-auto p-2 p-xl-0">
 					<!-- Nav item Hotel -->
-					<li class="nav-item"> <a class="nav-link active" href="/member/info"><i class="fa-solid fa-hotel me-2"></i>마이페이지</a>	</li>
+					<li class="nav-item"> <a class="nav-link active" href="/member/info"><i class="bi bi-person fa-fw me-2"></i>마이페이지</a>	</li>
 
 					<!-- Nav item Flight -->
-					<li class="nav-item"> <a class="nav-link" href="/pets"><i class="fa-solid fa-plane me-2"></i>육아수첩</a>	</li>
+					<li class="nav-item"> <a class="nav-link" href="/pets"><i class="bi bi-heart fa-fw me-2"></i>육아수첩</a>	</li>
 
 					<!-- Nav item Tour -->
-					<li class="nav-item"> <a class="nav-link" href="index-tour.html"><i class="fa-solid fa-globe-americas me-2"></i>급식/급수기</a> </li>
+					<li class="nav-item"> <a class="nav-link" href="/petIntake/petIntake"><i class="bi bi-bookmark-heart fa-fw me-1"></i>급식/급수기</a> </li>
 
 					<!-- Nav item Cabs -->
-					<li class="nav-item"> <a class="nav-link" href="index-cab.html"><i class="fa-solid fa-car me-2"></i>커뮤니티</a></li>
+					<li class="nav-item"> <a class="nav-link" href="index-cab.html"><i class="bi bi-people fa-fw me-2"></i>커뮤니티</a></li>
+					<li class="nav-item"> <a class="nav-link" href="/item/list"><i class="fa-solid fa-hotel me-2"></i>Shop</a></li>
 				</ul>
 			</div>
 			<!-- Nav category menu END -->
 
 			<!-- Profile and Notification START -->
 			<ul class="nav flex-row align-items-center list-unstyled ms-xl-auto">
-
 				<!-- Notification dropdown START -->
 				<li class="nav-item dropdown ms-0 ms-md-3">
-					<!-- Notification button -->
-					<a class="nav-notification btn btn-light p-0 mb-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-						<i class="bi bi-bell fa-fw"></i>
+					<a class="nav-link p-0" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+						<i class="bi bi-bell fa-fw fs-5"></i>
 					</a>
 					<!-- Notification dote -->
 					<span class="notif-badge animation-blink"></span>
 
 					<!-- Notification dropdown menu START -->
-					<div class="dropdown-menu dropdown-animation dropdown-menu-end dropdown-menu-size-md shadow-lg p-0">
+					<div class="dropdown-menu dropdown-animation dropdown-menu-end dropdown-menu-size-md p-0 shadow-lg">
 						<div class="card bg-transparent">
 							<!-- Card header -->
 							<div class="card-header bg-transparent d-flex justify-content-between align-items-center border-bottom">
@@ -227,35 +221,35 @@
 							</div>
 						</div>
 					</div>
-					<!-- Notification dropdown menu END -->
-				</li>
-				<!-- Notification dropdown END -->
+					<!-- Notification dropdown END -->
 
-				<!-- Profile dropdown START -->
+					<!-- Profile dropdown START -->
 				<li class="nav-item ms-3 dropdown">
 					<!-- Avatar -->
-					<a class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-						<img class="avatar-img rounded-2" src="/images/avatar/01.jpg" alt="avatar">
+					<a th:each="imageFile : ${all} " class="avatar avatar-xs p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
+						<img class="avatar-img rounded-circle" th:src="|/images/${imageFile.id}|" width="100" alt="avatar">
 					</a>
 
+					<!-- Profile dropdown START -->
 					<ul class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3" aria-labelledby="profileDropdown">
 						<!-- Profile info -->
-						<li class="px-3 mb-3">
+						<li class="px-3 mb-3" >
 							<div class="d-flex align-items-center">
 								<!-- Avatar -->
-								<div class="avatar me-3">
-									<img class="avatar-img rounded-circle shadow" src="/images/avatar/01.jpg" alt="avatar">
+								<div class="avatar me-3" th:each="imageFile : ${all} ">
+									<img class="avatar-img rounded-circle shadow" th:src="|/images/${imageFile.id}|" alt="avatar">
 								</div>
-								<div>
-									<a class="h6 mt-2 mt-sm-0" href="#">Lori Ferguson</a>
-									<p class="small m-0">example@gmail.com</p>
+
+								<div th:object="${member}">
+									<a class="h6 mt-2 mt-sm-0" href="#"><td th:text="${member.getUsername()}"></td></a>
+									<p class="small m-0"><td th:text="${member.getEmail()}"></td></p>
 								</div>
 							</div>
 						</li>
 
 						<!-- Links -->
 						<li> <hr class="dropdown-divider"></li>
-						<li><a class="dropdown-item" href="#"><i class="bi bi-bookmark-check fa-fw me-2"></i>My Bookings</a></li>
+						<li><a class="dropdown-item" href="#"><i class="bi bi-bookmark-check fa-fw me-2"></i>주문 목록</a></li>
 						<li><a class="dropdown-item" href="#"><i class="bi bi-heart fa-fw me-2"></i>My Wishlist</a></li>
 						<li><a class="dropdown-item" href="#"><i class="bi bi-gear fa-fw me-2"></i>Settings</a></li>
 						<li><a class="dropdown-item" href="#"><i class="bi bi-info-circle fa-fw me-2"></i>Help Center</a></li>
@@ -286,11 +280,20 @@
 									</svg>
 								</button>
 							</div>
-						</li> 
+						</li>
 						<!-- Dark mode options END-->
 					</ul>
+					<!-- Profile dropdown END -->
 				</li>
 				<!-- Profile dropdown END -->
+
+				<!-- Button -->
+				<li class="nav-item ms-3 d-none d-sm-block">
+					<form action="logout.do" method="post">
+						<button type="submit" class="nav-link text-danger bg-danger-soft-hover"><i class="fas fa-sign-out-alt fa-fw me-2"></i>로그아웃</button>
+					</form>
+
+				</li>
 			</ul>
 			<!-- Profile and Notification START -->
 
@@ -318,34 +321,27 @@ Main Banner START -->
 									<td th:text="${member.getUsername()} + 님"></td></a>
 
 								</div>
-							<!-- SVG START -->
-							<span class="position-absolute top-50 start-50 translate-middle z-index-n1 d-none d-md-block mt-4">
-<!--								<svg width="390.5px" height="21.5px" viewBox="0 0 445.5 21.5">-->
-<!--									<path class="fill-primary opacity-7" d="M409.9,2.6c-9.7-0.6-19.5-1-29.2-1.5c-3.2-0.2-6.4-0.2-9.7-0.3c-7-0.2-14-0.4-20.9-0.5 c-3.9-0.1-7.8-0.2-11.7-0.3c-1.1,0-2.3,0-3.4,0c-2.5,0-5.1,0-7.6,0c-11.5,0-23,0-34.5,0c-2.7,0-5.5,0.1-8.2,0.1 c-6.8,0.1-13.6,0.2-20.3,0.3c-7.7,0.1-15.3,0.1-23,0.3c-12.4,0.3-24.8,0.6-37.1,0.9c-7.2,0.2-14.3,0.3-21.5,0.6 c-12.3,0.5-24.7,1-37,1.5c-6.7,0.3-13.5,0.5-20.2,0.9C112.7,5.3,99.9,6,87.1,6.7C80.3,7.1,73.5,7.4,66.7,8 C54,9.1,41.3,10.1,28.5,11.2c-2.7,0.2-5.5,0.5-8.2,0.7c-5.5,0.5-11,1.2-16.4,1.8c-0.3,0-0.7,0.1-1,0.1c-0.7,0.2-1.2,0.5-1.7,1 C0.4,15.6,0,16.6,0,17.6c0,1,0.4,2,1.1,2.7c0.7,0.7,1.8,1.2,2.7,1.1c6.6-0.7,13.2-1.5,19.8-2.1c6.1-0.5,12.3-1,18.4-1.6 c6.7-0.6,13.4-1.1,20.1-1.7c2.7-0.2,5.4-0.5,8.1-0.7c10.4-0.6,20.9-1.1,31.3-1.7c6.5-0.4,13-0.7,19.5-1.1c2.7-0.1,5.4-0.3,8.1-0.4 c10.3-0.4,20.7-0.8,31-1.2c6.3-0.2,12.5-0.5,18.8-0.7c2.1-0.1,4.2-0.2,6.3-0.2c11.2-0.3,22.3-0.5,33.5-0.8 c6.2-0.1,12.5-0.3,18.7-0.4c2.2-0.1,4.4-0.1,6.7-0.1c11.5-0.1,23-0.2,34.6-0.4c7.2-0.1,14.4-0.1,21.6-0.1c12.2,0,24.5,0.1,36.7,0.1 c2.4,0,4.8,0.1,7.2,0.2c6.8,0.2,13.5,0.4,20.3,0.6c5.1,0.2,10.1,0.3,15.2,0.4c3.6,0.1,7.2,0.4,10.8,0.6c10.6,0.6,21.1,1.2,31.7,1.8 c2.7,0.2,5.4,0.4,8,0.6c2.9,0.2,5.8,0.4,8.6,0.7c0.4,0.1,0.9,0.2,1.3,0.3c1.1,0.2,2.2,0.2,3.2-0.4c0.9-0.5,1.6-1.5,1.9-2.5 c0.6-2.2-0.7-4.5-2.9-5.2c-1.9-0.5-3.9-0.7-5.9-0.9c-1.4-0.1-2.7-0.3-4.1-0.4c-2.6-0.3-5.2-0.4-7.9-0.6 C419.7,3.1,414.8,2.9,409.9,2.6z"/>-->
-<!--								</svg>-->
-							</span>
-							<!-- SVG END -->
-						</span>
+
 					</h1>
 					<!-- Info -->
 <!--					<p class="mb-4">당신의 반려동물과의 행복한 삶을 위해 노력합니다. :)</p>-->
-					<h3>당신의 반려동물과의 행복한 삶을 위해 노력합니다. :)</h3>
+					<h3>당신의 반려동물과의 행복한 삶을 위해 <br>노력합니다. :)</br></h3>
 					<!-- Buttons -->
 					<div class="hstack gap-4 flex-wrap align-items-center">
 						<!-- Button -->
-						<a href="#" class="btn btn-primary-soft mb-0">Discover Now</a>
+
 						<!-- Story button -->
-						<a data-glightbox="" data-gallery="office-tour" href="https://www.youtube.com/embed/tXHviS-4ygo" class="d-block">
+
 							<!-- Avatar -->
 							<div class="avatar avatar-md z-index-1 position-relative me-2">
-								<img class="avatar-img rounded-circle" src="/images/avatar/12.jpg" alt="avatar">
+
 								<!-- Video button -->
-								<div class="btn btn-xs btn-round btn-white shadow-sm position-absolute top-50 start-50 translate-middle z-index-9 mb-0"> 
-									<i class="fas fa-play"></i>
-								</div>
+<!--								<div class="btn btn-xs btn-round btn-white shadow-sm position-absolute top-50 start-50 translate-middle z-index-9 mb-0"> -->
+<!--									<i class="fas fa-play"></i>-->
+<!--								</div>-->
 							</div>
 							<div class="align-middle d-inline-block">
-								<h6 class="fw-normal small mb-0">Watch our story</h6>
+
 							</div>
 						</a>
 					</div>
@@ -353,7 +349,7 @@ Main Banner START -->
 				<!-- Image -->
 				<div class="col-lg-6 position-relative">
 
-					<img src="/images/avatar/petFamily.jpeg" class="rounded" alt="">
+					<img src="/images/avatar/main.jpg" class="rounded" alt="" width="600px" height="400px">
 
 					<!-- Svg decoration -->
 <!--					<figure class="position-absolute end-0 bottom-0">-->
@@ -404,139 +400,228 @@ About END -->
 <!-- =======================
 Near by START -->
 <section>
+	<br>
+	<br>
+	<br>
 	<div class="container">
 		<!-- Title -->
 		<div class="row mb-4">
+			<!-- Responsive navbar toggler -->
+			<button class="btn btn-primary w-100 d-block d-xl-none mt-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#dashboardMenu" aria-controls="dashboardMenu">
+				<i class="bi bi-list"></i> Dashboard Menu
+			</button>
+			<!-- Nav links START -->
+			<div class="offcanvas-xl offcanvas-end mt-xl-3" tabindex="-1" id="dashboardMenu">
+				<div class="offcanvas-header border-bottom p-3">
+					<h5 class="offcanvas-title">Menu</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#dashboardMenu" aria-label="Close"></button>
+				</div>
+				<!-- Offcanvas body -->
+				<div class="offcanvas-body p-3 p-xl-0">
+					<!-- Nav item -->
+					<div class="navbar navbar-expand-xl">
+						<ul class="navbar-nav navbar-offcanvas-menu">
+
+							<li class="nav-item"> <a class="nav-link" href="/"><i class="bi bi-house-door fa-fw me-1"></i>Home</a>	</li>
+							<li class="nav-item"> <a class="nav-link" href="/member/info"> <i class="bi bi-person fa-fw me-2"></i>마이페이지</a>	</li>
+
+							<li class="nav-item"> <a class="nav-link active" href="/pets/"><i class="bi bi-journals fa-fw me-1"></i>육아수첩</a> </li>
+
+							<li class="nav-item"> <a class="nav-link" href="/petIntake/petIntake"><i class="bi bi-bookmark-heart fa-fw me-1"></i>급식/급수기</a> </li>
+
+							<li class="nav-item"> <a class="nav-link" href="agent-earnings.html"><i class="bi bi-people fa-fw me-2"></i>커뮤니티</a>	</li>
+
+							<li class="nav-item"> <a class="nav-link" href="/item/list"><i class="bi bi-bell fa-fw me-1"></i>Mallang SHOP</a> </li>
+
+						</ul>
+					</div>
+				</div>
+			</div>
 			<div class="col-12 text-center">
 				<h2 class="mb-0">말랑콩떡 서비스</h2>
 			</div>
 		</div>
+		<section class="pt-0 pt-sm-5">
+			<div class="container">
+				<div class="row g-4">
+					<!-- Card item -->
 
-		<div class="row g-4 g-md-5">
-			<!-- Card item START -->
-			<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-				<div class="card bg-transparent text-center p-1 h-100">
-					<!-- Image -->
-					<img src="/images/category/member.png" class="rounded-circle" alt="">
 
-					<div class="card-body p-0 pt-3">
-						<h5 class="card-title"><a href="/member/info" class="stretched-link">회원 정보</a></h5>
-						<span>현재 로그인한 회원의 정보를 확인하거나 수정할 수 있습니다.</span>
+					<div class="col-sm-6 col-lg-4 col-xl-3">
+						<div class="card shadow h-100">
+							<div class="position-relative">
+								<!-- Image -->
+								<img src="/images/category/dog.png" width="300px" height="300px"  class="rounded-circle" alt="Card image">
+								<!-- Overlay -->
+							</div>
+
+							<!-- Card body START -->
+							<div class="card-body">
+								<!-- Title -->
+								<h5 class="card-title me-2"><a href="/pets/">육아수첩</a></h5>
+
+								<!-- Content -->
+								<!--								<p class="mb-0">소중한 우리 가족의 하루를 기록해요</p>-->
+							</div>
+							<!-- Card body END -->
+
+							<!-- Card footer START-->
+							<div class="card-footer border-top">
+								<!-- Buttons -->
+								<!--								<div class="d-flex justify-content-between align-items-center">-->
+								<!--									<a href="/pets/" class="btn btn-link p-0 mb-0">View detail</a>-->
+								<!--									<a href="#" class="h6 mb-0 z-index-2"><i class="fa-solid fa-heart text-danger"></i></a>-->
+								<!--								</div>-->
+								<p class="mb-0">소중한 우리 가족의 하루를 기록해요</p>
+							</div>
+						</div>
 					</div>
+					<div class="col-sm-6 col-lg-4 col-xl-3">
+						<div class="card shadow h-100">
+							<div class="position-relative">
+								<!-- Image -->
+								<a href="/item/list"><img src="/images/category/order.png" width="300px" height="300px"  class="rounded-circle" alt="Card image"></a>
+								<!-- Overlay -->
+							</div>
+
+							<!-- Card body START -->
+							<div class="card-body">
+								<!-- Title -->
+								<h5 class="card-title me-2"><a href="/item/list">말랑샵</a></h5>
+
+								<!-- Content -->
+								<!--								<p class="mb-0">소중한 우리 가족의 하루를 기록해요</p>-->
+							</div>
+							<!-- Card body END -->
+
+							<!-- Card footer START-->
+							<div class="card-footer border-top">
+								<!-- Buttons -->
+								<!--								<div class="d-flex justify-content-between align-items-center">-->
+								<!--									<a href="/pets/" class="btn btn-link p-0 mb-0">View detail</a>-->
+								<!--									<a href="#" class="h6 mb-0 z-index-2"><i class="fa-solid fa-heart text-danger"></i></a>-->
+								<!--								</div>-->
+								<p class="mb-0">반려동물 제품을 최저가로 구매해요</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-lg-4 col-xl-3">
+						<div class="card shadow h-100">
+							<div class="position-relative">
+								<!-- Image -->
+								<img src="/images/category/food.png" width="300px" height="300px"  class="rounded-circle" alt="Card image">
+								<!-- Overlay -->
+							</div>
+
+							<!-- Card body START -->
+							<div class="card-body">
+								<!-- Title -->
+								<h5 class="card-title me-2"><a href="/petIntake/petIntake">급수기/급식기</a></h5>
+
+								<!-- Content -->
+								<!--								<p class="mb-0">소중한 우리 가족의 하루를 기록해요</p>-->
+							</div>
+							<!-- Card body END -->
+
+							<!-- Card footer START-->
+							<div class="card-footer border-top">
+								<!-- Buttons -->
+								<!--								<div class="d-flex justify-content-between align-items-center">-->
+								<!--									<a href="/pets/" class="btn btn-link p-0 mb-0">View detail</a>-->
+								<!--									<a href="#" class="h6 mb-0 z-index-2"><i class="fa-solid fa-heart text-danger"></i></a>-->
+								<!--								</div>-->
+								<p class="mb-0">배식량을 설정하고 섭취량을 제공합니다. </p>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-lg-4 col-xl-3">
+						<div class="card shadow h-100">
+							<div class="position-relative">
+								<!-- Image -->
+								<img src="/images/category/member.png" width="300px" height="300px"  class="rounded-circle" alt="Card image">
+								<!-- Overlay -->
+							</div>
+
+							<!-- Card body START -->
+							<div class="card-body">
+								<!-- Title -->
+								<h5 class="card-title me-2"><a href="/pets/">커뮤니티</a></h5>
+
+								<!-- Content -->
+								<!--								<p class="mb-0">소중한 우리 가족의 하루를 기록해요</p>-->
+							</div>
+							<!-- Card body END -->
+
+							<!-- Card footer START-->
+							<div class="card-footer border-top">
+								<!-- Buttons -->
+								<!--								<div class="d-flex justify-content-between align-items-center">-->
+								<!--									<a href="/pets/" class="btn btn-link p-0 mb-0">View detail</a>-->
+								<!--									<a href="#" class="h6 mb-0 z-index-2"><i class="fa-solid fa-heart text-danger"></i></a>-->
+								<!--								</div>-->
+								<p class="mb-0">반려자들의 소통 공간</p>
+							</div>
+						</div>
+					</div>
+
+
 				</div>
 			</div>
-			<!-- Card item END -->
+		</section>
+		<div class="row g-4 ">
+<!--			<div class="col-6 col-sm-4 col-lg-3 col-xl-2">-->
+<!--				<div class="card bg-transparent text-center p-1 h-100">-->
+<!--					&lt;!&ndash; Image &ndash;&gt;-->
+<!--					<img src="/images/category/dog.png" class="rounded-circle" alt="">-->
 
-			<!-- Card item START -->
-			<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-				<div class="card bg-transparent text-center p-1 h-100">
-					<!-- Image -->
-					<img src="/images/category/dog.png" class="rounded-circle" alt="">
+<!--					<div class="card-body p-0 pt-3">-->
+<!--						<h5 class="card-title"><a href="/pets/" class="stretched-link">육아수첩</a></h5>-->
 
-					<div class="card-body p-0 pt-3">
-						<h5 class="card-title"><a href="목" class="stretched-link">반려동물</a></h5>
-						<span>등록된 모든 반려동물 목록 제공합니다.</span>
-					</div>
-				</div>
-			</div>
-			<!-- Card item END -->
+<!--					</div>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--			<div class="col-6 col-sm-4 col-lg-3 col-xl-2">-->
+<!--				<div class="card bg-transparent text-center p-1 h-100">-->
+<!--					&lt;!&ndash; Image &ndash;&gt;-->
+<!--					<img src="/images/category/order.png" class="rounded-circle" alt="">-->
 
-			<!-- Card item START -->
-			<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-				<div class="card bg-transparent text-center p-1 h-100">
-					<!-- Image -->
-					<img src="/images/category/list.png" class="rounded-circle" alt="">
+<!--					<div class="card-body p-0 pt-3">-->
+<!--						<h5 class="card-title"><a href="/item/list" class="stretched-link">Mallang SHOP</a></h5>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--			</div>-->
 
-					<div class="card-body p-0 pt-3">
-						<h5 class="card-title"><a href="/items" class="stretched-link">상품 목록</a></h5>
-						<span>등록된 모든 상품 목록을 제공합니다.</span>
-					</div>
-				</div>
-			</div>
-			<!-- Card item END -->
+<!--			<div class="col-6 col-sm-4 col-lg-3 col-xl-2">-->
+<!--				<div class="card bg-transparent text-center p-1 h-100">-->
+<!--					&lt;!&ndash; Image &ndash;&gt;-->
+<!--					<img src="/images/category/food.png" class="rounded-circle" alt="">-->
 
-			<!-- Card item START -->
-			<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-				<div class="card bg-transparent text-center p-1 h-100">
-					<!-- Image -->
-					<img src="/images/category/hospital.png" class="rounded-circle" alt="">
+<!--					<div class="card-body p-0 pt-3">-->
+<!--						<h5 class="card-title"><a href="/petIntake/petIntake" class="stretched-link">급식기/급수기</a></h5>-->
+<!--						<span>배식량을 설정하고 <br>섭취량을 제공합니다.</br></span>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--			<div class="col-6 col-sm-4 col-lg-3 col-xl-2">-->
+<!--				<div class="card bg-transparent text-center p-1 h-100">-->
+<!--					&lt;!&ndash; Image &ndash;&gt;-->
+<!--					<img src="/images/category/member.png" class="rounded-circle" alt="">-->
 
-					<div class="card-body p-0 pt-3">
-						<h5 class="card-title"><a href="/hospitalNote/list" class="stretched-link">병원기록</a></h5>
-						<span>등록된 모든 병원기록을 제공합니다.</span>
-					</div>
-				</div>
-			</div>
-			<!-- Card item END -->
+<!--					<div class="card-body p-0 pt-3">-->
+<!--						<h5 class="card-title"><a href="" class="stretched-link">커뮤니티</a></h5>-->
 
-			<!-- Card item START -->
-			<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-				<div class="card bg-transparent text-center p-1 h-100">
-					<!-- Image -->
-					<img src="/images/category/order.png" class="rounded-circle" alt="">
+<!--					</div>-->
+<!--				</div>-->
+<!--			</div>-->
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
 
-					<div class="card-body p-0 pt-3">
-						<h5 class="card-title"><a href="/order/list" class="stretched-link">주문 목록</a></h5>
-						<span>모든 주문 목록을 제공합니다.</span>
-					</div>
-				</div>
-			</div>
-			<!-- Card item END -->
-
-			<!-- Card item START -->
-			<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-				<div class="card bg-transparent text-center p-1 h-100">
-					<!-- Image -->
-					<img src="/images/category/food.png" class="rounded-circle" alt="">
-
-					<div class="card-body p-0 pt-3">
-						<h5 class="card-title"><a href="/petIntake/petIntake" class="stretched-link">급식기/급수기</a></h5>
-						<span>배식량을 설정하고 섭취량을 제공합니다.</span>
-					</div>
-				</div>
-			</div>
-			<!-- Card item END -->
-
-			<!-- Card item START -->
-			<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-				<div class="card bg-transparent text-center p-1 h-100">
-					<!-- Image -->
-					<img src="/images/category/walk.png" class="rounded-circle" alt="">
-
-					<div class="card-body p-0 pt-3">
-						<h5 class="card-title"><a href="#" class="stretched-link">Rio</a></h5>
-						<span>20 min drive</span>
-					</div>
-				</div>
-			</div>
-			<!-- Card item END -->
-
-			<!-- Card item START -->
-			<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-				<div class="card bg-transparent text-center p-1 h-100">
-					<!-- Image -->
-					<img src="/images/category/poop.png" class="rounded-circle" alt="">
-
-					<div class="card-body p-0 pt-3">
-						<h5 class="card-title"><a href="#" class="stretched-link">Las Vegas</a></h5>
-						<span>3-hour drive</span>
-					</div>
-				</div>
-			</div>
-			<!-- Card item END -->
-
-			<!-- Card item START -->
-			<div class="col-6 col-sm-4 col-lg-3 col-xl-2">
-				<div class="card bg-transparent text-center p-1 h-100">
-					<!-- Image -->
-					<img src="/images/category/hotel/nearby/01.jpg" class="rounded-circle" alt="">
-
-					<div class="card-body p-0 pt-3">
-						<h5 class="card-title"><a href="#" class="stretched-link">Oslo</a></h5>
-						<span>1 hour 13 min drive</span>
-					</div>
-				</div>
-			</div>
 			<!-- Card item END -->
 		</div> <!-- Row END -->
 	</div>
@@ -550,43 +635,8 @@ Download app START -->
 	<div class="container">
 		<div class="row g-4">
 
-			<!-- Help -->
-			<div class="col-md-6 col-xxl-4">
-				<div class="bg-body d-flex rounded-3 h-100 p-4">
-					<h3><i class="fa-solid fa-hand-holding-heart"></i></h3>
-					<div class="ms-3">
-						<h5>24x7 Help</h5>
-						<p class="mb-0">If we fall short of your expectation in any way, let us know</p>
-					</div>
-				</div>
-			</div>
-
-			<!-- Trust -->
-			<div class="col-md-6 col-xxl-4">
-				<div class="bg-body d-flex rounded-3 h-100 p-4">
-					<h3><i class="fa-solid fa-hand-holding-usd"></i></h3>
-					<div class="ms-3">
-						<h5>Payment Trust</h5>
-						<p class="mb-0">All refunds come with no questions asked guarantee</p>
-					</div>
-				</div>
-			</div>
-
-			<!-- Download app -->
-			<div class="col-lg-6 col-xl-5 col-xxl-3 ms-xxl-auto">
-				<h5 class="mb-4">Download app</h5>
-				<div class="row g-3">
-					<!-- Google play store button -->
-					<div class="col-6 col-sm-4 col-md-3 col-lg-6">
-						<a href="#"> <img src="/images/element/google-play.svg" alt=""> </a>
-					</div>
-					<!-- App store button -->
-					<div class="col-6 col-sm-4 col-md-3 col-lg-6">
-						<a href="#"> <img src="/images/element/app-store.svg" alt=""> </a>
-					</div>
-				</div>
-			</div>
-
+		<br>
+			<br>
 		</div>
 	</div>
 </section>
@@ -595,159 +645,64 @@ Download app END -->
 
 </main>
 <!-- **************** MAIN CONTENT END **************** -->
-
 <!-- =======================
 Footer START -->
-<footer class="bg-dark pt-5">
+<footer class="bg-warning py-7">
 	<div class="container">
-		<!-- Row START -->
-		<div class="row g-4">
+		<div class="row mx-auto">
+			<div class="col-md-10 col-xl-6 mx-auto text-center">
+				<!-- Logo -->
 
-			<!-- Widget 1 START -->
-			<div class="col-lg-3">
-				<!-- logo -->
-				<a href="index.html">
-					<img class="h-40px" src="/images/avatar/mallangs.png" alt="logo">
-				</a>
-				<p class="my-3 text-muted">Departure defective arranging rapturous did believe him all had supported.</p>
-				<p class="mb-2"><a href="#" class="text-muted text-primary-hover"><i class="bi bi-telephone me-2"></i>+1234 568 963</a> </p>
-				<p class="mb-0"><a href="#" class="text-muted text-primary-hover"><i class="bi bi-envelope me-2"></i>example@gmail.com</a></p>
-			</div>
-			<!-- Widget 1 END -->
-
-			<!-- Widget 2 START -->
-			<div class="col-lg-8 ms-auto">
-				<div class="row g-4">
-					<!-- Link block -->
-					<div class="col-6 col-md-3">
-						<h5 class="text-white mb-2 mb-md-4">Page</h5>
-						<ul class="nav flex-column text-primary-hover">
-							<li class="nav-item"><a class="nav-link text-muted" href="#">About us</a></li>
-							<li class="nav-item"><a class="nav-link text-muted" href="#">Contact us</a></li>
-							<li class="nav-item"><a class="nav-link text-muted" href="#">News and Blog</a></li>
-							<li class="nav-item"><a class="nav-link text-muted" href="#">Meet a Team</a></li>
-						</ul>
-					</div>
-
-					<!-- Link block -->
-					<div class="col-6 col-md-3">
-						<h5 class="text-white mb-2 mb-md-4">Link</h5>
-						<ul class="nav flex-column text-primary-hover">
-							<li class="nav-item"><a class="nav-link text-muted" href="#">Sign up</a></li>
-							<li class="nav-item"><a class="nav-link text-muted" href="#">Sign in</a></li>
-							<li class="nav-item"><a class="nav-link text-muted" href="#">Privacy Policy</a></li>
-							<li class="nav-item"><a class="nav-link text-muted" href="#">Terms</a></li>
-							<li class="nav-item"><a class="nav-link text-muted" href="#">Cookie</a></li>
-							<li class="nav-item"><a class="nav-link text-muted" href="#">Support</a></li>
-						</ul>
-					</div>
-									
-					<!-- Link block -->
-					<div class="col-6 col-md-3">
-						<h5 class="text-white mb-2 mb-md-4">Global Site</h5>
-						<ul class="nav flex-column text-primary-hover">
-							<li class="nav-item"><a class="nav-link text-muted" href="#">India</a></li>
-							<li class="nav-item"><a class="nav-link text-muted" href="#">California</a></li>
-							<li class="nav-item"><a class="nav-link text-muted" href="#">Indonesia</a></li>
-							<li class="nav-item"><a class="nav-link text-muted" href="#">Canada</a></li>
-							<li class="nav-item"><a class="nav-link text-muted" href="#">Malaysia</a></li>
-						</ul>
-					</div>
-
-					<!-- Link block -->
-					<div class="col-6 col-md-3">
-						<h5 class="text-white mb-2 mb-md-4">Booking</h5>
-						<ul class="nav flex-column text-primary-hover">
-							<li class="nav-item"><a class="nav-link text-muted" href="#"><i class="fa-solid fa-hotel me-2"></i>Hotel</a></li>
-							<li class="nav-item"><a class="nav-link text-muted" href="#"><i class="fa-solid fa-plane me-2"></i>Flight</a></li>
-							<li class="nav-item"><a class="nav-link text-muted" href="#"><i class="fa-solid fa-globe-americas me-2"></i>Tour</a></li>
-							<li class="nav-item"><a class="nav-link text-muted" href="#"><i class="fa-solid fa-car me-2"></i>Cabs</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<!-- Widget 2 END -->
-
-		</div><!-- Row END -->
-
-
-
-			<!-- Social media icon -->
-			<div class="col-sm-5 col-md-6 col-lg-3 text-sm-end">
-				<h5 class="text-white mb-2">Follow us on</h5>
-				<ul class="list-inline mb-0 mt-3">
-					<li class="list-inline-item"> <a class="btn btn-sm px-2 bg-facebook mb-0" href="#"><i class="fab fa-fw fa-facebook-f"></i></a> </li>
-					<li class="list-inline-item"> <a class="btn btn-sm shadow px-2 bg-instagram mb-0" href="#"><i class="fab fa-fw fa-instagram"></i></a> </li>
-					<li class="list-inline-item"> <a class="btn btn-sm shadow px-2 bg-twitter mb-0" href="#"><i class="fab fa-fw fa-twitter"></i></a> </li>
-					<li class="list-inline-item"> <a class="btn btn-sm shadow px-2 bg-linkedin mb-0" href="#"><i class="fab fa-fw fa-linkedin-in"></i></a> </li>
-				</ul>	
+				<p class="mt-3 text-white">말랑콩떡</p>
+				<!-- Links -->
+				<ul class="nav justify-content-between text-primary-hover mt-3 mt-md-0">
+					<li class="nav-item"><a class="nav-link p-2 text-white" href="#">About</a></li>
+					<li class="nav-item"><a class="nav-link p-2 text-white" href="#">Terms</a></li>
+					<li class="nav-item"><a class="nav-link p-2 text-white" href="#">Privacy</a></li>
+					<li class="nav-item"><a class="nav-link p-2 text-white" href="#">Career</a></li>
+					<li class="nav-item"><a class="nav-link p-2 text-white" href="#">Contact us</a></li>
+					<li class="nav-item"><a class="nav-link p-2 text-white" href="#">Cookies</a></li>
+				</ul>
+				<!-- Social media button -->
+				<ul class="list-inline mt-3 mb-0">
+					<li class="list-inline-item">
+						<a class="btn btn-white btn-sm shadow px-2 text-facebook" href="#">
+							<i class="fab fa-fw fa-facebook-f"></i>
+						</a>
+					</li>
+					<li class="list-inline-item">
+						<a class="btn btn-white btn-sm shadow px-2 text-instagram" href="#">
+							<i class="fab fa-fw fa-instagram"></i>
+						</a>
+					</li>
+					<li class="list-inline-item">
+						<a class="btn btn-white btn-sm shadow px-2 text-twitter" href="#">
+							<i class="fab fa-fw fa-twitter"></i>
+						</a>
+					</li>
+					<li class="list-inline-item">
+						<a class="btn btn-white btn-sm shadow px-2 text-linkedin" href="#">
+							<i class="fab fa-fw fa-linkedin-in"></i>
+						</a>
+					</li>
+				</ul>
+				<!-- copyright text -->
+				<div class="text-muted text-primary-hover mt-3"> Copyrights ©2023 말랑콩떡. Build by <a href="https://github.com/born-A/mallang-kongth" class="text-muted">캡짱돌</a>. </div>
 			</div>
 		</div>
 
-		<!-- Divider -->
-		<hr class="mt-4 mb-0">
-
-		<!-- Bottom footer -->
-		<div class="row">
-			<div class="container">
-				<div class="d-lg-flex justify-content-between align-items-center py-3 text-center text-lg-start">
-					<!-- copyright text -->
-					<div class="text-muted text-primary-hover"> Copyrights ©2023 말랑콩떡. Build by <a href="https://www.webestica.com/" class="text-muted">캡짱돌</a>. </div>
-					<!-- copyright links-->
-					<div class="nav mt-2 mt-lg-0">
-						<ul class="list-inline text-primary-hover mx-auto mb-0">
-							<li class="list-inline-item me-0"><a class="nav-link py-1 text-muted" href="#">Privacy policy</a></li>
-							<li class="list-inline-item me-0"><a class="nav-link py-1 text-muted" href="#">Terms and conditions</a></li>
-							<li class="list-inline-item me-0"><a class="nav-link py-1 text-muted pe-0" href="#">Refund policy</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
 	</div>
 </footer>
 <!-- =======================
+
 Footer END -->
 
 <!-- Back to top -->
 <div class="back-top"></div>
 
-<!-- Navbar mobile START -->
-<div class="navbar navbar-mobile">
-	<ul class="navbar-nav">
-		<!-- Nav item Home -->
-		<li class="nav-item">
-			<a class="nav-link active" href="index.html"><i class="bi bi-house-door fa-fw"></i>
-				<span class="mb-0 nav-text">Home</span>
-			</a>	
-		</li>
-
-		<!-- Nav item My Trips -->
-		<li class="nav-item"> 
-			<a class="nav-link" href="account-bookings.html"><i class="bi bi-briefcase fa-fw"></i>
-				<span class="mb-0 nav-text">My Trips</span>
-			</a>	
-		</li>
-
-		<!-- Nav item Offer -->
-		<li class="nav-item"> 
-			<a class="nav-link" href="offer-detail.html"><i class="bi bi-percent fa-fw"></i>
-				<span class="mb-0 nav-text">Offer</span> 
-			</a>
-		</li>
-
-		<!-- Nav item Account -->
-		<li class="nav-item"> 
-			<a class="nav-link" href="account-profile.html"><i class="bi bi-person-circle fa-fw"></i>
-				<span class="mb-0 nav-text">Account</span>
-			</a>
-		</li>
-	</ul>
-</div>
-<!-- Navbar mobile END -->
 
 <!-- Bootstrap JS -->
-<script src="vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- Vendors -->
 <script src="/vendor/tiny-slider/tiny-slider.js"></script>

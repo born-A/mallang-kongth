@@ -34,29 +34,34 @@ public class PetController {
      * 펫 등록
      */
     @GetMapping(value = "/pets/new")
-    public String createForm(Model model) {
+    public String createForm(@SessionAttribute(name= SessionConst.LOGIN_MEMBER,required = false)Member member,Model model) {
+        model.addAttribute("member", member);
         Pet pet = new Pet();
         pet.setGender(true);
-        model.addAttribute("Pet", pet);
+        model.addAttribute("pet", pet);
         model.addAttribute("petForm", new PetForm());
+
         List<String> breeds = new ArrayList<>();
         breeds.add("말티즈");
         breeds.add("치와와");
         breeds.add("요크셔테리어");
         model.addAttribute("breeds", breeds);
-        return "petAddForm";
+
+        List<FileEntity> files = fileRepository.findAll();
+        model.addAttribute("all",files);
+        return "petAddListing";
     }
 
     @PostMapping(value = "/pets/new")
     public String create(@SessionAttribute(name= SessionConst.LOGIN_MEMBER,required = false) Member member,
                          @Valid PetForm form, BindingResult result,HttpServletRequest request) {
-        if (result.hasErrors()) {
-//            return "pets/createPetForm";
-            return "home";
-        }
+//        if (result.hasErrors()) {
+////            return "pets/createPetForm";
+//            return "/index";
+//        }
 
         Pet pet = new Pet();
-        pet.setMember(member); //
+        pet.setMember(member);
         pet.setName(form.getName());
         pet.setGender(form.isGender());
         pet.setWeight(form.getWeight());
@@ -64,10 +69,6 @@ public class PetController {
         pet.setBreed(form.getBreed());
         petService.savePet(pet);
 
-        HttpSession session = request.getSession();
-
-        //세션에 로그인 회원의 펫 정보 보관
-        session.setAttribute(SessionPet.LOGIN_MEMBER_PET, pet.getId());
         return "redirect:/";
     }
 
