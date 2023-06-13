@@ -144,6 +144,9 @@ public class RearingController {
     public String list(Model model,@SessionAttribute(name= SessionConst.LOGIN_MEMBER,required = false)Member member) {
         List<HospitalNote> hospitalNotes = hospitalService.findHospitalNotes(member);
         model.addAttribute("hospitalNotes", hospitalNotes);
+        model.addAttribute("member", member);
+        List<FileEntity> files = fileRepository.findAll();
+        model.addAttribute("all",files);
         return "hospital-listing";
     }
 
@@ -226,7 +229,10 @@ public class RearingController {
     @GetMapping(value = "/walking/list")
     public String walkingList(Model model,@SessionAttribute(name= SessionConst.LOGIN_MEMBER,required = false)Member member) {
         List<Walking> walkings = walkingService.findWalkings(member);
+        model.addAttribute("member", member);
         model.addAttribute("walkings", walkings);
+        List<FileEntity> files = fileRepository.findAll();
+        model.addAttribute("all",files);
         return "walking-listing";
     }
     /**
