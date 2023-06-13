@@ -389,10 +389,12 @@
 
 									<div class="d-flex justify-content-between align-items-center mt-4">
 										<div class="bg-primary bg-opacity-10 border border-2 border-primary border-dashed rounded-2 px-3 py-2">
-											<h5 class="fw-normal user-select-all mb-0"><a th:href="@{/walking/day/{id}(id = ${walking.dateOfWalking})}"><td th:text="${walking.dateOfWalking}"></td></a></h5>
+											<h5 class="fw-normal user-select-all mb-0"><a th:href="@{/walking/modify/{id}(id = ${walking.id})}">수정</a></h5>
 										</div>
-										<h5><a th:href="@{/walking/modify/{id}(id = ${walking.id})}" class="btn btn-lg btn-white btn-round mb-0">수정</a></h5>
-										<h5><a th:href="@{/walking/delete(id=${walking.id})}" class="btn btn-lg btn-white btn-round mb-0">삭제</a></h5>
+										<div class="bg-primary bg-opacity-10 border border-2 border-primary border-dashed rounded-2 px-3 py-2">
+											<h5 class="fw-normal user-select-all mb-0"><a th:href="@{/walking/delete(id=${walking.id})}">삭제</a></h5>
+										</div>
+										<a th:href="@{/walking/day/{id}(id = ${walking.dateOfWalking})}" class="btn btn-lg btn-white btn-round mb-0"><i class="bi bi-arrow-right"></i></a>
 									</div>
 
 								</div>

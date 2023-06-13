@@ -154,9 +154,11 @@ public class RearingController {
      * 병원 기록 상세
      */
     @GetMapping("/hospitalNote/view") //localhost:8080/hospitalNotes/view?id=1 //(get방식 파라미터)
-    public String hospitalNotesView(Model model, Integer id){
-
+    public String hospitalNotesView(Model model, Integer id,@SessionAttribute(name= SessionConst.LOGIN_MEMBER,required = false)Member member){
+        model.addAttribute("member", member);
         model.addAttribute("hospitalNote", hospitalService.hospitalNotesView(id));
+        List<FileEntity> files = fileRepository.findAll();
+        model.addAttribute("all",files);
         return "hospital-view";
     }
 
@@ -239,10 +241,13 @@ public class RearingController {
      * 산책 기록 상세 - 날짜별 횟수
      */
     @GetMapping("/walking/day/{id}")
-    public String walkingCountView(@PathVariable("id") String id, Model model){
+    public String walkingCountView(@SessionAttribute(name= SessionConst.LOGIN_MEMBER,required = false)Member member,@PathVariable("id") String id, Model model){
+        model.addAttribute("member", member);
         model.addAttribute("walkingsOfDay", walkingService.findWalkingsByDate(id));
         model.addAttribute("walkingRealDay", walkingService.findWalkingsByDate(id).get(0).getDateOfWalking());
         model.addAttribute("walkingCount", walkingService.takeACount(id));
+        List<FileEntity> files = fileRepository.findAll();
+        model.addAttribute("all",files);
         return "walking-dayView";
     }
 
@@ -250,8 +255,11 @@ public class RearingController {
      * 산책 기록 상세
      */
     @GetMapping("/walking/view")
-    public String walkingView(Model model, Long id){
+    public String walkingView(@SessionAttribute(name= SessionConst.LOGIN_MEMBER,required = false)Member member,Model model, Long id){
+        model.addAttribute("member", member);
         model.addAttribute("walking", walkingService.walkingView(id));
+        List<FileEntity> files = fileRepository.findAll();
+        model.addAttribute("all",files);
         return "walking/walkingView";
     }
 
