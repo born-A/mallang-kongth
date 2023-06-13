@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface BoardRepository extends JpaRepository<Board, Long> {
     List<Board> findByTitle(String keyword);
-    Board findByMember (Member member);
+//    Board findByMember (Member member);
 }
