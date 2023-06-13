@@ -288,11 +288,14 @@ public class RearingController {
      * 건강기록 등록 폼
      */
     @GetMapping(value = "/health/new")
-    public String createHealthForm(Model model) {
+    public String createHealthForm(Model model,@SessionAttribute(name= SessionConst.LOGIN_MEMBER,required = false)Member member) {
         List<Pet> pets = petService.findPets();
         model.addAttribute("pets", pets);
+        model.addAttribute("member", member);
         model.addAttribute("form",new HealthForm());
-        return "health/healthForm";
+        List<FileEntity> files = fileRepository.findAll();
+        model.addAttribute("all",files);
+        return "health/healthAddListing";
     }
     /**
      * 건강 기록 등록 - post
