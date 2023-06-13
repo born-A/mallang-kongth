@@ -93,16 +93,16 @@ public class RearingController {
 
 
     @GetMapping(value = "/hospitalNote/new")
-        public String createForm(@SessionAttribute(name= SessionConst.LOGIN_MEMBER,required = false)Member member,Model model) {
-            List<Pet> pets = petService.findPets(member);
-            model.addAttribute("member", member);
-            model.addAttribute("pets", pets);
-            model.addAttribute("form",new HospitalNoteForm());
+    public String createForm(@SessionAttribute(name= SessionConst.LOGIN_MEMBER,required = false)Member member,Model model) {
+        List<Pet> pets = petService.findPets(member);
+        model.addAttribute("member", member);
+        model.addAttribute("pets", pets);
+        model.addAttribute("form",new HospitalNoteForm());
 
-            List<FileEntity> files = fileRepository.findAll();
-            model.addAttribute("all",files);
-            return "hospitalAddListing";
-        }
+        List<FileEntity> files = fileRepository.findAll();
+        model.addAttribute("all",files);
+        return "hospitalAddListing";
+    }
 //        @GetMapping(value = "/hospitalNotes/new")
 //        @ResponseBody
 //        public PetFormDto createForm() {
@@ -177,10 +177,13 @@ public class RearingController {
      */
 
     @GetMapping("/hospitalNote/modify/{id}")
-    public String hospitalNoteModify(@PathVariable("id") Integer id, Model model){
+    public String hospitalNoteModify(@SessionAttribute(name= SessionConst.LOGIN_MEMBER,required = false)Member member,@PathVariable("id") Integer id, Model model){
         List<Pet> pets = petService.findPets();
+        model.addAttribute("member", member);
         model.addAttribute("pets", pets);
         model.addAttribute("hospitalNote", hospitalService.hospitalNotesView(id));
+        List<FileEntity> files = fileRepository.findAll();
+        model.addAttribute("all",files);
         return "hospitalModify";
     }
 
@@ -278,10 +281,14 @@ public class RearingController {
      */
 
     @GetMapping("/walking/modify/{id}")
-    public String walkingModify(@PathVariable("id") Long id, Model model){
+    public String walkingModify(@SessionAttribute(name= SessionConst.LOGIN_MEMBER,required = false)Member member,@PathVariable("id") Long id, Model model){
+        model.addAttribute("member", member);
+
         List<Pet> pets = petService.findPets();
         model.addAttribute("pets", pets);
         model.addAttribute("walking", walkingService.walkingView(id));
+        List<FileEntity> files = fileRepository.findAll();
+        model.addAttribute("all",files);
         return "walking/walkingModify";
     }
 
@@ -360,10 +367,13 @@ public class RearingController {
      */
 
     @GetMapping("/health/modify/{id}")
-    public String healthModify(@PathVariable("id") Long id, Model model){
+    public String healthModify(@PathVariable("id") Long id, Model model,@SessionAttribute(name= SessionConst.LOGIN_MEMBER,required = false)Member member){
+        model.addAttribute("member", member);
         List<Pet> pets = petService.findPets();
         model.addAttribute("pets", pets);
         model.addAttribute("health", healthService.healthView(id));
+        List<FileEntity> files = fileRepository.findAll();
+        model.addAttribute("all",files);
         return "health/healthModify";
     }
 
@@ -373,8 +383,8 @@ public class RearingController {
     @PostMapping("/health/update/{id}")
     public String healthUpdate(@PathVariable("id") Long id, HealthForm form){
         Health healthTemp = healthService.healthView(id);
-
         healthTemp.setText(form.getText());
+        healthTemp.setTitle(form.getTitle());
         healthTemp.setImageUrl(form.getImageUrl());
 
         healthService.saveHealth(healthTemp);
