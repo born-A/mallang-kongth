@@ -1,6 +1,6 @@
 package capjjangdol.mallangkongth.dto;
 
-import capjjangdol.mallangkongth.domain.community.BoardCategory;
+import capjjangdol.mallangkongth.domain.community.Category;
 import capjjangdol.mallangkongth.domain.community.board.Board;
 import capjjangdol.mallangkongth.domain.mypage.Member;
 import lombok.*;
@@ -19,7 +19,7 @@ public class BoardDto {
     private String content;
 
 
-    private BoardCategory category;
+    private Category category;
     private LocalDateTime createdDate;
     private LocalDateTime modifitedDate;
 
@@ -38,7 +38,7 @@ public class BoardDto {
     }
 
     @Builder
-    public BoardDto(Long id, String title, String content, String writer, LocalDateTime createdDate, LocalDateTime modifitedDate , BoardCategory category, Member member){
+    public BoardDto(Long id, String title, String content, String writer, LocalDateTime createdDate, LocalDateTime modifitedDate , Category category, Member member){
         this.id = id;
         this.writer =writer;
         this.title = title;

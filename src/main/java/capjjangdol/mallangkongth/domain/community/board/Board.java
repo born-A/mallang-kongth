@@ -1,6 +1,7 @@
 package capjjangdol.mallangkongth.domain.community.board;
 
-import capjjangdol.mallangkongth.domain.community.BoardCategory;
+
+import capjjangdol.mallangkongth.domain.community.Category;
 import capjjangdol.mallangkongth.domain.community.Time;
 import capjjangdol.mallangkongth.domain.mypage.Member;
 import lombok.*;
@@ -29,11 +30,11 @@ public class Board extends Time {
     private String writer;
 
     @Embedded
-    private BoardCategory category;
+    private Category category;
     private String title;
     private String content;
     @Builder
-    public Board(Long id, String title, String content, String writer, BoardCategory category){
+    public Board(Long id, String title, String content, String writer, Category category){
         Assert.hasText(title, "제목을 입력하세요");
         Assert.hasText(content,"내용을 입력하세요");
         this.id = id;

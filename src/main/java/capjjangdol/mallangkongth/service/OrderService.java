@@ -1,7 +1,7 @@
 package capjjangdol.mallangkongth.service;
 
 import capjjangdol.mallangkongth.domain.mypage.*;
-import capjjangdol.mallangkongth.repository.CategoryRepository;
+//import capjjangdol.mallangkongth.repository.CategoryRepository;
 import capjjangdol.mallangkongth.repository.ItemRepository;
 import capjjangdol.mallangkongth.repository.MemberRepository;
 import capjjangdol.mallangkongth.repository.OrderRepository;

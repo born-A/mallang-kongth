@@ -4,7 +4,7 @@ import capjjangdol.mallangkongth.domain.file.FileEntity;
 import capjjangdol.mallangkongth.domain.mypage.*;
 import capjjangdol.mallangkongth.repository.FileRepository;
 import capjjangdol.mallangkongth.repository.MemberRepository;
-import capjjangdol.mallangkongth.service.CategoryService;
+//import capjjangdol.mallangkongth.service.CategoryService;
 import capjjangdol.mallangkongth.service.ItemService;
 //import capjjangdol.mallangkongth.service.MemberService;
 import capjjangdol.mallangkongth.service.MemberService;
@@ -22,7 +22,7 @@ public class OrderController {
     private final OrderService orderService;
     private final MemberService memberService;
     private final ItemService itemService;
-    private final CategoryService categoryService;
+//    private final CategoryService categoryService;
 
     private final FileRepository fileRepository;
 
@@ -30,12 +30,12 @@ public class OrderController {
     public String createForm(@SessionAttribute(name= SessionConst.LOGIN_MEMBER,required = false)Member member,@PathVariable("id") Long id,Model model) {
         List<Member> members = memberService.findAll();
         Item item = itemService.findOne(id);
-        List<CategoryOfItem> categories = categoryService.findCategories();
+//        List<CategoryOfItem> categories = categoryService.findCategories();
 
         model.addAttribute("member", member);
         model.addAttribute("members", members);
         model.addAttribute("item", item);
-        model.addAttribute("categories", categories); //카테고리
+//        model.addAttribute("categories", categories); //카테고리
         List<FileEntity> files = fileRepository.findAll();
         model.addAttribute("all",files);
         return "order/orderForm";
