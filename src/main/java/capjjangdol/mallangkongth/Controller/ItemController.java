@@ -1,16 +1,16 @@
 package capjjangdol.mallangkongth.Controller;
 
+import capjjangdol.mallangkongth.domain.file.FileEntity;
 import capjjangdol.mallangkongth.domain.mypage.Item;
 import capjjangdol.mallangkongth.domain.mypage.ItemForm;
+import capjjangdol.mallangkongth.domain.mypage.Member;
 import capjjangdol.mallangkongth.domain.mypage.WaterBowlItem;
+import capjjangdol.mallangkongth.repository.FileRepository;
 import capjjangdol.mallangkongth.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,10 +18,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ItemController {
     private final ItemService itemService;
-
+    private final FileRepository fileRepository;
     @GetMapping(value = "/item/new")
-    public String createForm(Model model) {
+    public String createForm(Model model, @SessionAttribute(name= SessionConst.LOGIN_MEMBER,required = false) Member member) {
         model.addAttribute("form", new ItemForm());
+        model.addAttribute("member",member);
+        List<FileEntity> files = fileRepository.findAll();
+        model.addAttribute("all",files);
         return "item/createItemForm";
     }
     @PostMapping(value = "/item/new")
