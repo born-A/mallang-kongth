@@ -1,5 +1,6 @@
 # mallang-kongth
-
+## 반려동물을 위한 자동 급식/자동 급수 Iot를 제공하는 웹 서비스
+![아두이노 레포지토리](https://github.com/onejm/ArduinoForMallang-Kongth)
 <h3 data-ke-size="size20"><b>Front-End :</b></h3>
 <h4 data-ke-size="size20"><b>React</b></h4>
 <h3 data-ke-size="size20"><b>Sever :</b></h3>
