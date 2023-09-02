@@ -14,9 +14,6 @@ import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.time.LocalDateTime;
 import java.util.concurrent.Executor;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -78,7 +75,7 @@ public class SerialRun {
         foodServing.setFoodServingSize(0);
         foodServingRepository.save(foodServing);
 
-
+        /*
 
         if (waterBowlIsOpen && foodBowlIsOpen) { // 급수기 급식기 모두 연결 되어야 함
             System.out.println("open");
@@ -89,7 +86,9 @@ public class SerialRun {
             executor.execute(new FoodBowlSerialReadThread(foodBowlIn , foodNoteRepository, foodBowlRepository)); //급식기 수신 작업을 하는 스레드 실행
             executor.execute(new FoodBowlSerialWriteThread(foodBowlOut, foodServingRepository, foodServingTimeRepository));
         } else {
-          //System.exit(0);
+          System.exit(0);
         }
+
+         */
     }
 }

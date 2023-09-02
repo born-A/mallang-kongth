@@ -2,6 +2,7 @@ package capjjangdol.mallangkongth.repository;
 
 import capjjangdol.mallangkongth.domain.rearing.FoodBowl;
 import capjjangdol.mallangkongth.domain.rearing.FoodBowl;
+import capjjangdol.mallangkongth.dto.FoodServingTimeDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
