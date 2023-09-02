@@ -47,7 +47,7 @@ public class SecurityConfig{
 
                 .and()
                 .authorizeRequests()
-                .antMatchers("/css/**",
+                .antMatchers("/css/**","/api/**",
                         "/images/**",
                         "/js/**",
                         "/scss/**",
