@@ -36,8 +36,6 @@ public class LoginController {
          **/
 
         HttpSession session = request.getSession();
-
-
         session.setAttribute(SessionConst.LOGIN_MEMBER, memberId);
         return "redirect:/";
     }
