@@ -1,8 +1,6 @@
 <h1>mallang-kongth</h1>
 <h2>반려동물을 위한 자동 급식/자동 급수 Iot를 제공하는 웹 서비스</h2>
-<h3>경기대학교 2023년 심화캡스톤 대회 우수상 수여</h3>
-![image](https://github.com/born-A/mallang-kongth/assets/71478325/3731a293-180c-4030-92c2-d25c46be47bc)
-
+<h3><a href="https://github.com/born-A/mallang-kongth/assets/71478325/3731a293-180c-4030-92c2-d25c46be47bc">경기대학교 2023년 심화캡스톤 대회 우수상 수여</a></h3><br>
 <a href="https://github.com/onejm/ArduinoForMallang-Kongth"><img src="https://github.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/blob/master/Emojis/Animals/Otter.png" width ="3%"/>아두이노 레포지토리</a>
 
 ```
